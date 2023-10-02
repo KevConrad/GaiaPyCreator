@@ -1,0 +1,4720 @@
+{
+    "eventCommands": {
+       "command": [
+          {
+             "id": "204",
+             "name": "Music -> Play Immediate",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "music",
+                         "name": "Music",
+                         "_descriptor": "musicIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0204.MusicPlayImmediate"
+          },
+          {
+             "id": "205",
+             "name": "Music -> Fade Out and Play",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "music",
+                         "name": "Music",
+                         "_descriptor": "musicIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0205.MusicFadeOutAndPlay"
+          },
+          {
+             "id": "206",
+             "name": "Sound -> Play on Channel 3",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sound",
+                         "name": "Sound",
+                         "_descriptor": "soundIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0206.SoundPlayOnChannel3"
+          },
+          {
+             "id": "207",
+             "name": "Sound -> Play on Channel 2",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sound",
+                         "name": "Sound",
+                         "_descriptor": "soundIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0207.SoundPlayOnChannel2"
+          },
+          {
+             "id": "208",
+             "name": "Sound -> Play on Both Channels",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sound",
+                         "name": "Sound 1",
+                         "_descriptor": "soundIndex1"
+                      },
+                      {
+                         "type": "sound",
+                         "name": "Sound 2",
+                         "_descriptor": "soundIndex2"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0208.SoundPlayOnBothChannels"
+          },
+          {
+             "id": "209",
+             "name": "Music -> Set tempo modifier (APU channel 1)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Tempo Increase",
+                         "_descriptor": "tempoIncrease"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0209.SetTempoModifier"
+          },
+          {
+             "id": "20A",
+             "name": "Music -> Advanced programming (APU channel 0)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Input Byte",
+                         "_descriptor": "inputByte"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "020A.MusicAdvancedProgramming"
+          },
+          {
+             "id": "20B",
+             "name": "Event Layer -> Set Same as Player",
+             "_descriptor": "020B.EventLayerSetSame"
+          },
+          {
+             "id": "20C",
+             "name": "Event Layer -> Set Below Player",
+             "_descriptor": "020C.EventLayerSetBelow"
+          },
+          {
+             "id": "20D",
+             "name": "Tile Block -> Set (Relative Position from Event)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sbyte",
+                         "name": "Offset X",
+                         "_descriptor": "OffsetX"
+                      },
+                      {
+                         "type": "sbyte",
+                         "name": "Offset Y",
+                         "_descriptor": "OffsetY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "020D.TileBlockSetRelative"
+          },
+          {
+             "id": "20E",
+             "name": "Tile Type -> Clear (Relative Position from Event)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sbyte",
+                         "name": "Offset X",
+                         "_descriptor": "OffsetX"
+                      },
+                      {
+                         "type": "sbyte",
+                         "name": "Offset Y",
+                         "_descriptor": "OffsetY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "020E.TileTypeClearRelative"
+          },
+          {
+             "id": "20F",
+             "name": "Tile Block -> Set (Absolute Position)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "020F.TileBlockSetAbsolute"
+          },
+          {
+             "id": "210",
+             "name": "Tile Block -> Clear (Absolute Position)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0210.TileBlockClearAbsolute"
+          },
+          {
+             "id": "212",
+             "name": "Tile -> Clear Default Type",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0212.TileClearDefaultType"
+          },
+          {
+             "id": "215",
+             "name": "CONDITION -> North Tile Passable",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0215.NorthTilePassableCondition"
+          },
+          {
+             "id": "216",
+             "name": "CONDITION -> South Tile Passable",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0216.SouthTilePassableCondition"
+          },
+          {
+             "id": "217",
+             "name": "CONDITION -> West Tile Passable",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0217.WestTilePassableCondition"
+          },
+          {
+             "id": "218",
+             "name": "CONDITION -> East Tile Passable",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0218.EastTilePassableCondition"
+          },
+          {
+             "id": "219",
+             "name": "Play Music and Display Message Box",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "music",
+                         "name": "Music",
+                         "_descriptor": "MusicIndex"
+                      },
+                      {
+                         "type": "messageBoxLong",
+                         "_descriptor": "MessageBox"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0219.PlayMusicAndDisplayMessageBox"
+          },
+          {
+             "id": "21A",
+             "name": "CONDITION -> Event on Tile Type",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "tileType",
+                         "name": "Tile Type",
+                         "_descriptor": "TileType"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "021A.EventOnTileTypeCondition"
+          },
+          {
+             "id": "21B",
+             "name": "CONDITION -> North Tile Type",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "tileType",
+                         "name": "Tile Type",
+                         "_descriptor": "TileType"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "021B.NorthTileTypeCondition"
+          },
+          {
+             "id": "21C",
+             "name": "CONDITION -> South Tile Type",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "tileType",
+                         "name": "Tile Type",
+                         "_descriptor": "TileType"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "021C.SouthTileTypeCondition"
+          },
+          {
+             "id": "21D",
+             "name": "CONDITION -> West Tile Type",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "tileType",
+                         "name": "Tile Type",
+                         "_descriptor": "TileType"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "021D.WestTileTypeCondition"
+          },
+          {
+             "id": "21E",
+             "name": "CONDITION -> East Tile Type",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "tileType",
+                         "name": "Tile Type",
+                         "_descriptor": "TileType"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "021E.EastTileTypeCondition"
+          },
+          {
+             "id": "21F",
+             "name": "CONDITION -> Event Not on Gridline",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "021F.EventNotOnGridlineCondition"
+          },
+          {
+             "id": "220",
+             "name": "CONDITION -> Other Event Distance",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Event",
+                         "_descriptor": "EventIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Distance",
+                         "_descriptor": "Distance"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0220.OtherEventDistanceCondition"
+          },
+          {
+             "id": "221",
+             "name": "CONDITION -> Player Distance",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Distance",
+                         "_descriptor": "Distance"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0221.PlayerDistanceCondition"
+          },
+          {
+             "id": "222",
+             "name": "Movement -> Linear to Destination",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Speed",
+                         "_descriptor": "MovementSpeed"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0222.MovementLinear"
+          },
+          {
+             "id": "223",
+             "name": "Accumulator -> Load Random Byte",
+             "_descriptor": "0223.AccumulatorLoadRandomByte"
+          },
+          {
+             "id": "225",
+             "name": "Event -> Change Position",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "X Position",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Y Position",
+                         "_descriptor": "PositionY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0225.EventChangePosition"
+          },
+          {
+             "id": "226",
+             "name": "Teleport to Map",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "map",
+                         "name": "Map",
+                         "_descriptor": "MapIndex"
+                      },
+                      {
+                         "type": "mapPositionOffset",
+                         "name": "Pixel Offset X",
+                         "_descriptor": "PixelOffsetX"
+                      },
+                      {
+                         "type": "mapPosition",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "mapPositionOffset",
+                         "name": "Pixel Offset Y",
+                         "_descriptor": "PixelOffsetY"
+                      },
+                      {
+                         "type": "mapPosition",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      },
+                      {
+                         "type": "faceDirection",
+                         "name": "Face Direction",
+                         "_descriptor": "FaceDirection"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Screen Offset",
+                         "_descriptor": "ScreenOffset"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Map Size",
+                         "_descriptor": "MapSize"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0226.TeleportToMap"
+          },
+          {
+             "id": "227",
+             "name": "Delay if Off-Screen",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Duration (Frames)",
+                         "_descriptor": "Duration"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0227.DelayIfOffscreen"
+          },
+          {
+             "id": "228",
+             "name": "CONDITION -> Player Position",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "mapPosition",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "mapPosition",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0228.PlayerPositionCondition"
+          },
+          {
+             "id": "229",
+             "name": "CONDITION -> Event Position",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Event Number",
+                         "_descriptor": "eventNumber"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0229.EventPositionCondition"
+          },
+          {
+             "id": "22A",
+             "name": "MULTIPLE CONDITION -> Player X Distance",
+             "type": "multipleCondition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Distance",
+                         "_descriptor": "distance"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Player Too Far Left",
+                         "_descriptor": "BranchAddress"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Player Within Distance",
+                         "_descriptor": "BranchAddress"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Player Too Far Right",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "022A.PlayerXDistanceMultipleCondition"
+          },
+          {
+             "id": "22B",
+             "name": "MULTIPLE CONDITION -> Player Y Distance",
+             "type": "multipleCondition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Distance",
+                         "_descriptor": "distance"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Player Too Far Up",
+                         "_descriptor": "BranchAddress"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Player Within Distance",
+                         "_descriptor": "BranchAddress"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Player Too Far Down",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "022B.PlayerYDistanceMultipleCondition"
+          },
+          {
+             "id": "22C",
+             "name": "MULTIPLE CONDITION -> Player X/Y Distances from Event",
+             "type": "multipleCondition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "name": "X Distance > Y Distance",
+                         "_descriptor": "BranchAddress"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "name": "Y Distance > X Distance",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "022C.PlayerXYDistancesFromEventMultipleCondition"
+          },
+          {
+             "id": "22D",
+             "name": "Find Direction from Event to Player",
+             "_descriptor": "022D.FindDirectionFromEventToPlayer"
+          },
+          {
+             "id": "230",
+             "name": "CONDITION -> Player is in This Direction from Offset Location",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sbyte",
+                         "name": "Offset X",
+                         "_descriptor": "OffsetX"
+                      },
+                      {
+                         "type": "sbyte",
+                         "name": "Offset Y",
+                         "_descriptor": "OffsetY"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Direction",
+                         "_descriptor": "Direction"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0230.BranchIfPlayerIsInThisDirectionFromOffsetLocation"
+          },
+          {
+             "id": "232",
+             "name": "Map Rearrangement -> Prepare",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Map Rearrangement",
+                         "_descriptor": "MapRearrangementId"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0232.PrepareMapRearrangement"
+          },
+          {
+             "id": "233",
+             "name": "Map Rearrangement -> Perform",
+             "_descriptor": "0233.PerformMapRearrangement"
+          },
+          {
+             "id": "23B",
+             "type": "call",
+             "name": "Thinker -> Create with Parameter",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Parameter",
+                         "_descriptor": "Parameter"
+                      },
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "023B.ThinkerCreateWithParameter"
+          },
+          {
+             "id": "23C",
+             "type": "call",
+             "name": "Thinker -> Create",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "023C.ThinkerCreate"
+          },
+          {
+             "id": "23D",
+             "name": "Thinker -> Remove",
+             "_descriptor": "023D.ThinkerRemove"
+          },
+          {
+             "id": "240",
+             "name": "CONDITION -> Button Pressed",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Button Mask",
+                         "_descriptor": "ButtonMask"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0240.ButtonPressCondition"
+          },
+          {
+             "id": "243",
+             "name": "Move to Nearest Gridline",
+             "_descriptor": "0243.MoveToNearestGridline"
+          },
+          {
+             "id": "245",
+             "name": "CONDITION -> Player Position Area",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Start Point X",
+                         "_descriptor": "StartPointX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Start Point Y",
+                         "_descriptor": "StartPointY"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "End Point X",
+                         "_descriptor": "EndPointX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "End Point Y",
+                         "_descriptor": "EndPointY"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0245.PlayerPositionAreaCondition"
+          },
+          {
+             "id": "24B",
+             "name": "?",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "?",
+                         "_descriptor": "byte1"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "?",
+                         "_descriptor": "byte2"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "?",
+                         "_descriptor": "byte3"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "024B.Unknown"
+          },
+          {
+             "id": "24F",
+             "name": "Queue DMA to VRAM during VBlank",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "absoluteAddress",
+                         "name": "Source Address",
+                         "_descriptor": "SourceAddress"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Target VRAM Word",
+                         "_descriptor": "TargetVramWord"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Transfer Size",
+                         "_descriptor": "TransferSize"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "024F.QueueDmaToVramDuringVBlank"
+          },
+          {
+             "id": "252",
+             "name": "Prepare Linear Motion to Destination",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Speed",
+                         "_descriptor": "Speed"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "MaximumMovementTime",
+                         "_descriptor": "MaximumMovementTime"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0252.PrepareLinearMotionToDestination"
+          },
+          {
+             "id": "253",
+             "name": "Propagate Linear Motion to Destination",
+             "_descriptor": "0253.PropagateLinearMotionToDestination"
+          },
+          {
+             "id": "258",
+             "name": "BRANCH -> Enemy Damage",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0258.EnemyDamageCondition"
+          },
+          {
+             "id": "25B",
+             "name": "Binary OR argument with $7F:2A",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Argument",
+                         "_descriptor": "Argument"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "025B.BinaryOrArgumentWith$7F:2A"
+          },
+          {
+             "id": "25C",
+             "name": "Binary AND argument with $7F:2A",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Argument",
+                         "_descriptor": "Argument"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "025C.BinaryAndArgumentWith$7F:2A"
+          },
+          {
+             "id": "265",
+             "name": "World Map -> Set Position",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "mapPositionOffset",
+                         "name": "Pixel Offset X",
+                         "_descriptor": "PixelOffsetX"
+                      },
+                      {
+                         "type": "mapPosition",
+                         "name": "Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "mapPositionOffset",
+                         "name": "Pixel Offset Y",
+                         "_descriptor": "PixelOffsetY"
+                      },
+                      {
+                         "type": "mapPosition",
+                         "name": "Position Y",
+                         "_descriptor": "PositionY"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "?",
+                         "_descriptor": "?"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0265.WorldMapSetPosition"
+          },
+          {
+             "id": "280",
+             "name": "Sprite -> Change Frame Index",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Frame Index",
+                         "_descriptor": "FrameIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0280.SpriteChangeFrameIndex"
+          },
+          {
+             "id": "281",
+             "name": "Move -> Left/Right",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0281.MoveUpDown"
+          },
+          {
+             "id": "282",
+             "name": "Move -> Up/Down",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0282.MoveUpDown"
+          },
+          {
+             "id": "283",
+             "name": "Move -> Concurrent",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index (Left/Right)",
+                         "_descriptor": "MovementIndexLeftRight"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index (Up/Down)",
+                         "_descriptor": "MovementIndexUpDown"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0283.MoveConcurrent"
+          },
+          {
+             "id": "280",
+             "name": "Sprite -> Change Index",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0280.SpriteChangeIndex"
+          },
+          {
+             "id": "284",
+             "name": "Sprite -> Change Index and Speed",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Sprite Speed",
+                         "_descriptor": "Speed"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0284.SpriteChangeIndexAndSpeed"
+          },
+          {
+             "id": "285",
+             "name": "Movement -> Left/Right",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Number of Steps",
+                         "_descriptor": "NumberOfSteps"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0285.MovementLeftRight"
+          },
+          {
+             "id": "286",
+             "name": "Movement -> Up/Down",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Number of Steps",
+                         "_descriptor": "NumberOfSteps"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0286.MovementUpDown"
+          },
+          {
+             "id": "287",
+             "name": "Movement -> Concurrent",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Number of Steps",
+                         "_descriptor": "NumberOfSteps"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndexLeftRight"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Movement Index",
+                         "_descriptor": "MovementIndexUpDown"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0287.MovementConcurrent"
+          },
+          {
+             "id": "288",
+             "name": "Spriteset -> Set",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteset",
+                         "name": "Spriteset",
+                         "_descriptor": "SpritesetAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0288.SetSpriteset"
+          },
+          {
+             "id": "289",
+             "name": "Sprite -> Do Movement",
+             "_descriptor": "0289.SpriteDoMovement"
+          },
+          {
+             "id": "28A",
+             "name": "Sprite -> Do Movement",
+             "_descriptor": "028A.SpriteDoMovement"
+          },
+          {
+             "id": "28B",
+             "name": "Sprite -> Do Movement",
+             "_descriptor": "028B.SpriteDoMovement"
+          },
+          {
+             "id": "28D",
+             "name": "Sprite -> Change Index (And Offset and Physical Properties)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "spriteIndex",
+                         "name": "Sprite Index",
+                         "_descriptor": "SpriteIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "028D.SpriteChangeIndex"
+          },
+          {
+             "id": "29C",
+             "name": "Event -> Create and Call Script",
+             "type": "call",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Event Physics Header",
+                         "_descriptor": "EventPhysicsHeader"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "029C.EventCreateAndCallScript"
+          },
+          {
+             "id": "29E",
+             "name": "Event -> Create with Position Offset and Call Script",
+             "type": "call",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Position Offset X",
+                         "_descriptor": "PositionOffsetX"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Position Offset Y",
+                         "_descriptor": "PositionOffsetY"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Physics Header",
+                         "_descriptor": "EventPhysicsHeader"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "029E.EventCreateWithOffsetAndCallScript"
+          },
+          {
+             "id": "2A0",
+             "name": "Event -> Create and Call Script",
+             "type": "call",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Event Position X",
+                         "_descriptor": "PositionX"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Event Position Y",
+                         "_descriptor": "PositionY"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Event Physics Header",
+                         "_descriptor": "EventPhysicsHeader"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02A0.EventCreateAndCallScript"
+          },
+          {
+             "id": "2A2",
+             "type": "call",
+             "name": "Event -> Create and Call Script",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Event Physics Header",
+                         "_descriptor": "EventPhysicsHeader"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02A2.EventCreateAndCallScript"
+          },
+          {
+             "id": "2A5",
+             "type": "call",
+             "name": "Event -> Create and Call Script (Place Last in Exection Order)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      },
+                      {
+                         "type": "sbyte",
+                         "name": "Position Offset X",
+                         "_descriptor": "PositionOffsetX"
+                      },
+                      {
+                         "type": "sbyte",
+                         "name": "Position Offset Y",
+                         "_descriptor": "PositionOffsetY"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Event Physics Header",
+                         "_descriptor": "EventPhysicsHeader"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02A5.EventCreateAndCallScript"
+          },
+          {
+             "id": "2AA",
+             "name": "Sprite -> Set Move Index (X Direction)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Move Index",
+                         "_descriptor": "MoveIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02AA.SetMoveIndex"
+          },
+          {
+             "id": "2B0",
+             "name": "Set Current and Saved Move Pattern Indexes",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Move Pattern Index X",
+                         "_descriptor": "MovePatternIndexX"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Move Pattern Index Y",
+                         "_descriptor": "MovePatternIndexY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02B0.SetCurrentAndSavedMovePatternIndexes"
+          },
+          {
+             "id": "2B1",
+             "name": "Load Saved Move Pattern",
+             "_descriptor": "02B1.LoadSavedMovePattern"
+          },
+          {
+             "id": "2B2",
+             "name": "Event Layer -> Set Over Player",
+             "_descriptor": "02B2.EventLayerSetBelow"
+          },
+          {
+             "id": "2B3",
+             "name": "Event Layer -> Set Behind Player",
+             "_descriptor": "02B3.EventLayerSetBehind"
+          },
+          {
+             "id": "2B4",
+             "name": "Event Layer -> Clear Over Player",
+             "_descriptor": "02B4.EventLayerSetBelow"
+          },
+          {
+             "id": "2B5",
+             "name": "Event Layer -> Clear Behind Player",
+             "_descriptor": "02B5.EventLayerClearBehind"
+          },
+          {
+             "id": "2B6",
+             "name": "Sprite -> Clear Priority Override and Add Properties",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Sprite Properties",
+                         "_descriptor": "SpriteProperties"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02B6.SpriteClearPriorityOverrideAndAddProperties"
+          },
+          {
+             "id": "2B7",
+             "name": "Sprite -> Clear Palette Override and Add Properties",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Sprite Properties",
+                         "_descriptor": "SpriteProperties"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02B7.SpriteClearPaletteOverrideAndAddProperties"
+          },
+          {
+             "id": "2B8",
+             "name": "Sprite -> Toggle Mirror Vertical",
+             "_descriptor": "02B8.SpriteToggleMirrorVertical"
+          },
+          {
+             "id": "2B9",
+             "name": "Sprite -> Toggle Mirror Horizontal",
+             "_descriptor": "02B9.SpriteToggleMirrorHorizontal"
+          },
+          {
+             "id": "2BA",
+             "name": "Sprite -> Unmirror Vertical",
+             "_descriptor": "02BA.SpriteUnmirrorVertical"
+          },
+          {
+             "id": "2BB",
+             "name": "Sprite -> Mirror Vertical",
+             "_descriptor": "02BB.SpriteMirrorVertical"
+          },
+          {
+             "id": "2BC",
+             "name": "Event -> Set Position Offset",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "sbyte",
+                         "name": "Offset X",
+                         "_descriptor": "OffsetX"
+                      },
+                      {
+                         "type": "sbyte",
+                         "name": "Offset Y",
+                         "_descriptor": "OffsetY"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02BC.EventSetPositionOffset"
+          },
+          {
+             "id": "2BE",
+             "name": "CONDITION -> Message Box Choice",
+             "type": "choice",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Choice Count",
+                         "_descriptor": "choiceCount"
+                      },
+                      {
+                         "type": "byte",
+                         "name": "Line Index",
+                         "_descriptor": "lineIndex"
+                      },
+                      {
+                         "type": "messageBoxChoice",
+                         "_descriptor": "choiceTable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02BE.ConditionMessageBoxChoice"
+          },
+          {
+             "id": "2BF",
+             "name": "Message Box -> Display",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "messageBox",
+                         "_descriptor": "MessageBox"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02BF.MessageBoxDisplay"
+          },
+          {
+             "id": "2C0",
+             "name": "CONDITION -> Press Button",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02C0.ConditionPressButton"
+          },
+          {
+             "id": "2C1",
+             "name": "Event -> Set Pointer Here",
+             "_descriptor": "02C1.EventSetPointerHere"
+          },
+          {
+             "id": "2C2",
+             "name": "Event Pointer -> Set Here",
+             "_descriptor": "02C2.EventPointerSetHere"
+          },
+          {
+             "id": "2C3",
+             "name": "BRANCH -> After Delay",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchAbsolute",
+                         "_descriptor": "Address"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Delay",
+                         "_descriptor": "Delay"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02C3.ActionAfterDelay"
+          },
+          {
+             "id": "2C4",
+             "name": "Event -> Set Pointer at Address",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchAbsolute",
+                         "_descriptor": "BranchAbsolute"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02C4.SetEventPointerAtAddress"
+          },
+          {
+             "id": "2C5",
+             "name": "RETURN -> From Subroutine",
+             "type": "return",
+             "_descriptor": "02C5.ReturnFromSubroutine"
+          },
+          {
+             "id": "2C6",
+             "name": "Set Saved Jump Address",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Jump Address",
+                         "_descriptor": "JumpAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02C6.SetSavedJumpAddress"
+          },
+          {
+             "id": "2C8",
+             "name": "Subroutine -> Save Address and Call",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchAbsolute"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02C8.SubroutineSaveAddressAndCall"
+          },
+          {
+             "id": "2CA",
+             "name": "Loop -> Start",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Loop Counter",
+                         "_descriptor": "LoopCounter"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02CA.LoopStart"
+          },
+          {
+             "id": "2CB",
+             "name": "Loop -> Decrement Counter",
+             "_descriptor": "02CB.LoopDecrementCounter"
+          },
+          {
+             "id": "2CC",
+             "name": "Switch -> Set",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Switch Id",
+                         "_descriptor": "SwitchId"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02CC.SwitchSet"
+          },
+          {
+             "id": "2CD",
+             "name": "Map Rearrangement / Long Switch -> Set",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "mapRearrangementLongSwitch",
+                         "name": "Id",
+                         "_descriptor": "MapRearrangementLongSwitchId"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02CD.MapRearrangementLongSwitchSet"
+          },
+          {
+             "id": "2CE",
+             "name": "Switch -> Clear",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Switch Id",
+                         "_descriptor": "SwitchId"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02CE.SwitchClear"
+          },
+          {
+             "id": "2CF",
+             "name": "Map Rearrangement / Long Switch -> Clear",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "mapRearrangementLongSwitch",
+                         "name": "Id",
+                         "_descriptor": "MapRearrangementLongSwitchId"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02CF.MapRearrangementLongSwitchClear"
+          },
+          {
+             "id": "2D0",
+             "name": "CONDITION -> Switch",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Switch Id",
+                         "_descriptor": "SwitchId"
+                      },
+                      {
+                         "type": "bool",
+                         "name": "Switch State",
+                         "_descriptor": "SwitchState"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D0.SwitchCondition"
+          },
+          {
+             "id": "2D1",
+             "name": "CONDITION -> Map Rearrangement / Long Switch",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "mapRearrangementLongSwitch",
+                         "name": "Id",
+                         "_descriptor": "MapRearrangementLongSwitchId"
+                      },
+                      {
+                         "type": "bool",
+                         "name": "Switch State",
+                         "_descriptor": "SwitchState"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D1.MapRearrangementLongSwitchCondition"
+          },
+          {
+             "id": "2D2",
+             "name": "WAIT -> For Switch Condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Switch Id",
+                         "_descriptor": "SwitchId"
+                      },
+                      {
+                         "type": "bool",
+                         "name": "Switch State",
+                         "_descriptor": "SwitchState"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D2.WaitSwitchCondition"
+          },
+          {
+             "id": "2D3",
+             "name": "WAIT -> For Map Rearrangement / Long Switch Condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "mapRearrangementLongSwitch",
+                         "name": "Id",
+                         "_descriptor": "SwitchId"
+                      },
+                      {
+                         "type": "bool",
+                         "name": "Switch State",
+                         "_descriptor": "SwitchState"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D3.WaitMapRearrangementLongSwitchCondition"
+          },
+          {
+             "id": "2D4",
+             "name": "CONDITION -> Item Add (Inventory Full)",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "item",
+                         "name": "Item",
+                         "_descriptor": "ItemIndex"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D4.ItemAddCondition"
+          },
+          {
+             "id": "2D5",
+             "name": "Item -> Remove",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "item",
+                         "name": "Item",
+                         "_descriptor": "ItemIndex"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D5.ItemRemove"
+          },
+          {
+             "id": "2D6",
+             "name": "CONDITION -> Item Possession",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "item",
+                         "name": "Item",
+                         "_descriptor": "ItemIndex"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D6.ItemPossessionCondition"
+          },
+          {
+             "id": "2D7",
+             "name": "CONDITION -> Item Equipped",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "item",
+                         "name": "Item",
+                         "_descriptor": "ItemIndex"
+                      },
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D7.ItemEquippedCondition"
+          },
+          {
+             "id": "2D8",
+             "name": "Enemy -> Flag as Killed",
+             "_descriptor": "02D8.EnemyFlagAsKilled"
+          },
+          {
+             "id": "2D9",
+             "name": "Jump (Offset + (Index * 2))",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Index Address",
+                         "_descriptor": "IndexAddress"
+                      },
+                      {
+                         "type": "short",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02D9.JumpWithVariableAddress"
+          },
+          {
+             "id": "2DA",
+             "name": "Delay",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Delay",
+                         "_descriptor": "Delay"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02DA.Delay"
+          },
+          {
+             "id": "2DB",
+             "name": "Delay (Long)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Delay",
+                         "_descriptor": "DelayLong"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "02DB.DelayLong"
+          },
+          {
+             "id": "2E0",
+             "name": "RETURN -> Disable Event",
+             "type": "return",
+             "_descriptor": "02E0.EventDisable"
+          },
+          {
+             "id": "A00",
+             "name": "Break",
+             "_descriptor": "0A00.Break"
+          },
+          {
+             "id": "A01",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A01.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A04",
+             "name": "Accumulator -> Test and Set Memory Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "MemoryBits",
+                         "_descriptor": "MemoryBits"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A04.AccumulatorTestAndSetMemoryBits"
+          },
+          {
+             "id": "A05",
+             "name": "Accumulator -> OR with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A05.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A07",
+             "name": "Accumulator -> OR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A07.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A08",
+             "name": "Push Processor Status Register",
+             "_descriptor": "0A08.PushProcessorStatusRegister"
+          },
+          {
+             "id": "A09",
+             "name": "Accumulator -> OR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A09.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A0A",
+             "name": "Accumulator -> Arithmetic Shift Left",
+             "_descriptor": "0A0A.AccumulatorArithmeticShiftLeft"
+          },
+          {
+             "id": "A0B",
+             "name": "Stack -> Push Direct Page Register",
+             "_descriptor": "0A0B.StackPushDirectPageRegister"
+          },
+          {
+             "id": "A0C",
+             "name": "Accumulator -> Test and Set Memory Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "MemoryBits",
+                         "_descriptor": "MemoryBits"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A0C.AccumulatorTestAndSetMemoryBits"
+          },
+          {
+             "id": "A0D",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A0D.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A0E",
+             "name": "Arithmetic Shift Left",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A0E.ArithmeticShiftLeft"
+          },
+          {
+             "id": "A0F",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A0F.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A10",
+             "name": "Branch If Plus",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Near Label",
+                         "_descriptor": "NearLabel"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A10.BranchIfPlus"
+          },
+          {
+             "id": "A11",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A11.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A12",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A12.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A13",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A13.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A14",
+             "name": "Accumulator -> Test and Reset Memory Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "MemoryBits",
+                         "_descriptor": "MemoryBits"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A14.AccumulatorTestAndResetMemoryBits"
+          },
+          {
+             "id": "A15",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A15.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A16",
+             "name": "Arithmetic Shift Left",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A16.ArithmeticShiftLeft"
+          },
+          {
+             "id": "A17",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A17.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A18",
+             "name": "Clear Carry Bit",
+             "_descriptor": "0A18.ClearCarryBit"
+          },
+          {
+             "id": "A19",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A19.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A1A",
+             "name": "Accumulator -> Increment",
+             "_descriptor": "0A1A.AccumulatorIncrement"
+          },
+          {
+             "id": "A1B",
+             "name": "Accumulator -> Transfer to Stack Pointer",
+             "_descriptor": "0A1B.AccumulatorTransferToStackPointer"
+          },
+          {
+             "id": "A1C",
+             "name": "Accumulator -> Test and Reset Memory Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "MemoryBits",
+                         "_descriptor": "MemoryBits"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A1C.AccumulatorTestAndResetMemoryBits"
+          },
+          {
+             "id": "A1D",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A1D.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A1F",
+             "name": "Accumulator -> Or with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "MemoryBits",
+                         "_descriptor": "MemoryBits"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A1F.AccumulatorOrWithMemory"
+          },
+          {
+             "id": "A20",
+             "name": "Jump to Subroutine",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "branchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A20.JumpToSubroutine"
+          },
+          {
+             "id": "A21",
+             "name": "Accumulator -> And with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A21.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A22",
+             "type": "call",
+             "name": "Jump to Subroutine (Long)",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "eventScript",
+                         "name": "Event Script",
+                         "_descriptor": "EventScript"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A22.JumpToSubroutineLong"
+          },
+          {
+             "id": "A23",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A23.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A24",
+             "name": "Test Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A24.TestBits"
+          },
+          {
+             "id": "A25",
+             "name": "Accumulator -> And with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A25.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A27",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A27.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A29",
+             "name": "Accumulator -> And with Value",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Constant"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A29.AccumulatorAndWithValue"
+          },
+          {
+             "id": "A2A",
+             "name": "Rotate Memory or Accumulator Left",
+             "_descriptor": "0A2A.RotateMemoryOrAccumulatorLeft"
+          },
+          {
+             "id": "A2B",
+             "name": "Stack -> Pull",
+             "_descriptor": "0A2B.StackPull"
+          },
+          {
+             "id": "A30",
+             "name": "Accumulator -> Negative Value Condition",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A30.BranchIfMinus"
+          },
+          {
+             "id": "A31",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A31.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A32",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A32.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A33",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A33.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A35",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A35.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A37",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A37.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A38",
+             "name": "Set Carry Flag",
+             "_descriptor": "0A38.SetCarryFlag"
+          },
+          {
+             "id": "A39",
+             "name": "Accumulator -> And with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A39.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A3A",
+             "name": "Accumulator -> Decrement",
+             "_descriptor": "0A3A.AccumulatorDecrement"
+          },
+          {
+             "id": "A3F",
+             "name": "Accumulator -> AND with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A3F.AccumulatorAndWithMemory"
+          },
+          {
+             "id": "A40",
+             "name": "RETURN -> From Interrupt",
+             "type": "return",
+             "_descriptor": "0A40.ReturnFromInterrupt"
+          },
+          {
+             "id": "A42",
+             "name": "Reserved",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Reserved",
+                         "_descriptor": "Reserved"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A42.Reserved"
+          },
+          {
+             "id": "A43",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A43.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A45",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A45.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A46",
+             "name": "Logical Shift Memory or Accumulator Right",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A46.LogicalShiftMemoryOrAccumulatorRight"
+          },
+          {
+             "id": "A47",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A47.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A48",
+             "name": "Accumulator -> Push",
+             "_descriptor": "0A48.AccumulatorPush"
+          },
+          {
+             "id": "A49",
+             "name": "Accumulator -> EXOR with Value",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Value",
+                         "_descriptor": "AddValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A49.AccumulatorExorWithValue"
+          },
+          {
+             "id": "A4A",
+             "name": "Accumulator -> Shift to Right",
+             "_descriptor": "0A4A.AccumulatorShiftRight"
+          },
+          {
+             "id": "A4B",
+             "name": "Stack -> Push",
+             "_descriptor": "0A4B.StackPush"
+          },
+          {
+             "id": "A4C",
+             "name": "Jump to Subroutine",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A4C.JumpToSubroutine"
+          },
+          {
+             "id": "A4D",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A4D.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A4F",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A4F.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A50",
+             "name": "CONDITION -> Branch If Overflow Clear",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A50.BranchIfOverflowClear"
+          },
+          {
+             "id": "A51",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A51.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A52",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A52.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A53",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "StackRelative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A53.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A55",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A55.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A57",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A57.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A59",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A59.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A5A",
+             "name": "Stack -> Push Index Register Y",
+             "_descriptor": "0A5A.StackPushIndexRegisterY"
+          },
+          {
+             "id": "A5B",
+             "name": "Accumulator -> Transfer to Direct Page Register",
+             "_descriptor": "0A5B.AccumulatorTransferToDirectPageRegister"
+          },
+          {
+             "id": "A5C",
+             "name": "Jump to Subroutine",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchAbsolute",
+                         "_descriptor": "BranchAbsolute"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A5C.JumpToSubroutine"
+          },
+          {
+             "id": "A5D",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A5D.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A5F",
+             "name": "Accumulator -> XOR with memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A5F.AccumulatorXorWithMemory"
+          },
+          {
+             "id": "A60",
+             "name": "RETURN -> From Subroutine",
+             "type": "return",
+             "_descriptor": "0A60.ReturnFromSubroutine"
+          },
+          {
+             "id": "A61",
+             "name": "Add with Carry",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A61.AddWithCarry"
+          },
+          {
+             "id": "A62",
+             "name": "Push Effective PC Relative Indirect Address",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Address",
+                         "_descriptor": "Address"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A62.PushEffectivePcRelativeIndirectAddress"
+          },
+          {
+             "id": "A63",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A63.AddWithCarry"
+          },
+          {
+             "id": "A64",
+             "name": "Store Zero to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A64.StoreZeroToMemory"
+          },
+          {
+             "id": "A65",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A65.AddWithCarry"
+          },
+          {
+             "id": "A67",
+             "name": "Add with Carry",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A67.AddWithCarry"
+          },
+          {
+             "id": "A68",
+             "name": "Accumulator -> Pull",
+             "_descriptor": "0A68.AccumulatorPull"
+          },
+          {
+             "id": "A69",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "AddValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A69.AddWithCarry"
+          },
+          {
+             "id": "A6B",
+             "name": "RETURN -> From Subroutine Long",
+             "type": "return",
+             "_descriptor": "0A6B.ReturnFromSubroutineLong"
+          },
+          {
+             "id": "A6D",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Value",
+                         "_descriptor": "AddValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A6D.AddWithCarry"
+          },
+          {
+             "id": "A6F",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Value",
+                         "_descriptor": "AddValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A6F.AddWithCarry"
+          },
+          {
+             "id": "A70",
+             "name": "BRANCH -> If Overflow Set",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A70.BranchIfOverflowSet"
+          },
+          {
+             "id": "A71",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A71.AddWithCarry"
+          },
+          {
+             "id": "A72",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A72.AddWithCarry"
+          },
+          {
+             "id": "A73",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A73.AddWithCarry"
+          },
+          {
+             "id": "A75",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A75.AddWithCarry"
+          },
+          {
+             "id": "A77",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A77.AddWithCarry"
+          },
+          {
+             "id": "A79",
+             "name": "Accumulator -> Add with Carry",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A79.AddWithCarry"
+          },
+          {
+             "id": "A7D",
+             "name": "Add with Carry Bit",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Value",
+                         "_descriptor": "AddValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A7D.AddWithCarry"
+          },
+          {
+             "id": "A7F",
+             "name": "Accumulator -> Add with Carry",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A7F.AddWithCarry"
+          },
+          {
+             "id": "A80",
+             "name": "BRANCH -> Always",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A80.BranchAlways"
+          },
+          {
+             "id": "A81",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A81.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A82",
+             "name": "BRANCH -> Long Always",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A82.BranchLongAlways"
+          },
+          {
+             "id": "A83",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A83.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A84",
+             "name": "Index Register Y -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A84.IndexRegisterYStoreToMemory"
+          },
+          {
+             "id": "A85",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A85.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A87",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A87.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A88",
+             "name": "Index Register Y -> Decrement",
+             "_descriptor": "0A88.IndexRegisterYDecrement"
+          },
+          {
+             "id": "A89",
+             "name": "Test Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Bits",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A89.TestBits"
+          },
+          {
+             "id": "A8A",
+             "name": "Index Register X -> Transfer to Accumulator",
+             "_descriptor": "0A8A.IndexRegisterXTransferToAccumulator"
+          },
+          {
+             "id": "A8B",
+             "name": "Stack -> Push",
+             "_descriptor": "0A8B.StackPush"
+          },
+          {
+             "id": "A8C",
+             "name": "Index Register Y -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A8C.IndexRegisterYStoreToMemory"
+          },
+          {
+             "id": "A8D",
+             "name": "Accumulator -> Write to Variable",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A8D.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A8E",
+             "name": "Index Register X -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A8E.IndexRegisterXStoreToMemory"
+          },
+          {
+             "id": "A8F",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A8F.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A90",
+             "name": "CONDITION -> Carry Bit Clear",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A90.BranchIfCarryClear"
+          },
+          {
+             "id": "A91",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A91.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A92",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A92.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A93",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A93.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A94",
+             "name": "Index Register Y -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A94.IndexRegisterYStoreToMemory"
+          },
+          {
+             "id": "A95",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A95.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A97",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A97.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A99",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "RamAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A99.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "A9A",
+             "name": "Index Register X -> Transfer to Stack Pointer",
+             "_descriptor": "0A9A.IndexRegisterXTransferToStackPointer"
+          },
+          {
+             "id": "A9B",
+             "name": "Index Register X -> Transfer to Index register Y",
+             "_descriptor": "0A9B.IndexRegisterXTransferToIndexRegisterY"
+          },
+          {
+             "id": "A9C",
+             "name": "Store Zero to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "RamAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A9C.StoreZeroToMemory"
+          },
+          {
+             "id": "A9E",
+             "name": "Store Zero to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "RamAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A9E.StoreZeroToMemory"
+          },
+          {
+             "id": "A9F",
+             "name": "Accumulator -> Store to Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "RamAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0A9F.AccumulatorStoreToMemory"
+          },
+          {
+             "id": "AA0",
+             "name": "Index Register Y -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AA0.IndexRegisterYLoadFromMemory"
+          },
+          {
+             "id": "AA4",
+             "name": "Load Index Register Y From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AA4.LoadIndexRegisterYFromMemory"
+          },
+          {
+             "id": "AA5",
+             "name": "Accumulator -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AA5.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AA6",
+             "name": "Index Register X -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AA6.LoadIndexRegisterXFromMemory"
+          },
+          {
+             "id": "AA7",
+             "name": "Accumulator -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AA7.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AA8",
+             "name": "Accumulator -> Transfer to Index Register Y",
+             "_descriptor": "0AA8.AccumulatorTransferToIndexRegisterY"
+          },
+          {
+             "id": "AA9",
+             "name": "Accumulator -> Load Value",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AA9.AccumulatorLoadValue"
+          },
+          {
+             "id": "AAA",
+             "name": "Accumulator -> Transfer to Index Register X",
+             "_descriptor": "0AAA.AccumulatorTransferToIndexRegisterX"
+          },
+          {
+             "id": "AAC",
+             "name": "Load Index Register Y From Variable",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "VariableAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AAC.LoadIndexRegisterYFromMemory"
+          },
+          {
+             "id": "AAD",
+             "name": "Accumulator -> Load Variable",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "VariableAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AAD.AccumulatorLoadVariable"
+          },
+          {
+             "id": "AAE",
+             "name": "Index Register X -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "VariableAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AAE.IndexRegisterXLoadFromMemory"
+          },
+          {
+             "id": "AAF",
+             "name": "Accumulator -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AAF.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AB0",
+             "name": "CONDITION -> Carry Bit Set",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB0.BranchIfCarrySet"
+          },
+          {
+             "id": "AB1",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Offset",
+                         "_descriptor": "Offset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB1.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AB2",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB2.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AB3",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB3.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AB4",
+             "name": "Index Register Y -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB4.IndexRegisterYLoadFromMemory"
+          },
+          {
+             "id": "AB5",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB5.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AB6",
+             "name": "Index Register X -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB6.IndexRegisterXLoadFromMemory"
+          },
+          {
+             "id": "AB7",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB7.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AB9",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AB9.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "ABB",
+             "name": "Index Register Y -> Transfer to Index Register X",
+             "_descriptor": "0ABB.IndexRegisterYTransferToIndexRegisterX"
+          },
+          {
+             "id": "ABC",
+             "name": "Index Register Y -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "VariableAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ABC.IndexRegisterYLoadFromMemory"
+          },
+          {
+             "id": "ABD",
+             "name": "Accumulator -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "VariableAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ABD.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "ABE",
+             "name": "Index Register X -> Load from Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "VariableAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ABE.IndexRegisterXLoadFromMemory"
+          },
+          {
+             "id": "ABF",
+             "name": "Accumulator -> Load From Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Memory Address",
+                         "_descriptor": "MemoryAddress"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ABF.AccumulatorLoadFromMemory"
+          },
+          {
+             "id": "AC0",
+             "name": "Index Register Y -> Compare with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Compare Value",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AC0.IndexRegisterYCompareWithMemory"
+          },
+          {
+             "id": "AC1",
+             "name": "Accumulator -> Compare with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Compare Value",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AC1.AccumulatorCompareWithMemory"
+          },
+          {
+             "id": "AC2",
+             "name": "Processor -> Reset Status Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Bit Mask",
+                         "_descriptor": "ResetBitMask"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AC2.ProcessorResetStatusBits"
+          },
+          {
+             "id": "AC8",
+             "name": "Index Register Y -> Increment",
+             "_descriptor": "0AC8.IndexRegisterYIncrement"
+          },
+          {
+             "id": "AC9",
+             "name": "Accumulator -> Compare with Value",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "short",
+                         "name": "Compare Value",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AC9.AccumulatorCompareConstant"
+          },
+          {
+             "id": "ACA",
+             "name": "Index Register X -> Increment",
+             "_descriptor": "0ACA.IndexRegisterXIncrement"
+          },
+          {
+             "id": "ACB",
+             "name": "Wait for Interrupt",
+             "_descriptor": "0ACB.WaitForInterrupt"
+          },
+          {
+             "id": "ACD",
+             "name": "Accumulator -> Compare with Variable",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ACD.AccumulatorCompareVariable"
+          },
+          {
+             "id": "ACF",
+             "name": "Accumulator -> Compare with Variable",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ACF.AccumulatorCompareVariable"
+          },
+          {
+             "id": "AD0",
+             "name": "CONDITION -> Branch If Not Equal",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AD0.BranchIfNotEqual"
+          },
+          {
+             "id": "AD4",
+             "name": "Push Effective Indirect Address",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack",
+                         "_descriptor": "Stack"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AD4.PushEffectiveIndirectAddress"
+          },
+          {
+             "id": "AD6",
+             "name": "Decrement",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AD6.Decrement"
+          },
+          {
+             "id": "AD7",
+             "name": "Accumulator -> Compare with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AD7.AccumulatorCompareMemory"
+          },
+          {
+             "id": "AD8",
+             "name": "Clear Decimal Mode Flag",
+             "_descriptor": "0AD8.ClearDecimalModeFlag"
+          },
+          {
+             "id": "AD9",
+             "name": "Accumulator -> Compare with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "CompareValue"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AD9.AccumulatorCompareMemory"
+          },
+          {
+             "id": "ADA",
+             "name": "Index Register X -> Push",
+             "_descriptor": "0ADA.IndexRegisterXPush"
+          },
+          {
+             "id": "ADC",
+             "name": "Jump",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "branchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ADC.Jump"
+          },
+          {
+             "id": "ADD",
+             "name": "Accumulator -> Compare with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ADD.AccumulatorCompareMemory"
+          },
+          {
+             "id": "ADF",
+             "name": "Accumulator -> Compare with Memory",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0ADF.AccumulatorCompareMemory"
+          },
+          {
+             "id": "AE2",
+             "name": "Processor -> Set Status Bits",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Bit Mask",
+                         "_descriptor": "ResetBitMask"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AE2.ProcessorSetStatusBits"
+          },
+          {
+             "id": "AE5",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AE5.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AE7",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AE7.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AE9",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Constant",
+                         "_descriptor": "Constant"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AE9.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AED",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AED.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AEE",
+             "name": "Variable -> Increment",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AEE.Increment"
+          },
+          {
+             "id": "AEF",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AEF.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AF0",
+             "name": "CONDITION -> Branch If Equal",
+             "type": "condition",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchOffset",
+                         "_descriptor": "BranchOffset"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF0.BranchIfEqual"
+          },
+          {
+             "id": "AF1",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF1.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AF2",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF2.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AF3",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Stack Relative",
+                         "_descriptor": "StackRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF3.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AF4",
+             "name": "Push Effective Absolute Address",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF4.PushEffectiveAbsoluteAddress"
+          },
+          {
+             "id": "AF5",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF5.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AF6",
+             "name": "Increment",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Value",
+                         "_descriptor": "Value"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF6.Increment"
+          },
+          {
+             "id": "AF7",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "byte",
+                         "name": "Direct Page",
+                         "_descriptor": "DirectPage"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF7.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AF8",
+             "name": "Set Decimal Flag",
+             "_descriptor": "0AF8.SetDecimalFlag"
+          },
+          {
+             "id": "AF9",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AF9.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AFA",
+             "name": "Pull Index Register X",
+             "_descriptor": "0AFA.PullIndexRegisterX"
+          },
+          {
+             "id": "AFB",
+             "name": "Exchange Carry and Emulation Flags",
+             "_descriptor": "0AFB.ExchangeCarryAndEmulationFlags"
+          },
+          {
+             "id": "AFC",
+             "name": "Jump to Subroutine",
+             "type": "branch",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "branchRelative",
+                         "_descriptor": "BranchRelative"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AFC.JumpToSubroutine"
+          },
+          {
+             "id": "AFD",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AFD.SubtractWithBorrowFromAccumulator"
+          },
+          {
+             "id": "AFE",
+             "name": "Variable -> Increment",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddress",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AFE.VariableIncrement"
+          },
+          {
+             "id": "AFF",
+             "name": "Subtract With Borrow From Accumulator",
+             "data": [
+                {
+                   "data": [
+                      {
+                         "type": "ramAddressLong",
+                         "name": "Variable",
+                         "_descriptor": "Variable"
+                      }
+                   ]
+                }
+             ],
+             "_descriptor": "0AFF.SubtractWithBorrowFromAccumulator"
+          }
+       ]
+    }
+ }
