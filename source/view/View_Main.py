@@ -9,11 +9,14 @@ import sys
 useNotifyByWriteFile(sys.stdout)
 
 from .View_MenuBar import View_MenuBar
+from .View_Tabs import View_Tabs
 
 class View_Main(wx.Frame):
     def __init__(self, parent=None) -> None:
-        wx.Frame.__init__(self, parent, -1, "GaiaTheCreator")
+        wx.Frame.__init__(self, parent, -1, "GaiaTheCreator", size=(800, 600))
         
         menuBar = View_MenuBar(self)
+
+        tabs = View_Tabs(self)
 
 
