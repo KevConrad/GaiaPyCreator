@@ -1,14 +1,14 @@
 from pubsub import pub
 
-print('pubsub API version', pub.VERSION_API)
-
 # notification
 from pubsub.utils.notification import useNotifyByWriteFile
 import sys
 
+from model.Model_RomData import Model_RomData
+
 class Controller_Project:
     def __init__(self) -> None:
-        pass
+        self.romData = Model_RomData()
 
     def close():
         pub.sendMessage("project_closed")

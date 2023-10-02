@@ -16,14 +16,4 @@ class View_Main(wx.Frame):
         
         menuBar = View_MenuBar(self)
 
-        sizer = wx.BoxSizer(wx.VERTICAL)
-        text = wx.StaticText(self, -1, "My Money")
-        ctrl = wx.TextCtrl(self, -1, "")
-        sizer.Add(text, 0, wx.EXPAND | wx.ALL)
-        sizer.Add(ctrl, 0, wx.EXPAND | wx.ALL)
-
-        self.moneyCtrl = ctrl
-        ctrl.SetEditable(False)
-        self.SetSizer(sizer)
-
 

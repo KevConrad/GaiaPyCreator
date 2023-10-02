@@ -15,7 +15,9 @@ class View_MenuBar:
         self.frame = frame
 
         menuBarProject = wx.Menu()
-        menuBarProjectCreate = menuBarProject.Append(wx.ID_NEW, "Create", "Create new project.")
+        menuBarProjectCreate = menuBarProject.Append(wx.ID_NEW, "Create...", "Create new project.")
+        menuBarProjectOpen = menuBarProject.Append(wx.ID_OPEN, "Open...", "Open existing project.")
+        menuBarProjectClose = menuBarProject.Append(wx.ID_CLOSE, "Close", "Close project.")
         frame.Bind(wx.EVT_MENU, self.createNewProject, menuBarProjectCreate)
         menuBar.Append(menuBarProject, "Project")
 
@@ -23,26 +25,21 @@ class View_MenuBar:
 
     def createNewProject(self, parent=None):
         defDir = ""
-        defFile = u""
 
         dialog = wx.FileDialog(self.frame,
                                 'Open ROM File',
-                                defDir, defFile,
-                                'Illusion of Gaia ROM file (*.sfc)|*.sfc',
-                                style=wx.FD_OPEN | wx.FD_FILE_MUST_EXIST)
+                                defDir,
+                                wildcard = "Illusion of Gaia ROM file (*.sfc)|*.sfc|" +
+                                           "Illusion of Gaia ROM file (*.smc)|*.smc|",
+                                style=wx.FD_OPEN)
 
-        dialog.ShowModal()
-        
+        if dialog.ShowModal() == wx.ID_OK:
+            self.fileName = dialog.GetPath()
+            
+            pub.sendMessage("rom_opened", romPath=self.fileName)
         return
 
     def openProject():
-        filetypes = (
-            ('GaiaTheCreator project file', '*.gtc'),
-        )
-
-        filename = fd.askopenfilename(
-            title='Open GaiaTheCreator project file',
-            initialdir='/',
-            filetypes=filetypes)
+        
         return
 

@@ -6,15 +6,12 @@ print('pubsub API version', pub.VERSION_API)
 from pubsub.utils.notification import useNotifyByWriteFile
 import sys
 
-class ProjectHandler:
-    def __init__(self, romData) -> None:
-        pass
+class Model_RomData:
+    def __init__(self) -> None:
+        pub.subscribe(self.read, "rom_opened")
 
-    def close():
-        pub.sendMessage("project_closed")
-
-    def create():
-        pub.sendMessage("project_created")
-
-    def open():
-        pub.sendMessage("project_opened")
+    def read(self, romPath):
+        file = open(romPath, "rb")
+        self.romData = file.read()
+        
+        file.close
