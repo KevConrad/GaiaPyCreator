@@ -27,16 +27,27 @@ class View_MenuBar:
         defDir = ""
 
         dialog = wx.FileDialog(self.frame,
-                                'Open ROM File',
-                                defDir,
-                                wildcard = "Illusion of Gaia ROM file (*.sfc)|*.sfc|" +
+                               'Open ROM File',
+                               defDir,
+                               wildcard = "Illusion of Gaia ROM file (*.sfc)|*.sfc|" +
                                            "Illusion of Gaia ROM file (*.smc)|*.smc|",
-                                style=wx.FD_OPEN)
+                               style=wx.FD_OPEN)
 
         if dialog.ShowModal() == wx.ID_OK:
-            self.fileName = dialog.GetPath()
+            self.romPath = dialog.GetPath()
             
-            pub.sendMessage("rom_opened", romPath=self.fileName)
+            pub.sendMessage("rom_opened", romPath=self.romPath)
+
+            dialog = wx.FileDialog(self.frame,
+                                   'Save project File',
+                                   defDir,
+                                   wildcard = "GaiaTheCreator project file (*.gtc)|*.gtc|",
+                                   style=wx.FD_SAVE)
+            
+            if dialog.ShowModal() == wx.ID_OK:
+                self.projectPath = dialog.GetPath() + ".gtc"
+
+                pub.sendMessage("project_save", romPath=self.projectPath)
         return
 
     def openProject():

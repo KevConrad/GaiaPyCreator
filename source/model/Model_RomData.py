@@ -11,6 +11,7 @@ class Model_RomData:
         pub.subscribe(self.read, "rom_opened")
 
     def read(self, romPath):
+        print("Read ROM data.")
         file = open(romPath, "rb")
         self.romData = file.read()
         
