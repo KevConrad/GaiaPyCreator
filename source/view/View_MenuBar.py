@@ -45,9 +45,9 @@ class View_MenuBar:
                                    style=wx.FD_SAVE)
             
             if dialog.ShowModal() == wx.ID_OK:
-                self.projectPath = dialog.GetPath() + ".gtc"
+                self.projectPath = dialog.GetPath()
 
-                pub.sendMessage("project_save", romPath=self.projectPath)
+                pub.sendMessage("project_save", projectPath=self.projectPath)
         return
 
     def openProject():
