@@ -15,13 +15,5 @@ class View_StatusBar(wx.Frame):
         self.statusbar = frame.CreateStatusBar(1)
         self.statusbar.SetStatusText("No project loaded.")
 
-        pub.subscribe(self.pushProjectLoaded, "project_loaded")
-        pub.subscribe(self.pushRomLoaded, "rom_opened")
-
-    def pushProjectLoaded(self, projectPath):
-        projectName = re.search('/(.+?).gtc', projectPath)
-        self.statusbar.PushStatusText("Loaded project " + projectName + ".")
-
-    def pushRomLoaded(self, romPath):
-        print("Loaded ROM file")
-        self.statusbar.PushStatusText("Loaded ROM file.")
+    def pushStatus(self, message):
+        self.statusbar.PushStatusText(message)

@@ -19,4 +19,4 @@ class Controller_Main:
 
         view.Show()
 
-        self.project = Controller_Project()
+        self.project = Controller_Project(view)

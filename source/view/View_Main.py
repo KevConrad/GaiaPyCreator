@@ -16,8 +16,8 @@ class View_Main(wx.Frame):
     def __init__(self, parent=None) -> None:
         wx.Frame.__init__(self, parent, -1, "GaiaTheCreator", size=(800, 600))
         
-        menuBar = View_MenuBar(self)
-        statusBar = View_StatusBar(self)
-        tabs = View_Tabs(self)
+        self.menuBar = View_MenuBar(self)
+        self.statusBar = View_StatusBar(self)
+        self.tabs = View_Tabs(self)
 
 
