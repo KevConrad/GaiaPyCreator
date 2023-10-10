@@ -11,6 +11,7 @@ useNotifyByWriteFile(sys.stdout)
 from .View_MenuBar import View_MenuBar
 from .View_StatusBar import View_StatusBar
 from .View_Tabs import View_Tabs
+from .View_TabItems import View_TabItems
 
 class View_Main(wx.Frame):
     def __init__(self, parent=None) -> None:
@@ -19,5 +20,6 @@ class View_Main(wx.Frame):
         self.menuBar = View_MenuBar(self)
         self.statusBar = View_StatusBar(self)
         self.tabs = View_Tabs(self)
+        self.tabItems = View_TabItems(self, self.tabs.notebook)
 
 

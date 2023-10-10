@@ -52,35 +52,36 @@ class TabTilesets(wx.Panel):
         
 class View_Tabs:
     def __init__(self, frame : wx.Frame):
+        
         # Panel creation and tab holder setup:
         panel = wx.Panel(frame)
-        notebook = wx.Notebook(panel)
+        self.notebook = wx.Notebook(panel)
 
         # Initiation of the tab windows:
-        tabEvents = TabEvents(notebook)
-        tabItems = TabItems(notebook)
-        tabMaps = TabMaps(notebook)
-        tabMisc = TabMisc(notebook)
-        tabMusic = TabMusic(notebook)
-        tabPalettes = TabPalettes(notebook)
-        tabSprites = TabSprites(notebook)
-        tabTextBox = TabTextBox(notebook)
-        tabTilemaps = TabTilemaps(notebook)
-        tabTilesets = TabTilesets(notebook)
+        tabEvents = TabEvents(self.notebook)
+        tabItems = TabItems(self.notebook)
+        tabMaps = TabMaps(self.notebook)
+        tabMisc = TabMisc(self.notebook)
+        tabMusic = TabMusic(self.notebook)
+        tabPalettes = TabPalettes(self.notebook)
+        tabSprites = TabSprites(self.notebook)
+        tabTextBox = TabTextBox(self.notebook)
+        tabTilemaps = TabTilemaps(self.notebook)
+        tabTilesets = TabTilesets(self.notebook)
 
         # Assigning names to tabs and adding them:
-        notebook.AddPage(tabEvents, "Events")
-        notebook.AddPage(tabItems, "Items")
-        notebook.AddPage(tabMaps, "Maps")
-        notebook.AddPage(tabMisc, "Misc")
-        notebook.AddPage(tabMusic, "Music")
-        notebook.AddPage(tabPalettes, "Palettes")
-        notebook.AddPage(tabSprites, "Sprites")
-        notebook.AddPage(tabTextBox, "Textbox")
-        notebook.AddPage(tabTilemaps, "Tilemaps")
-        notebook.AddPage(tabTilesets, "Tilesets")
+        tabEvents = self.notebook.AddPage(tabEvents, "Events")
+        self.tabItems = self.notebook.AddPage(tabItems, "Items")
+        self.notebook.AddPage(tabMaps, "Maps")
+        self.notebook.AddPage(tabMisc, "Misc")
+        self.notebook.AddPage(tabMusic, "Music")
+        self.notebook.AddPage(tabPalettes, "Palettes")
+        self.notebook.AddPage(tabSprites, "Sprites")
+        self.notebook.AddPage(tabTextBox, "Textbox")
+        self.notebook.AddPage(tabTilemaps, "Tilemaps")
+        self.notebook.AddPage(tabTilesets, "Tilesets")
 
         # Organizing notebook layout using a sizer:
         sizer = wx.BoxSizer()
-        sizer.Add(notebook, 1, wx.EXPAND)
+        sizer.Add(self.notebook, 1, wx.EXPAND)
         panel.SetSizer(sizer)
