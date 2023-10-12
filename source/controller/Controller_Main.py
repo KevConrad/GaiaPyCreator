@@ -10,6 +10,7 @@ useNotifyByWriteFile(sys.stdout)
 
 # the following two modules don't know about each other yet will
 # exchange data via pubsub:
+from .Controller_Items import Controller_Items
 from .Controller_Project import Controller_Project
 from view.View_Main import View_Main
 
@@ -20,3 +21,5 @@ class Controller_Main:
         view.Show()
 
         self.project = Controller_Project(view)
+        
+        self.items = Controller_Items(self.project, view)

@@ -1,5 +1,7 @@
 import wx
 
+from pubsub import pub
+
 class TabEvents(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
@@ -58,30 +60,37 @@ class View_Tabs:
         self.notebook = wx.Notebook(panel)
 
         # Initiation of the tab windows:
-        tabEvents = TabEvents(self.notebook)
-        tabItems = TabItems(self.notebook)
-        tabMaps = TabMaps(self.notebook)
-        tabMisc = TabMisc(self.notebook)
-        tabMusic = TabMusic(self.notebook)
-        tabPalettes = TabPalettes(self.notebook)
-        tabSprites = TabSprites(self.notebook)
-        tabTextBox = TabTextBox(self.notebook)
-        tabTilemaps = TabTilemaps(self.notebook)
-        tabTilesets = TabTilesets(self.notebook)
+        self.tabEvents = TabEvents(self.notebook)
+        self.tabItems = TabItems(self.notebook)
+        self.tabMaps = TabMaps(self.notebook)
+        self.tabMisc = TabMisc(self.notebook)
+        self.tabMusic = TabMusic(self.notebook)
+        self.tabPalettes = TabPalettes(self.notebook)
+        self.tabSprites = TabSprites(self.notebook)
+        self.tabTextBox = TabTextBox(self.notebook)
+        self.tabTilemaps = TabTilemaps(self.notebook)
+        self.tabTilesets = TabTilesets(self.notebook)
 
         # Assigning names to tabs and adding them:
-        tabEvents = self.notebook.AddPage(tabEvents, "Events")
-        self.tabItems = self.notebook.AddPage(tabItems, "Items")
-        self.notebook.AddPage(tabMaps, "Maps")
-        self.notebook.AddPage(tabMisc, "Misc")
-        self.notebook.AddPage(tabMusic, "Music")
-        self.notebook.AddPage(tabPalettes, "Palettes")
-        self.notebook.AddPage(tabSprites, "Sprites")
-        self.notebook.AddPage(tabTextBox, "Textbox")
-        self.notebook.AddPage(tabTilemaps, "Tilemaps")
-        self.notebook.AddPage(tabTilesets, "Tilesets")
+        self.notebook.AddPage(self.tabEvents, "Events")
+        self.notebook.AddPage(self.tabItems, "Items")
+        self.notebook.AddPage(self.tabMaps, "Maps")
+        self.notebook.AddPage(self.tabMisc, "Misc")
+        self.notebook.AddPage(self.tabMusic, "Music")
+        self.notebook.AddPage(self.tabPalettes, "Palettes")
+        self.notebook.AddPage(self.tabSprites, "Sprites")
+        self.notebook.AddPage(self.tabTextBox, "Textbox")
+        self.notebook.AddPage(self.tabTilemaps, "Tilemaps")
+        self.notebook.AddPage(self.tabTilesets, "Tilesets")
+
+        self.notebook.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.handleTabChanged)
 
         # Organizing notebook layout using a sizer:
         sizer = wx.BoxSizer()
         sizer.Add(self.notebook, 1, wx.EXPAND)
         panel.SetSizer(sizer)
+
+    def handleTabChanged(self, event):
+        index = self.notebook.GetSelection()
+        if self.notebook.GetPage(index) is self.tabItems:
+            pub.sendMessage("items_load")

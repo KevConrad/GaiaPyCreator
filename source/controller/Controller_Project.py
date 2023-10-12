@@ -16,6 +16,8 @@ class Controller_Project:
         
         self.view = view
 
+        self.isProjectLoaded = False
+
         pub.subscribe(self.save, "project_save")
 
     def close():
@@ -35,6 +37,8 @@ class Controller_Project:
 
         # display status message
         self.view.statusBar.pushStatus("Loaded project " + self.projectData.projectName + ".")
+
+        self.isProjectLoaded = True
 
     def createProjectFile(self):
         # copy the project data file
