@@ -18,12 +18,18 @@ class View_MenuBar:
         menuBarProjectCreate = menuBarProject.Append(wx.ID_NEW, "Create...", "Create new project.")
         menuBarProjectOpen = menuBarProject.Append(wx.ID_OPEN, "Open...", "Open existing project.")
         menuBarProjectClose = menuBarProject.Append(wx.ID_CLOSE, "Close", "Close project.")
-        frame.Bind(wx.EVT_MENU, self.createNewProject, menuBarProjectCreate)
+
+        frame.Bind(wx.EVT_MENU, self.closeProject, menuBarProjectClose)
+        frame.Bind(wx.EVT_MENU, self.createProject, menuBarProjectCreate)
+        frame.Bind(wx.EVT_MENU, self.openProject, menuBarProjectOpen)
         menuBar.Append(menuBarProject, "Project")
 
         frame.SetMenuBar(menuBar)
 
-    def createNewProject(self, parent=None):
+    def closeProject(self, parent=None):
+        pub.sendMessage("project_close")
+
+    def createProject(self, parent=None):
         defDir = ""
 
         dialog = wx.FileDialog(self.frame,
@@ -50,7 +56,19 @@ class View_MenuBar:
                 pub.sendMessage("project_save", projectPath=self.projectPath)
         return
 
-    def openProject():
+    def openProject(self, parent=None):
+        defDir = ""
+
+        dialog = wx.FileDialog(self.frame,
+                               'Open Project File',
+                               defDir,
+                               wildcard = "GaiaTheCreator project file (*.json)|*.json|",
+                               style=wx.FD_OPEN)
         
+        if dialog.ShowModal() == wx.ID_OK:
+            self.projectPath = dialog.GetPath()
+
+            pub.sendMessage("project_open", projectPath=self.projectPath)
+
         return
 

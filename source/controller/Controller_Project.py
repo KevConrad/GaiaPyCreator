@@ -18,13 +18,20 @@ class Controller_Project:
 
         self.isProjectLoaded = False
 
+        pub.subscribe(self.close, "project_close")
+        pub.subscribe(self.load, "project_load")
         pub.subscribe(self.open, "project_open")
         pub.subscribe(self.save, "project_save")
 
-    def close():
-        pub.sendMessage("project_closed")
+    def close(self):
+        self.projectModel.close()
 
-    def open(self):
+        self.isProjectLoaded = False
+
+        # display status message
+        self.view.statusBar.pushStatus("No project loaded.")
+
+    def load(self):
         self.projectModel.open()
         
         self.isProjectLoaded = True
@@ -32,13 +39,18 @@ class Controller_Project:
         # display status message
         self.view.statusBar.pushStatus("Loaded project " + self.projectModel.projectName + ".")
 
+    def open(self, projectPath):
+        self.projectModel.saveProject(projectPath)
+
+        self.load()
+
     def save(self, projectPath):
         self.projectModel.saveProject(projectPath)
 
         # create and save the project file
         self.createProjectFile()
 
-        pub.sendMessage("project_open")
+        pub.sendMessage("project_load")
 
     def createProjectFile(self):
         # copy the project data file

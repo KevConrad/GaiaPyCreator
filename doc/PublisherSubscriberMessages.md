@@ -3,5 +3,8 @@
 | Name          | Argument(s)    |  Description            |
 |---------------|----------------|-------------------------|
 |`items_load`   |-               |Load the items.          |
-|`project_save` |projectPath     |Saving the project file. |
-|`rom_opened`   |romPath         |Opened a ROM file.       |
+|`project_close`|-               |Close the project file.  |
+|`project_load` |-               |Load the project data.   |
+|`project_open` |projectPath     |Open a project file.     |
+|`project_save` |projectPath     |Save the project file.   |
+|`rom_opened`   |romPath         |Open a ROM file.         |
