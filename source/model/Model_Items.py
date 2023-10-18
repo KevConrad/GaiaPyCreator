@@ -5,10 +5,10 @@ class Model_Items:
         pass
         
     def load(self, projectData : dict):
-        # Iterating through the json
-        # list
         try:
-            if 'Items' in projectData:
-                print("ITEMS: ", projectData['Items'])
-        except: 
-            print("EXCEPTION: ", projectData)
+            # iterate through the item list
+            for item in projectData['Items']:
+                itemName = item['Name']
+                print(itemName)
+        except:
+            print("EXCEPTION: No items found in project file!")

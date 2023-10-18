@@ -497,173 +497,172 @@
              "Size": "8000"
           }
        },
-       "Items": {
-          "Count": "41",
-          "Item0": {
-             "Name": "0 - No Item",
-             "AddressItemHandler": "3843F"
-          },
-          "Item1": {
-             "Name": "1 - Red Jewel",
-             "AddressItemHandler": "38441"
-          },
-          "Item2": {
-             "Name": "2 - Prison Key",
-             "AddressItemHandler": "38443"
-          },
-          "Item3": {
-             "Name": "3 - Inca Statue A",
-             "AddressItemHandler": "38445"
-          },
-          "Item4": {
-             "Name": "4 - Inca Statue B",
-             "AddressItemHandler": "38447"
-          },
-          "Item5": {
-             "Name": "5 - Inca Melody",
-             "AddressItemHandler": "38449"
-          },
-          "Item6": {
-             "Name": "6 - Herb",
-             "AddressItemHandler": "3844B"
-          },
-          "Item7": {
-             "Name": "7 - Blue Block",
-             "AddressItemHandler": "3844D"
-          },
-          "Item8": {
-             "Name": "8 - Wind Melody",
-             "AddressItemHandler": "3844F"
-          },
-          "Item9": {
-             "Name": "9 - Lola's Melody",
-             "AddressItemHandler": "38451"
-          },
-          "Item10": {
-             "Name": "10 - Meat",
-             "AddressItemHandler": "38453"
-          },
-          "Item11": {
-             "Name": "11 - Mine Key A",
-             "AddressItemHandler": "38455"
-          },
-          "Item12": {
-             "Name": "12 - Mine Key B",
-             "AddressItemHandler": "38457"
-          },
-          "Item13": {
-             "Name": "13 - Memory Melody",
-             "AddressItemHandler": "38459"
-          },
-          "Item14": {
-             "Name": "14 - Crystal Ball",
-             "AddressItemHandler": "3845B"
-          },
-          "Item15": {
-             "Name": "15 - Elevator Key",
-             "AddressItemHandler": "3845D"
-          },
-          "Item16": {
-             "Name": "16 - Palace Key",
-             "AddressItemHandler": "3845F"
-          },
-          "Item17": {
-             "Name": "17 - Purify Stone",
-             "AddressItemHandler": "38461"
-          },
-          "Item18": {
-             "Name": "18 - Statue of Hope",
-             "AddressItemHandler": "38463"
-          },
-          "Item19": {
-             "Name": "19 - Rama Statue",
-             "AddressItemHandler": "38465"
-          },
-          "Item20": {
-             "Name": "20 - Magic Dust",
-             "AddressItemHandler": "38467"
-          },
-          "Item21": {
-             "Name": "21 - Blue Journal",
-             "AddressItemHandler": "38469"
-          },
-          "Item22": {
-             "Name": "22 - Lance's Letter",
-             "AddressItemHandler": "3846B"
-          },
-          "Item23": {
-             "Name": "23 - Necklace Stones",
-             "AddressItemHandler": "3846D"
-          },
-          "Item24": {
-             "Name": "24 - Will",
-             "AddressItemHandler": "3846F"
-          },
-          "Item25": {
-             "Name": "25 - Teapot",
-             "AddressItemHandler": "38471"
-          },
-          "Item26": {
-             "Name": "26 - Mushroom Drop",
-             "AddressItemHandler": "38473"
-          },
-          "Item27": {
-             "Name": "27 - Bag of Gold",
-             "AddressItemHandler": "38475"
-          },
-          "Item28": {
-             "Name": "28 - Black Glasses",
-             "AddressItemHandler": "38477"
-          },
-          "Item29": {
-             "Name": "29 - Gorgon Flower",
-             "AddressItemHandler": "38479"
-          },
-          "Item30": {
-             "Name": "30 - Hieroglyph",
-             "AddressItemHandler": "3847B"
-          },
-          "Item31": {
-             "Name": "31 - Hieroglyph",
-             "AddressItemHandler": "3847D"
-          },
-          "Item32": {
-             "Name": "32 - Hieroglyph",
-             "AddressItemHandler": "3847F"
-          },
-          "Item33": {
-             "Name": "33 - Hieroglyph",
-             "AddressItemHandler": "38481"
-          },
-          "Item34": {
-             "Name": "34 - Hieroglyph",
-             "AddressItemHandler": "38483"
-          },
-          "Item35": {
-             "Name": "35 - Hieroglyph",
-             "AddressItemHandler": "38485"
-          },
-          "Item36": {
-             "Name": "36 - Aura",
-             "AddressItemHandler": "38487"
-          },
-          "Item37": {
-             "Name": "37 - Lola's Letter",
-             "AddressItemHandler": "38489"
-          },
-          "Item38": {
-             "Name": "38 - Father's Journal",
-             "AddressItemHandler": "3848B"
-          },
-          "Item39": {
-             "Name": "39 - Crystal Ring",
-             "AddressItemHandler": "3848D"
-          },
-          "Item40": {
-             "Name": "40 - Red Apple",
-             "AddressItemHandler": "3848F"
-          }
-       },
+      "Items": [
+         {
+            "Name": "0 - No Item",
+            "AddressItemHandler": "3843F"
+         },
+         {
+            "Name": "1 - Red Jewel",
+            "AddressItemHandler": "38441"
+         },
+         {
+            "Name": "2 - Prison Key",
+            "AddressItemHandler": "38443"
+         },
+         {
+            "Name": "3 - Inca Statue A",
+            "AddressItemHandler": "38445"
+         },
+         {
+            "Name": "4 - Inca Statue B",
+            "AddressItemHandler": "38447"
+         },
+         {
+            "Name": "5 - Inca Melody",
+            "AddressItemHandler": "38449"
+         },
+         {
+            "Name": "6 - Herb",
+            "AddressItemHandler": "3844B"
+         },
+         {
+            "Name": "7 - Blue Block",
+            "AddressItemHandler": "3844D"
+         },
+         {
+            "Name": "8 - Wind Melody",
+            "AddressItemHandler": "3844F"
+         },
+         {
+            "Name": "9 - Lola's Melody",
+            "AddressItemHandler": "38451"
+         },
+         {
+            "Name": "10 - Meat",
+            "AddressItemHandler": "38453"
+         },
+         {
+            "Name": "11 - Mine Key A",
+            "AddressItemHandler": "38455"
+         },
+         {
+            "Name": "12 - Mine Key B",
+            "AddressItemHandler": "38457"
+         },
+         {
+            "Name": "13 - Memory Melody",
+            "AddressItemHandler": "38459"
+         },
+         {
+            "Name": "14 - Crystal Ball",
+            "AddressItemHandler": "3845B"
+         },
+         {
+            "Name": "15 - Elevator Key",
+            "AddressItemHandler": "3845D"
+         },
+         {
+            "Name": "16 - Palace Key",
+            "AddressItemHandler": "3845F"
+         },
+         {
+            "Name": "17 - Purify Stone",
+            "AddressItemHandler": "38461"
+         },
+         {
+            "Name": "18 - Statue of Hope",
+            "AddressItemHandler": "38463"
+         },
+         {
+            "Name": "19 - Rama Statue",
+            "AddressItemHandler": "38465"
+         },
+         {
+            "Name": "20 - Magic Dust",
+            "AddressItemHandler": "38467"
+         },
+         {
+            "Name": "21 - Blue Journal",
+            "AddressItemHandler": "38469"
+         },
+         {
+            "Name": "22 - Lance's Letter",
+            "AddressItemHandler": "3846B"
+         },
+         {
+            "Name": "23 - Necklace Stones",
+            "AddressItemHandler": "3846D"
+         },
+         {
+            "Name": "24 - Will",
+            "AddressItemHandler": "3846F"
+         },
+         {
+            "Name": "25 - Teapot",
+            "AddressItemHandler": "38471"
+         },
+         {
+            "Name": "26 - Mushroom Drop",
+            "AddressItemHandler": "38473"
+         },
+         {
+            "Name": "27 - Bag of Gold",
+            "AddressItemHandler": "38475"
+         },
+         {
+            "Name": "28 - Black Glasses",
+            "AddressItemHandler": "38477"
+         },
+         {
+            "Name": "29 - Gorgon Flower",
+            "AddressItemHandler": "38479"
+         },
+         {
+            "Name": "30 - Hieroglyph",
+            "AddressItemHandler": "3847B"
+         },
+         {
+            "Name": "31 - Hieroglyph",
+            "AddressItemHandler": "3847D"
+         },
+         {
+            "Name": "32 - Hieroglyph",
+            "AddressItemHandler": "3847F"
+         },
+         {
+            "Name": "33 - Hieroglyph",
+            "AddressItemHandler": "38481"
+         },
+         {
+            "Name": "34 - Hieroglyph",
+            "AddressItemHandler": "38483"
+         },
+         {
+            "Name": "35 - Hieroglyph",
+            "AddressItemHandler": "38485"
+         },
+         {
+            "Name": "36 - Aura",
+            "AddressItemHandler": "38487"
+         },
+         {
+            "Name": "37 - Lola's Letter",
+            "AddressItemHandler": "38489"
+         },
+         {
+            "Name": "38 - Father's Journal",
+            "AddressItemHandler": "3848B"
+         },
+         {
+            "Name": "39 - Crystal Ring",
+            "AddressItemHandler": "3848D"
+         },
+         {
+            "Name": "40 - Red Apple",
+            "AddressItemHandler": "3848F"
+         }
+      ],
        "ItemHandlers": {
           "ItemHandler0": {
              "Name": "0 - No ItemHandler",
