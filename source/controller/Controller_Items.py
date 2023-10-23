@@ -25,5 +25,5 @@ class Controller_Items:
             self.items.load(self.project.projectModel.projectData)
 
             # display the items in the GUI
-            self.view.items.load()
+            self.view.items.load(self.items.itemNames)
         

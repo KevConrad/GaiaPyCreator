@@ -6,9 +6,15 @@ class Model_Items:
         
     def load(self, projectData : dict):
         try:
-            # iterate through the item list
-            for item in projectData['Items']:
-                itemName = item['Name']
-                print(itemName)
+            # get the item data
+            items = projectData['Items']
+
+            # save the item names in a list
+            self.itemNames = []
+            for item in items:
+                self.itemNames.append(item['Name'])
+            
+            # print the item names
+            print(self.itemNames)
         except:
             print("EXCEPTION: No items found in project file!")
