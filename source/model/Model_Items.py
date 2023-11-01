@@ -1,4 +1,5 @@
 
+from Model_RomDataTable import Model_RomDataTable
 
 class Model_Items:
     def __init__(self) -> None:
@@ -6,15 +7,34 @@ class Model_Items:
         
     def load(self, projectData : dict):
         try:
-            # get the item data
-            items = projectData['Items']
+            # load the item name table
+            self.loadItemNameTable(projectData)
 
-            # save the item names in a list
-            self.itemNames = []
-            for item in items:
-                self.itemNames.append(item['Name'])
+            # load the item data
+            itemData = projectData['Items']
+            self.loadItemNames(itemData)
+            self.loadItemEvents(itemData)
             
-            # print the item names
-            print(self.itemNames)
         except:
-            print("EXCEPTION: No items found in project file!")
+            print("EXCEPTION: Invalid item data in project file!")
+
+    def loadItemEvents(self, itemData : dict):
+        # save the item event addresses in a list
+        self.itemEvents = []
+        for item in itemData:
+            self.itemEvents.append(item['Event'])
+
+    def loadItemNames(self, itemData : dict):
+        # save the item names in a list
+        self.itemNames = []
+        for item in itemData:
+            self.itemNames.append(item['Name'])
+        
+        # print the item names
+        print(self.itemNames)
+    
+    def loadItemNameTable(self, projectData : dict):
+        itemNameTableAddress = int(str(projectData['ItemNameTable']['Address']), 16)
+        itemNameTableSize = int(projectData['ItemNameTable']['Size'])
+
+        self.itemNameTable = Model_RomDataTable(itemNameTableAddress, itemNameTableSize)
