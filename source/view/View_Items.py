@@ -6,19 +6,22 @@ class View_Items:
         self.tabPage = notebook.GetPage(1)
 
     def load(self, itemNames):
-        box = wx.BoxSizer(wx.HORIZONTAL)
-        self.text = wx.TextCtrl(self.tabPage, style = wx.TE_MULTILINE) 
+        horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
+        verticalBox = wx.BoxSizer(wx.VERTICAL) 
+
+        self.listBoxItems = wx.ListBox(self.tabPage , size = (200,500), choices = itemNames, style = wx.LB_SINGLE)
+        horizontalBox.Add(self.listBoxItems, 0, wx.EXPAND)
         
-        listBoxItems = wx.ListBox(self.tabPage , size = (200,500), choices = itemNames, style = wx.LB_SINGLE)
+        self.textCtrlItemName = wx.TextCtrl(self.tabPage, pos = (200, 0), value="Test", size=(128, 24)) 
+        verticalBox.Add(self.textCtrlItemName, 1, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,5)
+
+        horizontalBox.Add(verticalBox)
 		
-        box.Add(listBoxItems, 0, wx.EXPAND) 
-        box.Add(self.text, 1, wx.EXPAND) 
-		
-        self.tabPage.SetSizer(box) 
+        self.tabPage.SetSizer(horizontalBox) 
         self.tabPage.Fit() 
-		
-        self.frame.Bind(wx.EVT_LISTBOX, self.onListBox, listBoxItems) 
+
+        self.frame.Bind(wx.EVT_LISTBOX, self.onListBox, self.listBoxItems) 
         self.frame.Show(True)
 
     def onListBox(self, event): 
-        self.text.AppendText( "Current selection: "+event.GetEventObject().GetStringSelection()+"\n")
+        self.textCtrlItemName.Value = event.GetEventObject().GetStringSelection()

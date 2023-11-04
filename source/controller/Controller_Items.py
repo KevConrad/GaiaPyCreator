@@ -15,14 +15,14 @@ class Controller_Items:
         self.project = project
         self.view = view
 
-        self.items = Model_Items()
+        self.items = Model_Items(self.project.romData)
 
         pub.subscribe(self.load, "items_load")
 
     def load(self):
         if self.project.isProjectLoaded == True:
             # load the item data from the project file
-            self.items.load(self.project.projectModel.projectData)
+            self.items.load(self.project.projectData.projectData)
 
             # display the items in the GUI
             self.view.items.load(self.items.itemNames)

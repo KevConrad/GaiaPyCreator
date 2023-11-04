@@ -1,3 +1,4 @@
+import base64
 import json
 import os
 import re
@@ -17,8 +18,7 @@ class Model_ProjectData:
         # save JSON object as a dictionary
         self.projectData = json.load(self.projectFile)
 
-        if 'GaiaTheCreator' in self.projectData:
-            self.projectData = self.projectData['GaiaTheCreator']
+        self.close()
 
         print("Loaded project file " + self.projectFilePath + ".")
     
@@ -31,3 +31,15 @@ class Model_ProjectData:
         print("Saved project path: " + self.projectPath)
 
         self.projectFilePath = self.projectPath + "/" + self.projectName + ".json"
+
+    def appendRomData(self, romData):
+        # convert the ROM data byte array to a string to store it in the JOSN project file
+        romDataString = str(romData)
+        romDataBase64String = base64.b64encode(romDataString.encode('utf-8'))
+        self.projectData['romData'] = romDataBase64String.decode('ascii')
+
+        # Serializing json
+        jsonData = json.dumps(self.projectData, indent=4)
+        
+        with open(self.projectFilePath, "w") as outfile:
+            outfile.write(jsonData)

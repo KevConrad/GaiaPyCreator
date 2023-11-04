@@ -7,12 +7,15 @@ import shutil
 
 from model.Model_RomData import Model_RomData
 from model.Model_ProjectData import Model_ProjectData
+from model.Model_Text import Model_Text
 from view.View_Main import View_Main
 
 class Controller_Project:
     def __init__(self, view:View_Main) -> None:
-        self.projectModel = Model_ProjectData()
+        self.projectData = Model_ProjectData()
         self.romData = Model_RomData()
+
+        self.text = Model_Text(self.romData)
         
         self.view = view
 
@@ -24,7 +27,7 @@ class Controller_Project:
         pub.subscribe(self.save, "project_save")
 
     def close(self):
-        self.projectModel.close()
+        self.projectData.close()
 
         self.isProjectLoaded = False
 
@@ -32,20 +35,22 @@ class Controller_Project:
         self.view.statusBar.pushStatus("No project loaded.")
 
     def load(self):
-        self.projectModel.open()
+        self.projectData.open()
+
+        self.romData.readFromProjectData(self.projectData.projectData)
         
         self.isProjectLoaded = True
         
         # display status message
-        self.view.statusBar.pushStatus("Loaded project " + self.projectModel.projectName + ".")
+        self.view.statusBar.pushStatus("Loaded project " + self.projectData.projectName + ".")
 
     def open(self, projectPath):
-        self.projectModel.saveProject(projectPath)
+        self.projectData.saveProject(projectPath)
 
         self.load()
 
     def save(self, projectPath):
-        self.projectModel.saveProject(projectPath)
+        self.projectData.saveProject(projectPath)
 
         # create and save the project file
         self.createProjectFile()
@@ -56,5 +61,10 @@ class Controller_Project:
         # copy the project data file
         sourceFilePath = "../data/Data_Rom.json"
         
-        shutil.copy(sourceFilePath, self.projectModel.projectFilePath)
-        print("Created project file: " + self.projectModel.projectFilePath)
+        shutil.copy(sourceFilePath, self.projectData.projectFilePath)
+        print("Created project file: " + self.projectData.projectFilePath)
+
+        self.projectData.open()
+
+        self.projectData.appendRomData(self.romData.romData)
+        print("Appended ROM data to project file")

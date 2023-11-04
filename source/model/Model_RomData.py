@@ -8,11 +8,17 @@ import sys
 
 class Model_RomData:
     def __init__(self) -> None:
-        pub.subscribe(self.read, "rom_opened")
+        pub.subscribe(self.readFromRomFile, "rom_opened")
 
-    def read(self, romPath):
+    def readFromRomFile(self, romPath):
         print("Read ROM data.")
         file = open(romPath, "rb")
         self.romData = file.read()
         
         file.close
+
+    def readFromProjectData(self, projectData):
+        #romDataString = projectData['RomData']
+        #romDataBinary = bin(int(romDataString.decode('base64')))
+        #self.romData = bytearray(romDataBinary)
+        pass

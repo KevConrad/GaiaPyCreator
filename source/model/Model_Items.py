@@ -1,14 +1,16 @@
 
-from Model_RomDataTable import Model_RomDataTable
+from model.Model_RomDataTable import Model_RomDataTable
+from model.Model_Text import Model_Text
 
 class Model_Items:
-    def __init__(self) -> None:
-        pass
-        
+    def __init__(self, romData) -> None:
+        self.romData = romData
+        self.text = Model_Text(romData)
+
     def load(self, projectData : dict):
         try:
             # load the item name table
-            self.loadItemNameTable(projectData)
+            self.loadItemRomNames(projectData)
 
             # load the item data
             itemData = projectData['Items']
@@ -33,8 +35,15 @@ class Model_Items:
         # print the item names
         print(self.itemNames)
     
-    def loadItemNameTable(self, projectData : dict):
+    def loadItemRomNames(self, projectData : dict):
         itemNameTableAddress = int(str(projectData['ItemNameTable']['Address']), 16)
         itemNameTableSize = int(projectData['ItemNameTable']['Size'])
+        print(itemNameTableSize)
 
-        self.itemNameTable = Model_RomDataTable(itemNameTableAddress, itemNameTableSize)
+        itemNameTable = Model_RomDataTable(self.romData, itemNameTableAddress, itemNameTableSize)
+
+        print("RR")
+        self.itemRomNames = []
+        #for item in range (itemNameTableSize):
+        #self.itemRomNames.append(self.text.readMenuText(itemNameTable.getDataAddress(0)))
+        #print(self.itemRomNames)
