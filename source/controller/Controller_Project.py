@@ -37,7 +37,7 @@ class Controller_Project:
     def load(self):
         self.projectData.open()
 
-        self.romData.readFromProjectData(self.projectData.projectData)
+        self.romData.romData = self.projectData.extractRomData()
         
         self.isProjectLoaded = True
         

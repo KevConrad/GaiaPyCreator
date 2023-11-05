@@ -1,4 +1,5 @@
 import base64
+import binascii
 import json
 import os
 import re
@@ -34,12 +35,19 @@ class Model_ProjectData:
 
     def appendRomData(self, romData):
         # convert the ROM data byte array to a string to store it in the JOSN project file
-        romDataString = str(romData)
-        romDataBase64String = base64.b64encode(romDataString.encode('utf-8'))
-        self.projectData['romData'] = romDataBase64String.decode('ascii')
+        romDataHex = binascii.hexlify(romData)
+        romDataString = romDataHex.decode('utf-8')
+        self.projectData['romData'] = romDataString
 
-        # Serializing json
+        # serialize the json dict to write it to the project file
         jsonData = json.dumps(self.projectData, indent=4)
         
         with open(self.projectFilePath, "w") as outfile:
             outfile.write(jsonData)
+
+    def extractRomData(self):
+        # read the ROM data string from the project file and convert it to a byte array
+        romDataString = self.projectData['romData']
+        romData = binascii.unhexlify(romDataString.encode('utf-8'))
+
+        return romData
