@@ -7,15 +7,12 @@ import shutil
 
 from model.Model_RomData import Model_RomData
 from model.Model_ProjectData import Model_ProjectData
-from model.Model_Text import Model_Text
 from view.View_Main import View_Main
 
 class Controller_Project:
     def __init__(self, view:View_Main) -> None:
         self.projectData = Model_ProjectData()
         self.romData = Model_RomData()
-
-        self.text = Model_Text(self.romData)
         
         self.view = view
 
@@ -40,6 +37,8 @@ class Controller_Project:
         self.romData.romData = self.projectData.extractRomData()
         
         self.isProjectLoaded = True
+
+        pub.sendMessage("project_loaded")
         
         # display status message
         self.view.statusBar.pushStatus("Loaded project " + self.projectData.projectName + ".")

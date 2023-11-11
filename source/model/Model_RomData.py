@@ -16,9 +16,3 @@ class Model_RomData:
         self.romData = file.read()
         
         file.close
-
-    def readFromProjectData(self, projectData):
-        #romDataString = projectData['RomData']
-        #romDataBinary = bin(int(romDataString.decode('base64')))
-        #self.romData = bytearray(romDataBinary)
-        pass
