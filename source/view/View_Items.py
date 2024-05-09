@@ -5,23 +5,25 @@ class View_Items:
         self.frame = frame
         self.tabPage = notebook.GetPage(1)
 
-    def load(self, itemNames):
-        horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
-        verticalBox = wx.BoxSizer(wx.VERTICAL) 
+        self.textCtrlItemName = wx.TextCtrl(self.tabPage, pos = (200, 0), value="", size=(128, 24), style=wx.TE_READONLY)
+        self.listBoxItems = wx.ListBox(self.tabPage , size = (200,500), style = wx.LB_SINGLE)
 
-        self.listBoxItems = wx.ListBox(self.tabPage , size = (200,500), choices = itemNames, style = wx.LB_SINGLE)
+        horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxItems, 0, wx.EXPAND)
         
-        self.textCtrlItemName = wx.TextCtrl(self.tabPage, pos = (200, 0), value="Test", size=(128, 24)) 
+        verticalBox = wx.BoxSizer(wx.VERTICAL) 
         verticalBox.Add(self.textCtrlItemName, 1, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,5)
-
         horizontalBox.Add(verticalBox)
-		
+        
         self.tabPage.SetSizer(horizontalBox) 
         self.tabPage.Fit() 
 
         self.frame.Bind(wx.EVT_LISTBOX, self.onListBox, self.listBoxItems) 
         self.frame.Show(True)
 
-    def onListBox(self, event): 
+    def load(self, itemNames):
+        self.listBoxItems.Set(itemNames)
+        self.textCtrlItemName.Value = ""
+
+    def onListBox(self, event):
         self.textCtrlItemName.Value = event.GetEventObject().GetStringSelection()

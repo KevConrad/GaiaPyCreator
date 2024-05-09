@@ -1,0 +1,3094 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<eventCommands>
+  <!--###################### COP Commands #########################-->
+  <command descriptor ="0204.MusicPlayImmediate">
+    <id>204</id>
+    <name>Music -> Play Immediate</name>
+    <data>
+      <data descriptor = "musicIndex">
+        <type>music</type>
+        <name>Music</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0205.MusicFadeOutAndPlay">
+    <id>205</id>
+    <name>Music -> Fade Out and Play</name>
+    <data>
+      <data descriptor = "musicIndex">
+        <type>music</type>
+        <name>Music</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0206.SoundPlayOnChannel3">
+    <id>206</id>
+    <name>Sound -> Play on Channel 3</name>
+    <data>
+      <data descriptor = "soundIndex">
+        <type>sound</type>
+        <name>Sound</name>
+      </data>
+    </data>
+  </command> 
+  <command descriptor ="0207.SoundPlayOnChannel2">
+    <id>207</id>
+    <name>Sound -> Play on Channel 2</name>
+    <data>
+      <data descriptor = "soundIndex">
+        <type>sound</type>
+        <name>Sound</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0208.SoundPlayOnBothChannels">
+    <id>208</id>
+    <name>Sound -> Play on Both Channels</name>
+    <data>
+      <data descriptor = "soundIndex1">
+        <type>sound</type>
+        <name>Sound 1</name>
+      </data>
+      <data descriptor = "soundIndex2">
+        <type>sound</type>
+        <name>Sound 2</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0209.SetTempoModifier">
+    <id>209</id>
+    <name>Music -> Set tempo modifier (APU channel 1)</name>
+    <data>
+      <data descriptor = "tempoIncrease">
+        <type>byte</type>
+        <name>Tempo Increase</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="020A.MusicAdvancedProgramming">
+    <id>20A</id>
+    <name>Music -> Advanced programming (APU channel 0)</name>
+    <data>
+      <data descriptor = "inputByte">
+        <type>byte</type>
+        <name>Input Byte</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="020B.EventLayerSetSame">
+    <id>20B</id>
+    <name>Event Layer -> Set Same as Player</name>
+  </command>
+  <command descriptor ="020C.EventLayerSetBelow">
+    <id>20C</id>
+    <name>Event Layer -> Set Below Player</name>
+  </command>
+  <command descriptor ="020D.TileBlockSetRelative">
+    <id>20D</id>
+    <name>Tile Block -> Set (Relative Position from Event)</name>
+    <data>
+      <data descriptor = "OffsetX">
+        <type>sbyte</type>
+        <name>Offset X</name>
+      </data>
+      <data descriptor = "OffsetY">
+        <type>sbyte</type>
+        <name>Offset Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="020E.TileTypeClearRelative">
+    <id>20E</id>
+    <name>Tile Type -> Clear (Relative Position from Event)</name>
+    <data>
+      <data descriptor = "OffsetX">
+        <type>sbyte</type>
+        <name>Offset X</name>
+      </data>
+      <data descriptor = "OffsetY">
+        <type>sbyte</type>
+        <name>Offset Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="020F.TileBlockSetAbsolute">
+    <id>20F</id>
+    <name>Tile Block -> Set (Absolute Position)</name>
+    <data>
+      <data descriptor = "PositionX">
+        <type>byte</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>byte</type>
+        <name>Position Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0210.TileBlockClearAbsolute">
+    <id>210</id>
+    <name>Tile Block -> Clear (Absolute Position)</name>
+    <data>
+      <data descriptor = "PositionX">
+        <type>byte</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>byte</type>
+        <name>Position Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0212.TileClearDefaultType">
+    <id>212</id>
+    <name>Tile -> Clear Default Type</name>
+    <data>
+      <data descriptor = "PositionX">
+        <type>byte</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>byte</type>
+        <name>Position Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0215.NorthTilePassableCondition">
+    <id>215</id>
+    <name>CONDITION -> North Tile Passable</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0216.SouthTilePassableCondition">
+    <id>216</id>
+    <name>CONDITION -> South Tile Passable</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0217.WestTilePassableCondition">
+    <id>217</id>
+    <name>CONDITION -> West Tile Passable</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0218.EastTilePassableCondition">
+    <id>218</id>
+    <name>CONDITION -> East Tile Passable</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0219.PlayMusicAndDisplayMessageBox">
+    <id>219</id>
+    <name>Play Music and Display Message Box</name>
+    <data>
+      <data descriptor = "MusicIndex">
+        <type>music</type>
+        <name>Music</name>
+      </data>
+      <data descriptor = "MessageBox">
+        <type>messageBoxLong</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="021A.EventOnTileTypeCondition">
+    <id>21A</id>
+    <name>CONDITION -> Event on Tile Type</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "TileType">
+        <type>tileType</type>
+        <name>Tile Type</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="021B.NorthTileTypeCondition">
+    <id>21B</id>
+    <name>CONDITION -> North Tile Type</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "TileType">
+        <type>tileType</type>
+        <name>Tile Type</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="021C.SouthTileTypeCondition">
+    <id>21C</id>
+    <name>CONDITION -> South Tile Type</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "TileType">
+        <type>tileType</type>
+        <name>Tile Type</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="021D.WestTileTypeCondition">
+    <id>21D</id>
+    <name>CONDITION -> West Tile Type</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "TileType">
+        <type>tileType</type>
+        <name>Tile Type</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="021E.EastTileTypeCondition">
+    <id>21E</id>
+    <name>CONDITION -> East Tile Type</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "TileType">
+        <type>tileType</type>
+        <name>Tile Type</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="021F.EventNotOnGridlineCondition">
+    <id>21F</id>
+    <name>CONDITION -> Event Not on Gridline</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0220.OtherEventDistanceCondition">
+    <id>220</id>
+    <name>CONDITION -> Other Event Distance</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "EventIndex">
+        <type>byte</type>
+        <name>Event</name>
+      </data>
+      <data descriptor = "Distance">
+        <type>byte</type>
+        <name>Distance</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0221.PlayerDistanceCondition">
+    <id>221</id>
+    <name>CONDITION -> Player Distance</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "Distance">
+        <type>byte</type>
+        <name>Distance</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0222.MovementLinear">
+    <id>222</id>
+    <name>Movement -> Linear to Destination</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "MovementSpeed">
+        <type>byte</type>
+        <name>Movement Speed</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0223.AccumulatorLoadRandomByte">
+    <id>223</id>
+    <name>Accumulator -> Load Random Byte</name>
+  </command>
+  <command descriptor ="0225.EventChangePosition">
+    <id>225</id>
+    <name>Event -> Change Position</name>
+    <data>
+      <data descriptor = "PositionX">
+        <type>byte</type>
+        <name>X Position</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>byte</type>
+        <name>Y Position</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0226.TeleportToMap">
+    <id>226</id>
+    <name>Teleport to Map</name>
+    <data>
+      <data descriptor = "MapIndex">
+        <type>map</type>
+        <name>Map</name>
+      </data>
+      <data descriptor = "PixelOffsetX">
+        <type>mapPositionOffset</type>
+        <name>Pixel Offset X</name>
+      </data>
+      <data descriptor = "PositionX">
+        <type>mapPosition</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PixelOffsetY">
+        <type>mapPositionOffset</type>
+        <name>Pixel Offset Y</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>mapPosition</type>
+        <name>Position Y</name>
+      </data>
+      <data descriptor = "FaceDirection">
+        <!-- TODO: bit 7 = set map as death warping point-->
+        <type>faceDirection</type>
+        <name>Face Direction</name>
+      </data>
+      <data descriptor = "ScreenOffset">
+        <type>byte</type>
+        <name>Screen Offset</name>
+      </data>
+      <data descriptor = "MapSize">
+        <type>byte</type>
+        <name>Map Size</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0227.DelayIfOffscreen">
+    <id>227</id>
+    <name>Delay if Off-Screen</name>
+    <data>
+      <data descriptor = "Duration">
+        <type>byte</type>
+        <name>Duration (Frames)</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0228.PlayerPositionCondition">
+    <id>228</id>
+    <name>CONDITION -> Player Position</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "PositionX">
+        <type>mapPosition</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>mapPosition</type>
+        <name>Position Y</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0229.EventPositionCondition">
+    <id>229</id>
+    <name>CONDITION -> Event Position</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "eventNumber">
+        <type>byte</type>
+        <name>Event Number</name>
+      </data>
+      <data descriptor = "PositionX">
+        <type>short</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>short</type>
+        <name>Position Y</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="022A.PlayerXDistanceMultipleCondition">
+  	<id>22A</id>
+  	<name>MULTIPLE CONDITION -> Player X Distance</name>
+    <type>multipleCondition</type>
+  	<data>
+  	  <data descriptor = "distance">
+  		<type>short</type>
+  		<name>Distance</name>
+  	  </data>
+  	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Player Too Far Left</name>
+  	  </data>
+	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Player Within Distance</name>
+  	  </data>
+	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Player Too Far Right</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="022B.PlayerYDistanceMultipleCondition">
+  	<id>22B</id>
+  	<name>MULTIPLE CONDITION -> Player Y Distance</name>
+    <type>multipleCondition</type>
+  	<data>
+  	  <data descriptor = "distance">
+  		<type>short</type>
+  		<name>Distance</name>
+  	  </data>
+  	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Player Too Far Up</name>
+  	  </data>
+	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Player Within Distance</name>
+  	  </data>
+	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Player Too Far Down</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="022C.PlayerXYDistancesFromEventMultipleCondition">
+  	<id>22C</id>
+  	<name>MULTIPLE CONDITION -> Player X/Y Distances from Event</name>
+    <type>multipleCondition</type>
+  	<data>
+  	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>X Distance > Y Distance</name>
+  	  </data>
+	  <data descriptor = "BranchAddress">
+  	    <type>branchRelative</type>
+		<name>Y Distance > X Distance</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="022D.FindDirectionFromEventToPlayer">
+    <id>22D</id>
+    <name>Find Direction from Event to Player</name>
+  </command>
+  <command descriptor ="0230.BranchIfPlayerIsInThisDirectionFromOffsetLocation">
+    <id>230</id>
+    <name>CONDITION -> Player is in This Direction from Offset Location</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "OffsetX">
+        <type>sbyte</type>
+        <name>Offset X</name>
+      </data>
+      <data descriptor = "OffsetY">
+        <type>sbyte</type>
+        <name>Offset Y</name>
+      </data>
+      <data descriptor = "Direction">
+        <type>byte</type>
+        <name>Direction</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0232.PrepareMapRearrangement">
+    <id>232</id>
+    <name>Map Rearrangement -> Prepare</name>
+    <data>
+      <data descriptor = "MapRearrangementId">
+        <type>byte</type>
+        <name>Map Rearrangement</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0233.PerformMapRearrangement">
+    <id>233</id>
+    <name>Map Rearrangement -> Perform</name>
+  </command>
+  <command descriptor ="023B.ThinkerCreateWithParameter">
+    <id>23B</id>
+    <type>call</type>
+    <name>Thinker -> Create with Parameter</name>
+    <data>
+      <data descriptor = "Parameter">
+        <type>byte</type>
+        <name>Parameter</name>
+      </data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="023C.ThinkerCreate">
+    <id>23C</id>
+    <type>call</type>
+    <name>Thinker -> Create</name>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="023D.ThinkerRemove">
+    <id>23D</id>
+    <name>Thinker -> Remove</name>
+  </command>
+  <command descriptor ="0240.ButtonPressCondition">
+    <id>240</id>
+    <name>CONDITION -> Button Pressed</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "ButtonMask">
+        <type>short</type>
+        <name>Button Mask</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0243.MoveToNearestGridline">
+    <id>243</id>
+    <name>Move to Nearest Gridline</name>
+  </command>
+  <command descriptor ="0245.PlayerPositionAreaCondition">
+    <id>245</id>
+    <name>CONDITION -> Player Position Area</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "StartPointX">
+        <type>byte</type>
+        <name>Start Point X</name>
+      </data>
+      <data descriptor = "StartPointY">
+        <type>byte</type>
+        <name>Start Point Y</name>
+      </data>
+      <data descriptor = "EndPointX">
+        <type>byte</type>
+        <name>End Point X</name>
+      </data>
+      <data descriptor = "EndPointY">
+        <type>byte</type>
+        <name>End Point Y</name>
+      </data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="024B.Unknown">
+    <id>24B</id>
+    <name>?</name>
+    <data>
+      <data descriptor = "byte1">
+        <type>byte</type>
+        <name>?</name>
+      </data>
+      <data descriptor = "byte2">
+        <type>byte</type>
+        <name>?</name>
+      </data>
+      <data descriptor = "byte3">
+        <type>byte</type>
+        <name>?</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="024F.QueueDmaToVramDuringVBlank">
+    <id>24F</id>
+    <name>Queue DMA to VRAM during VBlank</name>
+    <data>
+      <data descriptor = "SourceAddress">
+        <type>absoluteAddress</type>
+        <name>Source Address</name>
+      </data>
+      <data descriptor = "TargetVramWord">
+        <type>short</type>
+        <name>Target VRAM Word</name>
+      </data>
+      <data descriptor = "TransferSize">
+        <type>short</type>
+        <name>Transfer Size</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0252.PrepareLinearMotionToDestination">
+    <id>252</id>
+    <name>Prepare Linear Motion to Destination</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>byte</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "Speed">
+        <type>byte</type>
+        <name>Speed</name>
+      </data>
+      <data descriptor = "MaximumMovementTime">
+        <type>byte</type>
+        <name>MaximumMovementTime</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0253.PropagateLinearMotionToDestination">
+    <id>253</id>
+    <name>Propagate Linear Motion to Destination</name>
+  </command>
+  <command descriptor ="0258.EnemyDamageCondition">
+    <id>258</id>
+    <name>BRANCH -> Enemy Damage</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchAddress">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="025B.BinaryOrArgumentWith$7F:2A">
+    <id>25B</id>
+    <name>Binary OR argument with $7F:2A</name>
+    <data>
+      <data descriptor = "Argument">
+        <type>short</type>
+        <name>Argument</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="025C.BinaryAndArgumentWith$7F:2A">
+    <id>25C</id>
+    <name>Binary AND argument with $7F:2A</name>
+    <data>
+      <data descriptor = "Argument">
+        <type>short</type>
+        <name>Argument</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0265.WorldMapSetPosition">
+    <id>265</id>
+    <name>World Map -> Set Position</name>
+    <data>
+      <data descriptor = "PixelOffsetX">
+        <type>mapPositionOffset</type>
+        <name>Pixel Offset X</name>
+      </data>
+      <data descriptor = "PositionX">
+        <type>mapPosition</type>
+        <name>Position X</name>
+      </data>
+      <data descriptor = "PixelOffsetY">
+        <type>mapPositionOffset</type>
+        <name>Pixel Offset Y</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>mapPosition</type>
+        <name>Position Y</name>
+      </data>
+      <data descriptor = "?">
+        <type>byte</type>
+        <name>?</name>
+      </data>
+      <data descriptor = "MovementIndex">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0280.SpriteChangeFrameIndex">
+    <id>280</id>
+    <name>Sprite -> Change Frame Index</name>
+    <data>
+      <data descriptor = "FrameIndex">
+        <type>spriteIndex</type>
+        <name>Frame Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0281.MoveUpDown">
+    <id>281</id>
+    <name>Move -> Left/Right</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "MovementIndex">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+    </data>
+  </command>  
+  <command descriptor ="0282.MoveUpDown">
+    <id>282</id>
+    <name>Move -> Up/Down</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "MovementIndex">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+    </data>
+  </command>
+    <command descriptor ="0283.MoveConcurrent">
+    <id>283</id>
+    <name>Move -> Concurrent</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "MovementIndexLeftRight">
+        <type>byte</type>
+        <name>Movement Index (Left/Right)</name>
+      </data>
+      <data descriptor = "MovementIndexUpDown">
+        <type>byte</type>
+        <name>Movement Index (Up/Down)</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0280.SpriteChangeIndex">
+    <id>280</id>
+    <name>Sprite -> Change Index</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0284.SpriteChangeIndexAndSpeed">
+    <id>284</id>
+    <name>Sprite -> Change Index and Speed</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "Speed">
+        <type>byte</type>
+        <name>Sprite Speed</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0285.MovementLeftRight">
+    <id>285</id>
+    <name>Movement -> Left/Right</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "NumberOfSteps">
+        <type>byte</type>
+        <name>Number of Steps</name>
+      </data>
+      <data descriptor = "MovementIndex">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0286.MovementUpDown">
+    <id>286</id>
+    <name>Movement -> Up/Down</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "NumberOfSteps">
+        <type>byte</type>
+        <name>Number of Steps</name>
+      </data>
+      <data descriptor = "MovementIndex">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0287.MovementConcurrent">
+    <id>287</id>
+    <name>Movement -> Concurrent</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+      <data descriptor = "NumberOfSteps">
+        <type>byte</type>
+        <name>Number of Steps</name>
+      </data>
+      <data descriptor = "MovementIndexLeftRight">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+      <data descriptor = "MovementIndexUpDown">
+        <type>byte</type>
+        <name>Movement Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0288.SetSpriteset">
+    <id>288</id>
+    <name>Spriteset -> Set</name>
+    <data>
+      <data descriptor = "SpritesetAddress">
+        <type>spriteset</type>
+        <name>Spriteset</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0289.SpriteDoMovement">
+    <id>289</id>
+    <name>Sprite -> Do Movement</name>
+  </command>
+  <command descriptor ="028A.SpriteDoMovement">
+    <id>28A</id>
+    <name>Sprite -> Do Movement</name>
+  </command>
+  <command descriptor ="028B.SpriteDoMovement">
+    <id>28B</id>
+    <name>Sprite -> Do Movement</name>
+  </command>
+  <command descriptor ="028D.SpriteChangeIndex">
+    <id>28D</id>
+    <name>Sprite -> Change Index (And Offset and Physical Properties)</name>
+    <data>
+      <data descriptor = "SpriteIndex">
+        <type>spriteIndex</type>
+        <name>Sprite Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="029C.EventCreateAndCallScript">
+    <id>29C</id>
+    <name>Event -> Create and Call Script</name>
+    <type>call</type>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+      <data descriptor = "EventPhysicsHeader">
+        <type>short</type>
+        <name>Event Physics Header</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="029E.EventCreateWithOffsetAndCallScript">
+    <id>29E</id>
+    <name>Event -> Create with Position Offset and Call Script</name>
+    <type>call</type>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+      <data descriptor = "PositionOffsetX">
+        <type>short</type>
+        <name>Position Offset X</name>
+      </data>
+      <data descriptor = "PositionOffsetY">
+        <type>short</type>
+        <name>Position Offset Y</name>
+      </data>
+      <data descriptor = "EventPhysicsHeader">
+        <type>short</type>
+        <name>Physics Header</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02A0.EventCreateAndCallScript">
+    <id>2A0</id>
+    <name>Event -> Create and Call Script</name>
+    <type>call</type>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+      <data descriptor = "PositionX">
+        <type>short</type>
+        <name>Event Position X</name>
+      </data>
+      <data descriptor = "PositionY">
+        <type>short</type>
+        <name>Event Position Y</name>
+      </data>
+      <data descriptor = "EventPhysicsHeader">
+        <type>short</type>
+        <name>Event Physics Header</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02A2.EventCreateAndCallScript">
+    <id>2A2</id>
+    <type>call</type>
+    <name>Event -> Create and Call Script</name>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+      <data descriptor = "EventPhysicsHeader">
+        <type>short</type>
+        <name>Event Physics Header</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02A5.EventCreateAndCallScript">
+    <id>2A5</id>
+    <type>call</type>
+    <name>Event -> Create and Call Script (Place Last in Exection Order)</name>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+      <data descriptor = "PositionOffsetX">
+        <type>sbyte</type>
+        <name>Position Offset X</name>
+      </data>
+      <data descriptor = "PositionOffsetY">
+        <type>sbyte</type>
+        <name>Position Offset Y</name>
+      </data>
+      <data descriptor = "EventPhysicsHeader">
+        <type>short</type>
+        <name>Event Physics Header</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02AA.SetMoveIndex">
+    <id>2AA</id>
+    <name>Sprite -> Set Move Index (X Direction)</name>
+    <data>
+      <data descriptor = "MoveIndex">
+        <type>byte</type>
+        <name>Move Index</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02B0.SetCurrentAndSavedMovePatternIndexes">
+    <id>2B0</id>
+    <name>Set Current and Saved Move Pattern Indexes</name>
+    <data>
+      <data descriptor = "MovePatternIndexX">
+        <type>byte</type>
+        <name>Move Pattern Index X</name>
+      </data>
+      <data descriptor = "MovePatternIndexY">
+        <type>byte</type>
+        <name>Move Pattern Index Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02B1.LoadSavedMovePattern">
+    <id>2B1</id>
+    <name>Load Saved Move Pattern</name>
+  </command>
+  <command descriptor ="02B2.EventLayerSetBelow">
+    <id>2B2</id>
+    <name>Event Layer -> Set Over Player</name>
+  </command>
+  <command descriptor ="02B3.EventLayerSetBehind">
+    <id>2B3</id>
+    <name>Event Layer -> Set Behind Player</name>
+  </command>
+  <command descriptor ="02B4.EventLayerSetBelow">
+    <id>2B4</id>
+    <name>Event Layer -> Clear Over Player</name>
+  </command>
+  <command descriptor ="02B5.EventLayerClearBehind">
+    <id>2B5</id>
+    <name>Event Layer -> Clear Behind Player</name>
+  </command>
+  <command descriptor ="02B6.SpriteClearPriorityOverrideAndAddProperties">
+    <id>2B6</id>
+    <name>Sprite -> Clear Priority Override and Add Properties</name>
+    <data>
+      <data descriptor = "SpriteProperties">
+        <type>byte</type>
+        <name>Sprite Properties</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02B7.SpriteClearPaletteOverrideAndAddProperties">
+    <id>2B7</id>
+    <name>Sprite -> Clear Palette Override and Add Properties</name>
+    <data>
+      <data descriptor = "SpriteProperties">
+        <type>byte</type>
+        <name>Sprite Properties</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02B8.SpriteToggleMirrorVertical">
+    <id>2B8</id>
+    <name>Sprite -> Toggle Mirror Vertical</name>
+  </command>
+  <command descriptor ="02B9.SpriteToggleMirrorHorizontal">
+    <id>2B9</id>
+    <name>Sprite -> Toggle Mirror Horizontal</name>
+  </command>
+  <command descriptor ="02BA.SpriteUnmirrorVertical">
+    <id>2BA</id>
+    <name>Sprite -> Unmirror Vertical</name>
+  </command>
+  <command descriptor ="02BB.SpriteMirrorVertical">
+    <id>2BB</id>
+    <name>Sprite -> Mirror Vertical</name>
+  </command>
+  <command descriptor ="02BC.EventSetPositionOffset">
+    <id>2BC</id>
+    <name>Event -> Set Position Offset</name>
+    <data>
+      <data descriptor = "OffsetX">
+        <type>sbyte</type>
+        <name>Offset X</name>
+      </data>
+      <data descriptor = "OffsetY">
+        <type>sbyte</type>
+        <name>Offset Y</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02BE.ConditionMessageBoxChoice">
+    <id>2BE</id>
+    <name>CONDITION -> Message Box Choice</name>
+    <type>choice</type>
+    <data>
+      <data descriptor = "choiceCount">
+        <type>byte</type>
+        <name>Choice Count</name>
+      </data>
+      <data descriptor = "lineIndex">
+        <type>byte</type>
+        <name>Line Index</name>
+      </data>
+      <data descriptor = "choiceTable">
+        <type>messageBoxChoice</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02BF.MessageBoxDisplay">
+    <id>2BF</id>
+    <name>Message Box -> Display</name>
+    <data>
+      <data descriptor = "MessageBox">
+        <type>messageBox</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02C0.ConditionPressButton">
+    <id>2C0</id>
+    <name>CONDITION -> Press Button</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02C1.EventSetPointerHere">
+    <id>2C1</id>
+    <name>Event -> Set Pointer Here</name>
+  </command>
+  <command descriptor ="02C2.EventPointerSetHere">
+    <id>2C2</id>
+    <name>Event Pointer -> Set Here</name>
+  </command>
+  <command descriptor ="02C3.ActionAfterDelay">
+    <id>2C3</id>
+    <name>BRANCH -> After Delay</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "Address">
+        <type>branchAbsolute</type>
+      </data>
+      <data descriptor = "Delay">
+        <type>short</type>
+        <name>Delay</name>   
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02C4.SetEventPointerAtAddress">
+    <id>2C4</id>
+    <name>Event -> Set Pointer at Address</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchAbsolute">
+        <type>branchAbsolute</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02C5.ReturnFromSubroutine">
+    <id>2C5</id>
+    <name>RETURN -> From Subroutine</name>
+    <type>return</type>
+  </command>
+  <command descriptor ="02C6.SetSavedJumpAddress">
+	<id>2C6</id>
+	<name>Set Saved Jump Address</name>
+	<data>
+      <data descriptor = "JumpAddress">
+	    <type>short</type>
+		<name>Jump Address</name>
+      </data>
+	</data>
+  </command>
+  <command descriptor ="02C8.SubroutineSaveAddressAndCall">
+    <id>2C8</id>
+    <name>Subroutine -> Save Address and Call</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchAbsolute">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02CA.LoopStart">
+    <id>2CA</id>
+    <name>Loop -> Start</name>
+    <data>
+      <data descriptor = "LoopCounter">
+        <type>byte</type>
+        <name>Loop Counter</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02CB.LoopDecrementCounter">
+    <id>2CB</id>
+    <name>Loop -> Decrement Counter</name>
+  </command>
+  <command descriptor ="02CC.SwitchSet">
+    <id>2CC</id>
+    <name>Switch -> Set</name>
+    <data>
+      <data descriptor = "SwitchId">
+        <type>byte</type>
+        <name>Switch Id</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02CD.MapRearrangementLongSwitchSet">
+    <id>2CD</id>
+    <name>Map Rearrangement / Long Switch -> Set</name>
+    <data>
+      <data descriptor = "MapRearrangementLongSwitchId">
+        <type>mapRearrangementLongSwitch</type>
+        <name>Id</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02CE.SwitchClear">
+    <id>2CE</id>
+    <name>Switch -> Clear</name>
+    <data>
+      <data descriptor = "SwitchId">
+        <type>byte</type>
+        <name>Switch Id</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02CF.MapRearrangementLongSwitchClear">
+    <id>2CF</id>
+    <name>Map Rearrangement / Long Switch -> Clear</name>
+    <data>
+      <data descriptor = "MapRearrangementLongSwitchId">
+        <type>mapRearrangementLongSwitch</type>
+        <name>Id</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D0.SwitchCondition">
+    <id>2D0</id>
+    <name>CONDITION -> Switch</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "SwitchId">
+        <type>byte</type>
+        <name>Switch Id</name>
+      </data>
+      <data descriptor = "SwitchState">
+        <type>bool</type>
+        <name>Switch State</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D1.MapRearrangementLongSwitchCondition">
+    <id>2D1</id>
+    <name>CONDITION -> Map Rearrangement / Long Switch</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "MapRearrangementLongSwitchId">
+        <type>mapRearrangementLongSwitch</type>
+        <name>Id</name>
+      </data>
+      <data descriptor = "SwitchState">
+        <type>bool</type>
+        <name>Switch State</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D2.WaitSwitchCondition">
+    <id>2D2</id>
+    <name>WAIT -> For Switch Condition</name>
+    <data>
+      <data descriptor = "SwitchId">
+        <type>byte</type>
+        <name>Switch Id</name>
+      </data>
+      <data descriptor = "SwitchState">
+        <type>bool</type>
+        <name>Switch State</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D3.WaitMapRearrangementLongSwitchCondition">
+    <id>2D3</id>
+    <name>WAIT -> For Map Rearrangement / Long Switch Condition</name>
+    <data>
+      <data descriptor = "SwitchId">
+        <type>mapRearrangementLongSwitch</type>
+        <name>Id</name>
+      </data>
+      <data descriptor = "SwitchState">
+        <type>bool</type>
+        <name>Switch State</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D4.ItemAddCondition">
+    <id>2D4</id>
+    <name>CONDITION -> Item Add (Inventory Full)</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "ItemIndex">
+        <type>item</type>
+        <name>Item</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D5.ItemRemove">
+    <id>2D5</id>
+    <name>Item -> Remove</name>
+    <data>
+      <data descriptor = "ItemIndex">
+        <type>item</type>
+        <name>Item</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D6.ItemPossessionCondition">
+    <id>2D6</id>
+    <name>CONDITION -> Item Possession</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "ItemIndex">
+        <type>item</type>
+        <name>Item</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D7.ItemEquippedCondition">
+    <id>2D7</id>
+    <name>CONDITION -> Item Equipped</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "ItemIndex">
+        <type>item</type>
+        <name>Item</name>
+      </data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02D8.EnemyFlagAsKilled">
+    <id>2D8</id>
+    <name>Enemy -> Flag as Killed</name>
+  </command>
+  <command descriptor ="02D9.JumpWithVariableAddress">
+    <id>2D9</id>
+    <name>Jump (Offset + (Index * 2))</name>
+    <data>
+      <data descriptor = "IndexAddress">
+        <type>short</type>
+        <name>Index Address</name>
+      </data>
+      <data descriptor = "Offset">
+        <type>short</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02DA.Delay">
+    <id>2DA</id>
+    <name>Delay</name>
+    <data>
+      <data descriptor = "Delay">
+        <type>byte</type>
+        <name>Delay</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02DB.DelayLong">
+    <id>2DB</id>
+    <name>Delay (Long)</name>
+    <data>
+      <data descriptor = "DelayLong">
+        <type>short</type>
+        <name>Delay</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="02E0.EventDisable">
+    <id>2E0</id>
+    <name>RETURN -> Disable Event</name>
+    <type>return</type>
+  </command>
+  <!--###################### Assembler Commands #########################-->
+  <command descriptor ="0A00.Break">
+    <id>A00</id>
+    <name>Break</name>
+  </command>
+  <command descriptor ="0A01.AccumulatorOrWithMemory">
+    <id>A01</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A04.AccumulatorTestAndSetMemoryBits">
+    <id>A04</id>
+    <name>Accumulator -> Test and Set Memory Bits</name>
+    <data>
+      <data descriptor = "MemoryBits">
+        <type>byte</type>
+        <name>MemoryBits</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A05.AccumulatorOrWithMemory">
+    <id>A05</id>
+    <name>Accumulator -> OR with Memory</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A07.AccumulatorOrWithMemory">
+    <id>A07</id>
+    <name>Accumulator -> OR with memory</name>
+    <data>
+      <data descriptor = "Offset">
+        <type>byte</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A08.PushProcessorStatusRegister">
+    <id>A08</id>
+    <name>Push Processor Status Register</name>
+  </command>
+  <command descriptor ="0A09.AccumulatorOrWithMemory">
+    <id>A09</id>
+    <name>Accumulator -> OR with memory</name>
+    <data>
+      <data descriptor = "Offset">
+        <type>byte</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A0A.AccumulatorArithmeticShiftLeft">
+    <id>A0A</id>
+    <name>Accumulator -> Arithmetic Shift Left</name>
+  </command>
+  <command descriptor ="0A0B.StackPushDirectPageRegister">
+    <id>A0B</id>
+    <name>Stack -> Push Direct Page Register</name>
+  </command>
+  <command descriptor ="0A0C.AccumulatorTestAndSetMemoryBits">
+    <id>A0C</id>
+    <name>Accumulator -> Test and Set Memory Bits</name>
+    <data>
+      <data descriptor = "MemoryBits">
+        <type>ramAddress</type>
+        <name>MemoryBits</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A0D.AccumulatorOrWithMemory">
+    <id>A0D</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A0E.ArithmeticShiftLeft">
+    <id>A0E</id>
+    <name>Arithmetic Shift Left</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A0F.AccumulatorOrWithMemory">
+    <id>A0F</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A10.BranchIfPlus">
+    <id>A10</id>
+    <name>Branch If Plus</name>
+    <data>
+      <data descriptor = "NearLabel">
+        <type>byte</type>
+        <name>Near Label</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A11.AccumulatorOrWithMemory">
+    <id>A11</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A12.AccumulatorOrWithMemory">
+    <id>A12</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A13.AccumulatorOrWithMemory">
+    <id>A13</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A14.AccumulatorTestAndResetMemoryBits">
+    <id>A14</id>
+    <name>Accumulator -> Test and Reset Memory Bits</name>
+    <data>
+      <data descriptor = "MemoryBits">
+        <type>byte</type>
+        <name>MemoryBits</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A15.AccumulatorOrWithMemory">
+    <id>A15</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A16.ArithmeticShiftLeft">
+    <id>A16</id>
+    <name>Arithmetic Shift Left</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A17.AccumulatorOrWithMemory">
+    <id>A17</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A18.ClearCarryBit">
+    <id>A18</id>
+    <name>Clear Carry Bit</name>
+  </command>
+  <command descriptor ="0A19.AccumulatorOrWithMemory">
+    <id>A19</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A1A.AccumulatorIncrement">
+    <id>A1A</id>
+    <name>Accumulator -> Increment</name>
+  </command>
+  <command descriptor ="0A1B.AccumulatorTransferToStackPointer">
+    <id>A1B</id>
+    <name>Accumulator -> Transfer to Stack Pointer</name>
+  </command>
+  <command descriptor ="0A1C.AccumulatorTestAndResetMemoryBits">
+    <id>A1C</id>
+    <name>Accumulator -> Test and Reset Memory Bits</name>
+    <data>
+      <data descriptor = "MemoryBits">
+        <type>ramAddress</type>
+        <name>MemoryBits</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A1D.AccumulatorOrWithMemory">
+    <id>A1D</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A1F.AccumulatorOrWithMemory">
+    <id>A1F</id>
+    <name>Accumulator -> Or with Memory</name>
+    <data>
+      <data descriptor = "MemoryBits">
+        <type>ramAddressLong</type>
+        <name>MemoryBits</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A20.JumpToSubroutine">
+    <id>A20</id>
+    <name>Jump to Subroutine</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "branchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A21.AccumulatorAndWithMemory">
+    <id>A21</id>
+    <name>Accumulator -> And with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A22.JumpToSubroutineLong">
+    <id>A22</id>
+    <type>call</type>
+    <name>Jump to Subroutine (Long)</name>
+    <data>
+      <data descriptor = "EventScript">
+        <type>eventScript</type>
+        <name>Event Script</name>
+      </data>
+    </data>
+  </command>
+    <command descriptor ="0A23.AccumulatorAndWithMemory">
+    <id>A23</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A24.TestBits">
+    <id>A24</id>
+    <name>Test Bits</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A25.AccumulatorAndWithMemory">
+    <id>A25</id>
+    <name>Accumulator -> And with Memory</name>
+    <data>
+      <data descriptor = "Offset">
+        <type>byte</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+    <command descriptor ="0A27.AccumulatorAndWithMemory">
+    <id>A27</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A29.AccumulatorAndWithValue">
+    <id>A29</id>
+    <name>Accumulator -> And with Value</name>
+    <data>
+      <data descriptor = "Constant">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A2A.RotateMemoryOrAccumulatorLeft">
+    <id>A2A</id>
+    <name>Rotate Memory or Accumulator Left</name>
+  </command>
+  <command descriptor ="0A2B.StackPull">
+    <id>A2B</id>
+    <name>Stack -> Pull</name>
+  </command>
+  <command descriptor ="0A30.BranchIfMinus">
+    <id>A30</id>
+    <name>Accumulator -> Negative Value Condition</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A31.AccumulatorAndWithMemory">
+    <id>A31</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A32.AccumulatorAndWithMemory">
+    <id>A32</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A33.AccumulatorAndWithMemory">
+    <id>A33</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A35.AccumulatorAndWithMemory">
+    <id>A35</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A37.AccumulatorAndWithMemory">
+    <id>A37</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A38.SetCarryFlag">
+    <id>A38</id>
+    <name>Set Carry Flag</name>
+  </command>
+  <command descriptor ="0A39.AccumulatorAndWithMemory">
+    <id>A39</id>
+    <name>Accumulator -> And with Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A3A.AccumulatorDecrement">
+    <id>A3A</id>
+    <name>Accumulator -> Decrement</name>
+  </command>
+  <command descriptor ="0A3F.AccumulatorAndWithMemory">
+    <id>A3F</id>
+    <name>Accumulator -> AND with Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A40.ReturnFromInterrupt">
+    <id>A40</id>
+    <name>RETURN -> From Interrupt</name>
+    <type>return</type>
+  </command>
+  <command descriptor ="0A42.Reserved">
+    <id>A42</id>
+    <name>Reserved</name>
+    <data>
+      <data descriptor = "Reserved">
+        <type>byte</type>
+        <name>Reserved</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A43.AccumulatorXorWithMemory">
+    <id>A43</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A45.AccumulatorXorWithMemory">
+    <id>A45</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A46.LogicalShiftMemoryOrAccumulatorRight">
+    <id>A46</id>
+    <name>Logical Shift Memory or Accumulator Right</name>
+    <data>
+      <data descriptor = "Offset">
+        <type>byte</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A47.AccumulatorXorWithMemory">
+    <id>A47</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A48.AccumulatorPush">
+    <id>A48</id>
+    <name>Accumulator -> Push</name>
+  </command>
+  <command descriptor ="0A49.AccumulatorExorWithValue">
+    <id>A49</id>
+    <name>Accumulator -> EXOR with Value</name>
+    <data>
+      <data descriptor = "AddValue">
+        <type>short</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A4A.AccumulatorShiftRight">
+    <id>A4A</id>
+    <name>Accumulator -> Shift to Right</name>
+  </command>
+  <command descriptor ="0A4B.StackPush">
+    <id>A4B</id>
+    <name>Stack -> Push</name>
+  </command>
+  <command descriptor ="0A4C.JumpToSubroutine">
+    <id>A4C</id>
+    <name>Jump to Subroutine</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A4D.AccumulatorXorWithMemory">
+    <id>A4D</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A4F.AccumulatorXorWithMemory">
+    <id>A4F</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A50.BranchIfOverflowClear">
+    <id>A50</id>
+    <name>CONDITION -> Branch If Overflow Clear</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A51.AccumulatorXorWithMemory">
+    <id>A51</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A52.AccumulatorXorWithMemory">
+    <id>A52</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A53.AccumulatorXorWithMemory">
+    <id>A53</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>StackRelative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A55.AccumulatorXorWithMemory">
+    <id>A55</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A57.AccumulatorXorWithMemory">
+    <id>A57</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A59.AccumulatorXorWithMemory">
+    <id>A59</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A5A.StackPushIndexRegisterY">
+    <id>A5A</id>
+    <name>Stack -> Push Index Register Y</name>
+  </command>
+  <command descriptor ="0A5B.AccumulatorTransferToDirectPageRegister">
+    <id>A5B</id>
+    <name>Accumulator -> Transfer to Direct Page Register</name>
+  </command>
+  <command descriptor ="0A5C.JumpToSubroutine">
+    <id>A5C</id>
+    <name>Jump to Subroutine</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchAbsolute">
+        <type>branchAbsolute</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A5D.AccumulatorXorWithMemory">
+    <id>A5D</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A5F.AccumulatorXorWithMemory">
+    <id>A5F</id>
+    <name>Accumulator -> XOR with memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A60.ReturnFromSubroutine">
+    <id>A60</id>
+    <name>RETURN -> From Subroutine</name>
+    <type>return</type>
+  </command>
+  <command descriptor ="0A61.AddWithCarry">
+    <id>A61</id>
+    <name>Add with Carry</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A62.PushEffectivePcRelativeIndirectAddress">
+    <id>A62</id>
+    <name>Push Effective PC Relative Indirect Address</name>
+    <data>
+      <data descriptor = "Address">
+        <type>ramAddress</type>
+        <name>Address</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A63.AddWithCarry">
+    <id>A63</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A64.StoreZeroToMemory">
+    <id>A64</id>
+    <name>Store Zero to Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A65.AddWithCarry">
+    <id>A65</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A67.AddWithCarry">
+    <id>A67</id>
+    <name>Add with Carry</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A68.AccumulatorPull">
+    <id>A68</id>
+    <name>Accumulator -> Pull</name>
+  </command>
+  <command descriptor ="0A69.AddWithCarry">
+    <id>A69</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "AddValue">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A6B.ReturnFromSubroutineLong">
+    <id>A6B</id>
+    <name>RETURN -> From Subroutine Long</name>
+    <type>return</type>
+  </command>
+  <command descriptor ="0A6D.AddWithCarry">
+    <id>A6D</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "AddValue">
+        <type>ramAddress</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A6F.AddWithCarry">
+    <id>A6F</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "AddValue">
+        <type>ramAddressLong</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A70.BranchIfOverflowSet">
+    <id>A70</id>
+    <name>BRANCH -> If Overflow Set</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A71.AddWithCarry">
+    <id>A71</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A72.AddWithCarry">
+    <id>A72</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A73.AddWithCarry">
+    <id>A73</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A75.AddWithCarry">
+    <id>A75</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A77.AddWithCarry">
+    <id>A77</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A79.AddWithCarry">
+    <id>A79</id>
+    <name>Accumulator -> Add with Carry</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A7D.AddWithCarry">
+    <id>A7D</id>
+    <name>Add with Carry Bit</name>
+    <data>
+      <data descriptor = "AddValue">
+        <type>ramAddress</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A7F.AddWithCarry">
+    <id>A7F</id>
+    <name>Accumulator -> Add with Carry</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A80.BranchAlways">
+    <id>A80</id>
+    <name>BRANCH -> Always</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A81.AccumulatorStoreToMemory">
+    <id>A81</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A82.BranchLongAlways">
+    <id>A82</id>
+    <name>BRANCH -> Long Always</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A83.AccumulatorStoreToMemory">
+    <id>A83</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A84.IndexRegisterYStoreToMemory">
+  	<id>A84</id>
+  	<name>Index Register Y -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "DirectPage">
+  	    <type>byte</type>
+  	    <name>Direct Page</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0A85.AccumulatorStoreToMemory">
+    <id>A85</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+    <command descriptor ="0A87.AccumulatorStoreToMemory">
+    <id>A87</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A88.IndexRegisterYDecrement">
+    <id>A88</id>
+    <name>Index Register Y -> Decrement</name>
+  </command>
+  <command descriptor ="0A89.TestBits">
+    <id>A89</id>
+    <name>Test Bits</name>
+    <data>
+      <data descriptor = "Value">
+        <type>short</type>
+        <name>Bits</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A8A.IndexRegisterXTransferToAccumulator">
+  	<id>A8A</id>
+  	<name>Index Register X -> Transfer to Accumulator</name>
+  </command>
+  <command descriptor ="0A8B.StackPush">
+    <id>A8B</id>
+    <name>Stack -> Push</name>
+  </command>
+  <command descriptor ="0A8C.IndexRegisterYStoreToMemory">
+    <id>A8C</id>
+    <name>Index Register Y -> Store to Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A8D.AccumulatorStoreToMemory">
+    <id>A8D</id>
+    <name>Accumulator -> Write to Variable</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A8E.IndexRegisterXStoreToMemory">
+  	<id>A8E</id>
+  	<name>Index Register X -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "Variable">
+  	    <type>ramAddress</type>
+  	    <name>Variable</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0A8F.AccumulatorStoreToMemory">
+    <id>A8F</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A90.BranchIfCarryClear">
+    <id>A90</id>
+    <name>CONDITION -> Carry Bit Clear</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A91.AccumulatorStoreToMemory">
+  	<id>A91</id>
+  	<name>Accumulator -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "DirectPage">
+  	    <type>byte</type>
+  	    <name>Direct Page</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0A92.AccumulatorStoreToMemory">
+  	<id>A92</id>
+  	<name>Accumulator -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "DirectPage">
+  	    <type>byte</type>
+  	    <name>Direct Page</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0A93.AccumulatorStoreToMemory">
+  	<id>A93</id>
+  	<name>Accumulator -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "StackRelative">
+  	    <type>byte</type>
+  	    <name>Stack Relative</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0A94.IndexRegisterYStoreToMemory">
+    <id>A94</id>
+    <name>Index Register Y -> Store to Memory</name>
+    <data>
+      <data descriptor = "Offset">
+        <type>byte</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+    <command descriptor ="0A95.AccumulatorStoreToMemory">
+  	<id>A95</id>
+  	<name>Accumulator -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "DirectPage">
+  	    <type>byte</type>
+  	    <name>Direct Page</name>
+  	  </data>
+  	</data>
+  </command>
+    <command descriptor ="0A97.AccumulatorStoreToMemory">
+  	<id>A97</id>
+  	<name>Accumulator -> Store to Memory</name>
+  	<data>
+  	  <data descriptor = "DirectPage">
+  	    <type>byte</type>
+  	    <name>Direct Page</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0A99.AccumulatorStoreToMemory">
+    <id>A99</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "RamAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A9A.IndexRegisterXTransferToStackPointer">
+    <id>A9A</id>
+    <name>Index Register X -> Transfer to Stack Pointer</name>
+  </command>
+  <command descriptor ="0A9B.IndexRegisterXTransferToIndexRegisterY">
+    <id>A9B</id>
+    <name>Index Register X -> Transfer to Index register Y</name>
+  </command>
+  <command descriptor ="0A9C.StoreZeroToMemory">
+    <id>A9C</id>
+    <name>Store Zero to Memory</name>
+    <data>
+      <data descriptor = "RamAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A9E.StoreZeroToMemory">
+    <id>A9E</id>
+    <name>Store Zero to Memory</name>
+    <data>
+      <data descriptor = "RamAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0A9F.AccumulatorStoreToMemory">
+    <id>A9F</id>
+    <name>Accumulator -> Store to Memory</name>
+    <data>
+      <data descriptor = "RamAddress">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AA0.IndexRegisterYLoadFromMemory">
+  	<id>AA0</id>
+  	<name>Index Register Y -> Load From Memory</name>
+  	<data>
+  	  <data descriptor = "Value">
+  	    <type>byte</type>
+  	    <name>Value</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0AA4.LoadIndexRegisterYFromMemory">
+  	<id>AA4</id>
+  	<name>Load Index Register Y From Memory</name>
+  	<data>
+  	  <data descriptor = "Value">
+  	    <type>byte</type>
+  	    <name>Value</name>
+  	  </data>
+  	</data>
+  </command>
+  <command descriptor ="0AA5.AccumulatorLoadFromMemory">
+    <id>AA5</id>
+    <name>Accumulator -> Load from Memory</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AA6.LoadIndexRegisterXFromMemory">
+    <id>AA6</id>
+    <name>Index Register X -> Load from Memory</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AA7.AccumulatorLoadFromMemory">
+    <id>AA7</id>
+    <name>Accumulator -> Load from Memory</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AA8.AccumulatorTransferToIndexRegisterY">
+    <id>AA8</id>
+    <name>Accumulator -> Transfer to Index Register Y</name>
+  </command>
+  <command descriptor ="0AA9.AccumulatorLoadValue">
+    <id>AA9</id>
+    <name>Accumulator -> Load Value</name>
+    <data>
+      <data descriptor = "Value">
+        <type>short</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AAA.AccumulatorTransferToIndexRegisterX">
+    <id>AAA</id>
+    <name>Accumulator -> Transfer to Index Register X</name>
+  </command>
+  <command descriptor ="0AAC.LoadIndexRegisterYFromMemory">
+    <id>AAC</id>
+    <name>Load Index Register Y From Variable</name>
+    <data>
+      <data descriptor = "VariableAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AAD.AccumulatorLoadVariable">
+    <id>AAD</id>
+    <name>Accumulator -> Load Variable</name>
+    <data>
+      <data descriptor = "VariableAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AAE.IndexRegisterXLoadFromMemory">
+    <id>AAE</id>
+    <name>Index Register X -> Load from Memory</name>
+    <data>
+      <data descriptor = "VariableAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AAF.AccumulatorLoadFromMemory">
+    <id>AAF</id>
+    <name>Accumulator -> Load from Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB0.BranchIfCarrySet">
+    <id>AB0</id>
+    <name>CONDITION -> Carry Bit Set</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB1.AccumulatorLoadFromMemory">
+    <id>AB1</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "Offset">
+        <type>byte</type>
+        <name>Offset</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB2.AccumulatorLoadFromMemory">
+    <id>AB2</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB3.AccumulatorLoadFromMemory">
+    <id>AB3</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB4.IndexRegisterYLoadFromMemory">
+    <id>AB4</id>
+    <name>Index Register Y -> Load from Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB5.AccumulatorLoadFromMemory">
+    <id>AB5</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB6.IndexRegisterXLoadFromMemory">
+    <id>AB6</id>
+    <name>Index Register X -> Load from Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB7.AccumulatorLoadFromMemory">
+    <id>AB7</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AB9.AccumulatorLoadFromMemory">
+    <id>AB9</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ABB.IndexRegisterYTransferToIndexRegisterX">
+  	<id>ABB</id>
+  	<name>Index Register Y -> Transfer to Index Register X</name>
+  </command>
+  <command descriptor ="0ABC.IndexRegisterYLoadFromMemory">
+    <id>ABC</id>
+    <name>Index Register Y -> Load from Memory</name>
+    <data>
+      <data descriptor = "VariableAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ABD.AccumulatorLoadFromMemory">
+    <id>ABD</id>
+    <name>Accumulator -> Load from Memory</name>
+    <data>
+      <data descriptor = "VariableAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ABE.IndexRegisterXLoadFromMemory">
+    <id>ABE</id>
+    <name>Index Register X -> Load from Memory</name>
+    <data>
+      <data descriptor = "VariableAddress">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ABF.AccumulatorLoadFromMemory">
+    <id>ABF</id>
+    <name>Accumulator -> Load From Memory</name>
+    <data>
+      <data descriptor = "MemoryAddress">
+        <type>ramAddressLong</type>
+        <name>Memory Address</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AC0.IndexRegisterYCompareWithMemory">
+    <id>AC0</id>
+    <name>Index Register Y -> Compare with Memory</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>byte</type>
+        <name>Compare Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AC1.AccumulatorCompareWithMemory">
+    <id>AC1</id>
+    <name>Accumulator -> Compare with Memory</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>byte</type>
+        <name>Compare Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AC2.ProcessorResetStatusBits">
+    <id>AC2</id>
+    <name>Processor -> Reset Status Bits</name>
+    <data>
+      <data descriptor = "ResetBitMask">
+        <type>byte</type>
+        <name>Bit Mask</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AC8.IndexRegisterYIncrement">
+    <id>AC8</id>
+    <name>Index Register Y -> Increment</name>
+  </command>
+  <command descriptor ="0AC9.AccumulatorCompareConstant">
+    <id>AC9</id>
+    <name>Accumulator -> Compare with Value</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>short</type>
+        <name>Compare Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ACA.IndexRegisterXIncrement">
+    <id>ACA</id>
+    <name>Index Register X -> Increment</name>
+  </command>
+  <command descriptor ="0ACB.WaitForInterrupt">
+  	<id>ACB</id>
+  	<name>Wait for Interrupt</name>
+  </command>
+  <command descriptor ="0ACD.AccumulatorCompareVariable">
+    <id>ACD</id>
+    <name>Accumulator -> Compare with Variable</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ACF.AccumulatorCompareVariable">
+    <id>ACF</id>
+    <name>Accumulator -> Compare with Variable</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AD0.BranchIfNotEqual">
+    <id>AD0</id>
+    <name>CONDITION -> Branch If Not Equal</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AD4.PushEffectiveIndirectAddress">
+    <id>AD4</id>
+    <name>Push Effective Indirect Address</name>
+    <data>
+      <data descriptor = "Stack">
+        <type>byte</type>
+        <name>Stack</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AD6.Decrement">
+    <id>AD6</id>
+    <name>Decrement</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AD7.AccumulatorCompareMemory">
+    <id>AD7</id>
+    <name>Accumulator -> Compare with Memory</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AD8.ClearDecimalModeFlag">
+    <id>AD8</id>
+    <name>Clear Decimal Mode Flag</name>
+  </command>
+  <command descriptor ="0AD9.AccumulatorCompareMemory">
+    <id>AD9</id>
+    <name>Accumulator -> Compare with Memory</name>
+    <data>
+      <data descriptor = "CompareValue">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ADA.IndexRegisterXPush">
+    <id>ADA</id>
+    <name>Index Register X -> Push</name>
+  </command>
+  <command descriptor ="0ADC.Jump">
+    <id>ADC</id>
+    <name>Jump</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "branchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ADD.AccumulatorCompareMemory">
+    <id>ADD</id>
+    <name>Accumulator -> Compare with Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0ADF.AccumulatorCompareMemory">
+    <id>ADF</id>
+    <name>Accumulator -> Compare with Memory</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AE2.ProcessorSetStatusBits">
+    <id>AE2</id>
+    <name>Processor -> Set Status Bits</name>
+    <data>
+      <data descriptor = "ResetBitMask">
+        <type>byte</type>
+        <name>Bit Mask</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AE5.SubtractWithBorrowFromAccumulator">
+    <id>AE5</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AE7.SubtractWithBorrowFromAccumulator">
+    <id>AE7</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AE9.SubtractWithBorrowFromAccumulator">
+    <id>AE9</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "Constant">
+        <type>byte</type>
+        <name>Constant</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AED.SubtractWithBorrowFromAccumulator">
+    <id>AED</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AEE.Increment">
+    <id>AEE</id>
+    <name>Variable -> Increment</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AEF.SubtractWithBorrowFromAccumulator">
+    <id>AEF</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF0.BranchIfEqual">
+    <id>AF0</id>
+    <name>CONDITION -> Branch If Equal</name>
+    <type>condition</type>
+    <data>
+      <data descriptor = "BranchOffset">
+        <type>branchOffset</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF1.SubtractWithBorrowFromAccumulator">
+    <id>AF1</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF2.SubtractWithBorrowFromAccumulator">
+    <id>AF2</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF3.SubtractWithBorrowFromAccumulator">
+    <id>AF3</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "StackRelative">
+        <type>byte</type>
+        <name>Stack Relative</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF4.PushEffectiveAbsoluteAddress">
+    <id>AF4</id>
+    <name>Push Effective Absolute Address</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF5.SubtractWithBorrowFromAccumulator">
+    <id>AF5</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF6.Increment">
+    <id>AF6</id>
+    <name>Increment</name>
+    <data>
+      <data descriptor = "Value">
+        <type>byte</type>
+        <name>Value</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF7.SubtractWithBorrowFromAccumulator">
+    <id>AF7</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "DirectPage">
+        <type>byte</type>
+        <name>Direct Page</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AF8.SetDecimalFlag">
+    <id>AF8</id>
+    <name>Set Decimal Flag</name>
+  </command>
+  <command descriptor ="0AF9.SubtractWithBorrowFromAccumulator">
+    <id>AF9</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AFA.PullIndexRegisterX">
+    <id>AFA</id>
+    <name>Pull Index Register X</name>
+  </command>
+  <command descriptor ="0AFB.ExchangeCarryAndEmulationFlags">
+    <id>AFB</id>
+    <name>Exchange Carry and Emulation Flags</name>
+  </command>
+  <command descriptor ="0AFC.JumpToSubroutine">
+    <id>AFC</id>
+    <name>Jump to Subroutine</name>
+    <type>branch</type>
+    <data>
+      <data descriptor = "BranchRelative">
+        <type>branchRelative</type>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AFD.SubtractWithBorrowFromAccumulator">
+    <id>AFD</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AFE.VariableIncrement">
+    <id>AFE</id>
+    <name>Variable -> Increment</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddress</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+  <command descriptor ="0AFF.SubtractWithBorrowFromAccumulator">
+    <id>AFF</id>
+    <name>Subtract With Borrow From Accumulator</name>
+    <data>
+      <data descriptor = "Variable">
+        <type>ramAddressLong</type>
+        <name>Variable</name>
+      </data>
+    </data>
+  </command>
+</eventCommands>

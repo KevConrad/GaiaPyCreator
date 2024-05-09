@@ -46,4 +46,5 @@ class Model_Items:
         self.itemRomNames = []
         for item in range (itemNameTableSize):
             self.itemRomNames.append(Model_Text.readAsciiText(self.romData, itemNameTable.getDataAddress(item)))
-            print(self.itemRomNames)
+        
+        print(self.itemRomNames)
