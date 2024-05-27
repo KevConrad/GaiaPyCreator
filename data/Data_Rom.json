@@ -484,6 +484,10 @@
          "Size": "8000"
       }
    },
+"ItemFindMessageTable": {
+   "Address": "1FD24",
+   "Size": "64"
+},
 "ItemDescriptionTable": {
    "Address": "1E132",
    "Size": "34"
