@@ -4,12 +4,13 @@ class Model_TextConverter:
         switch = {
             0x40 : ' ',         # convert '@' to ' '
             0x20 : '.',         # convert ' ' to '.'
+            0x2E : '-',         # convert '.' tp '-'
             0x5C : '\'',        # convert '\\' to '\''
-            0x0D : "\r\n",
+            0x0D : "\n",
         }
         return switch.get(character, chr(character))
     
-    def decodeDialogueCharacter(character):
+    def decodeMessageCharacter(character):
         switch = {
             0x0D : '?',
             0x0E : '\'',
@@ -85,7 +86,7 @@ class Model_TextConverter:
             0xA9 : 'y',
             0xAA : 'z',
             0xAC : ' ',
-            0xC6 : '[v]',
-            0xCB : '\r\n'
+            0xC6 : "[v]",
+            0xCB : '\n'
         }
-        return switch.get(character, '')
+        return switch.get(character, chr(character))
