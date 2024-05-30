@@ -7,6 +7,7 @@ from pubsub.utils.notification import useNotifyByWriteFile
 import sys
 
 from .Controller_Items import Controller_Items
+from .Controller_Tilesets import Controller_Tilesets
 
 useNotifyByWriteFile(sys.stdout)
 
@@ -23,13 +24,15 @@ class Controller_Main:
         self.view.Show()
 
         self.project = Controller_Project(self.view)
+        self.text = Model_Text()
 
         pub.subscribe(self.load, "project_loaded")
 
     def load(self):
-        self.text = Model_Text()
+        # initialize all controllers
         self.items = Controller_Items(self.project, self.view)
-        print(self.project.romData.romData[8])
+        self.tilesets = Controller_Tilesets(self.project, self.view)
+
         print("Initialized all objects")
         
         

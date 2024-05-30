@@ -92,5 +92,8 @@ class View_Tabs:
 
     def handleTabChanged(self, event):
         index = self.notebook.GetSelection()
+
         if self.notebook.GetPage(index) is self.tabItems:
             pub.sendMessage("items_load")
+        if self.notebook.GetPage(index) is self.tabTilesets:
+            pub.sendMessage("tilesets_load")

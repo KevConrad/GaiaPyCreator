@@ -10881,9 +10881,8 @@
          "Tileset2": "21"
       }
    },
-   "Tilesets": {
-      "Count": "140",
-      "Tileset0": {
+   "Tilesets": [
+      {
          "Name": "0 - ITEMS, Numbers",
          "Address": "0",
          "CompSize": "0",
@@ -10891,7 +10890,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset1": {
+      {
          "Name": "1 - ITEMS",
          "Address": "DAFFF",
          "CompSize": "0",
@@ -10899,7 +10898,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset2": {
+      {
          "Name": "2 - ITEMS",
          "Address": "DD001",
          "CompSize": "0",
@@ -10907,7 +10906,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset3": {
+      {
          "Name": "3 - Will (Walk, run)",
          "Address": "1A8000",
          "CompSize": "0",
@@ -10915,7 +10914,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset4": {
+      {
          "Name": "4 - Will (Fight)",
          "Address": "1AA000",
          "CompSize": "0",
@@ -10923,7 +10922,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset5": {
+      {
          "Name": "5 - Freedan",
          "Address": "1AC000",
          "CompSize": "0",
@@ -10931,7 +10930,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset6": {
+      {
          "Name": "6 - Freedan",
          "Address": "1AE000",
          "CompSize": "0",
@@ -10939,7 +10938,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset7": {
+      {
          "Name": "7 - Freedan, Will (Transformation)",
          "Address": "1B8000",
          "CompSize": "0",
@@ -10947,7 +10946,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset8": {
+      {
          "Name": "8 - Shadow, Freedan (Transformation)",
          "Address": "1BA000",
          "CompSize": "0",
@@ -10955,7 +10954,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset9": {
+      {
          "Name": "9 - Shadow",
          "Address": "1BC000",
          "CompSize": "0",
@@ -10963,7 +10962,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset10": {
+      {
          "Name": "10 - Shadow",
          "Address": "1BE000",
          "CompSize": "0",
@@ -10971,7 +10970,7 @@
          "DecompSize": "1FFF",
          "Format": "4"
       },
-      "Tileset11": {
+      {
          "Name": "11 - Freedan",
          "Address": "1C8000",
          "CompSize": "0",
@@ -10979,7 +10978,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset12": {
+      {
          "Name": "12 - Shadow",
          "Address": "1CA000",
          "CompSize": "0",
@@ -10987,7 +10986,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset13": {
+      {
          "Name": "13 - Main Character Special Power Animation (?)",
          "Address": "1CC000",
          "CompSize": "0",
@@ -10995,7 +10994,7 @@
          "DecompSize": "1D7F",
          "Format": "4"
       },
-      "Tileset14": {
+      {
          "Name": "14 - MENU (Item Menu)",
          "Address": "1D8000",
          "CompSize": "0",
@@ -11003,7 +11002,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset15": {
+      {
          "Name": "15 - NPCs (South Cape)",
          "Address": "2F3A",
          "CompSize": "1AF8",
@@ -11011,7 +11010,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset16": {
+      {
          "Name": "16 - MAPS (South Cape Interior)",
          "Address": "4A33",
          "CompSize": "1AED",
@@ -11019,7 +11018,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset17": {
+      {
          "Name": "17 - NPCs (Freeja)",
          "Address": "6521",
          "CompSize": "1ADA",
@@ -11027,7 +11026,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset18": {
+      {
          "Name": "18 - MAPS (World Map)",
          "Address": "10000",
          "CompSize": "1AE9",
@@ -11035,7 +11034,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset19": {
+      {
          "Name": "19 - MAPS (Seaside Palace Fountain)",
          "Address": "11AEA",
          "CompSize": "1AAF",
@@ -11043,7 +11042,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset20": {
+      {
          "Name": "20 - MAPS (House Interior)",
          "Address": "1359A",
          "CompSize": "1A73",
@@ -11051,7 +11050,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset21": {
+      {
          "Name": "21 - MAPS (Freeja)",
          "Address": "1500E",
          "CompSize": "1A72",
@@ -11059,7 +11058,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset22": {
+      {
          "Name": "22 - ENEMIES (Gold Cap)",
          "Address": "16A81",
          "CompSize": "153C",
@@ -11067,7 +11066,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset23": {
+      {
          "Name": "23 - MAPS (Dao)",
          "Address": "20000",
          "CompSize": "1A1F",
@@ -11075,7 +11074,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset24": {
+      {
          "Name": "24 - MAPS (House Interior)",
          "Address": "21A20",
          "CompSize": "199B",
@@ -11083,7 +11082,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset25": {
+      {
          "Name": "25 - ENEMIES (Mud Monster, Larva)",
          "Address": "233BC",
          "CompSize": "1966",
@@ -11091,7 +11090,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset26": {
+      {
          "Name": "26 - ENEMIES (Inca Statue, Inca Stone Head)",
          "Address": "24D23",
          "CompSize": "1962",
@@ -11099,7 +11098,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset27": {
+      {
          "Name": "27 - MAPS (Dark Space)",
          "Address": "26686",
          "CompSize": "192A",
@@ -11107,7 +11106,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset28": {
+      {
          "Name": "28 - MAPS (Equipment Neil's House)",
          "Address": "30000",
          "CompSize": "1909",
@@ -11115,7 +11114,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset29": {
+      {
          "Name": "29 - MAPS (Inca Ruins)",
          "Address": "3190A",
          "CompSize": "18D6",
@@ -11123,7 +11122,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset30": {
+      {
          "Name": "30 - NPCs (Euro)",
          "Address": "34AB8",
          "CompSize": "18D2",
@@ -11131,7 +11130,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset31": {
+      {
          "Name": "31 - NPCs (Modern Main Characters",
          "Address": "3638B",
          "CompSize": "18D1",
@@ -11139,7 +11138,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset32": {
+      {
          "Name": "32 - MAPS (House Interior)",
          "Address": "40000",
          "CompSize": "18CB",
@@ -11147,7 +11146,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset33": {
+      {
          "Name": "33 - CUTSCENE (World Map Intro)",
          "Address": "418CC",
          "CompSize": "18C4",
@@ -11155,7 +11154,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset34": {
+      {
          "Name": "34 - ENEMIES (Jeweler's Mansion Boss)",
          "Address": "43191",
          "CompSize": "18A7",
@@ -11163,7 +11162,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset35": {
+      {
          "Name": "35 - NPCs (Dao)",
          "Address": "44A39",
          "CompSize": "1849",
@@ -11171,7 +11170,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset36": {
+      {
          "Name": "36 - MAPS (Seaside Palace Background)",
          "Address": "46283",
          "CompSize": "1843",
@@ -11179,7 +11178,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset37": {
+      {
          "Name": "37 - MAPS (South Cape)",
          "Address": "A0000",
          "CompSize": "1835",
@@ -11187,7 +11186,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset38": {
+      {
          "Name": "38 - NPCs (Angel Village)",
          "Address": "A1836",
          "CompSize": "182B",
@@ -11195,7 +11194,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset39": {
+      {
          "Name": "39 - CUTSCENE (Intro)",
          "Address": "A3062",
          "CompSize": "1814",
@@ -11203,7 +11202,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset40": {
+      {
          "Name": "40 - MAPS (South Cape, Edward's Prison)",
          "Address": "A4877",
          "CompSize": "1813",
@@ -11211,7 +11210,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset41": {
+      {
          "Name": "41 - NPCs (Watermia)",
          "Address": "A608B",
          "CompSize": "1813",
@@ -11219,7 +11218,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset42": {
+      {
          "Name": "42 - NPCs (Pyramid Shakal)",
          "Address": "B0000",
          "CompSize": "180C",
@@ -11227,7 +11226,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset43": {
+      {
          "Name": "43 - ENEMIES (Haunt, Tuts)",
          "Address": "B180D",
          "CompSize": "17B0",
@@ -11235,7 +11234,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset44": {
+      {
          "Name": "44 - MAPS (Itory Background)",
          "Address": "B472B",
          "CompSize": "1762",
@@ -11243,7 +11242,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset45": {
+      {
          "Name": "45 - ENEMIES (Inka Ruins Boss)",
          "Address": "C1734",
          "CompSize": "16F8",
@@ -11251,7 +11250,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset46": {
+      {
          "Name": "46 - ENEMIES (Cyclops, Flasher)",
          "Address": "C2E2D",
          "CompSize": "16F6",
@@ -11259,7 +11258,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset47": {
+      {
          "Name": "47 - ENEMIES (Eye Stalker, Flayzer)",
          "Address": "C5C16",
          "CompSize": "16F1",
@@ -11267,7 +11266,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset48": {
+      {
          "Name": "48 - NPCs (Various)",
          "Address": "D0000",
          "CompSize": "16E6",
@@ -11275,7 +11274,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset49": {
+      {
          "Name": "49 - CUTSCENE (Ending) (1)",
          "Address": "D16E7",
          "CompSize": "1690",
@@ -11283,7 +11282,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset50": {
+      {
          "Name": "50 - CUTSCENE (Ending) (2)",
          "Address": "D16E7",
          "CompSize": "1690",
@@ -11291,7 +11290,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset51": {
+      {
          "Name": "51 - ENEMIES (Final Boss)",
          "Address": "D2D78",
          "CompSize": "164B",
@@ -11299,7 +11298,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset52": {
+      {
          "Name": "52 - MAPS (Raft) (1)",
          "Address": "D43C4",
          "CompSize": "1627",
@@ -11307,7 +11306,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset53": {
+      {
          "Name": "53 - MAPS (Raft) (2)",
          "Address": "D43C4",
          "CompSize": "1627",
@@ -11315,7 +11314,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset54": {
+      {
          "Name": "54 - ENEMIES (Edward's Prison)",
          "Address": "D59EC",
          "CompSize": "161A",
@@ -11323,7 +11322,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset55": {
+      {
          "Name": "55 - MAPS (Background, Dark Space)",
          "Address": "DF001",
          "CompSize": "F89",
@@ -11331,7 +11330,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset56": {
+      {
          "Name": "56 - CUTSCENE (Airplane)",
          "Address": "E0000",
          "CompSize": "15E9",
@@ -11339,7 +11338,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset57": {
+      {
          "Name": "57 - ENEMIES (Gorgon, Shrubber)",
          "Address": "E15EA",
          "CompSize": "158F",
@@ -11347,7 +11346,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset58": {
+      {
          "Name": "58 - MAPS (Native's Village)",
          "Address": "E2B7A",
          "CompSize": "158B",
@@ -11355,7 +11354,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset59": {
+      {
          "Name": "59 - NPCs (Lance, Slodier, Vampire)",
          "Address": "E4106",
          "CompSize": "1580",
@@ -11363,7 +11362,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset60": {
+      {
          "Name": "60 - ENEMIES (Great Wall Boss)",
          "Address": "E5687",
          "CompSize": "1523",
@@ -11371,7 +11370,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset61": {
+      {
          "Name": "61 - CUTSCENE (Future City)",
          "Address": "E6BAB",
          "CompSize": "1450",
@@ -11379,7 +11378,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset62": {
+      {
          "Name": "62 - ENEMIES (Sky Garden Boss)",
          "Address": "F0000",
          "CompSize": "14D0",
@@ -11387,7 +11386,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset63": {
+      {
          "Name": "63 - ENEMIES (Draco, Steel Bones, Dive Bat)",
          "Address": "F14D1",
          "CompSize": "1465",
@@ -11395,7 +11394,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset64": {
+      {
          "Name": "64 - Title Screen (Background)",
          "Address": "F2937",
          "CompSize": "142A",
@@ -11403,7 +11402,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset65": {
+      {
          "Name": "65 - ENEMIES (Sky Garden)",
          "Address": "F3D62",
          "CompSize": "1419",
@@ -11411,7 +11410,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset66": {
+      {
          "Name": "66 - ENEMIES (Mummy Queen)",
          "Address": "F517C",
          "CompSize": "1411",
@@ -11419,7 +11418,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset67": {
+      {
          "Name": "67 - ENEMIES (Mu Boss)",
          "Address": "F658E",
          "CompSize": "13F0",
@@ -11427,7 +11426,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset68": {
+      {
          "Name": "68 - MAPS (Sky Garden) (1)",
          "Address": "F90E5",
          "CompSize": "2C40",
@@ -11435,7 +11434,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset69": {
+      {
          "Name": "69 - MAPS (Sky Garden) (2)",
          "Address": "F90E5",
          "CompSize": "2C40",
@@ -11443,7 +11442,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset70": {
+      {
          "Name": "70 - CUTSCENE (Intro, Angkor Wat)",
          "Address": "FED85",
          "CompSize": "1237",
@@ -11451,7 +11450,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset71": {
+      {
          "Name": "71 - ENEMIES (Temple Garden)",
          "Address": "100000",
          "CompSize": "136C",
@@ -11459,7 +11458,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset72": {
+      {
          "Name": "72 - ENEMIES (Great Wall)",
          "Address": "10136D",
          "CompSize": "1360",
@@ -11467,7 +11466,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset73": {
+      {
          "Name": "73 - NPCs (?)",
          "Address": "1026CE",
          "CompSize": "1329",
@@ -11475,7 +11474,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset74": {
+      {
          "Name": "74 - CUTSCENE (Intro, Skeleton)",
          "Address": "1039F8",
          "CompSize": "1296",
@@ -11483,7 +11482,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset75": {
+      {
          "Name": "75 - CUTSCENE (Future City)",
          "Address": "104C8F",
          "CompSize": "1294",
@@ -11491,7 +11490,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset76": {
+      {
          "Name": "76 - MAPS (Angel Village) (1)",
          "Address": "108F07",
          "CompSize": "3659",
@@ -11499,7 +11498,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset77": {
+      {
          "Name": "77 - MAPS (Angel Village) (2)",
          "Address": "108F07",
          "CompSize": "3659",
@@ -11507,7 +11506,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset78": {
+      {
          "Name": "78 - MAPS (Pyramid) (1)",
          "Address": "10C561",
          "CompSize": "3629",
@@ -11515,7 +11514,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset79": {
+      {
          "Name": "79 - MAPS (Pyramid) (2)",
          "Address": "10C561",
          "CompSize": "3629",
@@ -11523,7 +11522,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset80": {
+      {
          "Name": "80 - NPCs (Kara, Hamlet)",
          "Address": "110000",
          "CompSize": "1232",
@@ -11531,7 +11530,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset81": {
+      {
          "Name": "81 - NPCs (Lance, Erik, Seth, Lilly)",
          "Address": "112444",
          "CompSize": "11FC",
@@ -11539,7 +11538,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset82": {
+      {
          "Name": "82 - HUD, Fonts (1)",
          "Address": "1146A8",
          "CompSize": "1056",
@@ -11547,7 +11546,7 @@
          "DecompSize": "2000",
          "Format": "2"
       },
-      "Tileset83": {
+      {
          "Name": "83 - HUD, Fonts (2)",
          "Address": "1146A8",
          "CompSize": "1056",
@@ -11555,7 +11554,7 @@
          "DecompSize": "2000",
          "Format": "2"
       },
-      "Tileset84": {
+      {
          "Name": "84 - CUTSCENE (Airplane)",
          "Address": "1156FE",
          "CompSize": "100F",
@@ -11563,7 +11562,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset85": {
+      {
          "Name": "85 - Game Start ENIX Logo",
          "Address": "117325",
          "CompSize": "BDE",
@@ -11571,7 +11570,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset86": {
+      {
          "Name": "86 - MAPS (Mu) (1)",
          "Address": "118000",
          "CompSize": "351B",
@@ -11579,7 +11578,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset87": {
+      {
          "Name": "87 - MAPS (Mu) (2)",
          "Address": "118000",
          "CompSize": "351B",
@@ -11587,7 +11586,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset88": {
+      {
          "Name": "88 - MAPS (Deserted Incan Ship) (1)",
          "Address": "11B51C",
          "CompSize": "3222",
@@ -11595,7 +11594,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset89": {
+      {
          "Name": "89 - MAPS (Deserted Incan Ship) (2)",
          "Address": "11B51C",
          "CompSize": "3222",
@@ -11603,7 +11602,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset90": {
+      {
          "Name": "90 - NPCs (Euro)",
          "Address": "11E73F",
          "CompSize": "18B7",
@@ -11611,7 +11610,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset91": {
+      {
          "Name": "91 - MAPS (Background)",
          "Address": "123A68",
          "CompSize": "B85",
@@ -11619,7 +11618,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset92": {
+      {
          "Name": "92 - MAPS (Mountain Temple) (1)",
          "Address": "128000",
          "CompSize": "3179",
@@ -11627,7 +11626,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset93": {
+      {
          "Name": "93 - MAPS (Mountain Temple) (2)",
          "Address": "128000",
          "CompSize": "3179",
@@ -11635,7 +11634,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset94": {
+      {
          "Name": "94 - MAPS (Great Wall) (1)",
          "Address": "12B17A",
          "CompSize": "315C",
@@ -11643,7 +11642,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset95": {
+      {
          "Name": "95 - MAPS (Great Wall) (2)",
          "Address": "12B17A",
          "CompSize": "315C",
@@ -11651,7 +11650,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset96": {
+      {
          "Name": "96 - MAPS (Itory, Incan Ruins)",
          "Address": "12E2D7",
          "CompSize": "1D22",
@@ -11659,7 +11658,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset97": {
+      {
          "Name": "97 - MAPS (Incan Ship) (1)",
          "Address": "138000",
          "CompSize": "3038",
@@ -11667,7 +11666,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset98": {
+      {
          "Name": "98 - MAPS (Incan Ship) (2)",
          "Address": "138000",
          "CompSize": "3038",
@@ -11675,7 +11674,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset99": {
+      {
          "Name": "99 - MAPS (Euro) (1)",
          "Address": "13B039",
          "CompSize": "3030",
@@ -11683,7 +11682,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset100": {
+      {
          "Name": "100 - MAPS (Euro) (2)",
          "Address": "13B039",
          "CompSize": "3030",
@@ -11691,7 +11690,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset101": {
+      {
          "Name": "101 - NPCs (Main Characters)",
          "Address": "13E06A",
          "CompSize": "1DA4",
@@ -11699,7 +11698,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset102": {
+      {
          "Name": "102 - MAPS (Edward's Castle) (1)",
          "Address": "14C198",
          "CompSize": "3000",
@@ -11707,7 +11706,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset103": {
+      {
          "Name": "103 - MAPS (Edward's Castle) (2)",
          "Address": "14C198",
          "CompSize": "3000",
@@ -11715,7 +11714,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset104": {
+      {
          "Name": "104 - EMPTY, Font 3D (1)",
          "Address": "1522BF",
          "CompSize": "86C",
@@ -11723,7 +11722,7 @@
          "DecompSize": "2000",
          "Format": "2"
       },
-      "Tileset105": {
+      {
          "Name": "105 - EMPTY, Font 3D (2)",
          "Address": "1522BF",
          "CompSize": "86C",
@@ -11731,7 +11730,7 @@
          "DecompSize": "2000",
          "Format": "2"
       },
-      "Tileset106": {
+      {
          "Name": "106 - CUTSCENE (Intro) (1)",
          "Address": "153BB1",
          "CompSize": "81E",
@@ -11739,7 +11738,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset107": {
+      {
          "Name": "107 - CUTSCENE (Intro) (2)",
          "Address": "154BE5",
          "CompSize": "7EE",
@@ -11747,7 +11746,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset108": {
+      {
          "Name": "108 - MAPS (Tower of Babel) (1)",
          "Address": "15C421",
          "CompSize": "2F7A",
@@ -11755,7 +11754,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset109": {
+      {
          "Name": "109 - MAPS (Tower of Babel) (2)",
          "Address": "15C421",
          "CompSize": "2F7A",
@@ -11763,7 +11762,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset110": {
+      {
          "Name": "110 - CUTSCENE (Ending - Continents) (1)",
          "Address": "16D82C",
          "CompSize": "21E2",
@@ -11771,7 +11770,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset111": {
+      {
          "Name": "111 - CUTSCENE (Ending - Continents) (2)",
          "Address": "16D82C",
          "CompSize": "21E2",
@@ -11779,7 +11778,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset112": {
+      {
          "Name": "112 - Gaia",
          "Address": "17841D",
          "CompSize": "BE2",
@@ -11787,7 +11786,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset113": {
+      {
          "Name": "113 - CUTSCENE (Ending - Castle, Little Gaia) (1)",
          "Address": "17D3F0",
          "CompSize": "2BAD",
@@ -11795,7 +11794,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset114": {
+      {
          "Name": "114 - CUTSCENE (Ending - Castle, Little Gaia) (2)",
          "Address": "17D3F0",
          "CompSize": "2BAD",
@@ -11803,7 +11802,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset115": {
+      {
          "Name": "115 - CUTSCENE (Ending) (1)",
          "Address": "188000",
          "CompSize": "2B6C",
@@ -11811,7 +11810,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset116": {
+      {
          "Name": "116 - CUTSCENE (Ending) (2)",
          "Address": "188000",
          "CompSize": "2B6C",
@@ -11819,7 +11818,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset117": {
+      {
          "Name": "117 - Enemies (Final Boss) (1)",
          "Address": "18AB6D",
          "CompSize": "29B0",
@@ -11827,7 +11826,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset118": {
+      {
          "Name": "118 - Enemies (Final Boss) (2)",
          "Address": "18AB6D",
          "CompSize": "29B0",
@@ -11835,7 +11834,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset119": {
+      {
          "Name": "119 - MAPS (Jeweler's Mansion) (1)",
          "Address": "18D51E",
          "CompSize": "297D",
@@ -11843,7 +11842,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset120": {
+      {
          "Name": "120 - MAPS (Jeweler's Mansion) (2)",
          "Address": "18D51E",
          "CompSize": "297D",
@@ -11851,7 +11850,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset121": {
+      {
          "Name": "121 - Font Characters",
          "Address": "196BD8",
          "CompSize": "5A4",
@@ -11859,7 +11858,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset122": {
+      {
          "Name": "122 - MAPS (Angkor Wat, Outside) (1)",
          "Address": "1980A2",
          "CompSize": "2919",
@@ -11867,7 +11866,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset123": {
+      {
          "Name": "123 - MAPS (Angkor Wat, Outside) (2)",
          "Address": "1980A2",
          "CompSize": "2919",
@@ -11875,7 +11874,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset124": {
+      {
          "Name": "124 - MAPS (Inca Ruins Outside) (1)",
          "Address": "19A9BC",
          "CompSize": "28A9",
@@ -11883,7 +11882,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset125": {
+      {
          "Name": "125 - MAPS (Inca Ruins Outside) (2)",
          "Address": "19A9BC",
          "CompSize": "28A9",
@@ -11891,7 +11890,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset126": {
+      {
          "Name": "126 - Title Screen (Game Logo) (1)",
          "Address": "1CDD80",
          "CompSize": "2015",
@@ -11899,7 +11898,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset127": {
+      {
          "Name": "127 - Title Screen (Game Logo) (2)",
          "Address": "1CDD80",
          "CompSize": "2015",
@@ -11907,7 +11906,7 @@
          "DecompSize": "4000",
          "Format": "4"
       },
-      "Tileset128": {
+      {
          "Name": "128 - NPCs (Erik, Kara, Lance, Lilly, Hamlet)",
          "Address": "1DA002",
          "CompSize": "1D9C",
@@ -11915,7 +11914,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset129": {
+      {
          "Name": "129 - MAPS (Watermia)",
          "Address": "1DBD9F",
          "CompSize": "1D69",
@@ -11923,7 +11922,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset130": {
+      {
          "Name": "130 - MAPS (Edward's Prison)",
          "Address": "1DDB09",
          "CompSize": "1C5F",
@@ -11931,7 +11930,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset131": {
+      {
          "Name": "131 - MAPS (Cave)",
          "Address": "1E8000",
          "CompSize": "1BFA",
@@ -11939,7 +11938,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset132": {
+      {
          "Name": "132 - MAPS (Diamond Mine)",
          "Address": "1E9BFB",
          "CompSize": "1BCD",
@@ -11947,7 +11946,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset133": {
+      {
          "Name": "133 - NPCs (Edward's Castle)",
          "Address": "1EB7C9",
          "CompSize": "1B92",
@@ -11955,7 +11954,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset134": {
+      {
          "Name": "134 - NPCs (Kara, Erik, Native's Village)",
          "Address": "1ED35C",
          "CompSize": "1B92",
@@ -11963,7 +11962,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset135": {
+      {
          "Name": "135 - MAPS (Angkor Wat, Inside)",
          "Address": "1F8000",
          "CompSize": "1B84",
@@ -11971,7 +11970,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset136": {
+      {
          "Name": "136 - NPCs (Kara, Bill, Lilly, Fish, Turbo)",
          "Address": "1F9B85",
          "CompSize": "1B52",
@@ -11979,7 +11978,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset137": {
+      {
          "Name": "137 - MAPS (Seaside Palace)",
          "Address": "1FB6D8",
          "CompSize": "1B4F",
@@ -11987,7 +11986,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset138": {
+      {
          "Name": "138 - NPCs (South Cape)",
          "Address": "1FD228",
          "CompSize": "1B1E",
@@ -11995,7 +11994,7 @@
          "DecompSize": "2000",
          "Format": "4"
       },
-      "Tileset139": {
+      {
          "Name": "139 - ?",
          "Address": "0",
          "CompSize": "BB9",
@@ -12003,7 +12002,7 @@
          "DecompSize": "2000",
          "Format": "4"
       }
-   },
+   ],
    "Variables": {
       "Count": "8",
       "Variable0": {
