@@ -1,5 +1,7 @@
 import wx
 
+from view.View_Common import View_Common
+
 class View_Items:
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
@@ -35,7 +37,8 @@ class View_Items:
         verticalBoxItemData.Add(horizontalBoxItemIsRemovable)
         verticalBoxItemData.Add(horizontalBoxItemFindMessage)
 
-        self.listBoxItems = wx.ListBox(self.tabPage , size = (200,500), style = wx.LB_SINGLE)
+        self.listBoxItems = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT),
+                                       style = wx.LB_SINGLE|wx.LB_HSCROLL)
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxItems, 0, wx.EXPAND)
         

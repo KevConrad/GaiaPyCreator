@@ -31,7 +31,8 @@ class Controller_Main:
     def load(self):
         # initialize all controllers
         self.items = Controller_Items(self.project, self.view)
-        self.tilesets = Controller_Tilesets(self.project, self.view)
+        self.view.initProgressBar("Load tilesets")
+        self.tilesets = Controller_Tilesets(self.project, self.view, self.view.Update)
 
         print("Initialized all objects")
         

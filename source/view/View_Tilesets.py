@@ -1,11 +1,14 @@
 import wx
 
+from view.View_Common import View_Common
+
 class View_Tilesets:
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
         self.tabPage = notebook.GetPage(9)
 
-        self.listBoxTilesets = wx.ListBox(self.tabPage , size = (200,500), style = wx.LB_SINGLE)
+        self.listBoxTilesets = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT),
+                                          style = wx.LB_SINGLE|wx.LB_HSCROLL)
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxTilesets, 0, wx.EXPAND)
         

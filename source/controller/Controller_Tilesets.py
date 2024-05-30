@@ -8,11 +8,11 @@ from model.Model_Tilesets import Model_Tilesets
 from view.View_Main import View_Main
 
 class Controller_Tilesets:
-    def __init__(self, project : Controller_Project, view:View_Main) -> None:
+    def __init__(self, project : Controller_Project, view:View_Main, updateFunction) -> None:
         self.project = project
         self.view = view
 
-        self.tilesets = Model_Tilesets(self.project.romData.romData)
+        self.tilesets = Model_Tilesets(self.project.romData.romData, self.project.projectData.projectData, updateFunction)
 
         pub.subscribe(self.load, "tilesets_load")
 

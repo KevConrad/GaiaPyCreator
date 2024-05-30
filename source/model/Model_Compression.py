@@ -1,7 +1,7 @@
 import bitstring
 
 class Model_Compression:
-    
+
     # Quintet Decompressor
     # Written by Alchemic
     # 2011 Jul 19
@@ -87,37 +87,43 @@ class Model_Compression:
         window = bytearray([0x20] * SEARCH_SIZE)
         windowPos = 0xEF
 
-        # Main decompression loop.
-        while (decompSize - decompPos) >= 8:
-            nextCommand = romStream.read('bool')
+        try:
+            # Main decompression loop.
+            while (decompSize - decompPos) >= 16:
+                nextCommand = romStream.read('bool')
 
-            if nextCommand == BIT_PASTCOPY:
-                # 0: Pastcopy case.
-                copySource = romStream.read(SEARCH_LOG2).uint
-                copyLength = romStream.read(LOOKAHEAD_LOG2).uint
-                copyLength += 2
+                if nextCommand == BIT_PASTCOPY:
+                    # 0: Pastcopy case.
+                    copySource = romStream.read(SEARCH_LOG2).uint
+                    copyLength = romStream.read(LOOKAHEAD_LOG2).uint
+                    copyLength += 2
 
-                # Truncate copies that would exceed "decompSize" bytes.
-                if (decompPos + copyLength) >= decompSize:
-                    copyLength = decompSize - decompPos
+                    # Truncate copies that would exceed "decompSize" bytes.
+                    if (decompPos + copyLength) >= decompSize:
+                        copyLength = decompSize - decompPos
 
-                for i in range(copyLength):
-                    decomp[decompPos] = window[copySource]
+                    for i in range(copyLength):
+                        decomp[decompPos] = window[copySource]
+                        decompPos += 1
+                        window[windowPos] = window[copySource]
+                        windowPos += 1
+                        windowPos &= (SEARCH_SIZE - 1)
+                        copySource += 1
+                        copySource &= (SEARCH_SIZE - 1)
+
+                elif nextCommand == BIT_LITERAL:
+                    # 1: Literal case.
+                    literalByte = romStream.read('uint:8')
+                    decomp[decompPos] = literalByte
                     decompPos += 1
-                    window[windowPos] = window[copySource]
+                    window[windowPos] = literalByte
                     windowPos += 1
                     windowPos &= (SEARCH_SIZE - 1)
-                    copySource += 1
-                    copySource &= (SEARCH_SIZE - 1)
-
-            elif nextCommand == BIT_LITERAL:
-                # 1: Literal case.
-                literalByte = romStream.read('uint:8')
-                decomp[decompPos] = literalByte
-                decompPos += 1
-                window[windowPos] = literalByte
-                windowPos += 1
-                windowPos &= (SEARCH_SIZE - 1)
+        except Exception as e:
+            if hasattr(e, 'message'):
+                print(e.message)
+            else:
+                print(e)
 
         # Calculate the end offset.
         romStream.bytealign()
