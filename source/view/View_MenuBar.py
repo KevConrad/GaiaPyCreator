@@ -35,8 +35,7 @@ class View_MenuBar:
         dialog = wx.FileDialog(self.frame,
                                'Open ROM File',
                                defDir,
-                               wildcard = "Illusion of Gaia ROM file (*.sfc)|*.sfc|" +
-                                           "Illusion of Gaia ROM file (*.smc)|*.smc|",
+                               wildcard = "Illusion of Gaia ROM file (*.sfc)|*.sfc|Illusion of Gaia ROM file (*.smc)|*.smc",
                                style=wx.FD_OPEN)
 
         if dialog.ShowModal() == wx.ID_OK:
@@ -47,7 +46,7 @@ class View_MenuBar:
             dialog = wx.FileDialog(self.frame,
                                    'Save project File',
                                    defDir,
-                                   wildcard = "GaiaTheCreator project file (*.json)|*.json|",
+                                   wildcard = "GaiaTheCreator project file (*.json)|*.json",
                                    style=wx.FD_SAVE)
             
             if dialog.ShowModal() == wx.ID_OK:
@@ -62,7 +61,7 @@ class View_MenuBar:
         dialog = wx.FileDialog(self.frame,
                                'Open Project File',
                                defDir,
-                               wildcard = "GaiaTheCreator project file (*.json)|*.json|",
+                               wildcard = "GaiaTheCreator project file (*.json)|*.json",
                                style=wx.FD_OPEN)
         
         if dialog.ShowModal() == wx.ID_OK:
