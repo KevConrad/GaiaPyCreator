@@ -1,11 +1,12 @@
 from model.Model_RomDataTable import Model_RomDataTable
 from model.Model_Tileset import Model_Tileset
-import sys
 
 from pubsub import pub
 
+import sys
+
 class Model_Tilesets:
-    def __init__(self, romData, projectData : dict, updateFunction) -> None:
+    def __init__(self, romData, projectData : dict) -> None:
         self.romData = romData
 
         # read all tileset data initially
@@ -20,7 +21,4 @@ class Model_Tilesets:
             i += 1
             pub.sendMessage("progressBar_update", updateValue=(int((i / len(tilesets)) * 100)))
         pub.sendMessage("progressBar_update", updateValue=100)
-
-    def load(self, projectData : dict):
-        pass
             

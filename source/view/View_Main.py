@@ -31,6 +31,7 @@ class View_Main(wx.Frame):
                                                 style=wx.PD_APP_MODAL|wx.PD_AUTO_HIDE)
         
     def updateProgressBar(self, updateValue):
+        print("Progress: " + str(updateValue))
         self.progressDialog.Update(value = updateValue)
         
 

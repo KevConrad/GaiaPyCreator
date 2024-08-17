@@ -67,7 +67,7 @@ class Model_Compression:
     # 
     # This code uses python-bitstring version 2.2.0:
     # http://code.google.com/p/python-bitstring/
-    def decompress(romData):
+    def decompress(romData, dataOffset, dataSize):
         # Define some useful constants.
         SEARCH_LOG2 = 8
         SEARCH_SIZE = 1 << SEARCH_LOG2
@@ -77,7 +77,7 @@ class Model_Compression:
         BIT_LITERAL = 1
         
         # Open the ROM.
-        romStream = bitstring.ConstBitStream(bytes = romData)
+        romStream = bitstring.ConstBitStream(bytes = romData, offset=(dataOffset * 8), length=(dataSize * 8))
 
         # Allocate memory for the decompression process.
         decompSize = romStream.read('uintle:16')
