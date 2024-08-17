@@ -24,15 +24,16 @@ class View_Main(wx.Frame):
         self.items = View_Items(self, self.tabs.notebook)
         self.tilesets = View_Tilesets(self, self.tabs.notebook)
 
-        pub.subscribe(self.updateProgressBar, "progressBar_update")
+        #pub.subscribe(self.updateProgressBar, "progressBar_update")
 
     def initProgressBar(self, message):
-        self.progressDialog = wx.ProgressDialog("LoadProject", message, maximum=100, parent=None,
-                                                style=wx.PD_APP_MODAL|wx.PD_AUTO_HIDE)
-        
+        #self.progressDialog = wx.ProgressDialog("LoadProject", message, maximum=100, parent=None,
+        #                                        style=wx.PD_APP_MODAL|wx.PD_AUTO_HIDE)
+        pass
+
     def updateProgressBar(self, updateValue):
         print("Progress: " + str(updateValue))
-        self.progressDialog.Update(value = updateValue)
+        #self.progressDialog.Update(value = updateValue)
         
 
 
