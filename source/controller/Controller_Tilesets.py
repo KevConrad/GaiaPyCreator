@@ -24,6 +24,7 @@ class Controller_Tilesets:
 
     def update(self, tilesetIndex):
         self.tilesets.tilesets[tilesetIndex].read()
-        #tilesetImage = self.tilesets.tilesets[tilesetIndex].getImage(0)
+        tilesetImage = self.tilesets.tilesets[tilesetIndex].getImage(0)
+        self.view.tilesets.update(tilesetImage)
         
         

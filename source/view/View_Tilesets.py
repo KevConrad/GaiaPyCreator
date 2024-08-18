@@ -28,5 +28,7 @@ class View_Tilesets:
         pub.sendMessage("tilesets_update", tilesetIndex=selectedIndex)
 
     def update(self, tilesetImage):
-        self.tilesetImage = wx.StaticBitmap(parent=self.tabPage, bitmap=tilesetImage)
-        self.horizontalBox.Add(self.tilesetImage)
+        self.png = wx.StaticBitmap(self.tabPage, -1, wx.Bitmap(tilesetImage, wx.BITMAP_TYPE_PNG))
+        #self.png = wx.Image(self, tilesetImage)
+        #self.tilesetImage = wx.StaticBitmap(self.tabPage, -1, bitmap=tilesetImage)
+        #self.horizontalBox.Add(self.tilesetImage)
