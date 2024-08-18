@@ -81,7 +81,6 @@ class Model_Compression:
 
         # Allocate memory for the decompression process.
         decompSize = romStream.read('uintle:16')
-        print("decompSize: " + hex(decompSize))
         decomp = bytearray([0x00] * decompSize)
         decompPos = 0
         window = bytearray([0x20] * SEARCH_SIZE)
@@ -89,7 +88,7 @@ class Model_Compression:
 
         try:
             # Main decompression loop.
-            while (decompSize - decompPos) >= 16:
+            while decompPos < decompSize:
                 nextCommand = romStream.read('bool')
 
                 if nextCommand == BIT_PASTCOPY:

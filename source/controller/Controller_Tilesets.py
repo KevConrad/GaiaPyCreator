@@ -23,8 +23,7 @@ class Controller_Tilesets:
             self.view.tilesets.load(self.tilesets.tilesetNames)
 
     def update(self, tilesetIndex):
-        #self.tilesets.tilesets[tilesetIndex].read()
+        self.tilesets.tilesets[tilesetIndex].read()
         #tilesetImage = self.tilesets.tilesets[tilesetIndex].getImage(0)
-        pass
         
         
