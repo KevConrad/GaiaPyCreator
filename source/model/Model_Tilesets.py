@@ -19,6 +19,4 @@ class Model_Tilesets:
             self.tilesets.append(tilesetData)
             self.tilesetNames.append(tilesetData.name)
             i += 1
-        #    pub.sendMessage("progressBar_update", updateValue=(int((i / len(tilesets)) * 100)))
-        pub.sendMessage("progressBar_update", updateValue=100)
             
