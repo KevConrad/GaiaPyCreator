@@ -1,18 +1,32 @@
+import PIL
 import wx
 
 from view.View_Common import View_Common
 
 from pubsub import pub
+from PIL import Image
 
 class View_Tilesets:
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
         self.tabPage = notebook.GetPage(9)
 
+        self.labelTileset = wx.StaticText(self.tabPage, label="Tileset:")
+        horizontalTileset = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalTileset.Add(self.labelTileset, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,)
+
+        self.tilesetImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap)#, pos=(280, 20))
+
+        verticalBoxTilesetData = wx.BoxSizer(wx.VERTICAL)
+        verticalBoxTilesetData.Add(horizontalTileset)
+        verticalBoxTilesetData.Add(self.tilesetImage)
+
         self.listBoxTilesets = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT),
                                           style = wx.LB_SINGLE|wx.LB_HSCROLL)
         self.horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         self.horizontalBox.Add(self.listBoxTilesets, 0, wx.EXPAND)
+
+        self.horizontalBox.Add(verticalBoxTilesetData)
         
         self.tabPage.SetSizer(self.horizontalBox) 
         self.tabPage.Fit() 
@@ -27,8 +41,9 @@ class View_Tilesets:
         selectedIndex = self.listBoxTilesets.GetSelection()
         pub.sendMessage("tilesets_update", tilesetIndex=selectedIndex)
 
-    def update(self, tilesetImage):
-        self.png = wx.StaticBitmap(self.tabPage, -1, wx.Bitmap(tilesetImage, wx.BITMAP_TYPE_PNG))
-        #self.png = wx.Image(self, tilesetImage)
-        #self.tilesetImage = wx.StaticBitmap(self.tabPage, -1, bitmap=tilesetImage)
-        #self.horizontalBox.Add(self.tilesetImage)
+    def update(self, tilesetImage : Image):
+        wx_image = wx.EmptyImage(tilesetImage.size[0], tilesetImage.size[1])
+        wx_image.SetData(tilesetImage.convert("RGB").tobytes())
+        bitmap = wx.BitmapFromImage(wx_image)
+        self.tilesetImage.SetBitmap(bitmap)
+        self.tilesetImage.Sizer
