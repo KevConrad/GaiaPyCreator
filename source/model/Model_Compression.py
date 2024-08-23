@@ -5,7 +5,9 @@ class Model_Compression:
     # Quintet Decompressor
     # Written by Alchemic
     # 2011 Jul 19
-    # 
+    #
+    # Edited by manafreak (handling of decompOffset)
+    # 2024 Aug 23
     # 
     # 
     # This compression format is used by five of Quintet's games:
@@ -67,7 +69,7 @@ class Model_Compression:
     # 
     # This code uses python-bitstring version 2.2.0:
     # http://code.google.com/p/python-bitstring/
-    def decompress(romData, dataOffset, dataSize):
+    def decompress(romData, dataAddress, dataSize, decompOffset):
         # Define some useful constants.
         SEARCH_LOG2 = 8
         SEARCH_SIZE = 1 << SEARCH_LOG2
@@ -77,7 +79,7 @@ class Model_Compression:
         BIT_LITERAL = 1
         
         # Open the ROM.
-        romStream = bitstring.ConstBitStream(bytes = romData, offset=(dataOffset * 8), length=(dataSize * 8))
+        romStream = bitstring.ConstBitStream(bytes = romData, offset=(dataAddress * 8), length=(dataSize * 8))
 
         # Allocate memory for the decompression process.
         decompSize = romStream.read('uintle:16')
@@ -129,7 +131,7 @@ class Model_Compression:
         endOffset = romStream.bytepos
 
         # Return the decompressed data and end offset.
-        return (decomp, endOffset)
+        return (decomp[decompOffset:decompSize], endOffset)
     
     # Quintet Compressor
     # Written by Alchemic

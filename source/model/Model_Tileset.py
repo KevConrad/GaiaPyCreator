@@ -30,7 +30,7 @@ class Model_Tileset:
     def read(self):
         if self.compSize > 0:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-            self.data, self.compSize = Model_Compression.decompress(self.romData, self.address, self.compSize + 1)
+            self.data, self.compSize = Model_Compression.decompress(self.romData, self.address, self.compSize + 1, self.decompOffset)
         else:
             self.data = self.romData[self.address:self.decompSize]
 
@@ -41,8 +41,6 @@ class Model_Tileset:
             length = self.TILESET_BYTE_SIZE
         
         graphicBits = bitstring.ConstBitStream(bytes = self.data, offset=(readOffset * 8), length=(length * 8))
-        print(length)
-        print(graphicBits.length)
     
         pixelValues = [0] * (self.TILESET_PIXEL_WIDTH * self.TILESET_PIXEL_HEIGHT)
         imageBytes = [0] * ((self.TILESET_PIXEL_WIDTH * self.TILESET_PIXEL_HEIGHT) * 3)
@@ -150,7 +148,6 @@ class Model_Tileset:
 
         # create an image from the RGB pixel array
         tilesetImage = PIL.Image.frombytes('RGB', (self.TILESET_PIXEL_WIDTH, self.TILESET_PIXEL_HEIGHT), bytes(imageBytes))
-        tilesetImage.show()
         return tilesetImage
 
     
