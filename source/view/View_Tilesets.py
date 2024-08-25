@@ -13,13 +13,13 @@ class View_Tilesets:
         self.tabPage = notebook.GetPage(9)
 
         self.labelTileset = wx.StaticText(self.tabPage, label="Tileset:")
-        horizontalTileset = wx.BoxSizer(wx.HORIZONTAL)
-        horizontalTileset.Add(self.labelTileset, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,)
+        horizontalBoxTileset = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalBoxTileset.Add(self.labelTileset, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
 
-        self.tilesetImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap)#, pos=(280, 20))
+        self.tilesetImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap)
 
         verticalBoxTilesetData = wx.BoxSizer(wx.VERTICAL)
-        verticalBoxTilesetData.Add(horizontalTileset)
+        verticalBoxTilesetData.Add(horizontalBoxTileset)
         verticalBoxTilesetData.Add(self.tilesetImage)
 
         self.listBoxTilesets = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT),

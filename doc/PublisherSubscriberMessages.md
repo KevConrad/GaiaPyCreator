@@ -9,5 +9,7 @@
 |`project_open`     |projectPath     |Open a project file.              |
 |`project_save`     |projectPath     |Save the project file.            |
 |`rom_opened`       |romPath         |Open a ROM file.                  |
+|`tilemaps_load`    |-               |Load the tilemaps.                |
 |`tilesets_load`    |-               |Load the tilesets.                |
+|`tilemaps_update'  |-               |Update the tilemap.               |
 |`tilesets_update'  |-               |Update the tileset.               |

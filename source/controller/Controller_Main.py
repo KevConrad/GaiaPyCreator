@@ -8,6 +8,7 @@ import sys
 
 from .Controller_Items import Controller_Items
 from .Controller_Maps import Controller_Maps
+from .Controller_Tilemaps import Controller_Tilemaps
 from .Controller_Tilesets import Controller_Tilesets
 
 useNotifyByWriteFile(sys.stdout)
@@ -32,7 +33,12 @@ class Controller_Main:
     def load(self):
         # initialize all controllers
         self.items = Controller_Items(self.project, self.view)
+
+        # initialize and load the map data
         self.maps = Controller_Maps(self.project, self.view)
+        self.maps.load()
+
+        self.tilemaps = Controller_Tilemaps(self.project, self.view)
         self.tilesets = Controller_Tilesets(self.project, self.view)
 
         print("Initialized all objects")

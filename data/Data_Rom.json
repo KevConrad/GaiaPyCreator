@@ -10318,569 +10318,568 @@
          "Name": "?"
       }
    },
-   "Tilemaps": {
-      "Count": "80",
-      "Tilemap0": {
+   "Tilemaps": [
+      {
          "Address": "F797F",
          "Name": "0 - House Interior",
          "Palette": "1E2DF3",
          "Tileset1": "20",
          "Tileset2": "20"
       },
-      "Tilemap1": {
+      {
          "Address": "147933",
          "Name": "1 - House Interior (Neil's Cottage)",
          "Palette": "1E4053",
          "Tileset1": "24",
          "Tileset2": "28"
       },
-      "Tilemap2": {
+      {
          "Address": "157ADC",
          "Name": "2 - Cutscene (Ending)",
          "Palette": "1E6253",
          "Tileset1": "49",
          "Tileset2": "50"
       },
-      "Tilemap3": {
+      {
          "Address": "160000",
          "Name": "3 - Mountain Temple",
          "Palette": "1E51D3",
          "Tileset1": "92",
          "Tileset2": "93"
       },
-      "Tilemap4": {
+      {
          "Address": "161705",
          "Name": "4 - Final Boss (Chaos Comet)",
          "Palette": "1E6193",
          "Tileset1": "117",
          "Tileset2": "118"
       },
-      "Tilemap5": {
+      {
          "Address": "162640",
          "Name": "5 - Pyramid (1)",
          "Palette": "1E5B73",
          "Tileset1": "78",
          "Tileset2": "79"
       },
-      "Tilemap6": {
+      {
          "Address": "163CD3",
          "Name": "6 - China's Great Wall (1)",
          "Palette": "1E4F33",
          "Tileset1": "94",
          "Tileset2": "95"
       },
-      "Tilemap7": {
+      {
          "Address": "16444F",
          "Name": "7 - Pyramid (2)",
          "Palette": "1E5B73",
          "Tileset1": "78",
          "Tileset2": "79"
       },
-      "Tilemap8": {
+      {
          "Address": "165344",
          "Name": "8 - Angel Village",
          "Palette": "1E4BB3",
          "Tileset1": "76",
          "Tileset2": "77"
       },
-      "Tilemap9": {
+      {
          "Address": "166233",
          "Name": "9 - China's Great Wall (2)",
          "Palette": "1E4F33",
          "Tileset1": "94",
          "Tileset2": "95"
       },
-      "Tilemap10": {
+      {
          "Address": "166986",
          "Name": "10 - Jeweler's Mansion",
          "Palette": "1E6353",
          "Tileset1": "119",
          "Tileset2": "120"
       },
-      "Tilemap11": {
+      {
          "Address": "1670D8",
          "Name": "11 - Pyramid (3)",
          "Palette": "1E5B73",
          "Tileset1": "78",
          "Tileset2": "79"
       },
-      "Tilemap12": {
+      {
          "Address": "170000",
          "Name": "12 - Pyramid (4)",
          "Palette": "1E5B73",
          "Tileset1": "78",
          "Tileset2": "79"
       },
-      "Tilemap13": {
+      {
          "Address": "171593",
          "Name": "13 - Edward's Castle",
          "Palette": "1E3093",
          "Tileset1": "102",
          "Tileset2": "103"
       },
-      "Tilemap14": {
+      {
          "Address": "172AB9",
          "Name": "14 - Mu (1)",
          "Palette": "1E4913",
          "Tileset1": "86",
          "Tileset2": "87"
       },
-      "Tilemap15": {
+      {
          "Address": "174D2D",
          "Name": "15 - Mu (2)",
          "Palette": "1E4913",
          "Tileset1": "86",
          "Tileset2": "87"
       },
-      "Tilemap16": {
+      {
          "Address": "175ACB",
          "Name": "16 - Seaside Palace",
          "Palette": "1E4593",
          "Tileset1": "137",
          "Tileset2": "19"
       },
-      "Tilemap17": {
+      {
          "Address": "176191",
          "Name": "17 - South Cape (Layer 1)",
          "Palette": "1E2C33",
          "Tileset1": "37",
          "Tileset2": "37"
       },
-      "Tilemap18": {
+      {
          "Address": "176852",
          "Name": "18 - Seaside Palace (Fountain)",
          "Palette": "1E4753",
          "Tileset1": "137",
          "Tileset2": "19"
       },
-      "Tilemap19": {
+      {
          "Address": "176EFF",
          "Name": "19 - Itory, Incan Ruins",
          "Palette": "1E3413",
          "Tileset1": "96",
          "Tileset2": "96"
       },
-      "Tilemap20": {
+      {
          "Address": "1775A4",
          "Name": "20 - House Interior (Euro, Shrine)",
          "Palette": "1E50F3",
          "Tileset1": "32",
          "Tileset2": "100"
       },
-      "Tilemap21": {
+      {
          "Address": "180698",
          "Name": "21 - City of Euro",
          "Palette": "1E5013",
          "Tileset1": "99",
          "Tileset2": "100"
       },
-      "Tilemap22": {
+      {
          "Address": "180D21",
          "Name": "22 - House Interior (Euro)",
          "Palette": "1E50F3",
          "Tileset1": "32",
          "Tileset2": "32"
       },
-      "Tilemap23": {
+      {
          "Address": "1813A8",
          "Name": "23 - Diamond Mine",
          "Palette": "1E3F73",
          "Tileset1": "132",
          "Tileset2": "132"
       },
-      "Tilemap24": {
+      {
          "Address": "1833E7",
          "Name": "24 - House Interior (Dao)",
          "Palette": "1E5A93",
          "Tileset1": "32",
          "Tileset2": "23"
       },
-      "Tilemap25": {
+      {
          "Address": "183A4A",
          "Name": "25 - Incan Ruins",
          "Palette": "1E36B3",
          "Tileset1": "29",
          "Tileset2": "29"
       },
-      "Tilemap26": {
+      {
          "Address": "184704",
          "Name": "26 - Watermia",
          "Palette": "1E4C93",
          "Tileset1": "129",
          "Tileset2": "129"
       },
-      "Tilemap27": {
+      {
          "Address": "1853AC",
          "Name": "27 - City of Freejia",
          "Palette": "1E3BF3",
          "Tileset1": "21",
          "Tileset2": "21"
       },
-      "Tilemap28": {
+      {
          "Address": "186677",
          "Name": "28 - House Interior (Freejia, Euro)",
          "Palette": "1E3CD3",
          "Tileset1": "32",
          "Tileset2": "28"
       },
-      "Tilemap29": {
+      {
          "Address": "186CAA",
          "Name": "29 - Angkor Wat (Outside, Upper Layer)",
          "Palette": "1E5473",
          "Tileset1": "122",
          "Tileset2": "123"
       },
-      "Tilemap30": {
+      {
          "Address": "190000",
          "Name": "30 - Edward's Prison / Underground Tunnel",
          "Palette": "1E3253",
          "Tileset1": "130",
          "Tileset2": "130"
       },
-      "Tilemap31": {
+      {
          "Address": "190C53",
          "Name": "31 - Angkor Wat (Inside)",
          "Palette": "1E57F3",
          "Tileset1": "135",
          "Tileset2": "135"
       },
-      "Tilemap32": {
+      {
          "Address": "19189B",
          "Name": "32 - Pyramid (5)",
          "Palette": "1E5B73",
          "Tileset1": "78",
          "Tileset2": "79"
       },
-      "Tilemap33": {
+      {
          "Address": "191EBD",
          "Name": "33 - Incan Gold Ship",
          "Palette": "1E3873",
          "Tileset1": "97",
          "Tileset2": "98"
       },
-      "Tilemap34": {
+      {
          "Address": "1924D8",
          "Name": "34 - Tower of Babel (1)",
          "Palette": "1E5D33",
          "Tileset1": "108",
          "Tileset2": "109"
       },
-      "Tilemap35": {
+      {
          "Address": "193104",
          "Name": "35 - Tower of Babel (2)",
          "Palette": "1E5D33",
          "Tileset1": "108",
          "Tileset2": "109"
       },
-      "Tilemap36": {
+      {
          "Address": "194917",
          "Name": "36 - Cave / Nazca Plain",
          "Palette": "1E2D13",
          "Tileset1": "131",
          "Tileset2": "131"
       },
-      "Tilemap37": {
+      {
          "Address": "194EF8",
          "Name": "37 - Itory (Background)",
          "Palette": "1E3413",
          "Tileset1": "44",
          "Tileset2": "44"
       },
-      "Tilemap38": {
+      {
          "Address": "195A95",
          "Name": "38 - Angkor Wat (Outside)",
          "Palette": "1E5473",
          "Tileset1": "122",
          "Tileset2": "123"
       },
-      "Tilemap39": {
+      {
          "Address": "196059",
          "Name": "39 - Incan Ruins (Outside)",
          "Palette": "1E35D3",
          "Tileset1": "124",
          "Tileset2": "125"
       },
-      "Tilemap40": {
+      {
          "Address": "19771B",
          "Name": "40 - Deserted Incan Gold Ship",
          "Palette": "1E3793",
          "Tileset1": "88",
          "Tileset2": "89"
       },
-      "Tilemap41": {
+      {
          "Address": "197CB8",
          "Name": "41 - Seaside Palace (Background)",
          "Palette": "1E4593",
          "Tileset1": "36",
          "Tileset2": "36"
       },
-      "Tilemap42": {
+      {
          "Address": "1A1640",
          "Name": "42 - House Interior (Watermia)",
          "Palette": "1E4E53",
          "Tileset1": "24",
          "Tileset2": "24"
       },
-      "Tilemap43": {
+      {
          "Address": "1A1BB7",
          "Name": "43 - House Interior (Itory)",
          "Palette": "1E34F3",
          "Tileset1": "16",
          "Tileset2": "16"
       },
-      "Tilemap44": {
+      {
          "Address": "1A466E",
          "Name": "44 - World Map",
          "Palette": "1E6893",
          "Tileset1": "18",
          "Tileset2": "18"
       },
-      "Tilemap45": {
+      {
          "Address": "1A6407",
          "Name": "45 - Deserted Incan Gold Ship (Interior)",
          "Palette": "1E3793",
          "Tileset1": "88",
          "Tileset2": "89"
       },
-      "Tilemap46": {
+      {
          "Address": "1A68E6",
          "Name": "46 - South Cape (Layer 2)",
          "Palette": "1E2C33",
          "Tileset1": "40",
          "Tileset2": "40"
       },
-      "Tilemap47": {
+      {
          "Address": "1B1733",
          "Name": "47 - Cutscene (Future City)",
          "Palette": "1E58D3",
          "Tileset1": "61",
          "Tileset2": "61"
       },
-      "Tilemap48": {
+      {
          "Address": "1B1BBA",
          "Name": "48 - Dark Space",
          "Palette": "1E6513",
          "Tileset1": "27",
          "Tileset2": "27"
       },
-      "Tilemap49": {
+      {
          "Address": "1B200F",
          "Name": "49 - Sky Garden (Front)",
          "Palette": "1E4213",
          "Tileset1": "68",
          "Tileset2": "69"
       },
-      "Tilemap50": {
+      {
          "Address": "1B2CE2",
          "Name": "50 - Title Screen",
          "Palette": "17FBE",
          "Tileset1": "126",
          "Tileset2": "127"
       },
-      "Tilemap51": {
+      {
          "Address": "1B356B",
          "Name": "51 - City of Euro (Layer 2)",
          "Palette": "1E5013",
          "Tileset1": "99",
          "Tileset2": "100"
       },
-      "Tilemap52": {
+      {
          "Address": "1B3DBE",
          "Name": "52 - Cutscene (Future City)",
          "Palette": "1E1735",
          "Tileset1": "75",
          "Tileset2": "75"
       },
-      "Tilemap53": {
+      {
          "Address": "1B5175",
          "Name": "53 - Edward's Castle (Background)",
          "Palette": "1E3093",
          "Tileset1": "102",
          "Tileset2": "103"
       },
-      "Tilemap54": {
+      {
          "Address": "1B5540",
          "Name": "54 - Sky Garden (Back)",
          "Palette": "1E4213",
          "Tileset1": "68",
          "Tileset2": "69"
       },
-      "Tilemap55": {
+      {
          "Address": "1B640F",
          "Name": "55 - Cutscene (Continents)",
          "Palette": "1E1C35",
          "Tileset1": "110",
          "Tileset2": "111"
       },
-      "Tilemap56": {
+      {
          "Address": "1B6B24",
          "Name": "56 - Desert Village Dao",
          "Palette": "1E59B3",
          "Tileset1": "23",
          "Tileset2": "23"
       },
-      "Tilemap57": {
+      {
          "Address": "1B6EA4",
          "Name": "57 - Mu - Room of Hope",
          "Palette": "1E4833",
          "Tileset1": "137",
          "Tileset2": "36"
       },
-      "Tilemap58": {
+      {
          "Address": "1C06E0",
          "Name": "58 - Tower of Babel (Background)",
          "Palette": "1E5E13",
          "Tileset1": "108",
          "Tileset2": "109"
       },
-      "Tilemap59": {
+      {
          "Address": "1C0A4F",
          "Name": "59 - Angel Village (Upper Layer)",
          "Palette": "1E4AD3",
          "Tileset1": "76",
          "Tileset2": "77"
       },
-      "Tilemap60": {
+      {
          "Address": "1C147C",
          "Name": "60 - Cutscene (Angkor Wat)",
          "Palette": "77",
          "Tileset1": "70",
          "Tileset2": "70"
       },
-      "Tilemap61": {
+      {
          "Address": "1C2F0D",
          "Name": "61 - Native's Village",
          "Palette": "1E52B3",
          "Tileset1": "58",
          "Tileset2": "58"
       },
-      "Tilemap62": {
+      {
          "Address": "1C356A",
          "Name": "62 - China's Great Wall (Background)",
          "Palette": "1E4F33",
          "Tileset1": "94",
          "Tileset2": "95"
       },
-      "Tilemap63": {
+      {
          "Address": "1C3890",
          "Name": "63 - Cutscene (Intro, Tower of Babel)",
          "Palette": "61",
          "Tileset1": "33",
          "Tileset2": "33"
       },
-      "Tilemap64": {
+      {
          "Address": "1C624C",
          "Name": "64 - Cutscene (Intro, Figures)",
          "Palette": "1E1C35",
          "Tileset1": "39",
          "Tileset2": "39"
       },
-      "Tilemap65": {
+      {
          "Address": "1C652A",
          "Name": "65 - Cutscene (School Ending)",
          "Palette": "1E6433",
          "Tileset1": "55",
          "Tileset2": "55"
       },
-      "Tilemap66": {
+      {
          "Address": "1C7B21",
          "Name": "66 - Angel Village (Outside)",
          "Palette": "1E4AD3",
          "Tileset1": "76",
          "Tileset2": "77"
       },
-      "Tilemap67": {
+      {
          "Address": "1CFD96",
          "Name": "67 - Cutscene (Angkor Wat Background)",
          "Palette": "1E1A35",
          "Tileset1": "91",
          "Tileset2": "91"
       },
-      "Tilemap68": {
+      {
          "Address": "1D0767",
          "Name": "68 - Cutscene (Intro, Skeleton)",
          "Palette": "1E1B35",
          "Tileset1": "74",
          "Tileset2": "74"
       },
-      "Tilemap69": {
+      {
          "Address": "1D1834",
          "Name": "69 - Dark Space (Background) (1)",
          "Palette": "1E5EF3",
          "Tileset1": "55",
          "Tileset2": "55"
       },
-      "Tilemap70": {
+      {
          "Address": "1D1CCC",
          "Name": "70 - Sky Garden (Nazca Background)",
          "Palette": "1E4213",
          "Tileset1": "68",
          "Tileset2": "69"
       },
-      "Tilemap71": {
+      {
          "Address": "1D2389",
          "Name": "71 - Cutscene (Continents Map)",
          "Palette": "1E1C35",
          "Tileset1": "110",
          "Tileset2": "111"
       },
-      "Tilemap72": {
+      {
          "Address": "1D40BA",
          "Name": "72 - Inca Ruins (Fog)",
          "Palette": "1E35D3",
          "Tileset1": "124",
          "Tileset2": "125"
       },
-      "Tilemap73": {
+      {
          "Address": "1D4660",
          "Name": "73 - Mountain Temple (Upper Layer)",
          "Palette": "1E51D3",
          "Tileset1": "92",
          "Tileset2": "93"
       },
-      "Tilemap74": {
+      {
          "Address": "1D4A0F",
          "Name": "74 - Raft",
          "Palette": "1E3B13",
          "Tileset1": "52",
          "Tileset2": "53"
       },
-      "Tilemap75": {
+      {
          "Address": "1D4DA5",
          "Name": "75 - Dark Space (Background) (2)",
          "Palette": "1E5EF3",
          "Tileset1": "27",
          "Tileset2": "27"
       },
-      "Tilemap76": {
+      {
          "Address": "1D5131",
          "Name": "76 - Background (Blue Sky)",
          "Palette": "1E42F3",
          "Tileset1": "68",
          "Tileset2": "69"
       },
-      "Tilemap77": {
+      {
          "Address": "1D78C6",
          "Name": "77 - Incan Gold Ship (Background)",
          "Palette": "1E3793",
          "Tileset1": "97",
          "Tileset2": "98"
       },
-      "Tilemap78": {
+      {
          "Address": "1D7DE7",
          "Name": "78 - Jeweler's Mansion (Fog)",
          "Palette": "1E6353",
          "Tileset1": "119",
          "Tileset2": "120"
       },
-      "Tilemap79": {
+      {
          "Address": "1E298B",
          "Name": "79 - Feejia (Flowers)",
          "Palette": "250",
          "Tileset1": "21",
          "Tileset2": "21"
       }
-   },
+   ],
    "Tilesets": [
       {
          "Name": "0 - ITEMS, Numbers",
