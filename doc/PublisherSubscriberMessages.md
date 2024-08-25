@@ -3,6 +3,7 @@
 | Name              | Argument(s)    | Description                      |
 |-------------------|----------------|----------------------------------|
 |`items_load`       |-               |Load the items.                   |
+|`maps_load`        |-               |Load the maps.                    |
 |`project_close`    |-               |Close the project file.           |
 |`project_load`     |-               |Load the project data.            |
 |`project_open`     |projectPath     |Open a project file.              |

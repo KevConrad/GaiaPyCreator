@@ -95,5 +95,7 @@ class View_Tabs:
 
         if self.notebook.GetPage(index) is self.tabItems:
             pub.sendMessage("items_load")
+        if self.notebook.GetPage(index) is self.tabMaps:
+            pub.sendMessage("maps_load")
         if self.notebook.GetPage(index) is self.tabTilesets:
             pub.sendMessage("tilesets_load")
