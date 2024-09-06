@@ -43,7 +43,7 @@ class View_Tilesets:
         pub.sendMessage("tilesets_update", tilesetIndex=selectedIndex)
 
     def update(self, tilesetImage : PIL.Image):
-        sizedImage = tilesetImage.resize((256, 256), Image.Resampling.LANCZOS)
+        sizedImage = tilesetImage.resize((400, 400), Image.Resampling.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.BitmapFromImage(wx_image)

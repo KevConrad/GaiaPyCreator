@@ -17,7 +17,7 @@ from .View_Tilesets import View_Tilesets
 
 class View_Main(wx.Frame):
     def __init__(self, parent=None) -> None:
-        wx.Frame.__init__(self, parent, -1, "GaiaTheCreator", size=(800, 600))
+        wx.Frame.__init__(self, parent, -1, "GaiaTheCreator", size=(1000, 600))
         
         self.menuBar = View_MenuBar(self)
         self.statusBar = View_StatusBar(self)
