@@ -14,7 +14,10 @@ class Model_Tileset:
     TILESET_TILE_PIXEL_WIDTH = 8    # number of pixels in a tile in horizontal direction
     TILESET_PIXEL_BIT_COUNT = 4     # number of bits for a single pixel
     
+    # number of pixels in a tileset in vertical direction
     TILESET_PIXEL_HEIGHT = TILESET_TILE_HEIGHT * TILESET_TILE_PIXEL_HEIGHT
+
+    # number of pixels in a tileset in horizontal direction
     TILESET_PIXEL_WIDTH = TILESET_TILE_WIDTH * TILESET_TILE_PIXEL_WIDTH
 
     def __init__(self, romData, tilesetData : dict) -> None:

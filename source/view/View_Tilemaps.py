@@ -18,15 +18,16 @@ class View_Tilemaps:
 
         self.tilemapImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap)
 
-        verticalBoxItemData = wx.BoxSizer(wx.VERTICAL)
-        verticalBoxItemData.Add(horizontalBoxTilemap)
+        verticalBoxTilemapData = wx.BoxSizer(wx.VERTICAL)
+        verticalBoxTilemapData.Add(horizontalBoxTilemap)
+        verticalBoxTilemapData.Add(self.tilemapImage)
 
         self.listBoxTilemaps = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT),
                                           style = wx.LB_SINGLE|wx.LB_HSCROLL)
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxTilemaps, 0, wx.EXPAND)
         
-        horizontalBox.Add(verticalBoxItemData)
+        horizontalBox.Add(verticalBoxTilemapData)
         
         self.tabPage.SetSizer(horizontalBox)
         self.tabPage.Fit()
@@ -42,7 +43,7 @@ class View_Tilemaps:
         pub.sendMessage("tilemaps_update", tilemapIndex=selectedIndex)
 
     def update(self, tilemapImage : PIL.Image):
-        sizedImage = tilemapImage.resize((256, 256), Image.Resampling.LANCZOS)
+        sizedImage = tilemapImage.resize((400, 400), Image.Resampling.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.BitmapFromImage(wx_image)

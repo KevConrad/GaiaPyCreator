@@ -1,49 +1,174 @@
 import PIL.Image
 from model.Model_Compression import Model_Compression
+from model.Model_Tileset import Model_Tileset
 
 import bitstring
 
 import PIL
 
 class Model_Tilemap:
-    TILESET_BYTE_SIZE = 0x2000
+    TILEMAP_TILE_HEIGHT = 16                # number of tiles in vertical direction
+    TILEMAP_TILE_WIDTH = 16                 # number of tiles in horizontal direction
+    TILEMAP_TILE_PIECE_HEIGHT = 2           # number of tile pieces in vertical direction
+    TILEMAP_TILE_PIECE_WIDTH = 2            # number of tile pieces in horizontal direction
+    TILEMAP_TILE_PIECE_PIXEL_HEIGHT = 8     # number of pixels in a tile piece in vertical direction
+    TILEMAP_TILE_PIECE_PIXEL_WIDTH = 8      # number of pixels in a tile piece in horizontal direction
+    TILEMAP_PIXEL_BIT_COUNT = 4             # number of bits for a single pixel
 
-    TILESET_TILE_HEIGHT = 16        # number of tiles in vertical direction
-    TILESET_TILE_WIDTH = 16         # number of tiles in horizontal direction
-    TILESET_TILE_PIXEL_HEIGHT = 8   # number of pixels in a tile in vertical direction
-    TILESET_TILE_PIXEL_WIDTH = 8    # number of pixels in a tile in horizontal direction
-    TILESET_PIXEL_BIT_COUNT = 4     # number of bits for a single pixel
+    # number of tile pieces in a tile
+    TILEMAP_TILE_PIECE_COUNT = TILEMAP_TILE_PIECE_HEIGHT * TILEMAP_TILE_PIECE_WIDTH
+
+    # number of pixels in a tile in vertical direction
+    TILEMAP_TILE_PIXEL_HEIGHT = TILEMAP_TILE_PIECE_PIXEL_HEIGHT * TILEMAP_TILE_PIECE_HEIGHT
+
+    # number of pixels in a tile in horizontal direction
+    TILEMAP_TILE_PIXEL_WIDTH = TILEMAP_TILE_PIECE_PIXEL_WIDTH * TILEMAP_TILE_PIECE_WIDTH
     
-    TILESET_PIXEL_HEIGHT = TILESET_TILE_HEIGHT * TILESET_TILE_PIXEL_HEIGHT
-    TILESET_PIXEL_WIDTH = TILESET_TILE_WIDTH * TILESET_TILE_PIXEL_WIDTH
+    # number of pixels in a tilemap in vertical direction
+    TILEMAP_PIXEL_HEIGHT = TILEMAP_TILE_HEIGHT * TILEMAP_TILE_PIXEL_HEIGHT
 
-    def __init__(self, romData, tilemapData : dict) -> None:
+    # number of pixels in a tilemap in horizontal direction
+    TILEMAP_PIXEL_WIDTH = TILEMAP_TILE_WIDTH * TILEMAP_TILE_PIXEL_WIDTH
+
+    def __init__(self, romData, tilemapData : dict, tilesetsData : dict) -> None:
         self.romData = romData
 
         # read the data from the JSON file
         self.name = str(tilemapData['Name'])
         self.address = int(str(tilemapData['Address']), 16)
         self.palette = int(str(tilemapData['Palette']), 16)
-        self.tilesetId1 = int(str(tilemapData['Tileset1']), 10)
-        self.tilesetId2 = int(str(tilemapData['Tileset2']), 10)
+        self.firstTilesetId = int(str(tilemapData['Tileset1']), 10)
+        self.secondTilesetId = int(str(tilemapData['Tileset2']), 10)
+
+        tilesetAddressData = []
+        for tilesetData in tilesetsData:
+            tilesetAddressData.append(int(str(tilesetData['Address']), 16))
+
+        for tilesetData in tilesetsData:
+            tilesetAddress = int(str(tilesetData['Address']), 16)
+            if tilesetAddress == tilesetAddressData[self.firstTilesetId]:
+                self.firstTileset = Model_Tileset(self.romData, tilesetData)
+            if tilesetAddress == tilesetAddressData[self.secondTilesetId]:
+                self.secondTileset = Model_Tileset(self.romData, tilesetData)
 
     def read(self):
-        if self.compSize > 0:
-            # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-            self.data, self.compSize = Model_Compression.decompress(self.romData, self.address, self.compSize + 1, self.decompOffset)
-        else:
-            self.data = self.romData[self.address:self.decompSize]
+        # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
+        self.tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.address, 10000, 0)
 
-    def getImage(self, readOffset): 
-        # limit the length
-        length = self.decompSize
-        if length == (self.TILESET_BYTE_SIZE * 2):
-            length = self.TILESET_BYTE_SIZE
+        # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
+        self.firstTilesetData, self.firstTilesetCompSize = Model_Compression.decompress(self.romData, self.firstTileset.address,
+                                                                                        self.firstTileset.compSize + 1,
+                                                                                        self.firstTileset.decompOffset)
+        self.secondTilesetData, self.secondTilesetCompSize = Model_Compression.decompress(self.romData, self.firstTileset.address,
+                                                                                          self.firstTileset.compSize + 1,
+                                                                                          self.firstTileset.decompOffset)
         
-        graphicBits = bitstring.ConstBitStream(bytes = self.data, offset=(readOffset * 8), length=(length * 8))
-    
-        pixelValues = [0] * (self.TILESET_PIXEL_WIDTH * self.TILESET_PIXEL_HEIGHT)
-        imageBytes = [0] * ((self.TILESET_PIXEL_WIDTH * self.TILESET_PIXEL_HEIGHT) * 3)
+    def getImage(self, readOffset, readAll, tileOffset, tilesetReadOffset, tilePieceOffset):
+        # array which contains the data of both tilesets used by the tilemap
+        tilesetGraphicBits = []
+
+        # limit the length
+        length = self.firstTileset.decompSize
+        if length == (Model_Tileset.TILESET_BYTE_SIZE * 2):
+            length = Model_Tileset.TILESET_BYTE_SIZE
+        
+        tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.firstTilesetData, offset=(readOffset * 8), length=(length * 8)))
+        
+        length = self.secondTileset.decompSize
+        if length == (Model_Tileset.TILESET_BYTE_SIZE * 2):
+            length = Model_Tileset.TILESET_BYTE_SIZE
+        
+        tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.secondTilesetData, offset=(readOffset * 8), length=(length * 8)))
+        
+        pixelValues = [0] * (self.TILEMAP_PIXEL_WIDTH * self.TILEMAP_PIXEL_HEIGHT)
+        imageBytes = [0] * ((self.TILEMAP_PIXEL_WIDTH * self.TILEMAP_PIXEL_HEIGHT) * 3)
+
+        tileIndex = 0
+        tilePos = 0
+        # loop for the 16 map tile rows of a map block (offset = 256)
+        for tileY in range (self.TILEMAP_TILE_WIDTH):
+            # loop for the 16 map tiles of a map tile row
+            for tileX in range (self.TILEMAP_TILE_HEIGHT):
+                if (readAll == False):
+                    tileIndex = tileOffset
+
+                for tilePiece in range (self.TILEMAP_TILE_PIECE_COUNT):                     
+                    tileIndexY = (self.tilemapData[(tileIndex * 8) + (tilePiece * 2)] & 0xF0) >> 4
+                    tileIndexX = self.tilemapData[(tileIndex * 8) + (tilePiece * 2)] & 0x0F
+                    tileProperty = self.tilemapData[(tileIndex * 8) + (tilePiece * 2) + 1]
+                    paletteIndex = (tileProperty & 0x1C) >> 2
+                    tilesetReadIndex = 0
+                    tilesetOffset = 0
+                        
+                    # check the tileset offset
+                    if ((tilesetReadOffset == 1) and
+                        (self.firstTileset.address != self.secondTileset.address)):
+                            tilesetReadIndex = 1
+                    else:
+                        if ((tileProperty & 0x01) != 0):        
+                            if (self.secondTilesetId != 0):
+                                tilesetReadIndex = 1
+                        
+                        # loop for the 8 rows of a tile
+                        for tileRow in range (self.TILEMAP_TILE_PIECE_PIXEL_WIDTH):                          
+                            # loop for the 8 pixels of a tile's row
+                            for tilePixel in range (self.TILEMAP_TILE_PIECE_PIXEL_HEIGHT):
+                                pixelBit = []
+
+                                # loop for the 4 bits of a single pixel
+                                for tilePixelBit in range (self.TILEMAP_PIXEL_BIT_COUNT):
+                                    isBitSet = False                                    
+
+                                    if tilePixelBit == 0:
+                                        isBitSet = tilesetGraphicBits[tilesetReadIndex][tilesetOffset + (tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + tilePixel]
+                                    if tilePixelBit == 1:
+                                        isBitSet = tilesetGraphicBits[tilesetReadIndex][tilesetOffset + (tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + 8 + tilePixel]
+                                    if tilePixelBit == 2:
+                                        isBitSet = tilesetGraphicBits[tilesetReadIndex][tilesetOffset + (tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + (16 * 8) + tilePixel]
+                                    if tilePixelBit == 3:
+                                        isBitSet = tilesetGraphicBits[tilesetReadIndex][tilesetOffset + (tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + (17 * 8) + tilePixel]
+
+                                    if isBitSet == 1:
+                                        pixelBit.append(1)
+                                    else:
+                                        pixelBit.append(0)
+
+                                pixelValue = ((pixelBit[0] << 3) | (pixelBit[1] << 2) | (pixelBit[2] << 1) | pixelBit[3])
+                                if paletteIndex > 0:
+                                    pixelValue += ((paletteIndex) * 16)
+
+                                if (readAll == False) and (tilePiece == tilePieceOffset):
+                                    if (tilePixel == 0) or (tilePixel == 7) or (tileRow == 0) or (tileRow == 7):
+                                        # pixelValue = 8 * 16; # TODO check if needed
+                                        pass
+
+                                if pixelValue == 0:
+                                    continue
+
+                                if (tileProperty & 0x80) != 0:     # mirror tile in x direction
+                                    tileRow = 7 - tileRow
+                                if (tileProperty & 0x40) != 0:     # mirror tile in y direction
+                                    tilePixel = 7 - tilePixel
+
+                                if tilePiece == 0:
+                                    pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow)) + (16 * tileX) + tilePixel] = pixelValue
+                                if tilePiece == 1:
+                                    pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow)) + (16 * tileX) + tilePixel + 8] = pixelValue
+                                if tilePiece== 2:
+                                    pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow + 8)) + (16 * tileX) + tilePixel] = pixelValue
+                                if tilePiece == 3:
+                                    pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow + 8)) + (16 * tileX) + tilePixel + 8] = pixelValue
+                                
+                                if (tileProperty & 0x80) != 0:
+                                    tileRow = 7 - tileRow
+                                if (tileProperty & 0x40) != 0:
+                                    tilePixel = 7 - tilePixel
+                tilePos += 1
+
+                if readAll == True:
+                    tileIndex += 1
+                else:
+                    break
 
         palette = [0] * (16 * 3)
         palette[0] = 255
@@ -110,34 +235,6 @@ class Model_Tilemap:
         palette[46] = 0
         palette[47] = 0
 
-        # loop for 16 tiles of the tileset in vertical direction
-        for tileRow in range (self.TILESET_TILE_HEIGHT):
-            # loop for the 16 of the tileset in horizontal direction for the current tile row
-            for tileColumn in range (self.TILESET_TILE_WIDTH):
-                # loop for the 8 pixels of a tile in vertical direction
-                for i in range (self.TILESET_TILE_PIXEL_HEIGHT):
-                    # loop for the 8 pixels of a tile in horizontal direction for the current pixel row
-                    for j in range (self.TILESET_TILE_PIXEL_WIDTH):
-                        pixelBit = []
-                        # loop for the 4 bits of a single pixel
-                        for k in range (self.TILESET_PIXEL_BIT_COUNT):
-                            if k == 0:
-                                bitValue = graphicBits[(tileRow * 4096) + (tileColumn * 256) + (i * 16) + j]
-                            if k == 1:
-                                bitValue = graphicBits[(tileRow * 4096) + (tileColumn * 256) + (i * 16) + 8 + j]
-                            if k == 2:
-                                bitValue = graphicBits[(tileRow * 4096) + (tileColumn * 256) + (i * 16) + (16 * 8) + j]
-                            if k == 3:
-                                bitValue = graphicBits[(tileRow * 4096) + (tileColumn * 256) + (i * 16) + (17 * 8) + j]
-
-                            if bitValue == 1:
-                                pixelBit.append(1)
-                            else:
-                                pixelBit.append(0)
-
-                        pixelValue = ((pixelBit[0] << 3) | (pixelBit[1] << 2) | (pixelBit[2] << 1) | pixelBit[3])
-                        pixelValues[((tileRow) * 1024) + (tileColumn * 8) + (128 * i) + j] = (pixelValue & 0x0F)
-
         # create an RGB pixel array with the selected palette and the readout palette color index
         pixelIndex = 0
         for pixelValue in pixelValues:
@@ -147,7 +244,7 @@ class Model_Tilemap:
             pixelIndex = pixelIndex + 3
 
         # create an image from the RGB pixel array
-        tilesetImage = PIL.Image.frombytes('RGB', (self.TILESET_PIXEL_WIDTH, self.TILESET_PIXEL_HEIGHT), bytes(imageBytes))
-        return tilesetImage
+        tilemapImage = PIL.Image.frombytes('RGB', (self.TILEMAP_PIXEL_WIDTH, self.TILEMAP_PIXEL_HEIGHT), bytes(imageBytes))
+        return tilemapImage
 
     

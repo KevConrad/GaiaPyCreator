@@ -24,6 +24,8 @@ class Controller_Tilemaps:
 
     def update(self, tilemapIndex):
         self.tilemaps.tilemaps[tilemapIndex].read()
-        tilemapImage = self.tilemaps.tilemaps[tilemapIndex].getImage(0)
+        tilemapImage = self.tilemaps.tilemaps[tilemapIndex].getImage(readOffset = 0, readAll = True,
+                                                                     tileOffset = 0, tilesetReadOffset = 0,
+                                                                     tilePieceOffset = 0)
         self.view.tilemaps.update(tilemapImage)
         
