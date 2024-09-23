@@ -24,7 +24,6 @@ class Model_Palette:
         self.address = address
         self.format = format
     
-    def read(self):
         if (self.format == PaletteFormat.FORMAT_2BPP):
             colorCount = self.PALETTE_COLOR_COUNT_2BPP
             colorPositions = self.PALETTE_COLOR_POSITIONS_2BPP
@@ -38,8 +37,8 @@ class Model_Palette:
             rawColor = ((self.romData[self.address + (colorIndex * 2) + 1] & 0x7F) << 8)
             rawColor += self.romData[self.address + (colorIndex * 2)]
             red = (rawColor % 32) * 8                           # red color value
-            green = ((rawColor / 32) % 32) * 8                  # green color value
-            blue = ((rawColor / 1024) % 32) * 8                 # blue color value
+            green = (int(rawColor / 32) % 32) * 8               # green color value
+            blue = (int(rawColor / 1024) % 32) * 8              # blue color value
 
             # assign the correct position value of the color within the palette data
             self.data[colorPositions[colorIndex] * 3] = red

@@ -2,6 +2,7 @@ import PIL
 import PIL.Image
 import wx
 
+from model.Model_Tilemap import Model_Tilemap
 from view.View_Common import View_Common
 
 from pubsub import pub
@@ -17,6 +18,7 @@ class View_Tilemaps:
         horizontalBoxTilemap.Add(self.labelTilemap, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
 
         self.tilemapImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap)
+        self.tilemapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
 
         verticalBoxTilemapData = wx.BoxSizer(wx.VERTICAL)
         verticalBoxTilemapData.Add(horizontalBoxTilemap)
@@ -41,6 +43,12 @@ class View_Tilemaps:
     def onListBox(self, event):
         selectedIndex = self.listBoxTilemaps.GetSelection()
         pub.sendMessage("tilemaps_update", tilemapIndex=selectedIndex)
+
+    def onTilemapImageClick(self, event):
+        x, y = event.GetPosition()
+        tileClickedX = int(x / Model_Tilemap.TILEMAP_TILE_WIDTH)
+        tileClickedX = int(x / Model_Tilemap.TILEMAP_TILE_HEIGHT)
+        print("clicked at", tileClickedX, tileClickedX)
 
     def update(self, tilemapImage : PIL.Image):
         sizedImage = tilemapImage.resize((400, 400), Image.Resampling.NEAREST)
