@@ -66,7 +66,7 @@ class Model_Tilemap:
                                                                                           self.firstTileset.decompOffset)
         self.paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
         
-    def getImage(self, readOffset, readAll, tileOffset, tilesetReadOffset, tilePieceOffset):
+    def getImage(self, readOffset, tilesetReadOffset, tileOffset, tilePieceOffset, readAll):
         # array which contains the data of both tilesets used by the tilemap
         tilesetGraphicBits = []
 
@@ -83,9 +83,16 @@ class Model_Tilemap:
         
         tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.secondTilesetData, offset=(readOffset * 8), length=(length * 8)))
         
-        pixelValues = [0] * (self.TILEMAP_PIXEL_WIDTH * self.TILEMAP_PIXEL_HEIGHT)
-        imageBytes = [0] * ((self.TILEMAP_PIXEL_WIDTH * self.TILEMAP_PIXEL_HEIGHT) * 3)
+        if readAll == True:
+            pixelHeight = self.TILEMAP_PIXEL_HEIGHT
+            pixelWidth = self.TILEMAP_PIXEL_WIDTH
+        else:
+            pixelHeight =  self.TILEMAP_TILE_PIXEL_HEIGHT
+            pixelWidth = self.TILEMAP_TILE_PIXEL_WIDTH
 
+        pixelValues = [0] * (pixelWidth * pixelHeight)
+        imageBytes = [0] * ((pixelWidth * pixelHeight) * 3)
+        
         tileIndex = 0
         # loop for the 16 map tile rows of a map block (offset = 256)
         for tileY in range (self.TILEMAP_TILE_WIDTH):
@@ -140,11 +147,6 @@ class Model_Tilemap:
                             if paletteIndex > 0:
                                 pixelValue += ((paletteIndex) * 16)
 
-                            if (readAll == False) and (tilePiece == tilePieceOffset):
-                                if (tilePixel == 0) or (tilePixel == 7) or (tileRow == 0) or (tileRow == 7):
-                                    # pixelValue = 8 * 16; # TODO check if needed
-                                    pass
-
                             if pixelValue == 0:
                                 continue
 
@@ -154,13 +156,13 @@ class Model_Tilemap:
                                 tilePixel = 7 - tilePixel
 
                             if tilePiece == 0:
-                                pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow)) + (16 * tileX) + tilePixel] = pixelValue
+                                pixelValues[(pixelWidth * ((16 * tileY) + tileRow)) + (16 * tileX) + tilePixel] = pixelValue
                             if tilePiece == 1:
-                                pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow)) + (16 * tileX) + tilePixel + 8] = pixelValue
+                                pixelValues[(pixelWidth * ((16 * tileY) + tileRow)) + (16 * tileX) + tilePixel + 8] = pixelValue
                             if tilePiece== 2:
-                                pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow + 8)) + (16 * tileX) + tilePixel] = pixelValue
+                                pixelValues[(pixelWidth * ((16 * tileY) + tileRow + 8)) + (16 * tileX) + tilePixel] = pixelValue
                             if tilePiece == 3:
-                                pixelValues[(self.TILEMAP_PIXEL_WIDTH * ((16 * tileY) + tileRow + 8)) + (16 * tileX) + tilePixel + 8] = pixelValue
+                                pixelValues[(pixelWidth * ((16 * tileY) + tileRow + 8)) + (16 * tileX) + tilePixel + 8] = pixelValue
                             
                             if (tileProperty & 0x80) != 0:
                                 tileRow = 7 - tileRow
@@ -170,6 +172,9 @@ class Model_Tilemap:
                 if readAll == True:
                     tileIndex += 1
                 else:
+                    break
+
+            if readAll == False:
                     break
 
         # create an RGB pixel array with the selected palette and the readout palette color index
@@ -184,7 +189,7 @@ class Model_Tilemap:
             pixelIndex = pixelIndex + 3
 
         # create an image from the RGB pixel array
-        tilemapImage = PIL.Image.frombytes('RGB', (self.TILEMAP_PIXEL_WIDTH, self.TILEMAP_PIXEL_HEIGHT), bytes(imageBytes), 'raw')
+        tilemapImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
         return tilemapImage
 
     

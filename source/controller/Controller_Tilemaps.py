@@ -16,6 +16,7 @@ class Controller_Tilemaps:
 
         pub.subscribe(self.load, "tilemaps_load")
         pub.subscribe(self.update, "tilemaps_update")
+        pub.subscribe(self.updateTile, "tilemaps_update_tile")
 
     def load(self):
         if self.project.isProjectLoaded == True:
@@ -23,9 +24,16 @@ class Controller_Tilemaps:
             self.view.tilemaps.load(self.tilemaps.tilemapNames)
 
     def update(self, tilemapIndex):
-        self.tilemaps.tilemaps[tilemapIndex].read()
-        tilemapImage = self.tilemaps.tilemaps[tilemapIndex].getImage(readOffset = 0, readAll = True,
-                                                                     tileOffset = 0, tilesetReadOffset = 0,
-                                                                     tilePieceOffset = 0)
+        self.tilemapIndex = tilemapIndex
+        self.tilemaps.tilemaps[self.tilemapIndex].read()
+        tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = True,
+                                                                          tileOffset = 0, tilesetReadOffset = 0,
+                                                                          tilePieceOffset = 0)
         self.view.tilemaps.update(tilemapImage)
+
+    def updateTile(self, tileIndex):
+        tileImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = False,
+                                                                       tileOffset = tileIndex, tilesetReadOffset = 0,
+                                                                       tilePieceOffset = 0)
+        self.view.tilemaps.updateTile(tileImage)
         

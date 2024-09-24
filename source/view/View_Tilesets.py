@@ -3,6 +3,7 @@ import PIL.Image
 import wx
 
 from view.View_Common import View_Common
+from view.View_Tabs import TabTilesets
 
 from pubsub import pub
 from PIL import Image
@@ -10,7 +11,7 @@ from PIL import Image
 class View_Tilesets:
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
-        self.tabPage = notebook.GetPage(9)
+        self.tabPage = notebook.GetPage(TabTilesets.TILESET_TAB_INDEX)
 
         self.labelTileset = wx.StaticText(self.tabPage, label="Tileset:")
         horizontalBoxTileset = wx.BoxSizer(wx.HORIZONTAL)

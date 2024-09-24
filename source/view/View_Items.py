@@ -1,11 +1,12 @@
 import wx
 
 from view.View_Common import View_Common
+from view.View_Tabs import TabItems
 
 class View_Items:
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
-        self.tabPage = notebook.GetPage(1)
+        self.tabPage = notebook.GetPage(TabItems.ITEMS_TAB_INDEX)
 
         self.labelItemName = wx.StaticText(self.tabPage, label="Name:")
         self.textCtrlItemName = wx.TextCtrl(self.tabPage, value="", size=(200, 24))
