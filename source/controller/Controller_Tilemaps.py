@@ -4,6 +4,7 @@ from pubsub import pub
 from pubsub.utils.notification import useNotifyByWriteFile
 
 from controller.Controller_Project import Controller_Project
+from model.Model_Tile import Model_Tile
 from model.Model_Tilemaps import Model_Tilemaps
 from view.View_Main import View_Main
 
@@ -27,13 +28,12 @@ class Controller_Tilemaps:
         self.tilemapIndex = tilemapIndex
         self.tilemaps.tilemaps[self.tilemapIndex].read()
         tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = True,
-                                                                          tileOffset = 0, tilesetReadOffset = 0,
-                                                                          tilePieceOffset = 0)
+                                                                          tileOffset = 0, tilesetReadOffset = 0)
         self.view.tilemaps.update(tilemapImage)
 
-    def updateTile(self, tileIndex):
+    def updateTile(self, tileIndex, tilePieceIndex):
         tileImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = False,
-                                                                       tileOffset = tileIndex, tilesetReadOffset = 0,
-                                                                       tilePieceOffset = 0)
-        self.view.tilemaps.updateTile(tileImage)
+                                                                       tileOffset = tileIndex, tilesetReadOffset = 0)
+        tileProperties = Model_Tile(self.tilemaps.tilemaps[self.tilemapIndex].tilemapData, tileIndex, tilePiece=tilePieceIndex)
+        self.view.tilemaps.updateTile(tileImage, tileProperties)
         

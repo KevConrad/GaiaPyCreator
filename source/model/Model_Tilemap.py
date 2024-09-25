@@ -66,23 +66,25 @@ class Model_Tilemap:
                                                                                           self.firstTileset.decompOffset)
         self.paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
         
-    def getImage(self, readOffset, tilesetReadOffset, tileOffset, tilePieceOffset, readAll):
+    def getImage(self, readOffset, tilesetReadOffset, tileOffset, readAll):
         # array which contains the data of both tilesets used by the tilemap
         tilesetGraphicBits = []
 
-        # limit the length
+        # limit the length of the first tileset data
         length = self.firstTileset.decompSize
         if length == (Model_Tileset.TILESET_BYTE_SIZE * 2):
             length = Model_Tileset.TILESET_BYTE_SIZE
         
         tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.firstTilesetData, offset=(readOffset * 8), length=(length * 8)))
         
+        # limit the length of the second tileset data
         length = self.secondTileset.decompSize
         if length == (Model_Tileset.TILESET_BYTE_SIZE * 2):
             length = Model_Tileset.TILESET_BYTE_SIZE
         
         tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.secondTilesetData, offset=(readOffset * 8), length=(length * 8)))
         
+        # set the size of the image data depending on if the whole tilemap or only a tile should be read
         if readAll == True:
             pixelHeight = self.TILEMAP_PIXEL_HEIGHT
             pixelWidth = self.TILEMAP_PIXEL_WIDTH
