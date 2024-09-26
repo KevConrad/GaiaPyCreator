@@ -45,37 +45,36 @@ class Model_MapData:
                 readOffset += 1
 
                 if (functionNumber == self.MAP_DATA_0x0E):                  # ??? (0x0E)
-                    mapData = Model_MapData0x0E(self.romData)
+                    mapData = Model_MapData0x0E(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_ARRANGEMENT):         #  map arrangement data (0x06)
-                    mapData = Model_MapDataArrangement(self.romData)
+                    mapData = Model_MapDataArrangement(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_JUMP):                # jump to a function (?) (0x15)    
-                    mapData = Model_MapDataJump(self.romData)
+                    mapData = Model_MapDataJump(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_JUMP_CONDITIONAL):    # ??? (0x13)
-                    mapData = Model_MapDataJumpConditional(self.romData)
+                    mapData = Model_MapDataJumpConditional(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_JUMP_SET_ANCHOR):     # load a byte (?) (0x14)
-                    mapData = Model_MapDataJumpSetAnchor(self.romData)
+                    mapData = Model_MapDataJumpSetAnchor(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_MUSIC):               # music data (0x11)        
-                    mapData = Model_MapDataMusic(self.romData)
+                    mapData = Model_MapDataMusic(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_PALETTE):             # palette data (0x04)
-                    mapData = Model_MapDataPalette(self.romData)
+                    mapData = Model_MapDataPalette(self.romData, readOffset)
                     # TODO add palette to general palette array
                 elif (functionNumber == self.MAP_DATA_SCREEN_SETTINGS):     # screen settings (0x02)
-                    mapData = Model_MapDataScreenSettings(self.romData)
+                    mapData = Model_MapDataScreenSettings(self.romData, readOffset)
                 elif (functionNumber == self.MAP_DATA_SPRITES):             # sprite data (0x10)
-                    mapData = Model_MapDataSprites(self.romData)
+                    mapData = Model_MapDataSprites(self.romData, readOffset)
                     # TODO add spriteset to general sprite array
                 elif (functionNumber == self.MAP_DATA_TILEMAP):             # tilemap data (0x05)
-                    mapData = Model_MapDataTilemap(self.romData)
+                    mapData = Model_MapDataTilemap(self.romData, readOffset)
                     # TODO add tilemap to general tilemap array
                     # TODO add identical tilemap data if both slots are used
                 elif (functionNumber == self.MAP_DATA_TILESET):             # tileset data (0x03)
-                    mapData = Model_MapDataTileset(self.romData)                                             
+                    mapData = Model_MapDataTileset(self.romData, readOffset)                                             
                     # TODO add tileset to general tileset array
                 else:
                      isDataSetFound = False                                 # no valid function number found
 
                 if (isDataSetFound == True):
-                    mapData.read(readOffset)
                     self.mapData.append(mapData)
                     readOffset += mapData.size
             readOffset += 1

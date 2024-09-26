@@ -4,10 +4,9 @@ class Model_MapDataPalette:
     MAP_LAYER = 0
     SPRITE_LAYER = 1
 
-    def __init__(self, romData) -> None:
+    def __init__(self, romData, address) -> None:
         self.romData = romData
 
-    def read(self, address):
         readOffset = address
 
         # read the palette data

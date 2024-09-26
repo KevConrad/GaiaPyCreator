@@ -1,9 +1,8 @@
 
 class Model_MapDataJumpConditional:
-    def __init__(self, romData) -> None:
+    def __init__(self, romData, address) -> None:
         self.romData = romData
 
-    def read(self, address):
         readOffset = address
 
         # read the conditional jump data

@@ -14,19 +14,18 @@ class Controller_Maps:
         self.project = project
         self.view = view
 
-        self.mapDataTable = Model_MapDataTable()
-        self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData)
-
         pub.subscribe(self.load, "maps_load")
 
     def load(self):
         if self.project.isProjectLoaded == True:
             self.loadMapDataTable()
-
+            
+            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData)
             self.view.maps.load(self.maps.mapNames)
             
     def loadMapDataTable(self):
         # load the map data table data from the project file
+        self.mapDataTable = Model_MapDataTable()
         self.mapDataTable.load(self.project.projectData.projectData)
 
         self.mapData = []

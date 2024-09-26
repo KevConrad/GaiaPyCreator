@@ -1,9 +1,8 @@
 
 class Model_MapData0x0E:
-    def __init__(self, romData) -> None:
+    def __init__(self, romData, address) -> None:
         self.romData = romData
-
-    def read(self, address):
+        
         readOffset = address
 
         # read the 0x0E data
@@ -15,4 +14,5 @@ class Model_MapData0x0E:
         readOffset +3
 
         self.size = readOffset - address
+        
             

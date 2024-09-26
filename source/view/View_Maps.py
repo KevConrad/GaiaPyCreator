@@ -29,7 +29,7 @@ class View_Maps:
         labelMap = wx.StaticText(self.tabPage, label="Map:")
         self.mapImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
                                             size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
-        self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
+        #self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
         verticalBoxMapImage.Add(labelMap)
         verticalBoxMapImage.Add(self.mapImage)
 

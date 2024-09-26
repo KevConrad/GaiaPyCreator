@@ -7,10 +7,9 @@ class Model_MapDataTileset:
     LAYER_SPRITES = 3
     LAYER_HUD = 4
     
-    def __init__(self, romData) -> None:
+    def __init__(self, romData, address) -> None:
         self.romData = romData
 
-    def read(self, address):
         readOffset = address
 
         # read the tileset data
