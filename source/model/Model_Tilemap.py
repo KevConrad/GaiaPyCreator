@@ -42,16 +42,13 @@ class Model_Tilemap:
         self.firstTilesetId = int(str(tilemapData['Tileset1']), 10)
         self.secondTilesetId = int(str(tilemapData['Tileset2']), 10)
 
-        tilesetAddressData = []
+        tilesetId = 0
         for tilesetData in tilesetsData:
-            tilesetAddressData.append(int(str(tilesetData['Address']), 16))
-
-        for tilesetData in tilesetsData:
-            tilesetAddress = int(str(tilesetData['Address']), 16)
-            if tilesetAddress == tilesetAddressData[self.firstTilesetId]:
+            if tilesetId == self.firstTilesetId:
                 self.firstTileset = Model_Tileset(self.romData, tilesetData)
-            if tilesetAddress == tilesetAddressData[self.secondTilesetId]:
+            if tilesetId == self.secondTilesetId:
                 self.secondTileset = Model_Tileset(self.romData, tilesetData)
+            tilesetId += 1
 
     def read(self):
         # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
@@ -61,9 +58,9 @@ class Model_Tilemap:
         self.firstTilesetData, self.firstTilesetCompSize = Model_Compression.decompress(self.romData, self.firstTileset.address,
                                                                                         self.firstTileset.compSize + 1,
                                                                                         self.firstTileset.decompOffset)
-        self.secondTilesetData, self.secondTilesetCompSize = Model_Compression.decompress(self.romData, self.firstTileset.address,
-                                                                                          self.firstTileset.compSize + 1,
-                                                                                          self.firstTileset.decompOffset)
+        self.secondTilesetData, self.secondTilesetCompSize = Model_Compression.decompress(self.romData, self.secondTileset.address,
+                                                                                          self.secondTileset.compSize + 1,
+                                                                                          self.secondTileset.decompOffset)
         self.paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
         
     def getImage(self, readOffset, tilesetReadOffset, tileOffset, readAll):
@@ -119,7 +116,7 @@ class Model_Tilemap:
                         if ((tileProperty & 0x01) != 0):        
                             if (self.secondTilesetId != 0):
                                 tilesetReadIndex = 1
-                        
+                    
                     # loop for the 8 rows of a tile
                     for tileRow in range (self.TILEMAP_TILE_PIECE_PIXEL_WIDTH):                          
                         # loop for the 8 pixels of a tile's row

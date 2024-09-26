@@ -25,4 +25,3 @@ class View_Main(wx.Frame):
         self.items = View_Items(self, self.tabs.notebook)
         self.tilemaps = View_Tilemaps(self, self.tabs.notebook)
         self.tilesets = View_Tilesets(self, self.tabs.notebook)
-
