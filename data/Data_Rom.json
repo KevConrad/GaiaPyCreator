@@ -669,777 +669,776 @@
    "ItemRemovalFlags": {
       "Address": "1E12A"
    },
-   "Maps": {
-      "Count": "256",
-      "Map0": {
-         "Name": "0 - ?"
-      },
-      "Map1": {
-         "Name": "1 - South Cape"
-      },
-      "Map2": {
-         "Name": "2 - [South Cape] Seaside Cave"
-      },
-      "Map3": {
-         "Name": "3 - [South Cape] Lance's House"
-      },
-      "Map4": {
-         "Name": "4 - [South Cape] Erik's House"
-      },
-      "Map5": {
-         "Name": "5 - [South Cape] Seth's House"
-      },
-      "Map6": {
-         "Name": "6 - [South Cape] Will's House"
-      },
-      "Map7": {
-         "Name": "7 - [South Cape] House"
-      },
-      "Map8": {
-         "Name": "8 - [South Cape] School"
-      },
-      "Map9": {
-         "Name": "9 - ?"
-      },
-      "Map10": {
-         "Name": "10 - Edward's Castle"
-      },
-      "Map11": {
-         "Name": "11 - Edward's Prison"
-      },
-      "Map12": {
-         "Name": "12 - [Underground Tunnel] Entrance"
-      },
-      "Map13": {
-         "Name": "13 - [Underground Tunnel]"
-      },
-      "Map14": {
-         "Name": "14 - [Underground Tunnel]"
-      },
-      "Map15": {
-         "Name": "15 - [Underground Tunnel]"
-      },
-      "Map16": {
-         "Name": "16 - [Underground Tunnel]"
-      },
-      "Map17": {
-         "Name": "17 - [Underground Tunnel]"
-      },
-      "Map18": {
-         "Name": "18 - [Underground Tunnel]"
-      },
-      "Map19": {
-         "Name": "19 - [Underground Tunnel] Exit"
-      },
-      "Map20": {
-         "Name": "20 - ?"
-      },
-      "Map21": {
-         "Name": "21 - Itory Village"
-      },
-      "Map22": {
-         "Name": "22 - [Itory Village] House Interior"
-      },
-      "Map23": {
-         "Name": "23 - [Itory Village] Lilly's House"
-      },
-      "Map24": {
-         "Name": "24 - [Itory Village] House Interior"
-      },
-      "Map25": {
-         "Name": "25 - [Itory Village] Cave"
-      },
-      "Map26": {
-         "Name": "26 - Home of Moon Tribe"
-      },
-      "Map27": {
-         "Name": "27 - [Home of Moon Tribe] Cave"
-      },
-      "Map28": {
-         "Name": "28 - [Inca Ruins] Entrance to Ruins"
-      },
-      "Map29": {
-         "Name": "29 - Inca Ruins"
-      },
-      "Map30": {
-         "Name": "30 - Inca Ruins"
-      },
-      "Map31": {
-         "Name": "31 - Inca Ruins"
-      },
-      "Map32": {
-         "Name": "32 - Inca Ruins"
-      },
-      "Map33": {
-         "Name": "33 - Inca Ruins"
-      },
-      "Map34": {
-         "Name": "34 - Inca Ruins"
-      },
-      "Map35": {
-         "Name": "35 - Inca Ruins"
-      },
-      "Map36": {
-         "Name": "36 - Inca Ruins"
-      },
-      "Map37": {
-         "Name": "37 - Inca Ruins"
-      },
-      "Map38": {
-         "Name": "38 - Inca Ruins"
-      },
-      "Map39": {
-         "Name": "39 - Inca Ruins"
-      },
-      "Map40": {
-         "Name": "40 - Inca Ruins"
-      },
-      "Map41": {
-         "Name": "41 - [Inca Ruins] Boss Room"
-      },
-      "Map42": {
-         "Name": "42 - [Cutscene] Will's House in the Past"
-      },
-      "Map43": {
-         "Name": "43 - Deserted Inkan Gold Ship"
-      },
-      "Map44": {
-         "Name": "44 - Inkan Gold Ship"
-      },
-      "Map45": {
-         "Name": "45 - [Deserted Inkan Gold Ship] Interior"
-      },
-      "Map46": {
-         "Name": "46 - [Inkan Gold Ship] Interior"
-      },
-      "Map47": {
-         "Name": "47 - Raft"
-      },
-      "Map48": {
-         "Name": "48 - Diamond Coast"
-      },
-      "Map49": {
-         "Name": "49 - [Diamond Coast] House Interior"
-      },
-      "Map50": {
-         "Name": "50 - City of Freejia"
-      },
-      "Map51": {
-         "Name": "51 - [City of Freejia] House Interior"
-      },
-      "Map52": {
-         "Name": "52 - [City of Freejia] House Interior"
-      },
-      "Map53": {
-         "Name": "53 - [City of Freejia] House Interior"
-      },
-      "Map54": {
-         "Name": "54 - [City of Freejia] House Interior"
-      },
-      "Map55": {
-         "Name": "55 - [City of Freejia] House Interior"
-      },
-      "Map56": {
-         "Name": "56 - [City of Freejia] House Interior"
-      },
-      "Map57": {
-         "Name": "57 - [City of Freejia] Hotel Interior"
-      },
-      "Map58": {
-         "Name": "58 - [City of Freejia] House Interior"
-      },
-      "Map59": {
-         "Name": "59 - [City of Freejia] House Interior"
-      },
-      "Map60": {
-         "Name": "60 - Labor Market"
-      },
-      "Map61": {
-         "Name": "61 - Diamond Mine"
-      },
-      "Map62": {
-         "Name": "62 - Diamond Mine"
-      },
-      "Map63": {
-         "Name": "63 - Diamond Mine"
-      },
-      "Map64": {
-         "Name": "64 - Diamond Mine"
-      },
-      "Map65": {
-         "Name": "65 - Diamond Mine"
-      },
-      "Map66": {
-         "Name": "66 - Diamond Mine"
-      },
-      "Map67": {
-         "Name": "67 - Diamond Mine"
-      },
-      "Map68": {
-         "Name": "68 - Diamond Mine"
-      },
-      "Map69": {
-         "Name": "69 - [Diamond Mine] Morgue"
-      },
-      "Map70": {
-         "Name": "70 - Diamond Mine"
-      },
-      "Map71": {
-         "Name": "71 - [Diamond Mine] Slave Room"
-      },
-      "Map72": {
-         "Name": "72 - ?"
-      },
-      "Map73": {
-         "Name": "73 - Neil's Cottage"
-      },
-      "Map74": {
-         "Name": "74 - ?"
-      },
-      "Map75": {
-         "Name": "75 - Nazca Plain"
-      },
-      "Map76": {
-         "Name": "76 - Sky Garden"
-      },
-      "Map77": {
-         "Name": "77 - Sky Garden"
-      },
-      "Map78": {
-         "Name": "78 - Sky Garden"
-      },
-      "Map79": {
-         "Name": "79 - Sky Garden"
-      },
-      "Map80": {
-         "Name": "80 - Sky Garden"
-      },
-      "Map81": {
-         "Name": "81 - Sky Garden"
-      },
-      "Map82": {
-         "Name": "82 - Sky Garden"
-      },
-      "Map83": {
-         "Name": "83 - Sky Garden"
-      },
-      "Map84": {
-         "Name": "84 - Sky Garden"
-      },
-      "Map85": {
-         "Name": "85 - [Sky Garden] Boss Room"
-      },
-      "Map86": {
-         "Name": "86 - [Sky Garden] Save Room"
-      },
-      "Map87": {
-         "Name": "87 - ?"
-      },
-      "Map88": {
-         "Name": "88 - [Cutscene] Airplane 1"
-      },
-      "Map89": {
-         "Name": "89 - [Cutscene] Airplane 2"
-      },
-      "Map90": {
-         "Name": "90 - Seaside Palace"
-      },
-      "Map91": {
-         "Name": "91 - Seaside Palace"
-      },
-      "Map92": {
-         "Name": "92 - Seaside Palace"
-      },
-      "Map93": {
-         "Name": "93 - [Seaside Palace] Fountain"
-      },
-      "Map94": {
-         "Name": "94 - [Seaside Palace] Passage to Mu"
-      },
-      "Map95": {
-         "Name": "95 - Mu"
-      },
-      "Map96": {
-         "Name": "96 - Mu"
-      },
-      "Map97": {
-         "Name": "97 - Mu"
-      },
-      "Map98": {
-         "Name": "98 - Mu"
-      },
-      "Map99": {
-         "Name": "99 - [Mu] Room of Hope"
-      },
-      "Map100": {
-         "Name": "100 - Mu"
-      },
-      "Map101": {
-         "Name": "101 - Mu"
-      },
-      "Map102": {
-         "Name": "102 - Mu"
-      },
-      "Map103": {
-         "Name": "103 - [Mu] Boss Room"
-      },
-      "Map104": {
-         "Name": "104 - Seaside Tunnel"
-      },
-      "Map105": {
-         "Name": "105 - [Angel Village] Outside"
-      },
-      "Map106": {
-         "Name": "106 - [Angel Village] Visitor's Room"
-      },
-      "Map107": {
-         "Name": "107 - Angel Village"
-      },
-      "Map108": {
-         "Name": "108 - Angel Village"
-      },
-      "Map109": {
-         "Name": "109 - [Angel Village] Dungeon"
-      },
-      "Map110": {
-         "Name": "110 - [Angel Village] Dungeon"
-      },
-      "Map111": {
-         "Name": "111 - [Angel Village] Dungeon"
-      },
-      "Map112": {
-         "Name": "112 - [Angel Village] Dungeon"
-      },
-      "Map113": {
-         "Name": "113 - [Angel Village] Dungeon"
-      },
-      "Map114": {
-         "Name": "114 - [Angel Village] Dungeon"
-      },
-      "Map115": {
-         "Name": "115 - [Angel Village] Dungeon"
-      },
-      "Map116": {
-         "Name": "116 - [Angel Village] Ishtar's Room"
-      },
-      "Map117": {
-         "Name": "117 - [Angel Village] Ishtar's Puzzle Room"
-      },
-      "Map118": {
-         "Name": "118 - ?"
-      },
-      "Map119": {
-         "Name": "119 - ?"
-      },
-      "Map120": {
-         "Name": "120 - Watermia"
-      },
-      "Map121": {
-         "Name": "121 - [Watermia] Partie's House"
-      },
-      "Map122": {
-         "Name": "122 - [Watermia] Lance's Father's House"
-      },
-      "Map123": {
-         "Name": "123 - [Watermia] Gambling Bar"
-      },
-      "Map124": {
-         "Name": "124 - [Watermia] House"
-      },
-      "Map125": {
-         "Name": "125 - [Watermia] Opponent's House"
-      },
-      "Map126": {
-         "Name": "126 - [Watermia] House"
-      },
-      "Map127": {
-         "Name": "127 - [Cutscene] Lilly and Lance in Watermia"
-      },
-      "Map128": {
-         "Name": "128 - ?"
-      },
-      "Map129": {
-         "Name": "129 - ?"
-      },
-      "Map130": {
-         "Name": "130 - China's Great Wall"
-      },
-      "Map131": {
-         "Name": "131 - China's Great Wall"
-      },
-      "Map132": {
-         "Name": "132 - China's Great Wall"
-      },
-      "Map133": {
-         "Name": "133 - China's Great Wall"
-      },
-      "Map134": {
-         "Name": "134 - China's Great Wall"
-      },
-      "Map135": {
-         "Name": "135 - China's Great Wall"
-      },
-      "Map136": {
-         "Name": "136 - China's Great Wall"
-      },
-      "Map137": {
-         "Name": "137 - [Cutscene] Future City"
-      },
-      "Map138": {
-         "Name": "138 - [China's Great Wall] Boss Room"
-      },
-      "Map139": {
-         "Name": "139 - [China's Great Wall] Room with Lance"
-      },
-      "Map140": {
-         "Name": "140 - [Cutscene] Intro (Tower of Babel)"
-      },
-      "Map141": {
-         "Name": "141 - [Cutscene] Intro"
-      },
-      "Map142": {
-         "Name": "142 - [Cutscene] Intro (Angkor Wat)"
-      },
-      "Map143": {
-         "Name": "143 - [Cutscene] Intro (Skeleton)"
-      },
-      "Map144": {
-         "Name": "144 - [Cutscene] Ending (Continents)"
-      },
-      "Map145": {
-         "Name": "145 - City of Euro"
-      },
-      "Map146": {
-         "Name": "146 - [City of Euro] Explorer's House"
-      },
-      "Map147": {
-         "Name": "147 - [City of Euro] House"
-      },
-      "Map148": {
-         "Name": "148 - [City of Euro] Rolek Company"
-      },
-      "Map149": {
-         "Name": "149 - [City of Euro] Rolek Mansion"
-      },
-      "Map150": {
-         "Name": "150 - [City of Euro] Guest Room"
-      },
-      "Map151": {
-         "Name": "151 - [City of Euro] Store"
-      },
-      "Map152": {
-         "Name": "152 - [City of Euro] House"
-      },
-      "Map153": {
-         "Name": "153 - [City of Euro] House"
-      },
-      "Map154": {
-         "Name": "154 - [City of Euro] House"
-      },
-      "Map155": {
-         "Name": "155 - [City of Euro] House"
-      },
-      "Map156": {
-         "Name": "156 - [City of Euro] House"
-      },
-      "Map157": {
-         "Name": "157 - [City of Euro] Shrine"
-      },
-      "Map158": {
-         "Name": "158 - ?"
-      },
-      "Map159": {
-         "Name": "159 - ?"
-      },
-      "Map160": {
-         "Name": "160 - Mountain Temple"
-      },
-      "Map161": {
-         "Name": "161 - Mountain Temple"
-      },
-      "Map162": {
-         "Name": "162 - Mountain Temple"
-      },
-      "Map163": {
-         "Name": "163 - Mountain Temple"
-      },
-      "Map164": {
-         "Name": "164 - Mountain Temple"
-      },
-      "Map165": {
-         "Name": "165 - Mountain Temple"
-      },
-      "Map166": {
-         "Name": "166 - Mountain Temple"
-      },
-      "Map167": {
-         "Name": "167 - Mountain Temple"
-      },
-      "Map168": {
-         "Name": "168 - Mountain Temple"
-      },
-      "Map169": {
-         "Name": "169 - Mountain Temple"
-      },
-      "Map170": {
-         "Name": "170 - ?"
-      },
-      "Map171": {
-         "Name": "171 - ?"
-      },
-      "Map172": {
-         "Name": "172 - Native's Village"
-      },
-      "Map173": {
-         "Name": "173 - [Native's Village] House"
-      },
-      "Map174": {
-         "Name": "174 - [Native's Village] House with Statues"
-      },
-      "Map175": {
-         "Name": "175 - ?"
-      },
-      "Map176": {
-         "Name": "176 - Angkor Wat"
-      },
-      "Map177": {
-         "Name": "177 - Angkor Wat"
-      },
-      "Map178": {
-         "Name": "178 - Angkor Wat"
-      },
-      "Map179": {
-         "Name": "179 - Angkor Wat"
-      },
-      "Map180": {
-         "Name": "180 - Angkor Wat"
-      },
-      "Map181": {
-         "Name": "181 - Angkor Wat"
-      },
-      "Map182": {
-         "Name": "182 - Angkor Wat"
-      },
-      "Map183": {
-         "Name": "183 - Angkor Wat"
-      },
-      "Map184": {
-         "Name": "184 - Angkor Wat"
-      },
-      "Map185": {
-         "Name": "185 - Angkor Wat"
-      },
-      "Map186": {
-         "Name": "186 - Angkor Wat"
-      },
-      "Map187": {
-         "Name": "187 - Angkor Wat"
-      },
-      "Map188": {
-         "Name": "188 - Angkor Wat"
-      },
-      "Map189": {
-         "Name": "189 - Angkor Wat"
-      },
-      "Map190": {
-         "Name": "190 - Angkor Wat"
-      },
-      "Map191": {
-         "Name": "191 - Angkor Wat"
-      },
-      "Map192": {
-         "Name": "192 - [Cutscene] Future"
-      },
-      "Map193": {
-         "Name": "193 - ?"
-      },
-      "Map194": {
-         "Name": "194 - ?"
-      },
-      "Map195": {
-         "Name": "195 - Desert Village Dao"
-      },
-      "Map196": {
-         "Name": "196 - [Desert Village Dao] House"
-      },
-      "Map197": {
-         "Name": "197 - [Desert Village Dao] House with weaving Girls"
-      },
-      "Map198": {
-         "Name": "198 - [Desert Village Dao] Snake Game House"
-      },
-      "Map199": {
-         "Name": "199 - [Desert Village Dao] House"
-      },
-      "Map200": {
-         "Name": "200 - [Desert Village Dao] Neil's House"
-      },
-      "Map201": {
-         "Name": "201 - [Desert Village Dao] House"
-      },
-      "Map202": {
-         "Name": "202 - ?"
-      },
-      "Map203": {
-         "Name": "203 - ?"
-      },
-      "Map204": {
-         "Name": "204 - Pyramid"
-      },
-      "Map205": {
-         "Name": "205 - [Pyramid] Hieroglyph Room"
-      },
-      "Map206": {
-         "Name": "206 - Pyramid"
-      },
-      "Map207": {
-         "Name": "207 - Pyramid"
-      },
-      "Map208": {
-         "Name": "208 - Pyramid"
-      },
-      "Map209": {
-         "Name": "209 - Pyramid"
-      },
-      "Map210": {
-         "Name": "210 - Pyramid"
-      },
-      "Map211": {
-         "Name": "211 - Pyramid"
-      },
-      "Map212": {
-         "Name": "212 - Pyramid"
-      },
-      "Map213": {
-         "Name": "213 - Pyramid"
-      },
-      "Map214": {
-         "Name": "214 - Pyramid"
-      },
-      "Map215": {
-         "Name": "215 - Pyramid"
-      },
-      "Map216": {
-         "Name": "216 - Pyramid"
-      },
-      "Map217": {
-         "Name": "217 - Pyramid"
-      },
-      "Map218": {
-         "Name": "218 - Pyramid"
-      },
-      "Map219": {
-         "Name": "219 - Pyramid"
-      },
-      "Map220": {
-         "Name": "220 - [Cutscene] Parachute"
-      },
-      "Map221": {
-         "Name": "221 - [Pyramid] Boss Room"
-      },
-      "Map222": {
-         "Name": "222 - Tower of Babel"
-      },
-      "Map223": {
-         "Name": "223 - Tower of Babel"
-      },
-      "Map224": {
-         "Name": "224 - Tower of Babel"
-      },
-      "Map225": {
-         "Name": "225 - Tower of Babel"
-      },
-      "Map226": {
-         "Name": "226 - [Tower of Babel] Outside"
-      },
-      "Map227": {
-         "Name": "227 - Tower of Babel"
-      },
-      "Map228": {
-         "Name": "228 - [Tower of Babel] Top"
-      },
-      "Map229": {
-         "Name": "229 - [Cutscene] Ending"
-      },
-      "Map230": {
-         "Name": "230 - Dark Space"
-      },
-      "Map231": {
+"Maps": [
+   {
+      "Name": "0 - ?"
+   },
+   {
+      "Name": "1 - South Cape"
+   },
+   {
+      "Name": "2 - [South Cape] Seaside Cave"
+   },
+   {
+      "Name": "3 - [South Cape] Lance's House"
+   },
+   {
+      "Name": "4 - [South Cape] Erik's House"
+   },
+   {
+      "Name": "5 - [South Cape] Seth's House"
+   },
+   {
+      "Name": "6 - [South Cape] Will's House"
+   },
+   {
+      "Name": "7 - [South Cape] House"
+   },
+   {
+      "Name": "8 - [South Cape] School"
+   },
+   {
+      "Name": "9 - ?"
+   },
+   {
+      "Name": "10 - Edward's Castle"
+   },
+   {
+      "Name": "11 - Edward's Prison"
+   },
+   {
+      "Name": "12 - [Underground Tunnel] Entrance"
+   },
+   {
+      "Name": "13 - [Underground Tunnel]"
+   },
+   {
+      "Name": "14 - [Underground Tunnel]"
+   },
+   {
+      "Name": "15 - [Underground Tunnel]"
+   },
+   {
+      "Name": "16 - [Underground Tunnel]"
+   },
+   {
+      "Name": "17 - [Underground Tunnel]"
+   },
+   {
+      "Name": "18 - [Underground Tunnel]"
+   },
+   {
+      "Name": "19 - [Underground Tunnel] Exit"
+   },
+   {
+      "Name": "20 - ?"
+   },
+   {
+      "Name": "21 - Itory Village"
+   },
+   {
+      "Name": "22 - [Itory Village] House Interior"
+   },
+   {
+      "Name": "23 - [Itory Village] Lilly's House"
+   },
+   {
+      "Name": "24 - [Itory Village] House Interior"
+   },
+   {
+      "Name": "25 - [Itory Village] Cave"
+   },
+   {
+      "Name": "26 - Home of Moon Tribe"
+   },
+   {
+      "Name": "27 - [Home of Moon Tribe] Cave"
+   },
+   {
+      "Name": "28 - [Inca Ruins] Entrance to Ruins"
+   },
+   {
+      "Name": "29 - Inca Ruins"
+   },
+   {
+      "Name": "30 - Inca Ruins"
+   },
+   {
+      "Name": "31 - Inca Ruins"
+   },
+   {
+      "Name": "32 - Inca Ruins"
+   },
+   {
+      "Name": "33 - Inca Ruins"
+   },
+   {
+      "Name": "34 - Inca Ruins"
+   },
+   {
+      "Name": "35 - Inca Ruins"
+   },
+   {
+      "Name": "36 - Inca Ruins"
+   },
+   {
+      "Name": "37 - Inca Ruins"
+   },
+   {
+      "Name": "38 - Inca Ruins"
+   },
+   {
+      "Name": "39 - Inca Ruins"
+   },
+   {
+      "Name": "40 - Inca Ruins"
+   },
+   {
+      "Name": "41 - [Inca Ruins] Boss Room"
+   },
+   {
+      "Name": "42 - [Cutscene] Will's House in the Past"
+   },
+   {
+      "Name": "43 - Deserted Inkan Gold Ship"
+   },
+   {
+      "Name": "44 - Inkan Gold Ship"
+   },
+   {
+      "Name": "45 - [Deserted Inkan Gold Ship] Interior"
+   },
+   {
+      "Name": "46 - [Inkan Gold Ship] Interior"
+   },
+   {
+      "Name": "47 - Raft"
+   },
+   {
+      "Name": "48 - Diamond Coast"
+   },
+   {
+      "Name": "49 - [Diamond Coast] House Interior"
+   },
+   {
+      "Name": "50 - City of Freejia"
+   },
+   {
+      "Name": "51 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "52 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "53 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "54 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "55 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "56 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "57 - [City of Freejia] Hotel Interior"
+   },
+   {
+      "Name": "58 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "59 - [City of Freejia] House Interior"
+   },
+   {
+      "Name": "60 - Labor Market"
+   },
+   {
+      "Name": "61 - Diamond Mine"
+   },
+   {
+      "Name": "62 - Diamond Mine"
+   },
+   {
+      "Name": "63 - Diamond Mine"
+   },
+   {
+      "Name": "64 - Diamond Mine"
+   },
+   {
+      "Name": "65 - Diamond Mine"
+   },
+   {
+      "Name": "66 - Diamond Mine"
+   },
+   {
+      "Name": "67 - Diamond Mine"
+   },
+   {
+      "Name": "68 - Diamond Mine"
+   },
+   {
+      "Name": "69 - [Diamond Mine] Morgue"
+   },
+   {
+      "Name": "70 - Diamond Mine"
+   },
+   {
+      "Name": "71 - [Diamond Mine] Slave Room"
+   },
+   {
+      "Name": "72 - ?"
+   },
+   {
+      "Name": "73 - Neil's Cottage"
+   },
+   {
+      "Name": "74 - ?"
+   },
+   {
+      "Name": "75 - Nazca Plain"
+   },
+   {
+      "Name": "76 - Sky Garden"
+   },
+   {
+      "Name": "77 - Sky Garden"
+   },
+   {
+      "Name": "78 - Sky Garden"
+   },
+   {
+      "Name": "79 - Sky Garden"
+   },
+   {
+      "Name": "80 - Sky Garden"
+   },
+   {
+      "Name": "81 - Sky Garden"
+   },
+   {
+      "Name": "82 - Sky Garden"
+   },
+   {
+      "Name": "83 - Sky Garden"
+   },
+   {
+      "Name": "84 - Sky Garden"
+   },
+   {
+      "Name": "85 - [Sky Garden] Boss Room"
+   },
+   {
+      "Name": "86 - [Sky Garden] Save Room"
+   },
+   {
+      "Name": "87 - ?"
+   },
+   {
+      "Name": "88 - [Cutscene] Airplane 1"
+   },
+   {
+      "Name": "89 - [Cutscene] Airplane 2"
+   },
+   {
+      "Name": "90 - Seaside Palace"
+   },
+   {
+      "Name": "91 - Seaside Palace"
+   },
+   {
+      "Name": "92 - Seaside Palace"
+   },
+   {
+      "Name": "93 - [Seaside Palace] Fountain"
+   },
+   {
+      "Name": "94 - [Seaside Palace] Passage to Mu"
+   },
+   {
+      "Name": "95 - Mu"
+   },
+   {
+      "Name": "96 - Mu"
+   },
+   {
+      "Name": "97 - Mu"
+   },
+   {
+      "Name": "98 - Mu"
+   },
+   {
+      "Name": "99 - [Mu] Room of Hope"
+   },
+   {
+      "Name": "100 - Mu"
+   },
+   {
+      "Name": "101 - Mu"
+   },
+   {
+      "Name": "102 - Mu"
+   },
+   {
+      "Name": "103 - [Mu] Boss Room"
+   },
+   {
+      "Name": "104 - Seaside Tunnel"
+   },
+   {
+      "Name": "105 - [Angel Village] Outside"
+   },
+   {
+      "Name": "106 - [Angel Village] Visitor's Room"
+   },
+   {
+      "Name": "107 - Angel Village"
+   },
+   {
+      "Name": "108 - Angel Village"
+   },
+   {
+      "Name": "109 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "110 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "111 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "112 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "113 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "114 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "115 - [Angel Village] Dungeon"
+   },
+   {
+      "Name": "116 - [Angel Village] Ishtar's Room"
+   },
+   {
+      "Name": "117 - [Angel Village] Ishtar's Puzzle Room"
+   },
+   {
+      "Name": "118 - ?"
+   },
+   {
+      "Name": "119 - ?"
+   },
+   {
+      "Name": "120 - Watermia"
+   },
+   {
+      "Name": "121 - [Watermia] Partie's House"
+   },
+   {
+      "Name": "122 - [Watermia] Lance's Father's House"
+   },
+   {
+      "Name": "123 - [Watermia] Gambling Bar"
+   },
+   {
+      "Name": "124 - [Watermia] House"
+   },
+   {
+      "Name": "125 - [Watermia] Opponent's House"
+   },
+   {
+      "Name": "126 - [Watermia] House"
+   },
+   {
+      "Name": "127 - [Cutscene] Lilly and Lance in Watermia"
+   },
+   {
+      "Name": "128 - ?"
+   },
+   {
+      "Name": "129 - ?"
+   },
+   {
+      "Name": "130 - China's Great Wall"
+   },
+   {
+      "Name": "131 - China's Great Wall"
+   },
+   {
+      "Name": "132 - China's Great Wall"
+   },
+   {
+      "Name": "133 - China's Great Wall"
+   },
+   {
+      "Name": "134 - China's Great Wall"
+   },
+   {
+      "Name": "135 - China's Great Wall"
+   },
+   {
+      "Name": "136 - China's Great Wall"
+   },
+   {
+      "Name": "137 - [Cutscene] Future City"
+   },
+   {
+      "Name": "138 - [China's Great Wall] Boss Room"
+   },
+   {
+      "Name": "139 - [China's Great Wall] Room with Lance"
+   },
+   {
+      "Name": "140 - [Cutscene] Intro (Tower of Babel)"
+   },
+   {
+      "Name": "141 - [Cutscene] Intro"
+   },
+   {
+      "Name": "142 - [Cutscene] Intro (Angkor Wat)"
+   },
+   {
+      "Name": "143 - [Cutscene] Intro (Skeleton)"
+   },
+   {
+      "Name": "144 - [Cutscene] Ending (Continents)"
+   },
+   {
+      "Name": "145 - City of Euro"
+   },
+   {
+      "Name": "146 - [City of Euro] Explorer's House"
+   },
+   {
+      "Name": "147 - [City of Euro] House"
+   },
+   {
+      "Name": "148 - [City of Euro] Rolek Company"
+   },
+   {
+      "Name": "149 - [City of Euro] Rolek Mansion"
+   },
+   {
+      "Name": "150 - [City of Euro] Guest Room"
+   },
+   {
+      "Name": "151 - [City of Euro] Store"
+   },
+   {
+      "Name": "152 - [City of Euro] House"
+   },
+   {
+      "Name": "153 - [City of Euro] House"
+   },
+   {
+      "Name": "154 - [City of Euro] House"
+   },
+   {
+      "Name": "155 - [City of Euro] House"
+   },
+   {
+      "Name": "156 - [City of Euro] House"
+   },
+   {
+      "Name": "157 - [City of Euro] Shrine"
+   },
+   {
+      "Name": "158 - ?"
+   },
+   {
+      "Name": "159 - ?"
+   },
+   {
+      "Name": "160 - Mountain Temple"
+   },
+   {
+      "Name": "161 - Mountain Temple"
+   },
+   {
+      "Name": "162 - Mountain Temple"
+   },
+   {
+      "Name": "163 - Mountain Temple"
+   },
+   {
+      "Name": "164 - Mountain Temple"
+   },
+   {
+      "Name": "165 - Mountain Temple"
+   },
+   {
+      "Name": "166 - Mountain Temple"
+   },
+   {
+      "Name": "167 - Mountain Temple"
+   },
+   {
+      "Name": "168 - Mountain Temple"
+   },
+   {
+      "Name": "169 - Mountain Temple"
+   },
+   {
+      "Name": "170 - ?"
+   },
+   {
+      "Name": "171 - ?"
+   },
+   {
+      "Name": "172 - Native's Village"
+   },
+   {
+      "Name": "173 - [Native's Village] House"
+   },
+   {
+      "Name": "174 - [Native's Village] House with Statues"
+   },
+   {
+      "Name": "175 - ?"
+   },
+   {
+      "Name": "176 - Angkor Wat"
+   },
+   {
+      "Name": "177 - Angkor Wat"
+   },
+   {
+      "Name": "178 - Angkor Wat"
+   },
+   {
+      "Name": "179 - Angkor Wat"
+   },
+   {
+      "Name": "180 - Angkor Wat"
+   },
+   {
+      "Name": "181 - Angkor Wat"
+   },
+   {
+      "Name": "182 - Angkor Wat"
+   },
+   {
+      "Name": "183 - Angkor Wat"
+   },
+   {
+      "Name": "184 - Angkor Wat"
+   },
+   {
+      "Name": "185 - Angkor Wat"
+   },
+   {
+      "Name": "186 - Angkor Wat"
+   },
+   {
+      "Name": "187 - Angkor Wat"
+   },
+   {
+      "Name": "188 - Angkor Wat"
+   },
+   {
+      "Name": "189 - Angkor Wat"
+   },
+   {
+      "Name": "190 - Angkor Wat"
+   },
+   {
+      "Name": "191 - Angkor Wat"
+   },
+   {
+      "Name": "192 - [Cutscene] Future"
+   },
+   {
+      "Name": "193 - ?"
+   },
+   {
+      "Name": "194 - ?"
+   },
+   {
+      "Name": "195 - Desert Village Dao"
+   },
+   {
+      "Name": "196 - [Desert Village Dao] House"
+   },
+   {
+      "Name": "197 - [Desert Village Dao] House with weaving Girls"
+   },
+   {
+      "Name": "198 - [Desert Village Dao] Snake Game House"
+   },
+   {
+      "Name": "199 - [Desert Village Dao] House"
+   },
+   {
+      "Name": "200 - [Desert Village Dao] Neil's House"
+   },
+   {
+      "Name": "201 - [Desert Village Dao] House"
+   },
+   {
+      "Name": "202 - ?"
+   },
+   {
+      "Name": "203 - ?"
+   },
+   {
+      "Name": "204 - Pyramid"
+   },
+   {
+      "Name": "205 - [Pyramid] Hieroglyph Room"
+   },
+   {
+      "Name": "206 - Pyramid"
+   },
+   {
+      "Name": "207 - Pyramid"
+   },
+   {
+      "Name": "208 - Pyramid"
+   },
+   {
+      "Name": "209 - Pyramid"
+   },
+   {
+      "Name": "210 - Pyramid"
+   },
+   {
+      "Name": "211 - Pyramid"
+   },
+   {
+      "Name": "212 - Pyramid"
+   },
+   {
+      "Name": "213 - Pyramid"
+   },
+   {
+      "Name": "214 - Pyramid"
+   },
+   {
+      "Name": "215 - Pyramid"
+   },
+   {
+      "Name": "216 - Pyramid"
+   },
+   {
+      "Name": "217 - Pyramid"
+   },
+   {
+      "Name": "218 - Pyramid"
+   },
+   {
+      "Name": "219 - Pyramid"
+   },
+   {
+      "Name": "220 - [Cutscene] Parachute"
+   },
+   {
+      "Name": "221 - [Pyramid] Boss Room"
+   },
+   {
+      "Name": "222 - Tower of Babel"
+   },
+   {
+      "Name": "223 - Tower of Babel"
+   },
+   {
+      "Name": "224 - Tower of Babel"
+   },
+   {
+      "Name": "225 - Tower of Babel"
+   },
+   {
+      "Name": "226 - [Tower of Babel] Outside"
+   },
+   {
+      "Name": "227 - Tower of Babel"
+   },
+   {
+      "Name": "228 - [Tower of Babel] Top"
+   },
+   {
+      "Name": "229 - [Cutscene] Ending"
+   },
+   {
+      "Name": "230 - Dark Space"
+   },
+      {
          "Name": "231 - [Dark Space] Infinity"
       },
-      "Map232": {
+      {
          "Name": "232 - [Tower of Babel] Boss Room"
       },
-      "Map233": {
+      {
          "Name": "233 - Jeweler's Mansion"
       },
-      "Map234": {
+      {
          "Name": "234 - [Jeweler's Mansion] Boss Room (Chaos Comet)"
       },
-      "Map235": {
+      {
          "Name": "235"
       },
-      "Map236": {
+      {
          "Name": "236"
       },
-      "Map237": {
+      {
          "Name": "237"
       },
-      "Map238": {
+      {
          "Name": "238"
       },
-      "Map239": {
+      {
          "Name": "239"
       },
-      "Map240": {
+      {
          "Name": "240 - [Cutscene] School Ending"
       },
-      "Map241": {
+      {
          "Name": "241"
       },
-      "Map242": {
+      {
          "Name": "242 - [Tower of Babel] Boss Room (Castoth)"
       },
-      "Map243": {
+      {
          "Name": "243 - [Tower of Babel] Boss Room (Viper)"
       },
-      "Map244": {
+      {
          "Name": "244 - [Tower of Babel] Boos Room (Vampires)"
       },
-      "Map245": {
+      {
          "Name": "245 - [Tower of Babel] Boss Room (Sand Fanger)"
       },
-      "Map246": {
+      {
          "Name": "246 - [Tower of Babel] Boss Room (Mummy Queen)"
       },
-      "Map247": {
+      {
          "Name": "247"
       },
-      "Map248": {
+      {
          "Name": "248"
       },
-      "Map249": {
+      {
          "Name": "249"
       },
-      "Map250": {
+      {
          "Name": "250 - Game Start Screen (World Map)"
       },
-      "Map251": {
+      {
          "Name": "251 - Enix Logo"
       },
-      "Map252": {
+      {
          "Name": "252 - Title Screen"
       },
-      "Map253": {
+      {
          "Name": "253"
       },
-      "Map254": {
+      {
          "Name": "254 - World Map"
       },
-      "Map255": {
+      {
          "Name": "255"
       }
-   },
+],
    "MapArrangementData": {
       "Count": "314",
       "MapArrangementData0": {

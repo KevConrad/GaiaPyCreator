@@ -11,15 +11,18 @@ from pubsub import pub
 from PIL import Image
 
 class View_Tilemaps:
-    TILEMAP_IMAGE_PIXEL_HEIGHT = 400
-    TILEMAP_IMAGE_PIXEL_WIDTH = 400
-
     TILE_IMAGE_PIXEL_HEIGHT = 100
     TILE_IMAGE_PIXEL_WIDTH = 100
 
+    TILEMAP_IMAGE_PIXEL_HEIGHT = 400
+    TILEMAP_IMAGE_PIXEL_WIDTH = 400
+
+    TILESET_IMAGE_PIXEL_HEIGHT = 200
+    TILESET_IMAGE_PIXEL_WIDTH = 200
+
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
-        self.tabPage = notebook.GetPage(TabTilemaps.TILEMAP_TAB_INDEX)
+        self.tabPage = notebook.GetPage(TabTilemaps.TILEMAPS_TAB_INDEX)
 
         # tilemaps list box
         self.listBoxTilemaps = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT),
@@ -32,7 +35,6 @@ class View_Tilemaps:
         self.tilemapImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
                                             size=(self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT))
         self.tilemapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
-        
         verticalBoxTilemapImage.Add(labelTilemap)
         verticalBoxTilemapImage.Add(self.tilemapImage)
 
@@ -42,7 +44,6 @@ class View_Tilemaps:
         self.tileImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
                                          size=(self.TILE_IMAGE_PIXEL_WIDTH, self.TILE_IMAGE_PIXEL_HEIGHT))
         self.tileImage.Bind(wx.EVT_LEFT_DOWN, self.onTileImageClick)
-
         verticalBoxTileImage.Add(labelTile)
         verticalBoxTileImage.Add(self.tileImage)
 
@@ -106,13 +107,23 @@ class View_Tilemaps:
         # tile editor horizontal box
         horizontalBoxTileEditor= wx.BoxSizer(wx.HORIZONTAL)
         horizontalBoxTileEditor.Add(verticalBoxTileImage, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxTileEditor.Add(verticalBoxTileProperties, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)        
+        horizontalBoxTileEditor.Add(verticalBoxTileProperties, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+
+        # tileset image
+        verticalBoxTilesetImage = wx.BoxSizer(wx.VERTICAL)
+        labelTileset = wx.StaticText(self.tabPage, label="Tileset:")
+        self.tilesetImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
+                                         size=(self.TILESET_IMAGE_PIXEL_WIDTH, self.TILESET_IMAGE_PIXEL_HEIGHT))
+        self.tilesetImage.Bind(wx.EVT_LEFT_DOWN, self.onTileImageClick)
+        verticalBoxTilesetImage.Add(labelTileset)
+        verticalBoxTilesetImage.Add(self.tilesetImage)   
         
         # tile editor
         verticalBoxTileEditor = wx.BoxSizer(wx.VERTICAL)
         labelTileEditor = wx.StaticText(self.tabPage, label="Tile Editor:")
         verticalBoxTileEditor.Add(labelTileEditor)
         verticalBoxTileEditor.Add(horizontalBoxTileEditor)
+        verticalBoxTileEditor.Add(verticalBoxTilesetImage)
 
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxTilemaps, 0, wx.EXPAND)

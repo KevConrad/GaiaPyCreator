@@ -15,6 +15,8 @@ class TabItems(wx.Panel):
         text = wx.StaticText(self, -1, "Edit item data.", (20,20))
 
 class TabMaps(wx.Panel):
+    MAPS_TAB_INDEX = 2
+
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         text = wx.StaticText(self, -1, "Edit map data.", (20,20))
@@ -45,7 +47,7 @@ class TabTextBox(wx.Panel):
         text = wx.StaticText(self, -1, "Edit textbox data.", (20,20))
 
 class TabTilemaps(wx.Panel):
-    TILEMAP_TAB_INDEX = 8
+    TILEMAPS_TAB_INDEX = 8
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)

@@ -4,6 +4,7 @@
 |-----------------------|----------------|----------------------------------|
 |`items_load`           |-               |Load the items.                   |
 |`maps_load`            |-               |Load the maps.                    |
+|`maps_update`          |-               |Update the map.                   |
 |`project_close`        |-               |Close the project file.           |
 |`project_load`         |-               |Load the project data.            |
 |`project_open`         |projectPath     |Open a project file.              |
