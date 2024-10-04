@@ -33,9 +33,29 @@ class View_Maps:
         verticalBoxMapImage.Add(labelMap)
         verticalBoxMapImage.Add(self.mapImage)
 
+        # map size spinCtrls
+        horizontalBoxMapSize = wx.BoxSizer(wx.HORIZONTAL)
+        labelMapSizeX = wx.StaticText(self.tabPage, label="Size X: ")
+        self.spinCtrlMapSizeX = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlMapSizeX.SetMin(0)
+        self.spinCtrlMapSizeX.SetMax(1024)
+        self.spinCtrlMapSizeY = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlMapSizeY.SetMin(0)
+        self.spinCtrlMapSizeY.SetMax(1024)
+        horizontalBoxMapSize.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxMapSize.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
+        horizontalBoxMapSize.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
+
+        # map data
+        verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
+        labelMapData = wx.StaticText(self.tabPage, label="Map Data:")
+        verticalBoxMapData.Add(labelMapData)
+        verticalBoxMapData.Add(horizontalBoxMapSize)
+
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxMaps, 0, wx.EXPAND)
         horizontalBox.Add(verticalBoxMapImage)
+        horizontalBox.Add(verticalBoxMapData)
         
         self.tabPage.SetSizer(horizontalBox)
         self.tabPage.Fit()
@@ -48,4 +68,16 @@ class View_Maps:
     def onListBox(self, event):
         selectedIndex = self.listBoxMaps.GetSelection()
         pub.sendMessage("maps_update", mapIndex=selectedIndex)
+
+    def update(self, mapImage : PIL.Image, mapData : Model_Map):
+        sizedImage = mapImage.resize((self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT), Image.Resampling.NEAREST)
+        wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
+        wx_image.SetData(sizedImage.convert("RGB").tobytes())
+        bitmap = wx.BitmapFromImage(wx_image)
+        self.mapImage.SetBitmap(bitmap)
+        self.mapImage.Sizer
+
+        # update map data
+        self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
+        self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
 

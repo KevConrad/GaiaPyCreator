@@ -15,6 +15,7 @@ class Controller_Maps:
         self.view = view
 
         pub.subscribe(self.load, "maps_load")
+        pub.subscribe(self.update, "maps_update")
 
     def load(self):
         if self.project.isProjectLoaded == True:
@@ -37,3 +38,10 @@ class Controller_Maps:
 
             address += length
         
+    def update(self, mapIndex):
+        self.mapIndex = mapIndex
+        # read the map data
+        self.maps.maps[self.mapIndex].read()
+        # create the map image
+        mapImage = self.maps.maps[self.mapIndex].getImage(True, True, True, 0)
+        self.view.maps.update(mapImage, self.maps.maps[self.mapIndex])
