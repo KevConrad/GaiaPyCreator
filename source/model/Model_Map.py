@@ -128,20 +128,13 @@ class Model_Map:
         # array which contains the data of both tilesets used by the map
         tilesetGraphicBits = []
 
-        # limit the length of the first tileset data
-        length = Model_Tileset.TILESET_BYTE_SIZE
-        if length == (Model_Tileset.TILESET_BYTE_SIZE * 2):
-            length = Model_Tileset.TILESET_BYTE_SIZE
-        
-        tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG1, offset=0, length=(length * 8)))
+        if self.tilesetIndexBG1 >= 0:
+            tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG1, offset=0,
+                                                               length=Model_Tileset.TILESET_BYTE_SIZE * 8))
         
         if self.tilesetIndexBG2 >= 0:
-            # limit the length of the second tileset data
-            length = Model_Tileset.TILESET_BYTE_SIZE
-            if length == (Model_Tileset.TILESET_BYTE_SIZE * 2):
-                length = Model_Tileset.TILESET_BYTE_SIZE
-        
-            tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG2, offset=0, length=(length * 8)))
+            tilesetGraphicBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG2, offset=0,
+                                                               length=Model_Tileset.TILESET_BYTE_SIZE * 8))
 
         # read the map layers
         pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH

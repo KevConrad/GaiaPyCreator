@@ -1,6 +1,7 @@
 import PIL
 import PIL.Image
 import wx
+import wx.lib.scrolledpanel
 
 from model.Model_Map import Model_Map
 from model.Model_Tile import Model_Tile
@@ -24,14 +25,21 @@ class View_Maps:
                                       style = wx.LB_SINGLE|wx.LB_HSCROLL)
         self.frame.Bind(wx.EVT_LISTBOX, self.onListBox, self.listBoxMaps)
 
+        self.panelMapImage = wx.ScrolledWindow(self.tabPage,-1,
+                                               size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT),
+                                               pos=(0,0), style=wx.SIMPLE_BORDER)
+       
         # map image
         verticalBoxMapImage = wx.BoxSizer(wx.VERTICAL)
-        labelMap = wx.StaticText(self.tabPage, label="Map:")
-        self.mapImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
-                                            size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
-        #self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
-        verticalBoxMapImage.Add(labelMap)
+        self.mapImage = wx.StaticBitmap(self.panelMapImage, wx.ID_ANY, wx.NullBitmap,
+                                        size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
+        # TODO self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
         verticalBoxMapImage.Add(self.mapImage)
+        
+        #self.panelMapImage.SetupScrolling(scroll_x=True, scroll_y=True, scrollIntoView=True)
+        #self.panelMapImage.SetScrollbar(wx.VERTICAL, 0, 16, 50)
+        self.panelMapImage.SetBackgroundColour('#000000')
+        #self.panelMapImage.SetSizer(verticalBoxMapImage)
 
         # map size spinCtrls
         horizontalBoxMapSize = wx.BoxSizer(wx.HORIZONTAL)
@@ -47,15 +55,15 @@ class View_Maps:
         horizontalBoxMapSize.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
 
         # map data
-        verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
+        self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
         labelMapData = wx.StaticText(self.tabPage, label="Map Data:")
-        verticalBoxMapData.Add(labelMapData)
-        verticalBoxMapData.Add(horizontalBoxMapSize)
+        self.verticalBoxMapData.Add(labelMapData)
+        self.verticalBoxMapData.Add(horizontalBoxMapSize)
 
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxMaps, 0, wx.EXPAND)
-        horizontalBox.Add(verticalBoxMapImage)
-        horizontalBox.Add(verticalBoxMapData)
+        horizontalBox.Add(self.panelMapImage)
+        horizontalBox.Add(self.verticalBoxMapData)
         
         self.tabPage.SetSizer(horizontalBox)
         self.tabPage.Fit()
@@ -70,12 +78,28 @@ class View_Maps:
         pub.sendMessage("maps_update", mapIndex=selectedIndex)
 
     def update(self, mapImage : PIL.Image, mapData : Model_Map):
-        sizedImage = mapImage.resize((self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT), Image.Resampling.NEAREST)
+        # update map image
+        sizedImage = mapImage.resize((mapData.sizeX * 20, mapData.sizeY * 20), PIL.Image.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.BitmapFromImage(wx_image)
         self.mapImage.SetBitmap(bitmap)
-        self.mapImage.Sizer
+        
+        xUnits = int(sizedImage.size[0] / self.MAP_IMAGE_PIXEL_WIDTH)
+        yUnits = int(sizedImage.size[1] / self.MAP_IMAGE_PIXEL_HEIGHT)
+        print(xUnits)
+        print(yUnits)
+        
+        #self.panelMapImage.SetScrollbars(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT, xUnits, yUnits)
+        
+        verticalBoxMapImage = wx.BoxSizer(wx.VERTICAL)
+        verticalBoxMapImage.Detach(self.mapImage)
+        verticalBoxMapImage.Add(self.mapImage)
+        self.panelMapImage.SetSizer(verticalBoxMapImage)
+
+        self.panelMapImage.SetScrollbars(1, 1, 1, 1)
+        self.panelMapImage.SetScrollbar(wx.HORIZONTAL, 0, self.MAP_IMAGE_PIXEL_WIDTH, xUnits)
+        self.panelMapImage.SetScrollbar(wx.VERTICAL, 0, self.MAP_IMAGE_PIXEL_HEIGHT, yUnits)
 
         # update map data
         self.spinCtrlMapSizeX.SetValue(mapData.sizeX)

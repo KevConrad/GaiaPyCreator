@@ -159,7 +159,7 @@ class View_Tilemaps:
         pub.sendMessage("tilemaps_update_tile", tileIndex=self.selectedTileIndex, tilePieceIndex=0)
 
     def update(self, tilemapImage : PIL.Image):
-        sizedImage = tilemapImage.resize((self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT), Image.Resampling.NEAREST)
+        sizedImage = tilemapImage.resize((self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.BitmapFromImage(wx_image)
@@ -168,7 +168,7 @@ class View_Tilemaps:
 
     def updateTile(self, tileImage : PIL.Image, tileProperties : Model_Tile):
         # update the tile image
-        sizedImage = tileImage.resize((self.TILE_IMAGE_PIXEL_WIDTH, self.TILE_IMAGE_PIXEL_HEIGHT), Image.Resampling.NEAREST)
+        sizedImage = tileImage.resize((self.TILE_IMAGE_PIXEL_WIDTH, self.TILE_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.BitmapFromImage(wx_image)
