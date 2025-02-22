@@ -13,6 +13,68 @@ from pubsub import pub
 from PIL import Image
 
 class View_Maps:
+
+    class TabEditor(wx.Panel):
+        EDITOR_TAB_INDEX = 0
+
+        def __init__(self, parent):
+            wx.Panel.__init__(self, parent)
+            text = wx.StaticText(self, -1, "Edit map.", (20,20))
+
+    class TabEvents(wx.Panel):
+        EVENTS_TAB_INDEX = 1
+
+        def __init__(self, parent):
+            wx.Panel.__init__(self, parent)
+            text = wx.StaticText(self, -1, "Edit map event data.", (20,20))
+
+    class TabExits(wx.Panel):
+        EXITS_TAB_INDEX = 2
+
+        def __init__(self, parent):
+            wx.Panel.__init__(self, parent)
+            text = wx.StaticText(self, -1, "Edit map exit data.", (20,20))
+
+    class TabProperties(wx.Panel):
+        PROPERTIES_TAB_INDEX = 3
+
+        def __init__(self, parent, tabPage):
+            wx.Panel.__init__(self, parent)
+            text = wx.StaticText(self, -1, "Edit map properties.", (20,20))
+
+            # map size spinCtrls
+            #horizontalBoxMapSize = wx.BoxSizer(wx.HORIZONTAL)
+            #labelMapSizeX = wx.StaticText(tabPage, label="Size X: ")
+            #self.spinCtrlMapSizeX = wx.SpinCtrl(tabPage, style=wx.SP_ARROW_KEYS)
+            #self.spinCtrlMapSizeX.SetMin(0)
+            #self.spinCtrlMapSizeX.SetMax(1024)
+            #self.spinCtrlMapSizeY = wx.SpinCtrl(tabPage, style=wx.SP_ARROW_KEYS)
+            #self.spinCtrlMapSizeY.SetMin(0)
+            #self.spinCtrlMapSizeY.SetMax(1024)
+            #horizontalBoxMapSize.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+            #horizontalBoxMapSize.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
+            #horizontalBoxMapSize.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
+
+            # map data
+            #self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
+            #labelMapData = wx.StaticText(tabPage, label="Map Data:")
+            #self.verticalBoxMapData.Add(labelMapData)
+            #self.verticalBoxMapData.Add(horizontalBoxMapSize)
+
+    class TabSprites(wx.Panel):
+        SPRITES_TAB_INDEX = 2
+
+        def __init__(self, parent):
+            wx.Panel.__init__(self, parent)
+            text = wx.StaticText(self, -1, "Edit map sprite data.", (20,20))
+
+    class TabTreasures(wx.Panel):
+        SPRITES_TAB_INDEX = 2
+
+        def __init__(self, parent):
+            wx.Panel.__init__(self, parent)
+            text = wx.StaticText(self, -1, "Edit map treasure data.", (20,20))
+
     MAP_IMAGE_PIXEL_HEIGHT = 400
     MAP_IMAGE_PIXEL_WIDTH = 400
 
@@ -41,34 +103,43 @@ class View_Maps:
         self.panelMapImage.SetBackgroundColour('#000000')
         #self.panelMapImage.SetSizer(verticalBoxMapImage)
 
-        # map size spinCtrls
-        horizontalBoxMapSize = wx.BoxSizer(wx.HORIZONTAL)
-        labelMapSizeX = wx.StaticText(self.tabPage, label="Size X: ")
-        self.spinCtrlMapSizeX = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlMapSizeX.SetMin(0)
-        self.spinCtrlMapSizeX.SetMax(1024)
-        self.spinCtrlMapSizeY = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlMapSizeY.SetMin(0)
-        self.spinCtrlMapSizeY.SetMax(1024)
-        horizontalBoxMapSize.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxMapSize.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
-        horizontalBoxMapSize.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
-
-        # map data
-        self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
-        labelMapData = wx.StaticText(self.tabPage, label="Map Data:")
-        self.verticalBoxMapData.Add(labelMapData)
-        self.verticalBoxMapData.Add(horizontalBoxMapSize)
+        self.mapDataTabs = self.initMapDataTabs(self.tabPage)
 
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxMaps, 0, wx.EXPAND)
         horizontalBox.Add(self.panelMapImage)
-        horizontalBox.Add(self.verticalBoxMapData)
+        horizontalBox.Add(self.mapDataTabs)
         
         self.tabPage.SetSizer(horizontalBox)
         self.tabPage.Fit()
 
         self.frame.Show(True)
+
+    def initMapDataTabs(self, parent):
+        mapDataTabs = wx.Notebook(parent, size=(400, 400))
+
+        # Initiation of the tab windows:
+        self.tabEditor = self.TabEditor(mapDataTabs)
+        self.tabEvents = self.TabEvents(mapDataTabs)
+        self.tabExits = self.TabExits(mapDataTabs)
+        self.tabProperties = self.TabProperties(mapDataTabs, parent)
+        self.tabSprites = self.TabSprites(mapDataTabs)
+        self.tabTreasures = self.TabTreasures(mapDataTabs)
+
+        # Assigning names to tabs and adding them:
+        mapDataTabs.AddPage(self.tabEditor, "Edit")
+        mapDataTabs.AddPage(self.tabEvents, "Events")
+        mapDataTabs.AddPage(self.tabExits, "Exits")
+        mapDataTabs.AddPage(self.tabProperties, "Properties")
+        mapDataTabs.AddPage(self.tabSprites, "Sprites")
+        mapDataTabs.AddPage(self.tabTreasures, "Treasures")
+
+        mapDataTabs.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.handleTabChanged)
+
+        return mapDataTabs
+
+    def handleTabChanged(self, event):
+        pass
 
     def load(self, mapNames):
         self.listBoxMaps.Set(mapNames)
