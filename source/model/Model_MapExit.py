@@ -59,6 +59,7 @@ class Model_MapExit:
             # read the map size
             self.mapSizeX = (self.romData[readOffset] & 0xF0) * 16
             self.mapSizeY = ((self.romData[readOffset] & 0xF0) >> 4) * 16
+            readOffset += 1
         else:
             self.stairsByte0 = self.romData[readOffset]
             readOffset += 1

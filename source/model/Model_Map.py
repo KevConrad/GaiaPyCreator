@@ -12,8 +12,10 @@ from model.Model_MapDataScreenSettings import Model_MapDataScreenSettings
 from model.Model_MapDataSprites import Model_MapDataSprites
 from model.Model_MapDataTilemap import Model_MapDataTilemap
 from model.Model_MapDataTileset import Model_MapDataTileset
+from model.Model_MapExits import Model_MapExits
 from model.Model_Palette import Model_Palette
 from model.Model_Paletteset import Model_Paletteset
+from model.Model_RomDataTable import Model_RomDataTable
 from model.Model_Tilemap import Model_Tilemap
 from model.Model_Tileset import Model_Tileset
 
@@ -22,7 +24,7 @@ import bitstring
 import PIL
 
 class Model_Map:
-    def __init__(self, romData, mapData : dict, tilemapData : dict, tilesetsData : dict, mapDataTableEntry : Model_MapData) -> None:
+    def __init__(self, romData, mapData : dict, projectData : dict, mapDataTableEntry : Model_MapData, mapIndex) -> None:
         self.romData = romData
 
         # read the data from the JSON file
@@ -81,6 +83,14 @@ class Model_Map:
             self.sizeY = self.mapDataArrangement[0].sizeY
         else:
             self.sizeY = 0
+
+        # TODO read the map event data
+
+        # read the map exit data
+        exitDataTableAddress = int(str(projectData['DataTables']['MapExitTable']['Address']), 16)
+        exitDataTableSize = int(projectData['DataTables']['MapExitTable']['Size'], base=16)
+        exitDataTable = Model_RomDataTable(self.romData, exitDataTableAddress, exitDataTableSize)  
+        self.exits = Model_MapExits(self.romData, exitDataTable.getDataAddress(mapIndex))
 
     def read(self):
         if len(self.mapDataArrangement) > 0:
