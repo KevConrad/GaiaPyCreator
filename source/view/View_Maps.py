@@ -33,33 +33,72 @@ class View_Maps:
 
         def __init__(self, parent):
             wx.Panel.__init__(self, parent)
-            text = wx.StaticText(self, -1, "Edit map exit data.", (20,20))
+            
+            # exit selection controls
+            horizontalBoxExitSelection = wx.BoxSizer(wx.HORIZONTAL)
+            labelExitSelection = wx.StaticText(self, label="Exit: ")
+            self.spinCtrlExitCurrent = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+            self.spinCtrlExitCurrent.SetMin(0)
+            self.spinCtrlExitCurrent.SetMax(1024)
+            labelExitSelectionSlash = wx.StaticText(self, label=" / ")
+            self.spinCtrlExitCount = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+            self.spinCtrlExitCount.SetMin(0)
+            self.spinCtrlExitCount.SetMax(1024)
+            horizontalBoxExitSelection.Add(labelExitSelection, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+            horizontalBoxExitSelection.Add(self.spinCtrlExitCurrent, wx.EXPAND|wx.ALL)
+            horizontalBoxExitSelection.Add(labelExitSelectionSlash, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+            horizontalBoxExitSelection.Add(self.spinCtrlExitCount, wx.EXPAND|wx.ALL)
+
+            # exit data
+            self.verticalBoxExitData = wx.BoxSizer(wx.VERTICAL)
+            labelExitData = wx.StaticText(self, label="Exit Data:")
+            self.verticalBoxExitData.Add(labelExitData)
+            self.verticalBoxExitData.Add(horizontalBoxExitSelection)
+
+            self.SetSizer(self.verticalBoxExitData)
+            self.Fit()
+        
+        def update(self, mapData : Model_Map):
+            self.spinCtrlExitCurrent.SetValue(0)
+            self.spinCtrlExitCount.SetValue(len(mapData.exits.teleports))
 
     class TabProperties(wx.Panel):
         PROPERTIES_TAB_INDEX = 3
 
-        def __init__(self, parent, tabPage):
+        def __init__(self, parent):
             wx.Panel.__init__(self, parent)
-            text = wx.StaticText(self, -1, "Edit map properties.", (20,20))
 
-            # map size spinCtrls
-            #horizontalBoxMapSize = wx.BoxSizer(wx.HORIZONTAL)
-            #labelMapSizeX = wx.StaticText(tabPage, label="Size X: ")
-            #self.spinCtrlMapSizeX = wx.SpinCtrl(tabPage, style=wx.SP_ARROW_KEYS)
-            #self.spinCtrlMapSizeX.SetMin(0)
-            #self.spinCtrlMapSizeX.SetMax(1024)
-            #self.spinCtrlMapSizeY = wx.SpinCtrl(tabPage, style=wx.SP_ARROW_KEYS)
-            #self.spinCtrlMapSizeY.SetMin(0)
-            #self.spinCtrlMapSizeY.SetMax(1024)
-            #horizontalBoxMapSize.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-            #horizontalBoxMapSize.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
-            #horizontalBoxMapSize.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
+            # map size X controls
+            horizontalBoxMapSizeX = wx.BoxSizer(wx.HORIZONTAL)
+            labelMapSizeX = wx.StaticText(self, label="Size X: ")
+            self.spinCtrlMapSizeX = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+            self.spinCtrlMapSizeX.SetMin(0)
+            self.spinCtrlMapSizeX.SetMax(1024)
+            horizontalBoxMapSizeX.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+            horizontalBoxMapSizeX.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
+
+            # map size Y controls
+            horizontalBoxMapSizeY = wx.BoxSizer(wx.HORIZONTAL)
+            labelMapSizeY = wx.StaticText(self, label="Size Y: ")
+            self.spinCtrlMapSizeY = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+            self.spinCtrlMapSizeY.SetMin(0)
+            self.spinCtrlMapSizeY.SetMax(1024)
+            horizontalBoxMapSizeY.Add(labelMapSizeY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+            horizontalBoxMapSizeY.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
 
             # map data
-            #self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
-            #labelMapData = wx.StaticText(tabPage, label="Map Data:")
-            #self.verticalBoxMapData.Add(labelMapData)
-            #self.verticalBoxMapData.Add(horizontalBoxMapSize)
+            self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
+            labelMapData = wx.StaticText(self, label="Map Data:")
+            self.verticalBoxMapData.Add(labelMapData)
+            self.verticalBoxMapData.Add(horizontalBoxMapSizeX)
+            self.verticalBoxMapData.Add(horizontalBoxMapSizeY)
+
+            self.SetSizer(self.verticalBoxMapData)
+            self.Fit()
+        
+        def update(self, mapData : Model_Map):
+            self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
+            self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
 
     class TabSprites(wx.Panel):
         SPRITES_TAB_INDEX = 2
@@ -122,7 +161,7 @@ class View_Maps:
         self.tabEditor = self.TabEditor(mapDataTabs)
         self.tabEvents = self.TabEvents(mapDataTabs)
         self.tabExits = self.TabExits(mapDataTabs)
-        self.tabProperties = self.TabProperties(mapDataTabs, parent)
+        self.tabProperties = self.TabProperties(mapDataTabs)
         self.tabSprites = self.TabSprites(mapDataTabs)
         self.tabTreasures = self.TabTreasures(mapDataTabs)
 
@@ -149,6 +188,10 @@ class View_Maps:
         pub.sendMessage("maps_update", mapIndex=selectedIndex)
 
     def update(self, mapImage : PIL.Image, mapData : Model_Map):
+        # update map properties
+        self.tabExits.update(mapData)
+        self.tabProperties.update(mapData)
+
         # update map image
         sizedImage = mapImage.resize((mapData.sizeX * 20, mapData.sizeY * 20), PIL.Image.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
@@ -171,8 +214,4 @@ class View_Maps:
         self.panelMapImage.SetScrollbars(1, 1, 1, 1)
         self.panelMapImage.SetScrollbar(wx.HORIZONTAL, 0, self.MAP_IMAGE_PIXEL_WIDTH, xUnits)
         self.panelMapImage.SetScrollbar(wx.VERTICAL, 0, self.MAP_IMAGE_PIXEL_HEIGHT, yUnits)
-
-        # update map data
-        self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
-        self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
 
