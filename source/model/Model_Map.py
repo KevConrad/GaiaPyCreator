@@ -155,7 +155,7 @@ class Model_Map:
         #mapLayerOrder = screenSettings.getMapLayerOrderBits();
         #if ((mapLayerOrder.mapLayerOrder.hasNormalMapLayers == false) and (data.GetDataCount(MapDataTableEntry.EDataset.arrangementData) > 1)) //TODO: Query of arrangementCount > 1 should not be necessary!
             #if isBG2LayerDisplayed is True:
-        print("Size X: " + str(self.sizeX))
+
         pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)
                 #if isBG1LayerDisplayed is True:
                 #    displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)              
@@ -213,7 +213,7 @@ class Model_Map:
         # loop through all map block rows (offset = 65536)
         for blockY in range(int(float(self.mapDataArrangement[layer].sizeY / 16))):
             # loop through all map blocks of a map block row (offset = 256)
-            for blockX in range (int(float(self.mapDataArrangement[layer].sizeY / 16))):
+            for blockX in range (int(float(self.mapDataArrangement[layer].sizeX / 16))):
                 # loop through the 16 map tile rows of a map block (offset = 256)
                 for tileY in range (16):
                     # loop through the 16 map tiles of a map tile row
