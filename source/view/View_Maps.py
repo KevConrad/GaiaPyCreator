@@ -7,6 +7,12 @@ from model.Model_Map import Model_Map
 from model.Model_Tile import Model_Tile
 from model.Model_Tilemap import Model_Tilemap
 from view.View_Common import View_Common
+from view.View_MapTabEditor import View_MapTabEditor
+from view.View_MapTabEvents import View_MapTabEvents
+from view.View_MapTabExits import View_MapTabExits
+from view.View_MapTabProperties import View_MapTabProperties
+from view.View_MapTabSprites import View_MapTabSprites
+from view.View_MapTabTreasures import View_MapTabTreasures
 from view.View_Tabs import TabMaps
 
 from pubsub import pub
@@ -27,40 +33,6 @@ class View_Maps:
         def __init__(self, parent):
             wx.Panel.__init__(self, parent)
             text = wx.StaticText(self, -1, "Edit map event data.", (20,20))
-
-    class TabExits(wx.Panel):
-        EXITS_TAB_INDEX = 2
-
-        def __init__(self, parent):
-            wx.Panel.__init__(self, parent)
-            
-            # exit selection controls
-            horizontalBoxExitSelection = wx.BoxSizer(wx.HORIZONTAL)
-            labelExitSelection = wx.StaticText(self, label="Exit: ")
-            self.spinCtrlExitCurrent = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-            self.spinCtrlExitCurrent.SetMin(0)
-            self.spinCtrlExitCurrent.SetMax(1024)
-            labelExitSelectionSlash = wx.StaticText(self, label=" / ")
-            self.spinCtrlExitCount = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-            self.spinCtrlExitCount.SetMin(0)
-            self.spinCtrlExitCount.SetMax(1024)
-            horizontalBoxExitSelection.Add(labelExitSelection, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-            horizontalBoxExitSelection.Add(self.spinCtrlExitCurrent, wx.EXPAND|wx.ALL)
-            horizontalBoxExitSelection.Add(labelExitSelectionSlash, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-            horizontalBoxExitSelection.Add(self.spinCtrlExitCount, wx.EXPAND|wx.ALL)
-
-            # exit data
-            self.verticalBoxExitData = wx.BoxSizer(wx.VERTICAL)
-            labelExitData = wx.StaticText(self, label="Exit Data:")
-            self.verticalBoxExitData.Add(labelExitData)
-            self.verticalBoxExitData.Add(horizontalBoxExitSelection)
-
-            self.SetSizer(self.verticalBoxExitData)
-            self.Fit()
-        
-        def update(self, mapData : Model_Map):
-            self.spinCtrlExitCurrent.SetValue(0)
-            self.spinCtrlExitCount.SetValue(len(mapData.exits.teleports))
 
     class TabProperties(wx.Panel):
         PROPERTIES_TAB_INDEX = 3
@@ -158,12 +130,12 @@ class View_Maps:
         mapDataTabs = wx.Notebook(parent, size=(400, 400))
 
         # Initiation of the tab windows:
-        self.tabEditor = self.TabEditor(mapDataTabs)
-        self.tabEvents = self.TabEvents(mapDataTabs)
-        self.tabExits = self.TabExits(mapDataTabs)
-        self.tabProperties = self.TabProperties(mapDataTabs)
-        self.tabSprites = self.TabSprites(mapDataTabs)
-        self.tabTreasures = self.TabTreasures(mapDataTabs)
+        self.tabEditor = View_MapTabEditor(mapDataTabs)
+        self.tabEvents = View_MapTabEvents(mapDataTabs)
+        self.tabExits = View_MapTabExits(mapDataTabs)
+        self.tabProperties = View_MapTabProperties(mapDataTabs)
+        self.tabSprites = View_MapTabSprites(mapDataTabs)
+        self.tabTreasures = View_MapTabTreasures(mapDataTabs)
 
         # Assigning names to tabs and adding them:
         mapDataTabs.AddPage(self.tabEditor, "Edit")
