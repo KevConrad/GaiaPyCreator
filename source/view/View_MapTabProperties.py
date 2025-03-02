@@ -11,6 +11,13 @@ class View_MapTabProperties(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
 
+        # map name controls
+        self.labelName = wx.StaticText(self, label="Name:")
+        self.textCtrlName = wx.TextCtrl(self, value="", size=(200, 24))
+        horizontalBoxName = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalBoxName.Add(self.labelName, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,)
+        horizontalBoxName.Add(self.textCtrlName, wx.EXPAND|wx.ALL)
+
         # map size X controls
         horizontalBoxMapSizeX = wx.BoxSizer(wx.HORIZONTAL)
         labelMapSizeX = wx.StaticText(self, label="Size X: ")
@@ -33,6 +40,7 @@ class View_MapTabProperties(wx.Panel):
         self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
         labelMapData = wx.StaticText(self, label="Map Data:")
         self.verticalBoxMapData.Add(labelMapData)
+        self.verticalBoxMapData.Add(horizontalBoxName)
         self.verticalBoxMapData.Add(horizontalBoxMapSizeX)
         self.verticalBoxMapData.Add(horizontalBoxMapSizeY)
 
@@ -40,5 +48,6 @@ class View_MapTabProperties(wx.Panel):
         self.Fit()
     
     def update(self, mapData : Model_Map):
+        self.textCtrlName.SetValue(mapData.events.displayedName)
         self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
         self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
