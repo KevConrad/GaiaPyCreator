@@ -12,6 +12,7 @@ from model.Model_MapDataScreenSettings import Model_MapDataScreenSettings
 from model.Model_MapDataSprites import Model_MapDataSprites
 from model.Model_MapDataTilemap import Model_MapDataTilemap
 from model.Model_MapDataTileset import Model_MapDataTileset
+from model.Model_MapEvents import Model_MapEvents
 from model.Model_MapExits import Model_MapExits
 from model.Model_Palette import Model_Palette
 from model.Model_Paletteset import Model_Paletteset
@@ -84,7 +85,11 @@ class Model_Map:
         else:
             self.sizeY = 0
 
-        # TODO read the map event data
+        # read the map event data
+        eventDataTableAddress = int(str(projectData['DataTables']['MapEventTable']['Address']), 16)
+        eventDataTableSize = int(projectData['DataTables']['MapEventTable']['Size'], base=16)
+        eventDataTable = Model_RomDataTable(self.romData, eventDataTableAddress, eventDataTableSize)  
+        self.events = Model_MapEvents(self.romData, eventDataTable.getDataAddress(mapIndex))
 
         # read the map exit data
         exitDataTableAddress = int(str(projectData['DataTables']['MapExitTable']['Address']), 16)
