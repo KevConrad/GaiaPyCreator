@@ -161,7 +161,8 @@ class View_Maps:
 
     def update(self, mapImage : PIL.Image, mapData : Model_Map):
         # update map properties
-        self.tabExits.update(mapData)
+        self.tabEvents.update(mapData)
+        self.tabExits.update(mapData, 0)
         self.tabProperties.update(mapData)
 
         # update map image

@@ -10,4 +10,32 @@ class View_MapTabEvents(wx.Panel):
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit map event data.", (20,20))
+        
+        # event selection controls
+        horizontalBoxEventSelection = wx.BoxSizer(wx.HORIZONTAL)
+        labelEventSelection = wx.StaticText(self, label="Event: ")
+        self.spinCtrlEventCurrent = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlEventCurrent.SetMin(0)
+        self.spinCtrlEventCurrent.SetMax(1024)
+        labelEventSelectionSlash = wx.StaticText(self, label=" / ")
+        self.spinCtrlEventCount = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlEventCount.SetMin(0)
+        self.spinCtrlEventCount.SetMax(1024)
+        horizontalBoxEventSelection.Add(labelEventSelection, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxEventSelection.Add(self.spinCtrlEventCurrent, wx.EXPAND|wx.ALL)
+        horizontalBoxEventSelection.Add(labelEventSelectionSlash, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxEventSelection.Add(self.spinCtrlEventCount, wx.EXPAND|wx.ALL)
+
+        # event data
+        self.verticalBoxEventData = wx.BoxSizer(wx.VERTICAL)
+        labelEventData = wx.StaticText(self, label="Event Data:")
+        self.verticalBoxEventData.Add(labelEventData)
+        self.verticalBoxEventData.Add(horizontalBoxEventSelection)
+
+        self.SetSizer(self.verticalBoxEventData)
+        self.Fit()
+
+    def update(self, mapData : Model_Map):
+        self.mapData = mapData
+        self.spinCtrlEventCurrent.SetValue(0)
+        self.spinCtrlEventCount.SetValue(len(self.mapData.events.events))

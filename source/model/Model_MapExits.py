@@ -8,18 +8,17 @@ class Model_MapExits:
         readOffset = address
 
         # read all exit teleport data sets
-        self.teleports = []
+        self.exits = []
         while (romData[readOffset] != self.EXIT_DATA_SET_END):
             exitData = Model_MapExit(romData, readOffset, Model_MapExit.ExitType.TELEPORT)
-            self.teleports.append(exitData)
+            self.exits.append(exitData)
             readOffset += exitData.size
                                         
         readOffset += 1
 
         # read all exit stairs data sets
-        self.steps = []
         while (romData[readOffset] != self.EXIT_DATA_SET_END):
             exitData = Model_MapExit(romData, readOffset, Model_MapExit.ExitType.STAIRS)
-            self.steps.append(exitData)
+            self.exits.append(exitData)
             readOffset += exitData.size
 
