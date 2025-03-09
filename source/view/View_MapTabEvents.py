@@ -37,5 +37,13 @@ class View_MapTabEvents(wx.Panel):
 
     def update(self, mapData : Model_Map):
         self.mapData = mapData
-        self.spinCtrlEventCurrent.SetValue(0)
+
+        if (len(self.mapData.events.events) > 0):
+            self.spinCtrlEventCurrent.SetMin(1)
+            self.spinCtrlEventCurrent.SetValue(1)
+        else:
+            self.spinCtrlEventCurrent.SetMin(0)
+            self.spinCtrlEventCurrent.SetValue(0)
+
+        self.spinCtrlEventCurrent.SetMax(len(self.mapData.events.events))
         self.spinCtrlEventCount.SetValue(len(self.mapData.events.events))

@@ -3,6 +3,7 @@
 import wx
 import wx.lib.scrolledpanel
 
+from model.Model_MapExit import Model_MapExit
 from model.Model_Map import Model_Map
 
 class View_MapTabExits(wx.Panel):
@@ -42,12 +43,42 @@ class View_MapTabExits(wx.Panel):
         horizontalBoxExitPosition.Add(labelExitPositionY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxExitPosition.Add(self.spinCtrlExitPositionY, wx.EXPAND|wx.ALL)
 
+        # exit size controls
+        horizontalBoxExitSize = wx.BoxSizer(wx.HORIZONTAL)
+        labelExitWidth = wx.StaticText(self, label="Width: ")
+        self.spinCtrlExitWidth = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlExitWidth.SetMin(0)
+        self.spinCtrlExitWidth.SetMax(1024)
+        labelExitHeight = wx.StaticText(self, label="Height: ")
+        self.spinCtrlExitHeight = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlExitHeight.SetMin(0)
+        self.spinCtrlExitHeight.SetMax(1024)
+        horizontalBoxExitSize.Add(labelExitWidth, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitSize.Add(self.spinCtrlExitWidth, wx.EXPAND|wx.ALL)
+        horizontalBoxExitSize.Add(labelExitHeight, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitSize.Add(self.spinCtrlExitHeight, wx.EXPAND|wx.ALL)
+        
+        # edit type controls
+        horizontalBoxExitType = wx.BoxSizer(wx.HORIZONTAL)
+        labelExitType = wx.StaticText(self, label="Type: ")
+        labelExitTypeTeleport = wx.StaticText(self, label="Teleport")
+        self.checkBoxExitTypeTeleport = wx.CheckBox(self)
+        labelExitTypeStairs = wx.StaticText(self, label="Stairs")
+        self.checkBoxExitTypeStairs = wx.CheckBox(self)
+        horizontalBoxExitType.Add(labelExitType, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitType.Add(labelExitTypeTeleport, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitType.Add(self.checkBoxExitTypeTeleport, wx.EXPAND|wx.ALL)
+        horizontalBoxExitType.Add(labelExitTypeStairs, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitType.Add(self.checkBoxExitTypeStairs, wx.EXPAND|wx.ALL)
+
         # exit data
         self.verticalBoxExitData = wx.BoxSizer(wx.VERTICAL)
         labelExitData = wx.StaticText(self, label="Exit Data:")
         self.verticalBoxExitData.Add(labelExitData)
         self.verticalBoxExitData.Add(horizontalBoxExitSelection)
         self.verticalBoxExitData.Add(horizontalBoxExitPosition)
+        self.verticalBoxExitData.Add(horizontalBoxExitSize)
+        self.verticalBoxExitData.Add(horizontalBoxExitType)
 
         self.SetSizer(self.verticalBoxExitData)
         self.Fit()
@@ -55,17 +86,46 @@ class View_MapTabExits(wx.Panel):
     def onExitSelectionChanged(self, event):
         self.updateSelectedExit(self.spinCtrlExitCurrent.GetValue())
     
-    def update(self, mapData : Model_Map, exitIndex):
+    def update(self, mapData : Model_Map):
         self.mapData = mapData
         
-        self.spinCtrlExitCurrent.SetValue(0)
+        if (len(self.mapData.exits.exits) > 0):
+            self.spinCtrlExitCurrent.SetMin(1)
+            self.spinCtrlExitCurrent.SetValue(1)
+            self.updateSelectedExit(1)
+        else:
+            self.spinCtrlExitCurrent.SetMin(0)
+            self.spinCtrlExitCurrent.SetValue(0)
+            self.updateSelectedExit(0)
+        
+        self.spinCtrlExitCurrent.SetMax(len(self.mapData.exits.exits))
         self.spinCtrlExitCount.SetValue(len(self.mapData.exits.exits))
-        self.updateSelectedExit(exitIndex)
-
+        
     def updateSelectedExit(self, exitIndex):
         if exitIndex < 0 or exitIndex >= len(self.mapData.exits.exits):
             return
         
-        exitData = self.mapData.exits.exits[exitIndex]
-        self.spinCtrlExitPositionX.SetValue(exitData.positionX)
-        self.spinCtrlExitPositionY.SetValue(exitData.positionY)
+        if (exitIndex > 0):
+            exitIndex -= 1
+            exitData = self.mapData.exits.exits[exitIndex]
+            self.spinCtrlExitPositionX.SetValue(exitData.positionX)
+            self.spinCtrlExitPositionY.SetValue(exitData.positionY)
+            self.spinCtrlExitWidth.SetValue(exitData.width)
+            self.spinCtrlExitHeight.SetValue(exitData.height)
+
+            if exitData.type == Model_MapExit.ExitType.TELEPORT:
+                self.checkBoxExitTypeTeleport.SetValue(True)
+                self.checkBoxExitTypeStairs.SetValue(False)
+            elif exitData.type == Model_MapExit.ExitType.STAIRS:
+                self.checkBoxExitTypeTeleport.SetValue(False)
+                self.checkBoxExitTypeStairs.SetValue(True)
+            else:
+                self.checkBoxExitTypeTeleport.SetValue(False)
+                self.checkBoxExitTypeStairs.SetValue(False)
+        else:
+            self.spinCtrlExitPositionX.SetValue(0)
+            self.spinCtrlExitPositionY.SetValue(0)
+            self.spinCtrlExitWidth.SetValue(0)
+            self.spinCtrlExitHeight.SetValue(0)
+            self.checkBoxExitTypeTeleport.SetValue(False)
+            self.checkBoxExitTypeStairs.SetValue(False)
