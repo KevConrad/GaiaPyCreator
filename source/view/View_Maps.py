@@ -19,73 +19,6 @@ from pubsub import pub
 from PIL import Image
 
 class View_Maps:
-
-    class TabEditor(wx.Panel):
-        EDITOR_TAB_INDEX = 0
-
-        def __init__(self, parent):
-            wx.Panel.__init__(self, parent)
-            text = wx.StaticText(self, -1, "Edit map.", (20,20))
-
-    class TabEvents(wx.Panel):
-        EVENTS_TAB_INDEX = 1
-
-        def __init__(self, parent):
-            wx.Panel.__init__(self, parent)
-            text = wx.StaticText(self, -1, "Edit map event data.", (20,20))
-
-    class TabProperties(wx.Panel):
-        PROPERTIES_TAB_INDEX = 3
-
-        def __init__(self, parent):
-            wx.Panel.__init__(self, parent)
-
-            # map size X controls
-            horizontalBoxMapSizeX = wx.BoxSizer(wx.HORIZONTAL)
-            labelMapSizeX = wx.StaticText(self, label="Size X: ")
-            self.spinCtrlMapSizeX = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-            self.spinCtrlMapSizeX.SetMin(0)
-            self.spinCtrlMapSizeX.SetMax(1024)
-            horizontalBoxMapSizeX.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-            horizontalBoxMapSizeX.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
-
-            # map size Y controls
-            horizontalBoxMapSizeY = wx.BoxSizer(wx.HORIZONTAL)
-            labelMapSizeY = wx.StaticText(self, label="Size Y: ")
-            self.spinCtrlMapSizeY = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-            self.spinCtrlMapSizeY.SetMin(0)
-            self.spinCtrlMapSizeY.SetMax(1024)
-            horizontalBoxMapSizeY.Add(labelMapSizeY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-            horizontalBoxMapSizeY.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
-
-            # map data
-            self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
-            labelMapData = wx.StaticText(self, label="Map Data:")
-            self.verticalBoxMapData.Add(labelMapData)
-            self.verticalBoxMapData.Add(horizontalBoxMapSizeX)
-            self.verticalBoxMapData.Add(horizontalBoxMapSizeY)
-
-            self.SetSizer(self.verticalBoxMapData)
-            self.Fit()
-        
-        def update(self, mapData : Model_Map):
-            self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
-            self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
-
-    class TabSprites(wx.Panel):
-        SPRITES_TAB_INDEX = 2
-
-        def __init__(self, parent):
-            wx.Panel.__init__(self, parent)
-            text = wx.StaticText(self, -1, "Edit map sprite data.", (20,20))
-
-    class TabTreasures(wx.Panel):
-        SPRITES_TAB_INDEX = 2
-
-        def __init__(self, parent):
-            wx.Panel.__init__(self, parent)
-            text = wx.StaticText(self, -1, "Edit map treasure data.", (20,20))
-
     MAP_IMAGE_PIXEL_HEIGHT = 400
     MAP_IMAGE_PIXEL_WIDTH = 400
 
@@ -179,12 +112,16 @@ class View_Maps:
         
         #self.panelMapImage.SetScrollbars(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT, xUnits, yUnits)
         
-        verticalBoxMapImage = wx.BoxSizer(wx.VERTICAL)
-        verticalBoxMapImage.Detach(self.mapImage)
-        verticalBoxMapImage.Add(self.mapImage)
-        self.panelMapImage.SetSizer(verticalBoxMapImage)
+        #verticalBoxMapImage = wx.BoxSizer(wx.VERTICAL)
+        #verticalBoxMapImage.Detach(self.mapImage)
+        #verticalBoxMapImage.Add(self.mapImage)
+        #self.panelMapImage.SetSizer(verticalBoxMapImage)
 
         self.panelMapImage.SetScrollbars(1, 1, 1, 1)
         self.panelMapImage.SetScrollbar(wx.HORIZONTAL, 0, self.MAP_IMAGE_PIXEL_WIDTH, xUnits)
         self.panelMapImage.SetScrollbar(wx.VERTICAL, 0, self.MAP_IMAGE_PIXEL_HEIGHT, yUnits)
+
+        self.panelMapImage.Layout()
+        self.panelMapImage.Refresh()
+        self.panelMapImage.Update()
 
