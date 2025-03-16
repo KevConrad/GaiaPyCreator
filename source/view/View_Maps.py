@@ -20,6 +20,7 @@ from PIL import Image
 class View_Maps:
     MAP_IMAGE_PIXEL_HEIGHT = 400
     MAP_IMAGE_PIXEL_WIDTH = 400
+    MAP_MAGNIFICATION_DEFAULT = 15
 
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
@@ -36,16 +37,34 @@ class View_Maps:
         self.scrolledWindowMap.SetBackgroundColour('#000000')
        
         # create map image
-        self.mapImage = wx.StaticBitmap(self.scrolledWindowMap, wx.ID_ANY, wx.NullBitmap,
-                                        size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
+        self.displayedMapImage = wx.StaticBitmap(self.scrolledWindowMap, wx.ID_ANY, wx.NullBitmap,
+                                                 size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
         # TODO self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
 
+        # Add zoom buttons
+        horizontalBoxZoom = wx.BoxSizer(wx.HORIZONTAL)
+        labelZoom = wx.StaticText(self.tabPage, label="Zoom:")
+        self.zoomInButton = wx.Button(self.tabPage, label="+")
+        self.zoomInButton.Bind(wx.EVT_BUTTON, self.onZoomInButtonClick)
+        self.zoomOutButton = wx.Button(self.tabPage, label="-")
+        self.zoomOutButton.Bind(wx.EVT_BUTTON, self.onZoomOutButtonClick)
+        self.magnification = self.MAP_MAGNIFICATION_DEFAULT
+        horizontalBoxZoom.Add(labelZoom)
+        horizontalBoxZoom.Add(self.zoomInButton)
+        horizontalBoxZoom.Add(self.zoomOutButton)
+
+        horizontalBoxMap = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalBoxMap.Add(self.scrolledWindowMap)
         self.mapDataTabs = self.initMapDataTabs(self.tabPage)
+        horizontalBoxMap.Add(self.mapDataTabs)
+
+        verticalBox = wx.BoxSizer(wx.VERTICAL)
+        verticalBox.Add(horizontalBoxMap, 0, wx.EXPAND)
+        verticalBox.Add(horizontalBoxZoom)
 
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxMaps, 0, wx.EXPAND)
-        horizontalBox.Add(self.scrolledWindowMap)
-        horizontalBox.Add(self.mapDataTabs)
+        horizontalBox.Add(verticalBox, 1, wx.EXPAND)
         
         self.tabPage.SetSizer(horizontalBox)
         self.tabPage.Fit()
@@ -75,6 +94,19 @@ class View_Maps:
 
         return mapDataTabs
 
+    def displayMapImage(self, magnification):
+        magnificationX = self.mapSizeX * magnification
+        magnificationY = self.mapSizeY * magnification
+        sizedImage = self.receivedMapImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+        wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
+        wx_image.SetData(sizedImage.convert("RGB").tobytes())
+        bitmap = wx.Bitmap(wx_image)
+        self.displayedMapImage.SetBitmap(bitmap)
+        
+        # Ensure the map window has scrollbars
+        self.scrolledWindowMap.SetVirtualSize((sizedImage.size[0], sizedImage.size[1]))
+        self.scrolledWindowMap.SetScrollRate(20, 20)
+
     def handleTabChanged(self, event):
         pass
 
@@ -85,19 +117,22 @@ class View_Maps:
         selectedIndex = self.listBoxMaps.GetSelection()
         pub.sendMessage("maps_update", mapIndex=selectedIndex)
 
+    def onZoomInButtonClick(self, event):
+        self.magnification = self.magnification + 1
+        self.displayMapImage(self.magnification)
+
+    def onZoomOutButtonClick(self, event):
+        self.magnification = self.magnification - 1
+        self.displayMapImage(self.magnification)
+
     def update(self, mapImage: PIL.Image, mapData: Model_Map):
+        # update map image
+        self.receivedMapImage = mapImage
+        self.mapSizeX = mapData.sizeX
+        self.mapSizeY = mapData.sizeY
+        self.displayMapImage(self.magnification)
+        
         # update map properties
         self.tabEvents.update(mapData)
         self.tabExits.update(mapData)
         self.tabProperties.update(mapData)
-
-        # update map image
-        sizedImage = mapImage.resize((mapData.sizeX * 20, mapData.sizeY * 20), PIL.Image.NEAREST)
-        wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
-        wx_image.SetData(sizedImage.convert("RGB").tobytes())
-        bitmap = wx.Bitmap(wx_image)
-        self.mapImage.SetBitmap(bitmap)
-
-        # Ensure the map window has scrollbars
-        self.scrolledWindowMap.SetVirtualSize((sizedImage.size[0], sizedImage.size[1]))
-        self.scrolledWindowMap.SetScrollRate(20, 20)
