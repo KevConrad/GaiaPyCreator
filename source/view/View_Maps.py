@@ -1,7 +1,6 @@
 import PIL
 import PIL.Image
 import wx
-import wx.lib.scrolledpanel
 
 from model.Model_Map import Model_Map
 from model.Model_Tile import Model_Tile
@@ -31,27 +30,21 @@ class View_Maps:
                                       style = wx.LB_SINGLE|wx.LB_HSCROLL)
         self.frame.Bind(wx.EVT_LISTBOX, self.onListBox, self.listBoxMaps)
 
-        self.panelMapImage = wx.ScrolledWindow(self.tabPage,-1,
-                                               size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT),
-                                               pos=(0,0), style=wx.SIMPLE_BORDER)
+        self.scrolledWindowMap = wx.ScrolledWindow(self.tabPage,-1,
+                                                   size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT),
+                                                   pos=(0,0), style=wx.SHOW_SB_ALWAYS)
+        self.scrolledWindowMap.SetBackgroundColour('#000000')
        
-        # map image
-        verticalBoxMapImage = wx.BoxSizer(wx.VERTICAL)
-        self.mapImage = wx.StaticBitmap(self.panelMapImage, wx.ID_ANY, wx.NullBitmap,
+        # create map image
+        self.mapImage = wx.StaticBitmap(self.scrolledWindowMap, wx.ID_ANY, wx.NullBitmap,
                                         size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
         # TODO self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
-        verticalBoxMapImage.Add(self.mapImage)
-        
-        #self.panelMapImage.SetupScrolling(scroll_x=True, scroll_y=True, scrollIntoView=True)
-        #self.panelMapImage.SetScrollbar(wx.VERTICAL, 0, 16, 50)
-        self.panelMapImage.SetBackgroundColour('#000000')
-        #self.panelMapImage.SetSizer(verticalBoxMapImage)
 
         self.mapDataTabs = self.initMapDataTabs(self.tabPage)
 
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxMaps, 0, wx.EXPAND)
-        horizontalBox.Add(self.panelMapImage)
+        horizontalBox.Add(self.scrolledWindowMap)
         horizontalBox.Add(self.mapDataTabs)
         
         self.tabPage.SetSizer(horizontalBox)
@@ -92,7 +85,7 @@ class View_Maps:
         selectedIndex = self.listBoxMaps.GetSelection()
         pub.sendMessage("maps_update", mapIndex=selectedIndex)
 
-    def update(self, mapImage : PIL.Image, mapData : Model_Map):
+    def update(self, mapImage: PIL.Image, mapData: Model_Map):
         # update map properties
         self.tabEvents.update(mapData)
         self.tabExits.update(mapData)
@@ -100,28 +93,11 @@ class View_Maps:
 
         # update map image
         sizedImage = mapImage.resize((mapData.sizeX * 20, mapData.sizeY * 20), PIL.Image.NEAREST)
-        wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
+        wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
-        bitmap = wx.BitmapFromImage(wx_image)
+        bitmap = wx.Bitmap(wx_image)
         self.mapImage.SetBitmap(bitmap)
-        
-        xUnits = int(sizedImage.size[0] / self.MAP_IMAGE_PIXEL_WIDTH)
-        yUnits = int(sizedImage.size[1] / self.MAP_IMAGE_PIXEL_HEIGHT)
-        print(xUnits)
-        print(yUnits)
-        
-        #self.panelMapImage.SetScrollbars(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT, xUnits, yUnits)
-        
-        #verticalBoxMapImage = wx.BoxSizer(wx.VERTICAL)
-        #verticalBoxMapImage.Detach(self.mapImage)
-        #verticalBoxMapImage.Add(self.mapImage)
-        #self.panelMapImage.SetSizer(verticalBoxMapImage)
 
-        self.panelMapImage.SetScrollbars(1, 1, 1, 1)
-        self.panelMapImage.SetScrollbar(wx.HORIZONTAL, 0, self.MAP_IMAGE_PIXEL_WIDTH, xUnits)
-        self.panelMapImage.SetScrollbar(wx.VERTICAL, 0, self.MAP_IMAGE_PIXEL_HEIGHT, yUnits)
-
-        self.panelMapImage.Layout()
-        self.panelMapImage.Refresh()
-        self.panelMapImage.Update()
-
+        # Ensure the map window has scrollbars
+        self.scrolledWindowMap.SetVirtualSize((sizedImage.size[0], sizedImage.size[1]))
+        self.scrolledWindowMap.SetScrollRate(20, 20)
