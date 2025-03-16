@@ -20,7 +20,8 @@ from PIL import Image
 class View_Maps:
     MAP_IMAGE_PIXEL_HEIGHT = 400
     MAP_IMAGE_PIXEL_WIDTH = 400
-    MAP_MAGNIFICATION_DEFAULT = 15
+    MAP_ZOOM_DEFAULT = 15
+    MAP_ZOOM_TIMER_INTERVAL = 50
 
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
@@ -46,12 +47,16 @@ class View_Maps:
         labelZoom = wx.StaticText(self.tabPage, label="Zoom:")
         self.zoomInButton = wx.Button(self.tabPage, label="+")
         self.zoomInButton.Bind(wx.EVT_BUTTON, self.onZoomInButtonClick)
+        self.zoomInButton.Bind(wx.EVT_LEFT_DOWN, self.onZoomInButtonDown)
+        self.zoomInButton.Bind(wx.EVT_LEFT_UP, self.onZoomInButtonUp)
         self.zoomOutButton = wx.Button(self.tabPage, label="-")
         self.zoomOutButton.Bind(wx.EVT_BUTTON, self.onZoomOutButtonClick)
-        self.magnification = self.MAP_MAGNIFICATION_DEFAULT
+        self.zoomOutButton.Bind(wx.EVT_LEFT_DOWN, self.onZoomOutButtonDown)
+        self.zoomOutButton.Bind(wx.EVT_LEFT_UP, self.onZoomOutButtonUp)
+        self.zoom = self.MAP_ZOOM_DEFAULT
         horizontalBoxZoom.Add(labelZoom)
-        horizontalBoxZoom.Add(self.zoomInButton)
         horizontalBoxZoom.Add(self.zoomOutButton)
+        horizontalBoxZoom.Add(self.zoomInButton)
 
         horizontalBoxMap = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBoxMap.Add(self.scrolledWindowMap)
@@ -70,6 +75,12 @@ class View_Maps:
         self.tabPage.Fit()
 
         self.frame.Show(True)
+
+        # Timer for continuous zoom
+        self.zoomInTimer = wx.Timer(self.tabPage)
+        self.tabPage.Bind(wx.EVT_TIMER, self.onZoomInTimer, self.zoomInTimer)
+        self.zoomOutTimer = wx.Timer(self.tabPage)
+        self.tabPage.Bind(wx.EVT_TIMER, self.onZoomOutTimer, self.zoomOutTimer)
 
     def initMapDataTabs(self, parent):
         mapDataTabs = wx.Notebook(parent, size=(400, 400))
@@ -118,19 +129,37 @@ class View_Maps:
         pub.sendMessage("maps_update", mapIndex=selectedIndex)
 
     def onZoomInButtonClick(self, event):
-        self.magnification = self.magnification + 1
-        self.displayMapImage(self.magnification)
+        self.zoom = self.zoom + 1
+        self.displayMapImage(self.zoom)
 
     def onZoomOutButtonClick(self, event):
-        self.magnification = self.magnification - 1
-        self.displayMapImage(self.magnification)
+        self.zoom = self.zoom - 1
+        self.displayMapImage(self.zoom)
+
+    def onZoomInButtonDown(self, event):
+        self.zoomInTimer.Start(self.MAP_ZOOM_TIMER_INTERVAL)  # Adjust the interval as needed
+
+    def onZoomInButtonUp(self, event):
+        self.zoomInTimer.Stop()
+
+    def onZoomInTimer(self, event):
+        self.onZoomInButtonClick(event)
+
+    def onZoomOutButtonDown(self, event):
+        self.zoomOutTimer.Start(self.MAP_ZOOM_TIMER_INTERVAL)  # Adjust the interval as needed
+
+    def onZoomOutButtonUp(self, event):
+        self.zoomOutTimer.Stop()
+
+    def onZoomOutTimer(self, event):
+        self.onZoomOutButtonClick(event)
 
     def update(self, mapImage: PIL.Image, mapData: Model_Map):
         # update map image
         self.receivedMapImage = mapImage
         self.mapSizeX = mapData.sizeX
         self.mapSizeY = mapData.sizeY
-        self.displayMapImage(self.magnification)
+        self.displayMapImage(self.zoom)
         
         # update map properties
         self.tabEvents.update(mapData)
