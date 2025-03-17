@@ -18,8 +18,8 @@ from pubsub import pub
 from PIL import Image
 
 class View_Maps:
-    MAP_IMAGE_PIXEL_HEIGHT = 400
-    MAP_IMAGE_PIXEL_WIDTH = 400
+    MAP_IMAGE_PIXEL_HEIGHT = 500
+    MAP_IMAGE_PIXEL_WIDTH = 500
     MAP_ZOOM_DEFAULT = 15
     MAP_ZOOM_TIMER_INTERVAL = 50
 
@@ -58,6 +58,23 @@ class View_Maps:
         horizontalBoxZoom.Add(self.zoomOutButton)
         horizontalBoxZoom.Add(self.zoomInButton)
 
+        # Add map layer selection
+        horizontalBoxMapLayers = wx.BoxSizer(wx.HORIZONTAL)
+        labelMapDisplay = wx.StaticText(self.tabPage, label="Display:")
+        labelMapLayerBG1 = wx.StaticText(self.tabPage, label="BG1:")
+        self.checkBoxMapLayerBG1 = wx.CheckBox(self.tabPage)
+        labelMapLayerBG2 = wx.StaticText(self.tabPage, label="BG2:")
+        self.checkBoxMapLayerBG2 = wx.CheckBox(self.tabPage)
+        labelMapLayerSprites = wx.StaticText(self.tabPage, label="Sprites:")
+        self.checkBoxMapLayerSprites = wx.CheckBox(self.tabPage)
+        horizontalBoxMapLayers.Add(labelMapDisplay)
+        horizontalBoxMapLayers.Add(labelMapLayerBG1)
+        horizontalBoxMapLayers.Add(self.checkBoxMapLayerBG1)
+        horizontalBoxMapLayers.Add(labelMapLayerBG2)
+        horizontalBoxMapLayers.Add(self.checkBoxMapLayerBG2)
+        horizontalBoxMapLayers.Add(labelMapLayerSprites)
+        horizontalBoxMapLayers.Add(self.checkBoxMapLayerSprites)
+
         horizontalBoxMap = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBoxMap.Add(self.scrolledWindowMap)
         self.mapDataTabs = self.initMapDataTabs(self.tabPage)
@@ -66,6 +83,7 @@ class View_Maps:
         verticalBox = wx.BoxSizer(wx.VERTICAL)
         verticalBox.Add(horizontalBoxMap, 0, wx.EXPAND)
         verticalBox.Add(horizontalBoxZoom)
+        verticalBox.Add(horizontalBoxMapLayers)
 
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(self.listBoxMaps, 0, wx.EXPAND)

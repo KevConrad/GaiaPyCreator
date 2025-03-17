@@ -1,12 +1,10 @@
 # This file contains the View_MapTabProperties class, which is a panel that contains the properties of the map.
 # This class is responsible for displaying the properties of the selected map.
 import wx
-import wx.lib.scrolledpanel
 
 from model.Model_Map import Model_Map
 
 class View_MapTabProperties(wx.Panel):
-    PROPERTIES_TAB_INDEX = 3
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)

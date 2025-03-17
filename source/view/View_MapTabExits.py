@@ -1,13 +1,11 @@
 # This file contains the class that represents the Exits tab in the Map tab of the main window.
 # This class is responsible for displaying the exit data of the selected map.
 import wx
-import wx.lib.scrolledpanel
 
 from model.Model_MapExit import Model_MapExit
 from model.Model_Map import Model_Map
 
 class View_MapTabExits(wx.Panel):
-    EXITS_TAB_INDEX = 2
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
@@ -28,35 +26,41 @@ class View_MapTabExits(wx.Panel):
         horizontalBoxExitSelection.Add(labelExitSelectionSlash, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxExitSelection.Add(self.spinCtrlExitCount, wx.EXPAND|wx.ALL)
 
-        # exit position controls
-        horizontalBoxExitPosition = wx.BoxSizer(wx.HORIZONTAL)
+        # exit x position controls
+        horizontalBoxExitPositionX = wx.BoxSizer(wx.HORIZONTAL)
         labelExitPositionX = wx.StaticText(self, label="Position X: ")
         self.spinCtrlExitPositionX = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
         self.spinCtrlExitPositionX.SetMin(0)
         self.spinCtrlExitPositionX.SetMax(1024)
+        horizontalBoxExitPositionX.Add(labelExitPositionX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitPositionX.Add(self.spinCtrlExitPositionX, wx.EXPAND|wx.ALL)
+
+        # exit y position controls
+        horizontalBoxExitPositionY = wx.BoxSizer(wx.HORIZONTAL)
         labelExitPositionY = wx.StaticText(self, label="Position Y: ")
         self.spinCtrlExitPositionY = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
         self.spinCtrlExitPositionY.SetMin(0)
         self.spinCtrlExitPositionY.SetMax(1024)
-        horizontalBoxExitPosition.Add(labelExitPositionX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxExitPosition.Add(self.spinCtrlExitPositionX, wx.EXPAND|wx.ALL)
-        horizontalBoxExitPosition.Add(labelExitPositionY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxExitPosition.Add(self.spinCtrlExitPositionY, wx.EXPAND|wx.ALL)
+        horizontalBoxExitPositionY.Add(labelExitPositionY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitPositionY.Add(self.spinCtrlExitPositionY, wx.EXPAND|wx.ALL)
 
-        # exit size controls
-        horizontalBoxExitSize = wx.BoxSizer(wx.HORIZONTAL)
+        # exit width controls
+        horizontalBoxExitWidth = wx.BoxSizer(wx.HORIZONTAL)
         labelExitWidth = wx.StaticText(self, label="Width: ")
         self.spinCtrlExitWidth = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
         self.spinCtrlExitWidth.SetMin(0)
         self.spinCtrlExitWidth.SetMax(1024)
+        horizontalBoxExitWidth.Add(labelExitWidth, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitWidth.Add(self.spinCtrlExitWidth, wx.EXPAND|wx.ALL)
+
+        # exit height controls
+        horizontalBoxExitHeight = wx.BoxSizer(wx.HORIZONTAL)
         labelExitHeight = wx.StaticText(self, label="Height: ")
         self.spinCtrlExitHeight = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
         self.spinCtrlExitHeight.SetMin(0)
         self.spinCtrlExitHeight.SetMax(1024)
-        horizontalBoxExitSize.Add(labelExitWidth, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxExitSize.Add(self.spinCtrlExitWidth, wx.EXPAND|wx.ALL)
-        horizontalBoxExitSize.Add(labelExitHeight, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxExitSize.Add(self.spinCtrlExitHeight, wx.EXPAND|wx.ALL)
+        horizontalBoxExitHeight.Add(labelExitHeight, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxExitHeight.Add(self.spinCtrlExitHeight, wx.EXPAND|wx.ALL)
         
         # edit type controls
         horizontalBoxExitType = wx.BoxSizer(wx.HORIZONTAL)
@@ -76,8 +80,10 @@ class View_MapTabExits(wx.Panel):
         labelExitData = wx.StaticText(self, label="Exit Data:")
         self.verticalBoxExitData.Add(labelExitData)
         self.verticalBoxExitData.Add(horizontalBoxExitSelection)
-        self.verticalBoxExitData.Add(horizontalBoxExitPosition)
-        self.verticalBoxExitData.Add(horizontalBoxExitSize)
+        self.verticalBoxExitData.Add(horizontalBoxExitPositionX)
+        self.verticalBoxExitData.Add(horizontalBoxExitPositionY)
+        self.verticalBoxExitData.Add(horizontalBoxExitWidth)
+        self.verticalBoxExitData.Add(horizontalBoxExitHeight)
         self.verticalBoxExitData.Add(horizontalBoxExitType)
 
         self.SetSizer(self.verticalBoxExitData)
