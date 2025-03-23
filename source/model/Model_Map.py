@@ -155,7 +155,7 @@ class Model_Map:
         pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
         pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
         pixelValues = [0] * (pixelWidth * pixelHeight)
-        imageBytes = [0] * (pixelWidth * pixelHeight * 3)
+        self.imageBytes = [0] * (pixelWidth * pixelHeight * 3)
 
         #mapLayerOrder = screenSettings.getMapLayerOrderBits();
         #if ((mapLayerOrder.mapLayerOrder.hasNormalMapLayers == false) and (data.GetDataCount(MapDataTableEntry.EDataset.arrangementData) > 1)) //TODO: Query of arrangementCount > 1 should not be necessary!
@@ -180,15 +180,33 @@ class Model_Map:
             paletteIndex = int(float(pixelValue / 16))
             colorIndex = (pixelValue % 16)
             palette = self.palettesetMap.palettes[paletteIndex]    # TODO check why -1 is needed here
-            imageBytes[pixelIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
-            imageBytes[pixelIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
-            imageBytes[pixelIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+            self.imageBytes[pixelIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
+            self.imageBytes[pixelIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
+            self.imageBytes[pixelIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
             pixelIndex = pixelIndex + 3
 
         # create an image from the RGB pixel array
-        mapImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
-        return mapImage
+        self.mapImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.imageBytes), 'raw')
 
+    def getExitImage(self):
+        # create the array containing the image bytes
+        pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
+        pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
+        imageBytes = self.imageBytes
+
+        # read the map exits and write them to the bitmap pixel value array
+        for exit in self.exits.exits:
+            pixelIndex = (pixelWidth * 3 * exit.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * 3 * exit.positionX
+            for exitSizeY in range (exit.height):
+                for exitSizeX in range (exit.width):
+                    for height in range (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT):
+                        for width in range (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH):
+                            pixelOffsetX = 3 * ((exitSizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH) + width)
+                            pixelOffsetY = pixelWidth * 3 * (height + (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT * exitSizeY))
+                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+        
+        # create an image from the RGB pixel array
+        self.exitImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
 
     def displayLayer(self, mapSizeX, tilesetBits, pixelValues, layer):
         tilePos = 0

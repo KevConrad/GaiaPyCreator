@@ -124,9 +124,15 @@ class View_Maps:
         return mapDataTabs
 
     def displayMapImage(self, magnification):
-        magnificationX = self.mapSizeX * magnification
-        magnificationY = self.mapSizeY * magnification
-        sizedImage = self.receivedMapImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+        index = self.mapDataTabs.GetSelection()
+
+        displayedMapImage = self.mapData.mapImage
+        if self.mapDataTabs.GetPage(index) is self.tabExits:
+            displayedMapImage = self.mapData.exitImage
+
+        magnificationX = self.mapData.sizeX * magnification
+        magnificationY = self.mapData.sizeY * magnification
+        sizedImage = displayedMapImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
         wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.Bitmap(wx_image)
@@ -137,7 +143,7 @@ class View_Maps:
         self.scrolledWindowMap.SetScrollRate(20, 20)
 
     def handleTabChanged(self, event):
-        pass
+        self.displayMapImage(self.zoom)
 
     def load(self, mapNames):
         self.listBoxMaps.Set(mapNames)
@@ -172,11 +178,9 @@ class View_Maps:
     def onZoomOutTimer(self, event):
         self.onZoomOutButtonClick(event)
 
-    def update(self, mapImage: PIL.Image, mapData: Model_Map):
+    def update(self, mapData: Model_Map):
+        self.mapData = mapData
         # update map image
-        self.receivedMapImage = mapImage
-        self.mapSizeX = mapData.sizeX
-        self.mapSizeY = mapData.sizeY
         self.displayMapImage(self.zoom)
         
         # update map properties

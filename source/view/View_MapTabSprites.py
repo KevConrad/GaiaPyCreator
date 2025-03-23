@@ -1,12 +1,10 @@
 # This file contains the class that represents the tab for editing map sprites.
 # This class is responsible for displaying the sprite data of the selected map.
 import wx
-import wx.lib.scrolledpanel
 
 from model.Model_Map import Model_Map
 
 class View_MapTabSprites(wx.Panel):
-    SPRITES_TAB_INDEX = 2
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
