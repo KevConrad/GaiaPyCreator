@@ -108,7 +108,7 @@ class View_MapTabExits(wx.Panel):
         self.spinCtrlExitCount.SetValue(len(self.mapData.exits.exits))
         
     def updateSelectedExit(self, exitIndex):
-        if exitIndex < 0 or exitIndex >= len(self.mapData.exits.exits):
+        if exitIndex < 0 or exitIndex > len(self.mapData.exits.exits):
             return
         
         if (exitIndex > 0):

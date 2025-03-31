@@ -127,6 +127,8 @@ class View_Maps:
         index = self.mapDataTabs.GetSelection()
 
         displayedMapImage = self.mapData.mapImage
+        if self.mapDataTabs.GetPage(index) is self.tabEvents:
+            displayedMapImage = self.mapData.eventImage
         if self.mapDataTabs.GetPage(index) is self.tabExits:
             displayedMapImage = self.mapData.exitImage
 

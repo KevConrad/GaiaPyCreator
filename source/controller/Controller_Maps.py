@@ -44,5 +44,6 @@ class Controller_Maps:
         self.maps.maps[self.mapIndex].read()
         # create the map image
         self.maps.maps[self.mapIndex].getImage(True, True, True, 0)
+        self.maps.maps[self.mapIndex].getEventImage()
         self.maps.maps[self.mapIndex].getExitImage()
         self.view.maps.update(self.maps.maps[self.mapIndex])
