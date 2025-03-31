@@ -5,6 +5,8 @@ import wx
 from model.Model_MapExit import Model_MapExit
 from model.Model_Map import Model_Map
 
+from pubsub import pub
+
 class View_MapTabExits(wx.Panel):
 
     def __init__(self, parent):
@@ -90,8 +92,9 @@ class View_MapTabExits(wx.Panel):
         self.Fit()
 
     def onExitSelectionChanged(self, event):
-        print("UPDATE " + str(self.spinCtrlExitCurrent.GetValue()))
-        self.updateSelectedExit(self.spinCtrlExitCurrent.GetValue())
+        exitIndex = self.spinCtrlExitCurrent.GetValue() - 1
+        self.updateSelectedExit(exitIndex)
+        pub.sendMessage("maps_update_exit", selectedExitIndex = exitIndex)
     
     def update(self, mapData : Model_Map):
         self.mapData = mapData
@@ -101,20 +104,16 @@ class View_MapTabExits(wx.Panel):
         if (len(self.mapData.exits.exits) > 0):
             self.spinCtrlExitCurrent.SetMin(1)
             self.spinCtrlExitCurrent.SetValue(1)
-            self.updateSelectedExit(1)
+            self.updateSelectedExit(0)
         else:
             self.spinCtrlExitCurrent.SetMin(0)
             self.spinCtrlExitCurrent.SetValue(0)
-            self.updateSelectedExit(0)
+            self.updateSelectedExit(-1)
         
         self.spinCtrlExitCount.SetValue(len(self.mapData.exits.exits))
         
     def updateSelectedExit(self, exitIndex):
-        if exitIndex < 0 or exitIndex > len(self.mapData.exits.exits):
-            return
-        
-        if (exitIndex > 0):
-            exitIndex -= 1
+        if (exitIndex >= 0):
             exitData = self.mapData.exits.exits[exitIndex]
             self.spinCtrlExitPositionX.SetValue(exitData.positionX)
             self.spinCtrlExitPositionY.SetValue(exitData.positionY)

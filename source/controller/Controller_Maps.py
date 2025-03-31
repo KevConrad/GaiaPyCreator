@@ -16,6 +16,8 @@ class Controller_Maps:
 
         pub.subscribe(self.load, "maps_load")
         pub.subscribe(self.update, "maps_update")
+        pub.subscribe(self.updateEventImage, "maps_update_event")
+        pub.subscribe(self.updateExitImage, "maps_update_exit")
 
     def load(self):
         if self.project.isProjectLoaded == True:
@@ -44,6 +46,14 @@ class Controller_Maps:
         self.maps.maps[self.mapIndex].read()
         # create the map image
         self.maps.maps[self.mapIndex].getImage(True, True, True, 0)
-        self.maps.maps[self.mapIndex].getEventImage()
-        self.maps.maps[self.mapIndex].getExitImage()
+        self.maps.maps[self.mapIndex].getEventImage(0)
+        self.maps.maps[self.mapIndex].getExitImage(0)
         self.view.maps.update(self.maps.maps[self.mapIndex])
+
+    def updateEventImage(self, selectedEventIndex):
+        self.maps.maps[self.mapIndex].getEventImage(selectedEventIndex)
+        self.view.maps.updateImage(self.maps.maps[self.mapIndex])
+
+    def updateExitImage(self, selectedExitIndex):
+        self.maps.maps[self.mapIndex].getExitImage(selectedExitIndex)
+        self.view.maps.updateImage(self.maps.maps[self.mapIndex])

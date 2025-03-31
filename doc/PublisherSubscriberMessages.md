@@ -5,6 +5,8 @@
 |`items_load`           |-               |Load the items.                   |
 |`maps_load`            |-               |Load the maps.                    |
 |`maps_update`          |-               |Update the map.                   |
+|`maps_update_event`    |-               |Update the map events.            |
+|`maps_update_exit`     |-               |Update the map exits.             |
 |`project_close`        |-               |Close the project file.           |
 |`project_load`         |-               |Load the project data.            |
 |`project_open`         |projectPath     |Open a project file.              |

@@ -5,6 +5,8 @@ import wx
 from model.Model_Event import Model_Event
 from model.Model_Map import Model_Map
 
+from pubsub import pub
+
 class View_MapTabEvents(wx.Panel):
 
     def __init__(self, parent):
@@ -70,7 +72,9 @@ class View_MapTabEvents(wx.Panel):
         self.Fit()
 
     def onEventSelectionChanged(self, event):
-        self.updateSelectedEvent(self.spinCtrlEventCurrent.GetValue())
+        eventIndex = self.spinCtrlEventCurrent.GetValue() - 1
+        self.updateSelectedEvent(eventIndex)
+        pub.sendMessage("maps_update_event", selectedEventIndex = eventIndex)
 
     def update(self, mapData : Model_Map):
         self.mapData = mapData
@@ -78,21 +82,17 @@ class View_MapTabEvents(wx.Panel):
         if (len(self.mapData.events.events) > 0):
             self.spinCtrlEventCurrent.SetMin(1)
             self.spinCtrlEventCurrent.SetValue(1)
-            self.updateSelectedEvent(1)
+            self.updateSelectedEvent(0)
         else:
             self.spinCtrlEventCurrent.SetMin(0)
             self.spinCtrlEventCurrent.SetValue(0)
-            self.updateSelectedEvent(0)
+            self.updateSelectedEvent(-1)
 
         self.spinCtrlEventCurrent.SetMax(len(self.mapData.events.events))
         self.spinCtrlEventCount.SetValue(len(self.mapData.events.events))
 
     def updateSelectedEvent(self, eventIndex):
-        if eventIndex < 0 or eventIndex > len(self.mapData.events.events):
-            return
-        
-        if (eventIndex > 0):
-            eventIndex -= 1
+        if (eventIndex >= 0):
             eventData = self.mapData.events.events[eventIndex]
             self.spinCtrlEventPositionX.SetValue(eventData.positionX)
             self.spinCtrlEventPositionY.SetValue(eventData.positionY)

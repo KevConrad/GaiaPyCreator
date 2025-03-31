@@ -189,3 +189,9 @@ class View_Maps:
         self.tabEvents.update(mapData)
         self.tabExits.update(mapData)
         self.tabProperties.update(mapData)
+
+    def updateImage(self, mapData: Model_Map):
+        self.mapData = mapData
+
+        # update map image
+        self.displayMapImage(self.zoom)
