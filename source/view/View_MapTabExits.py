@@ -90,11 +90,14 @@ class View_MapTabExits(wx.Panel):
         self.Fit()
 
     def onExitSelectionChanged(self, event):
+        print("UPDATE " + str(self.spinCtrlExitCurrent.GetValue()))
         self.updateSelectedExit(self.spinCtrlExitCurrent.GetValue())
     
     def update(self, mapData : Model_Map):
         self.mapData = mapData
         
+        self.spinCtrlExitCurrent.SetMax(len(self.mapData.exits.exits))
+
         if (len(self.mapData.exits.exits) > 0):
             self.spinCtrlExitCurrent.SetMin(1)
             self.spinCtrlExitCurrent.SetValue(1)
@@ -104,7 +107,6 @@ class View_MapTabExits(wx.Panel):
             self.spinCtrlExitCurrent.SetValue(0)
             self.updateSelectedExit(0)
         
-        self.spinCtrlExitCurrent.SetMax(len(self.mapData.exits.exits))
         self.spinCtrlExitCount.SetValue(len(self.mapData.exits.exits))
         
     def updateSelectedExit(self, exitIndex):
