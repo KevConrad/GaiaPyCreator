@@ -36,11 +36,14 @@ class View_Maps:
                                                    size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT),
                                                    pos=(0,0), style=wx.SHOW_SB_ALWAYS)
         self.scrolledWindowMap.SetBackgroundColour('#000000')
-       
+        
         # create map image
         self.displayedMapImage = wx.StaticBitmap(self.scrolledWindowMap, wx.ID_ANY, wx.NullBitmap,
                                                  size=(self.MAP_IMAGE_PIXEL_WIDTH, self.MAP_IMAGE_PIXEL_HEIGHT))
-        # TODO self.mapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
+        # bind function if mouse cursor over map image
+        self.displayedMapImage.Bind(wx.EVT_MOTION, self.onMouseMoveOverMap)
+        # bind function if mouse cursor over map image and left button pressed
+        self.displayedMapImage.Bind(wx.EVT_LEFT_DOWN, self.onMouseLeftDownOverMap)
 
         # Add zoom buttons
         horizontalBoxZoom = wx.BoxSizer(wx.HORIZONTAL)
@@ -54,9 +57,19 @@ class View_Maps:
         self.zoomOutButton.Bind(wx.EVT_LEFT_DOWN, self.onZoomOutButtonDown)
         self.zoomOutButton.Bind(wx.EVT_LEFT_UP, self.onZoomOutButtonUp)
         self.zoom = self.MAP_ZOOM_DEFAULT
+        labelMouseCursorX = wx.StaticText(self.tabPage, label="X:")
+        self.TextMouseCursorX = wx.StaticText(self.tabPage, label="-")
+        labelMouseCursorY = wx.StaticText(self.tabPage, label="Y:")
+        self.TextMouseCursorY = wx.StaticText(self.tabPage, label="-")
         horizontalBoxZoom.Add(labelZoom)
         horizontalBoxZoom.Add(self.zoomOutButton)
         horizontalBoxZoom.Add(self.zoomInButton)
+        horizontalBoxZoom.Add(labelMouseCursorX)
+        horizontalBoxZoom.Add(self.TextMouseCursorX)
+        horizontalBoxZoom.AddSpacer(10)
+        horizontalBoxZoom.Add(labelMouseCursorY)
+        horizontalBoxZoom.Add(self.TextMouseCursorY)
+        horizontalBoxZoom.AddSpacer(10)
 
         # Add map layer selection
         horizontalBoxMapLayers = wx.BoxSizer(wx.HORIZONTAL)
@@ -149,6 +162,17 @@ class View_Maps:
 
     def load(self, mapNames):
         self.listBoxMaps.Set(mapNames)
+
+    def onMouseMoveOverMap(self, event):        
+        x, y = event.GetPosition()
+        # Convert to map coordinates
+        x = int(x / self.zoom)
+        y = int(y / self.zoom)
+        self.TextMouseCursorX.SetLabel(str(x))
+        self.TextMouseCursorY.SetLabel(str(y))
+
+    def onMouseLeftDownOverMap(self, event):
+        pass
 
     def onListBox(self, event):
         selectedIndex = self.listBoxMaps.GetSelection()
