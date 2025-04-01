@@ -9,10 +9,10 @@ class Model_MapExit:
         STAIRS = 1
 
     class PlayerDirection:
-        DOWN = 1
-        LEFT = 6
-        RIGHT = 7
-        UP = 0
+        DOWN = 0
+        LEFT = 1
+        RIGHT = 2
+        UP = 3
 
     def __init__(self, romData, address, type : ExitType) -> None:
         self.romData = romData
@@ -51,13 +51,13 @@ class Model_MapExit:
             self.destinationY = self.destinationY + self.romData[readOffset] * 16
             readOffset += 1
 
-            self.playerDirection = self.romData[readOffset]
+            self.playerDirection = self.read_direction(self.romData[readOffset])
             readOffset += 1
             self.screenOffset = self.romData[readOffset]
             readOffset += 1
 
             # read the map size
-            self.mapSizeX = (self.romData[readOffset] & 0xF0) * 16
+            self.mapSizeX = (self.romData[readOffset] & 0x0F) * 16
             self.mapSizeY = ((self.romData[readOffset] & 0xF0) >> 4) * 16
             readOffset += 1
         else:
@@ -99,5 +99,26 @@ class Model_MapExit:
             self.PlayerDirection.UP : 'Up'
         }
         return switch.get(rawData, chr(rawData))
-
     
+    def read_direction(self, direction):
+        if direction == 0:
+            player_direction = self.PlayerDirection.UP
+        elif direction == 1:
+            player_direction = self.PlayerDirection.DOWN
+        elif direction == 2:
+            player_direction = self.PlayerDirection.UP
+        elif direction == 3:
+            player_direction = self.PlayerDirection.DOWN
+        elif direction == 4:
+            player_direction = self.PlayerDirection.UP
+        elif direction == 5:
+            player_direction = self.PlayerDirection.UP
+        elif direction == 6:
+            player_direction = self.PlayerDirection.LEFT
+        elif direction == 7:
+            player_direction = self.PlayerDirection.RIGHT
+        else:
+            # TODO: Error handling
+            player_direction = self.PlayerDirection.DOWN
+
+        return player_direction

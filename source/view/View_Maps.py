@@ -162,6 +162,7 @@ class View_Maps:
 
     def load(self, mapNames):
         self.listBoxMaps.Set(mapNames)
+        self.tabExits.load(mapNames)
 
     def onMouseMoveOverMap(self, event):        
         x, y = event.GetPosition()
