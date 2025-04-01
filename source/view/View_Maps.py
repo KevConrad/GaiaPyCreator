@@ -171,8 +171,43 @@ class View_Maps:
         self.TextMouseCursorX.SetLabel(str(x))
         self.TextMouseCursorY.SetLabel(str(y))
 
+        index = self.mapDataTabs.GetSelection()
+        if self.mapDataTabs.GetPage(index) is self.tabEvents:
+            self.selectedEventIndex = -1
+            for eventIndex in range(len(self.mapData.events.events)):
+                event = self.mapData.events.events[eventIndex]
+                # Check if the mouse is over the event
+                if event.positionX == x and event.positionY == y:
+                    self.selectedEventIndex = eventIndex
+                    break
+            if self.selectedEventIndex >= 0:
+                self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_HAND))
+            else:
+                self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_ARROW))
+        elif self.mapDataTabs.GetPage(index) is self.tabExits:
+            self.selectedExitIndex = -1
+            for exitIndex in range(len(self.mapData.exits.exits)):
+                exit = self.mapData.exits.exits[exitIndex]
+                # Check if the mouse is over the exit area
+                if (x >= exit.positionX and x <= (exit.positionX + exit.width)) and \
+                   (y >= exit.positionY and y <= (exit.positionY + exit.height)):
+                    self.selectedExitIndex = exitIndex
+                    break
+            if self.selectedExitIndex >= 0:
+                self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_HAND))
+            else:
+                self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_ARROW))
+
     def onMouseLeftDownOverMap(self, event):
-        pass
+        index = self.mapDataTabs.GetSelection()
+        if self.mapDataTabs.GetPage(index) is self.tabEvents:
+            if self.selectedEventIndex >= 0:
+                self.tabEvents.spinCtrlEventCurrent.SetValue(self.selectedEventIndex + 1)
+                self.tabEvents.onEventSelectionChanged(None)
+        elif self.mapDataTabs.GetPage(index) is self.tabExits:
+            if self.selectedExitIndex >= 0:
+                self.tabExits.spinCtrlExitCurrent.SetValue(self.selectedExitIndex + 1)
+                self.tabExits.onExitSelectionChanged(None)
 
     def onListBox(self, event):
         selectedIndex = self.listBoxMaps.GetSelection()
