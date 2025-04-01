@@ -190,8 +190,8 @@ class View_Maps:
             for exitIndex in range(len(self.mapData.exits.exits)):
                 exit = self.mapData.exits.exits[exitIndex]
                 # Check if the mouse is over the exit area
-                if (x >= exit.positionX and x <= (exit.positionX + exit.width)) and \
-                   (y >= exit.positionY and y <= (exit.positionY + exit.height)):
+                if (x >= exit.positionX and x < (exit.positionX + exit.width)) and \
+                   (y >= exit.positionY and y < (exit.positionY + exit.height)):
                     self.selectedExitIndex = exitIndex
                     break
             if self.selectedExitIndex >= 0:
