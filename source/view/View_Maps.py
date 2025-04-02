@@ -114,7 +114,7 @@ class View_Maps:
         self.tabPage.Bind(wx.EVT_TIMER, self.onZoomOutTimer, self.zoomOutTimer)
 
     def initMapDataTabs(self, parent):
-        mapDataTabs = wx.Notebook(parent, size=(400, 400))
+        mapDataTabs = wx.Notebook(parent, size=(400, 500))
 
         # Initiation of the tab windows:
         self.tabEditor = View_MapTabEditor(mapDataTabs)

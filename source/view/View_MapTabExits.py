@@ -10,7 +10,117 @@ from pubsub import pub
 class TabExitStairs(wx.Panel):
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Exit Stairs Data.", (20,20))
+        
+        # byte0 controls
+        horizontalBoxByte0 = wx.BoxSizer(wx.HORIZONTAL)
+        labelByte0 = wx.StaticText(self, label="Byte 0: ")
+        self.spinCtrlByte0 = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlByte0.SetMin(0)
+        self.spinCtrlByte0.SetMax(255)
+        horizontalBoxByte0.Add(labelByte0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxByte0.Add(self.spinCtrlByte0, wx.EXPAND|wx.ALL)
+
+        # byte1 controls
+        horizontalBoxByte1 = wx.BoxSizer(wx.HORIZONTAL)
+        labelByte1 = wx.StaticText(self, label="Byte 1: ")
+        self.spinCtrlByte1 = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlByte1.SetMin(0)
+        self.spinCtrlByte1.SetMax(255)
+        horizontalBoxByte1.Add(labelByte1, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxByte1.Add(self.spinCtrlByte1, wx.EXPAND|wx.ALL)
+
+        # scroll movement direction controls
+        horizontalBoxScrollMovementDirection = wx.BoxSizer(wx.HORIZONTAL)
+        labelScrollMovementDirection = wx.StaticText(self, label="Scroll Movement Direction: ")
+        self.comboBoxScrollMovementDirection = wx.ComboBox(self, style=wx.CB_DROPDOWN)
+        self.comboBoxScrollMovementDirection.Append("Down")
+        self.comboBoxScrollMovementDirection.Append("Up")
+        horizontalBoxScrollMovementDirection.Add(labelScrollMovementDirection, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxScrollMovementDirection.Add(self.comboBoxScrollMovementDirection, wx.EXPAND|wx.ALL)
+
+        # scroll movement ID controls
+        horizontalBoxScrollMovementId = wx.BoxSizer(wx.HORIZONTAL)
+        labelScrollMovementId = wx.StaticText(self, label="Scroll Movement ID: ")
+        self.spinCtrlScrollMovementId = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlScrollMovementId.SetMin(0)
+        self.spinCtrlScrollMovementId.SetMax(255)
+        horizontalBoxScrollMovementId.Add(labelScrollMovementId, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxScrollMovementId.Add(self.spinCtrlScrollMovementId, wx.EXPAND|wx.ALL)
+
+        # player direction before scroll movement controls
+        horizontalBoxPlayerDirectionBefore = wx.BoxSizer(wx.HORIZONTAL)
+        labelPlayerDirectionBefore = wx.StaticText(self, label="Player Direction Before: ")
+        self.comboBoxPlayerDirectionBefore = wx.ComboBox(self, style=wx.CB_DROPDOWN)
+        self.comboBoxPlayerDirectionBefore.Append("Down")
+        self.comboBoxPlayerDirectionBefore.Append("Left")
+        self.comboBoxPlayerDirectionBefore.Append("Right")
+        self.comboBoxPlayerDirectionBefore.Append("Up")
+        horizontalBoxPlayerDirectionBefore.Add(labelPlayerDirectionBefore, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxPlayerDirectionBefore.Add(self.comboBoxPlayerDirectionBefore, wx.EXPAND|wx.ALL)
+
+        # stairs movement X controls
+        horizontalBoxStairsMovementX = wx.BoxSizer(wx.HORIZONTAL)
+        labelStairsMovementX = wx.StaticText(self, label="Stairs Movement X: ")
+        self.spinCtrlStairsMovementX = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlStairsMovementX.SetMin(-128)
+        self.spinCtrlStairsMovementX.SetMax(127)
+        horizontalBoxStairsMovementX.Add(labelStairsMovementX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxStairsMovementX.Add(self.spinCtrlStairsMovementX, wx.EXPAND|wx.ALL)
+
+        # stairs movement pixel offset X controls
+        horizontalBoxStairsMovementPixelOffsetX = wx.BoxSizer(wx.HORIZONTAL)
+        labelStairsMovementPixelOffsetX = wx.StaticText(self, label="Stairs Movement Pixel Offset X: ")
+        self.spinCtrlStairsMovementPixelOffsetX = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlStairsMovementPixelOffsetX.SetMin(0)
+        self.spinCtrlStairsMovementPixelOffsetX.SetMax(15)
+        horizontalBoxStairsMovementPixelOffsetX.Add(labelStairsMovementPixelOffsetX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxStairsMovementPixelOffsetX.Add(self.spinCtrlStairsMovementPixelOffsetX, wx.EXPAND|wx.ALL)
+
+        # stairs movement Y controls
+        horizontalBoxStairsMovementY = wx.BoxSizer(wx.HORIZONTAL)
+        labelStairsMovementY = wx.StaticText(self, label="Stairs Movement Y: ")
+        self.spinCtrlStairsMovementY = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlStairsMovementY.SetMin(-128)
+        self.spinCtrlStairsMovementY.SetMax(127)
+        horizontalBoxStairsMovementY.Add(labelStairsMovementY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxStairsMovementY.Add(self.spinCtrlStairsMovementY, wx.EXPAND|wx.ALL)
+
+        # stairs movement pixel offset Y controls
+        horizontalBoxStairsMovementPixelOffsetY = wx.BoxSizer(wx.HORIZONTAL)
+        labelStairsMovementPixelOffsetY = wx.StaticText(self, label="Stairs Movement Pixel Offset Y: ")
+        self.spinCtrlStairsMovementPixelOffsetY = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlStairsMovementPixelOffsetY.SetMin(0)
+        self.spinCtrlStairsMovementPixelOffsetY.SetMax(15)
+        horizontalBoxStairsMovementPixelOffsetY.Add(labelStairsMovementPixelOffsetY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxStairsMovementPixelOffsetY.Add(self.spinCtrlStairsMovementPixelOffsetY, wx.EXPAND|wx.ALL)
+        
+        # player direction after scroll movement controls
+        horizontalBoxPlayerDirectionAfter = wx.BoxSizer(wx.HORIZONTAL)
+        labelPlayerDirectionAfter = wx.StaticText(self, label="Player Direction After: ")
+        self.comboBoxPlayerDirectionAfter = wx.ComboBox(self, style=wx.CB_DROPDOWN)
+        self.comboBoxPlayerDirectionAfter.Append("Down")
+        self.comboBoxPlayerDirectionAfter.Append("Left")
+        self.comboBoxPlayerDirectionAfter.Append("Right")
+        self.comboBoxPlayerDirectionAfter.Append("Up")
+        horizontalBoxPlayerDirectionAfter.Add(labelPlayerDirectionAfter, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxPlayerDirectionAfter.Add(self.comboBoxPlayerDirectionAfter, wx.EXPAND|wx.ALL)
+        
+        # stairs data
+        self.verticalBoxStairsData = wx.BoxSizer(wx.VERTICAL)
+        labelStairsData = wx.StaticText(self, label="Stairs Data:")
+        self.verticalBoxStairsData.Add(labelStairsData)
+        self.verticalBoxStairsData.Add(horizontalBoxByte0)
+        self.verticalBoxStairsData.Add(horizontalBoxByte1)
+        self.verticalBoxStairsData.Add(horizontalBoxScrollMovementDirection)
+        self.verticalBoxStairsData.Add(horizontalBoxScrollMovementId)
+        self.verticalBoxStairsData.Add(horizontalBoxPlayerDirectionBefore)
+        self.verticalBoxStairsData.Add(horizontalBoxStairsMovementX)
+        self.verticalBoxStairsData.Add(horizontalBoxStairsMovementPixelOffsetX)
+        self.verticalBoxStairsData.Add(horizontalBoxStairsMovementY)
+        self.verticalBoxStairsData.Add(horizontalBoxStairsMovementPixelOffsetY)
+        self.verticalBoxStairsData.Add(horizontalBoxPlayerDirectionAfter)
+        self.SetSizer(self.verticalBoxStairsData)
+        self.Fit()
 
 class TabExitTeleport(wx.Panel):
     def __init__(self, parent):
@@ -243,6 +353,17 @@ class View_MapTabExits(wx.Panel):
             if exitData.type == Model_MapExit.ExitType.STAIRS:
                 self.checkBoxExitTypeTeleport.SetValue(False)
                 self.checkBoxExitTypeStairs.SetValue(True)
+                self.tabExitStairs.spinCtrlByte0.SetValue(exitData.stairsByte0)
+                self.tabExitStairs.spinCtrlByte1.SetValue(exitData.stairsByte1)
+                self.tabExitStairs.comboBoxScrollMovementDirection.SetSelection(exitData.stairsScrollMovementDirection)
+                self.tabExitStairs.spinCtrlScrollMovementId.SetValue(exitData.stairsScrollMovementId)
+                self.tabExitStairs.comboBoxPlayerDirectionBefore.SetSelection(exitData.stairsPlayerDirectionBefore)
+                self.tabExitStairs.spinCtrlStairsMovementX.SetValue(exitData.stairsMovementX)
+                self.tabExitStairs.spinCtrlStairsMovementPixelOffsetX.SetValue(exitData.stairsMovementPixelOffsetX)
+                self.tabExitStairs.spinCtrlStairsMovementY.SetValue(exitData.stairsMovementY)
+                self.tabExitStairs.spinCtrlStairsMovementPixelOffsetY.SetValue(exitData.stairsMovementPixelOffsetY)
+                self.tabExitStairs.comboBoxPlayerDirectionAfter.SetSelection(exitData.stairsPlayerDirectionAfter)
+                
                 # disable teleport tab
                 self.tabExitStairs.Enable()
                 self.tabExitTeleport.Disable()

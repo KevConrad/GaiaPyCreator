@@ -14,6 +14,10 @@ class Model_MapExit:
         RIGHT = 2
         UP = 3
 
+    class StairsDirection:
+        DOWN = 0x40
+        UP = 0x80
+
     def __init__(self, romData, address, type : ExitType) -> None:
         self.romData = romData
 
@@ -51,7 +55,7 @@ class Model_MapExit:
             self.destinationY = self.destinationY + self.romData[readOffset] * 16
             readOffset += 1
 
-            self.playerDirection = self.read_direction(self.romData[readOffset])
+            self.playerDirection = self.readPlayerDirection(self.romData[readOffset])
             readOffset += 1
             self.screenOffset = self.romData[readOffset]
             readOffset += 1
@@ -67,26 +71,38 @@ class Model_MapExit:
             readOffset += 1
 
             # read the scroll movement data
-            self.stairsScrollMovementDirection = self.romData[readOffset] & 0xF0
+            self.stairsScrollMovementDirection = self.readScrollDirection(self.romData[readOffset] & 0xF0)
             self.stairsScrollMovementId = self.romData[readOffset] & 0x0F
             readOffset += 1
             # read the player direction before scroll movement
-            self.stairsPlayerDirectionBefore = self.romData[readOffset]
+            self.stairsPlayerDirectionBefore = self.readPlayerDirection(self.romData[readOffset])
             readOffset += 1
-            # read the stairs offset in X direction
-            self.stairsOffsetX = (self.romData[readOffset] & 0xF0) >> 4
-            self.stairsPixelOffsetX = self.romData[readOffset] & 0x0F
+            
+            # read the stairs movement in X direction
+            self.stairsMovementX = (self.romData[readOffset] & 0xF0) >> 4
+            self.stairsMovementPixelOffsetX = self.romData[readOffset] & 0x0F
             readOffset += 1
-            self.stairsOffsetX = self.stairsOffsetX + (self.romData[readOffset] * 16)
+            stairsMovementMultiplicator = self.romData[readOffset]
+            # convert the byte value to a signed value
+            if stairsMovementMultiplicator > 127:
+                stairsMovementMultiplicator = stairsMovementMultiplicator - 256
+                print(stairsMovementMultiplicator)
+            self.stairsMovementX = self.stairsMovementX + (stairsMovementMultiplicator * 16)
             readOffset += 1
-            # read the stairs offset in Y direction
-            self.stairsOffsetY = (self.romData[readOffset] & 0xF0) >> 4
-            self.stairsPixelOffsetY = self.romData[readOffset] & 0x0F
+
+            # read the stairs movement in Y direction
+            stairsMovementY = (self.romData[readOffset] & 0xF0) >> 4
+            self.stairsMovementPixelOffsetY = self.romData[readOffset] & 0x0F
             readOffset += 1
-            self.stairsOffsetY = self.stairsOffsetY + (self.romData[readOffset] * 16)
+            stairsMovementMultiplicator = self.romData[readOffset]
+            # convert the byte value to a signed value
+            if stairsMovementMultiplicator > 127:
+                stairsMovementMultiplicator= stairsMovementMultiplicator - 256
+            self.stairsMovementY = (int)(stairsMovementY + (stairsMovementMultiplicator * 16))
             readOffset += 1
+
             # read the player direction after scroll movement
-            self.stairsPlayerDirectionAfter = self.romData[readOffset]
+            self.stairsPlayerDirectionAfter = self.readPlayerDirection(self.romData[readOffset])
             readOffset += 1
             
         self.size = readOffset - address
@@ -100,7 +116,7 @@ class Model_MapExit:
         }
         return switch.get(rawData, chr(rawData))
     
-    def read_direction(self, direction):
+    def readPlayerDirection(self, direction):
         if direction == 0:
             player_direction = self.PlayerDirection.UP
         elif direction == 1:
@@ -122,3 +138,9 @@ class Model_MapExit:
             player_direction = self.PlayerDirection.DOWN
 
         return player_direction
+    
+    def readScrollDirection(self, direction):
+        if direction == self.StairsDirection.DOWN:
+            return 0
+        else:
+            return 1
