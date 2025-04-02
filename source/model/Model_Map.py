@@ -200,8 +200,8 @@ class Model_Map:
             pixelIndex = (pixelWidth * 3 * event.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * 3 * event.positionX
             for height in range (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT):
                 for width in range (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH):
-                    pixelOffsetX = 3 * (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH + width)
-                    pixelOffsetY = pixelWidth * 3 * (height + Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT)
+                    pixelOffsetX = 3 * width
+                    pixelOffsetY = pixelWidth * 3 * height
                     if eventIndex == selectedEventIndex:
                         if ((height == 0) or
                             (height == (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT - 1)) or
