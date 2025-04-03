@@ -6,6 +6,7 @@ from pubsub.utils.notification import useNotifyByWriteFile
 from controller.Controller_Project import Controller_Project
 from model.Model_MapDataTable import Model_MapDataTable
 from model.Model_MapData import Model_MapData
+from model.Model_MapDataBuffer import Model_MapDataBuffer
 from model.Model_Maps import Model_Maps
 from view.View_Main import View_Main
 
@@ -33,9 +34,10 @@ class Controller_Maps:
 
         self.mapData = []
         address = self.mapDataTable.mapDataTableAddress
+        mapDataBuffer = Model_MapDataBuffer(self.project.romData.romData)
         for mapIndex in range (Model_MapData.MAP_COUNT):
             mapData = Model_MapData(self.project.romData.romData)
-            length = mapData.read(address, mapIndex)
+            length = mapData.read(address, mapIndex, mapDataBuffer)
             self.mapData.append(mapData)
 
             address += length
