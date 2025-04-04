@@ -3,7 +3,7 @@ from model.Model_MapExits import Model_MapExits
 from model.Model_RomDataTable import Model_RomDataTable
 
 class Model_Maps:
-    def __init__(self, romData, projectData : dict, mapDataTable) -> None:
+    def __init__(self, romData, projectData : dict, mapDataTable, screenSettings) -> None:
         self.romData = romData
 
         # read all map data initially
@@ -15,7 +15,7 @@ class Model_Maps:
         mapIndex = 0
         for map in maps:
             # read the map data
-            mapData = Model_Map(self.romData, map, projectData, mapDataTable[mapIndex], mapIndex)
+            mapData = Model_Map(self.romData, map, projectData, mapDataTable[mapIndex], mapIndex, screenSettings)
             self.maps.append(mapData)
             self.mapNames.append(mapData.name)
             

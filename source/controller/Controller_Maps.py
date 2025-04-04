@@ -8,6 +8,7 @@ from model.Model_MapDataTable import Model_MapDataTable
 from model.Model_MapData import Model_MapData
 from model.Model_MapDataBuffer import Model_MapDataBuffer
 from model.Model_Maps import Model_Maps
+from model.Model_ScreenSettings import Model_ScreenSettings
 from view.View_Main import View_Main
 
 class Controller_Maps:
@@ -24,7 +25,10 @@ class Controller_Maps:
         if self.project.isProjectLoaded == True:
             self.loadMapDataTable()
             
-            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData)
+            self.screenSettings = Model_ScreenSettings(self.project.romData.romData, self.project.projectData.projectData)
+            
+            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings)
+
             self.view.maps.load(self.maps.mapNames)
             
     def loadMapDataTable(self):

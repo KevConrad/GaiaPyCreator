@@ -17,6 +17,8 @@ from model.Model_MapExits import Model_MapExits
 from model.Model_Palette import Model_Palette
 from model.Model_Paletteset import Model_Paletteset
 from model.Model_RomDataTable import Model_RomDataTable
+from model.Model_ScreenSettings import Model_ScreenSettings
+from model.Model_ScreenSetting import Model_ScreenSetting
 from model.Model_Tilemap import Model_Tilemap
 from model.Model_Tileset import Model_Tileset
 
@@ -25,7 +27,8 @@ import bitstring
 import PIL
 
 class Model_Map:
-    def __init__(self, romData, mapData : dict, projectData : dict, mapDataTableEntry : Model_MapData, mapIndex) -> None:
+    def __init__(self, romData, mapData : dict, projectData : dict, mapDataTableEntry : Model_MapData,
+                 mapIndex, screenSettings : Model_ScreenSettings) -> None:
         self.romData = romData
 
         # read the data from the JSON file
@@ -66,6 +69,10 @@ class Model_Map:
                 self.mapDataTilemap.append(dataEntry)
             if type(dataEntry) is Model_MapDataTileset:
                 self.mapDataTileset.append(dataEntry)
+
+        if len(self.mapDataScreenSettings) > 0:
+            # get the screen settings
+            self.screenSettings = screenSettings.screenSettings[self.mapDataScreenSettings[0].index]
         
         # set the map size in x direction
         if ((len(self.mapDataArrangement) > 1) and 
@@ -157,19 +164,25 @@ class Model_Map:
         pixelValues = [0] * (pixelWidth * pixelHeight)
         self.imageBytes = [0] * (pixelWidth * pixelHeight * 3)
 
-        #mapLayerOrder = screenSettings.getMapLayerOrderBits();
-        #if ((mapLayerOrder.mapLayerOrder.hasNormalMapLayers == false) and (data.GetDataCount(MapDataTableEntry.EDataset.arrangementData) > 1)) //TODO: Query of arrangementCount > 1 should not be necessary!
-            #if isBG2LayerDisplayed is True:
-
-        pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)
-                #if isBG1LayerDisplayed is True:
-                #    displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)              
-            #else:
-                #if isBG1LayerDisplayed is True:
-                #    displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)
-                #if (isBG2LayerDisplayed is True) and (data.GetDataCount(MapDataTableEntry.EDataset.arrangementData) > 1))
-                #    displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
-
+        if self.screenSettings is not None:
+            mapLayerOrder = self.screenSettings.mapLayerOrderBits
+            if (((mapLayerOrder & Model_ScreenSetting.MAP_LAYER_ORDER_HAS_NORMAL_MAP_LAYERS) == 0x00) and
+                (len(self.mapDataArrangement) > 1)): # TODO: Query of arrangementCount > 1 should not be necessary!
+                if isBG2LayerDisplayed is True:
+                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
+                if isBG1LayerDisplayed is True:
+                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)              
+            else:
+                if isBG1LayerDisplayed is True:
+                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)    
+                if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
+                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
+        else:
+            if isBG1LayerDisplayed is True:
+                pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)    
+            if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
+                pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
+        # TODO add display of sprite layer
         #if (isSpriteLayerDisplayed is True) and (data.getSpriteCount() > 0))
             # read the map overlay (events, exits, sprites) and write it to the bitmap pixel value array
             #displayOverlay(mapSizeX, mapSizeY, tilesetBits, pixelValues);
@@ -179,7 +192,7 @@ class Model_Map:
         for pixelValue in pixelValues:
             paletteIndex = int(float(pixelValue / 16))
             colorIndex = (pixelValue % 16)
-            palette = self.palettesetMap.palettes[paletteIndex]    # TODO check why -1 is needed here
+            palette = self.palettesetMap.palettes[paletteIndex]
             self.imageBytes[pixelIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
             self.imageBytes[pixelIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
             self.imageBytes[pixelIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
@@ -345,7 +358,7 @@ class Model_Map:
                                     if pixelValue == 0:
                                         continue
 
-                                    # ddd the palette offset to the pixel value
+                                    # add the palette offset to the pixel value
                                     if (paletteOffset > 0) and (pixelValue != 0):
                                         pixelValue += ((paletteOffset - 1) * 16)
 
