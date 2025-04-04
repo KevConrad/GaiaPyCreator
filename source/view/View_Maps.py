@@ -160,8 +160,9 @@ class View_Maps:
     def handleTabChanged(self, event):
         self.displayMapImage(self.zoom)
 
-    def load(self, mapNames):
+    def load(self, mapNames, tilemapNames):
         self.listBoxMaps.Set(mapNames)
+        self.tabEditor.load(tilemapNames)
         self.tabExits.load(mapNames)
 
     def onMouseMoveOverMap(self, event):        
@@ -246,6 +247,7 @@ class View_Maps:
         self.displayMapImage(self.zoom)
         
         # update map properties
+        self.tabEditor.update(mapData)
         self.tabEvents.update(mapData)
         self.tabExits.update(mapData)
         self.tabProperties.update(mapData)

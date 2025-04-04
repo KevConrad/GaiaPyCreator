@@ -1,6 +1,7 @@
 from model.Model_Map import Model_Map
 from model.Model_MapExits import Model_MapExits
 from model.Model_RomDataTable import Model_RomDataTable
+from model.Model_ScreenSettings import Model_ScreenSettings
 
 class Model_Maps:
     def __init__(self, romData, projectData : dict, mapDataTable, screenSettings) -> None:

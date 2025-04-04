@@ -12,6 +12,8 @@ from model.Model_MapDataTileset import Model_MapDataTileset
 
 from model.Model_MapDataBuffer import Model_MapDataBuffer
 
+from model.Model_Tilemaps import Model_Tilemaps
+
 import copy
 
 class Model_MapData:
@@ -29,8 +31,9 @@ class Model_MapData:
     MAP_DATA_TILEMAP = 0x05
     MAP_DATA_TILESET = 0x03
 
-    def __init__(self, romData) -> None:
+    def __init__(self, romData, tilemaps:Model_Tilemaps) -> None:
         self.romData = romData
+        self.tilemaps = tilemaps
     
     def read(self, address, index, mapDataBuffer : Model_MapDataBuffer):
         readOffset = address
@@ -80,7 +83,7 @@ class Model_MapData:
                     # TODO add spriteset to general sprite array
 
                 elif (functionNumber == self.MAP_DATA_TILEMAP):             # tilemap data (0x05)
-                    mapData = Model_MapDataTilemap(self.romData, readOffset)
+                    mapData = Model_MapDataTilemap(self.romData, readOffset, self.tilemaps)
                     mapDataBuffer.setTilemapBuffer(mapData)
                     # TODO add tilemap to general tilemap array
 

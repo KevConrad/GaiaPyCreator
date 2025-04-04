@@ -16,36 +16,14 @@ class View_MapTabProperties(wx.Panel):
         horizontalBoxName.Add(self.labelName, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,)
         horizontalBoxName.Add(self.textCtrlName, wx.EXPAND|wx.ALL)
 
-        # map size X controls
-        horizontalBoxMapSizeX = wx.BoxSizer(wx.HORIZONTAL)
-        labelMapSizeX = wx.StaticText(self, label="Size X: ")
-        self.spinCtrlMapSizeX = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlMapSizeX.SetMin(0)
-        self.spinCtrlMapSizeX.SetMax(1024)
-        horizontalBoxMapSizeX.Add(labelMapSizeX, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxMapSizeX.Add(self.spinCtrlMapSizeX, wx.EXPAND|wx.ALL)
-
-        # map size Y controls
-        horizontalBoxMapSizeY = wx.BoxSizer(wx.HORIZONTAL)
-        labelMapSizeY = wx.StaticText(self, label="Size Y: ")
-        self.spinCtrlMapSizeY = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlMapSizeY.SetMin(0)
-        self.spinCtrlMapSizeY.SetMax(1024)
-        horizontalBoxMapSizeY.Add(labelMapSizeY, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxMapSizeY.Add(self.spinCtrlMapSizeY, wx.EXPAND|wx.ALL)
-
         # map data
         self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
         labelMapData = wx.StaticText(self, label="Map Data:")
         self.verticalBoxMapData.Add(labelMapData)
         self.verticalBoxMapData.Add(horizontalBoxName)
-        self.verticalBoxMapData.Add(horizontalBoxMapSizeX)
-        self.verticalBoxMapData.Add(horizontalBoxMapSizeY)
 
         self.SetSizer(self.verticalBoxMapData)
         self.Fit()
     
     def update(self, mapData : Model_Map):
         self.textCtrlName.SetValue(mapData.events.displayedName)
-        self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
-        self.spinCtrlMapSizeY.SetValue(mapData.sizeY)

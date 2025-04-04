@@ -1,11 +1,12 @@
 from model.Model_MapDataPalette import Model_MapDataPalette
 from model.Model_MapDataTilemap import Model_MapDataTilemap
 from model.Model_MapDataTileset import Model_MapDataTileset
+from model.Model_Tilemaps import Model_Tilemaps
 
 import copy
 
 class Model_MapDataBuffer:
-    def __init__(self, romData) -> None:
+    def __init__(self, romData, tilemaps:Model_Tilemaps) -> None:
         self.paletteBuffer = []
         for bufferIndex in range (2):
             self.paletteBuffer.append(Model_MapDataPalette(romData, 0))
@@ -13,7 +14,7 @@ class Model_MapDataBuffer:
         self.tilemapBuffer = []
         self.tilesetBuffer = []
         for bufferIndex in range (3):
-            self.tilemapBuffer.append(Model_MapDataTilemap(romData, 0))
+            self.tilemapBuffer.append(Model_MapDataTilemap(romData, 0, tilemaps))
             self.tilesetBuffer.append(Model_MapDataTileset(romData, 0))
 
     def setPaletteBuffer(self, palette : Model_MapDataPalette):
