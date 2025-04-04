@@ -210,11 +210,15 @@ class Model_Map:
         # read the map events and write the event overlay to the bitmap pixel value array
         eventIndex = 0
         for event in self.events.events:
+            if (event.positionX > self.sizeX) or (event.positionY > self.sizeY):
+                continue
+            # calculate the pixel index of the current event
             pixelIndex = (pixelWidth * 3 * event.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * 3 * event.positionX
             for height in range (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT):
                 for width in range (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH):
                     pixelOffsetX = 3 * width
                     pixelOffsetY = pixelWidth * 3 * height
+                    # check if the event is selected
                     if eventIndex == selectedEventIndex:
                         if ((height == 0) or
                             (height == (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT - 1)) or
