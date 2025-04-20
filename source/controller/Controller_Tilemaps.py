@@ -18,6 +18,8 @@ class Controller_Tilemaps:
         pub.subscribe(self.load, "tilemaps_load")
         pub.subscribe(self.update, "tilemaps_update")
         pub.subscribe(self.updateTile, "tilemaps_update_tile")
+        pub.subscribe(self.updateTileImage, "tilemaps_update_tileImage")
+        pub.subscribe(self.updateTilemapImage, "tilemaps_update_tilemapImage")
 
     def load(self):
         if self.project.isProjectLoaded == True:
@@ -27,13 +29,25 @@ class Controller_Tilemaps:
     def update(self, tilemapIndex):
         self.tilemapIndex = tilemapIndex
         self.tilemaps.tilemaps[self.tilemapIndex].read()
-        tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = True,
+        self.tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = True,
                                                                           tileOffset = 0, tilesetReadOffset = 0)
-        self.view.tilemaps.update(tilemapImage)
+        self.view.tilemaps.update()
+
+    def updateTilemapImage(self, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY):
+        tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImageOverlay(currentPositionX, currentPositionY,
+                                                                                 selectedPositionX, selectedPositionY, True)
+        # update the tilemap image in the GUI
+        self.view.tilemaps.updateTilemapImage(tilemapImage)
+
+    def updateTileImage(self, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY):    
+        tileImage = self.tilemaps.tilemaps[self.tilemapIndex].getImageOverlay(currentPositionX, currentPositionY,
+                                                                              selectedPositionX, selectedPositionY, False)
+        # update the tile image in the GUI
+        self.view.tilemaps.updateTileImage(tileImage)
 
     def updateTile(self, tileIndex, tilePieceIndex):
         tileImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = False,
                                                                        tileOffset = tileIndex, tilesetReadOffset = 0)
         tileProperties = Model_Tile(self.tilemaps.tilemaps[self.tilemapIndex].tilemapData, tileIndex, tilePiece=tilePieceIndex)
-        self.view.tilemaps.updateTile(tileImage, tileProperties)
+        self.view.tilemaps.updateTileProperties(tileProperties)
         

@@ -34,6 +34,9 @@ class View_Tilemaps:
         labelTilemap = wx.StaticText(self.tabPage, label="Tilemap:")
         self.tilemapImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
                                             size=(self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT))
+        # bind function if mouse cursor over tilemap image
+        self.tilemapImage.Bind(wx.EVT_MOTION, self.onMouseMoveOverTilemapImage)
+        # bind function if mouse cursor over tilemap image and left button pressed
         self.tilemapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
         verticalBoxTilemapImage.Add(labelTilemap)
         verticalBoxTilemapImage.Add(self.tilemapImage)
@@ -43,7 +46,11 @@ class View_Tilemaps:
         labelTile = wx.StaticText(self.tabPage, label="Tile:")
         self.tileImage = wx.StaticBitmap(self.tabPage, wx.ID_ANY, wx.NullBitmap,
                                          size=(self.TILE_IMAGE_PIXEL_WIDTH, self.TILE_IMAGE_PIXEL_HEIGHT))
+        # bind function if mouse cursor over tile image
+        self.tileImage.Bind(wx.EVT_MOTION, self.onMouseMoveOverTileImage)
+        # bind function if mouse cursor over tile image and left button pressed
         self.tileImage.Bind(wx.EVT_LEFT_DOWN, self.onTileImageClick)
+        
         verticalBoxTileImage.Add(labelTile)
         verticalBoxTileImage.Add(self.tileImage)
 
@@ -135,6 +142,13 @@ class View_Tilemaps:
 
         self.frame.Show(True)
 
+        self.tileSelectedPositionX = 0
+        self.tileSelectedPositionY = 0
+        self.tilemapSelectedPositionX = 0
+        self.tilemapSelectedPositionY = 0
+        self.selectedTileIndex = 0
+        self.selectedTilePieceIndex = 0
+
     def load(self, tilemapNames):
         self.listBoxTilemaps.Set(tilemapNames)
 
@@ -142,32 +156,59 @@ class View_Tilemaps:
         selectedIndex = self.listBoxTilemaps.GetSelection()
         pub.sendMessage("tilemaps_update", tilemapIndex=selectedIndex)
 
+    def onMouseMoveOverTileImage(self, event):
+        x, y = event.GetPosition()
+        tileCurrentPositionX = int(x / (self.TILE_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_PIECE_WIDTH))
+        tileCurrentPositionY = int(y / (self.TILE_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_PIECE_HEIGHT))
+                
+        pub.sendMessage("tilemaps_update_tileImage", currentPositionX=tileCurrentPositionX, currentPositionY=tileCurrentPositionY,
+                                                     selectedPositionX=self.tileSelectedPositionX, selectedPositionY=self.tileSelectedPositionY)
+        
+        pub.sendMessage("tilemaps_update_tilemapImage", currentPositionX=self.tilemapSelectedPositionX, currentPositionY=self.tilemapSelectedPositionY,
+                                                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        
+    def onMouseMoveOverTilemapImage(self, event):
+        x, y = event.GetPosition()
+        tilemapCurrentPositionX = int(x / (self.TILEMAP_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_WIDTH))
+        tilemapCurrentPositionY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
+        pub.sendMessage("tilemaps_update_tilemapImage", currentPositionX=tilemapCurrentPositionX, currentPositionY=tilemapCurrentPositionY,
+                                                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        
     def onTileImageClick(self, event):
         x, y = event.GetPosition()
-        tileClickedX = int(x / (self.TILE_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_PIECE_WIDTH))
-        tileClickedY = int(y / (self.TILE_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_PIECE_HEIGHT))
-        selectedTilePiece = (tileClickedY * Model_Tilemap.TILEMAP_TILE_PIECE_WIDTH) + tileClickedX
+        self.tileSelectedPositionX = int(x / (self.TILE_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_PIECE_WIDTH))
+        self.tileSelectedPositionY = int(y / (self.TILE_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_PIECE_HEIGHT))
+        self.selectedTilePieceIndex = self.tileSelectedPositionY * Model_Tilemap.TILEMAP_TILE_PIECE_WIDTH + self.tileSelectedPositionX
+        
+        pub.sendMessage("tilemaps_update_tile", tileIndex=self.selectedTileIndex, tilePieceIndex=self.selectedTilePieceIndex)
 
-        pub.sendMessage("tilemaps_update_tile", tileIndex=self.selectedTileIndex, tilePieceIndex=selectedTilePiece)
+        pub.sendMessage("tilemaps_update_tileImage", currentPositionX=self.tileSelectedPositionX, currentPositionY=self.tileSelectedPositionY,
+                                                     selectedPositionX=self.tileSelectedPositionX, selectedPositionY=self.tileSelectedPositionY)
 
     def onTilemapImageClick(self, event):
         x, y = event.GetPosition()
-        tilemapClickedX = int(x / (self.TILEMAP_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_WIDTH))
-        tilemapClickedY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
-        self.selectedTileIndex = (tilemapClickedY * Model_Tilemap.TILEMAP_TILE_WIDTH) + tilemapClickedX
+        self.tilemapSelectedPositionX = int(x / (self.TILEMAP_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_WIDTH))
+        self.tilemapSelectedPositionY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
+        self.selectedTileIndex = (self.tilemapSelectedPositionY * Model_Tilemap.TILEMAP_TILE_WIDTH) + self.tilemapSelectedPositionX
 
         pub.sendMessage("tilemaps_update_tile", tileIndex=self.selectedTileIndex, tilePieceIndex=0)
 
-    def update(self, tilemapImage : PIL.Image):
-        sizedImage = tilemapImage.resize((self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
-        wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
-        wx_image.SetData(sizedImage.convert("RGB").tobytes())
-        bitmap = wx.BitmapFromImage(wx_image)
-        self.tilemapImage.SetBitmap(bitmap)
-        self.tilemapImage.Sizer
+        pub.sendMessage("tilemaps_update_tilemapImage", currentPositionX=self.tilemapSelectedPositionX, currentPositionY=self.tilemapSelectedPositionY,
+                                                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        
+        pub.sendMessage("tilemaps_update_tileImage", currentPositionX=self.tileSelectedPositionX, currentPositionY=self.tileSelectedPositionY,
+                                                     selectedPositionX=self.tileSelectedPositionX, selectedPositionY=self.tileSelectedPositionY)
 
-    def updateTile(self, tileImage : PIL.Image, tileProperties : Model_Tile):
-        # update the tile image
+    def update(self):
+        pub.sendMessage("tilemaps_update_tilemapImage", currentPositionX=self.tilemapSelectedPositionX, currentPositionY=self.tilemapSelectedPositionY,
+                                                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        
+        pub.sendMessage("tilemaps_update_tile", tileIndex=self.selectedTileIndex, tilePieceIndex=self.selectedTilePieceIndex)
+
+        pub.sendMessage("tilemaps_update_tileImage", currentPositionX=self.tileSelectedPositionX, currentPositionY=self.tileSelectedPositionY,
+                                                     selectedPositionX=self.tileSelectedPositionX, selectedPositionY=self.tileSelectedPositionY)
+        
+    def updateTileImage(self, tileImage : PIL.Image):
         sizedImage = tileImage.resize((self.TILE_IMAGE_PIXEL_WIDTH, self.TILE_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
         wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
@@ -175,6 +216,15 @@ class View_Tilemaps:
         self.tileImage.SetBitmap(bitmap)
         self.tileImage.Sizer
 
+    def updateTilemapImage(self, tilemapImage : PIL.Image):
+        sizedImage = tilemapImage.resize((self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
+        wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
+        wx_image.SetData(sizedImage.convert("RGB").tobytes())
+        bitmap = wx.BitmapFromImage(wx_image)
+        self.tilemapImage.SetBitmap(bitmap)
+        self.tilemapImage.Sizer
+
+    def updateTileProperties(self, tileProperties : Model_Tile):
         # update the tile property controls
         self.checkBoxMirrorHorizontal.SetValue(tileProperties.isMirroredX)
         self.checkBoxMirrorVertical.SetValue(tileProperties.isMirroredY)

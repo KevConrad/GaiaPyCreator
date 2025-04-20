@@ -6,6 +6,8 @@ from model.Model_Tileset import Model_Tileset
 
 import bitstring
 
+import copy
+
 import PIL
 
 class Model_Tilemap:
@@ -187,8 +189,59 @@ class Model_Tilemap:
             imageBytes[pixelIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
             pixelIndex = pixelIndex + 3
 
-        # create an image from the RGB pixel array
-        tilemapImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
-        return tilemapImage
+        if readAll == True:
+            self.tilemapImageBytes = imageBytes.copy()
+        else:
+            self.tileImageBytes = imageBytes.copy()
 
-    
+        # create an image from the RGB pixel array
+        image = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
+        return image
+
+    def getImageOverlay(self, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY, readAll):
+        # get the array containing the image bytes
+        if readAll == True:
+            imageBytes = self.tilemapImageBytes.copy()
+            pixelHeight = self.TILEMAP_PIXEL_HEIGHT
+            pixelWidth = self.TILEMAP_PIXEL_WIDTH
+            frameHeight = self.TILEMAP_TILE_PIXEL_HEIGHT
+            frameWidth = self.TILEMAP_TILE_PIXEL_WIDTH
+        else:
+            imageBytes = self.tileImageBytes.copy()
+            pixelHeight = self.TILEMAP_TILE_PIXEL_HEIGHT
+            pixelWidth = self.TILEMAP_TILE_PIXEL_WIDTH
+            frameHeight = self.TILEMAP_TILE_PIECE_PIXEL_HEIGHT
+            frameWidth = self.TILEMAP_TILE_PIECE_PIXEL_WIDTH
+
+        # set the frame on the current mouse position
+        pixelIndex = (pixelWidth * 3 * currentPositionY * frameHeight) + frameWidth * 3 * currentPositionX
+        for height in range (frameHeight):
+            for width in range (frameWidth):
+                if ((height == 0) or
+                    (height == (frameHeight - 1)) or
+                    (width == 0) or
+                    (width == (frameWidth - 1))):
+                    pixelOffsetX = 3 * width
+                    pixelOffsetY = pixelWidth * 3 * height
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+
+        # set the frame on the selected mouse position
+        pixelIndex = (pixelWidth * 3 * selectedPositionY * frameHeight) + frameWidth* 3 * selectedPositionX
+        for height in range (frameHeight):
+            for width in range (frameWidth):
+                if ((height == 0) or
+                    (height == (frameHeight - 1)) or
+                    (width == 0) or
+                    (width == (frameWidth - 1))):
+                    pixelOffsetX = 3 * width
+                    pixelOffsetY = pixelWidth * 3 * height
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0x00
+        
+        # create an image from the RGB pixel array
+        overlayImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
+        return overlayImage
+
