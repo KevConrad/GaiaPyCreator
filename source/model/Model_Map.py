@@ -144,7 +144,7 @@ class Model_Map:
         if paletteIndexMap >= 0:
             self.palettesetSprites = Model_Paletteset(self.romData, self.mapDataPalette[paletteIndexMap].address)
     
-    def getImage(self, isBG1LayerDisplayed, isBG2LayerDisplayed, isSpriteLayerDisplayed, screenSettings):          
+    def createImage(self, isBG1LayerDisplayed, isBG2LayerDisplayed, isSpriteLayerDisplayed, screenSettings):          
         # read all tilesets that are used by the map
 
         # array which contains the data of both tilesets used by the map
@@ -169,19 +169,19 @@ class Model_Map:
             if (((mapLayerOrder & Model_ScreenSetting.MAP_LAYER_ORDER_HAS_NORMAL_MAP_LAYERS) == 0x00) and
                 (len(self.mapDataArrangement) > 1)): # TODO: Query of arrangementCount > 1 should not be necessary!
                 if isBG2LayerDisplayed is True:
-                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
+                    pixelValues = self.createLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
                 if isBG1LayerDisplayed is True:
-                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)              
+                    pixelValues = self.createLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)              
             else:
                 if isBG1LayerDisplayed is True:
-                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)    
+                    pixelValues = self.createLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)    
                 if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
-                    pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
+                    pixelValues = self.createLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
         else:
             if isBG1LayerDisplayed is True:
-                pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)    
+                pixelValues = self.createLayer(self.sizeX, tilesetGraphicBits, pixelValues, 0)    
             if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
-                pixelValues = self.displayLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
+                pixelValues = self.createLayer(self.sizeX, tilesetGraphicBits, pixelValues, 1)
         # TODO add display of sprite layer
         #if (isSpriteLayerDisplayed is True) and (data.getSpriteCount() > 0))
             # read the map overlay (events, exits, sprites) and write it to the bitmap pixel value array
@@ -201,7 +201,7 @@ class Model_Map:
         # create an image from the RGB pixel array
         self.mapImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.imageBytes), 'raw')
 
-    def getEventImage(self, selectedEventIndex):
+    def createEventImage(self, selectedEventIndex):
         # create the array containing the image bytes
         pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
         pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
@@ -236,7 +236,7 @@ class Model_Map:
         # create an image from the RGB pixel array
         self.eventImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
 
-    def getExitImage(self, selectedExitIndex):
+    def createExitImage(self, selectedExitIndex):
         # create the array containing the image bytes
         pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
         pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
@@ -269,7 +269,7 @@ class Model_Map:
         # create an image from the RGB pixel array
         self.exitImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
 
-    def displayLayer(self, mapSizeX, tilesetBits, pixelValues, layer):
+    def createLayer(self, mapSizeX, tilesetBits, pixelValues, layer):
         tilePos = 0
         
         # read the arrangement index for the current map layer

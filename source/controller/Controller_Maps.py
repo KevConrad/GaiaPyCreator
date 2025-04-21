@@ -23,6 +23,7 @@ class Controller_Maps:
         pub.subscribe(self.update, "maps_update")
         pub.subscribe(self.updateEventImage, "maps_update_event")
         pub.subscribe(self.updateExitImage, "maps_update_exit")
+        pub.subscribe(self.updateTilemapImage, "maps_update_tilemapImage")
 
     def load(self):
         if self.project.isProjectLoaded == True:
@@ -34,10 +35,11 @@ class Controller_Maps:
 
             self.view.maps.load(self.maps.mapNames, self.tilemaps.tilemapNames)
             
-    def loadMapDataTable(self, tilemaps:Model_Tilemaps):
+    def loadMapDataTable(self, tilemaps: Model_Tilemaps):
         # load the map data table data from the project file
         self.mapDataTable = Model_MapDataTable()
         self.mapDataTable.load(self.project.projectData.projectData)
+        self.tilemaps = tilemaps
 
         self.mapData = []
         address = self.mapDataTable.mapDataTableAddress
@@ -54,10 +56,20 @@ class Controller_Maps:
         # read the map data
         self.maps.maps[self.mapIndex].read()
         # create the map image
-        self.maps.maps[self.mapIndex].getImage(True, True, True, 0)
-        self.maps.maps[self.mapIndex].getEventImage(0)
-        self.maps.maps[self.mapIndex].getExitImage(0)
+        self.maps.maps[self.mapIndex].createImage(True, True, True, 0)
+        self.maps.maps[self.mapIndex].createEventImage(0)
+        self.maps.maps[self.mapIndex].createExitImage(0)
+
+        self.tilemapIndex = self.maps.maps[self.mapIndex].mapDataTilemap[0].index
+        self.tilemaps.tilemaps[self.tilemapIndex].read()
+        self.tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = True,
+                                                                               tileOffset = 0, tilesetReadOffset = 0)
+        self.tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImageOverlay(0, 0, 0, 0, True)
+        
         self.view.maps.update(self.maps.maps[self.mapIndex])
+
+        # update the tilemap image in the map editor tab page
+        self.view.maps.tabEditor.updateTilemapImage(self.tilemapImage)
 
     def updateEventImage(self, selectedEventIndex):
         self.maps.maps[self.mapIndex].getEventImage(selectedEventIndex)
@@ -66,3 +78,9 @@ class Controller_Maps:
     def updateExitImage(self, selectedExitIndex):
         self.maps.maps[self.mapIndex].getExitImage(selectedExitIndex)
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
+
+    def updateTilemapImage(self, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY):
+        tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImageOverlay(currentPositionX, currentPositionY,
+                                                                                 selectedPositionX, selectedPositionY, True)
+        # update the tilemap image in the map editor tab page
+        self.view.maps.tabEditor.updateTilemapImage(tilemapImage)

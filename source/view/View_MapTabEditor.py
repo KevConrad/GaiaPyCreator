@@ -1,10 +1,19 @@
 # This file contains the class View_MapTabEditor, which is a panel that allows the user to edit the map.
 # This class is responsible for displaying the map editor.
+import PIL
+import PIL.Image
 import wx
 
 from model.Model_Map import Model_Map
+from model.Model_Tilemap import Model_Tilemap
+
+from PIL import Image
+from pubsub import pub
 
 class View_MapTabEditor(wx.Panel):
+
+    TILEMAP_IMAGE_PIXEL_HEIGHT = 300
+    TILEMAP_IMAGE_PIXEL_WIDTH = 300
 
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
@@ -42,6 +51,15 @@ class View_MapTabEditor(wx.Panel):
         horizontalBoxMapTilemap.Add(labelMapTilemap, flag=wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxMapTilemap.Add(self.comboBoxMapTilemap, flag=wx.ALIGN_LEFT|wx.ALL)
 
+        # map tilemap image
+        verticalBoxTilemapImage = wx.BoxSizer(wx.VERTICAL)
+        self.tilemapImage = wx.StaticBitmap(self, wx.ID_ANY, wx.NullBitmap,
+                                            size=(self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT))
+        # bind function if mouse cursor over tilemap image
+        self.tilemapImage.Bind(wx.EVT_MOTION, self.onMouseMoveOverTilemapImage)
+        # bind function if mouse cursor over tilemap image and left button pressed
+        self.tilemapImage.Bind(wx.EVT_LEFT_DOWN, self.onTilemapImageClick)
+
         # map data
         self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
         labelMapData = wx.StaticText(self, label="Map Data:")
@@ -50,6 +68,7 @@ class View_MapTabEditor(wx.Panel):
         self.verticalBoxMapData.Add(horizontalBoxMapSizeX)
         self.verticalBoxMapData.Add(horizontalBoxMapSizeY)
         self.verticalBoxMapData.Add(horizontalBoxMapTilemap)
+        self.verticalBoxMapData.Add(self.tilemapImage, flag=wx.ALIGN_LEFT|wx.ALL)
         self.verticalBoxMapData.AddStretchSpacer(1)
         self.SetSizer(self.verticalBoxMapData)
         self.Fit()
@@ -57,7 +76,33 @@ class View_MapTabEditor(wx.Panel):
     def load(self, tilemapNames : list):
         self.comboBoxMapTilemap.Set(tilemapNames)
 
+    def onMouseMoveOverTilemapImage(self, event):
+        x, y = event.GetPosition()
+        tilemapCurrentPositionX = int(x / (self.TILEMAP_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_WIDTH))
+        tilemapCurrentPositionY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
+        pub.sendMessage("maps_update_tilemapImage", currentPositionX=tilemapCurrentPositionX, currentPositionY=tilemapCurrentPositionY,
+                                                    selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+
+    def onTilemapImageClick(self, event):
+        x, y = event.GetPosition()
+        self.tilemapSelectedPositionX = int(x / (self.TILEMAP_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_WIDTH))
+        self.tilemapSelectedPositionY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
+        self.selectedTileIndex = (self.tilemapSelectedPositionY * Model_Tilemap.TILEMAP_TILE_WIDTH) + self.tilemapSelectedPositionX
+
+        pub.sendMessage("maps_update_tilemapImage", currentPositionX=self.tilemapSelectedPositionX, currentPositionY=self.tilemapSelectedPositionY,
+                                                    selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        
     def update(self, mapData : Model_Map):
         self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
         self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
         self.comboBoxMapTilemap.SetSelection(mapData.mapDataTilemap[0].index)
+
+        self.tilemapSelectedPositionX = 0
+        self.tilemapSelectedPositionY = 0
+
+    def updateTilemapImage(self, tilemapImage : PIL.Image):
+        sizedImage = tilemapImage.resize((self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
+        wx_image = wx.EmptyImage(sizedImage.size[0], sizedImage.size[1])
+        wx_image.SetData(sizedImage.convert("RGB").tobytes())
+        bitmap = wx.BitmapFromImage(wx_image)
+        self.tilemapImage.SetBitmap(bitmap)
