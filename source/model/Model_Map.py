@@ -159,10 +159,10 @@ class Model_Map:
                                                                length=Model_Tileset.TILESET_BYTE_SIZE * 8))
 
         # read the map layers
-        pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
-        pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
-        pixelValues = [0] * (pixelWidth * pixelHeight)
-        self.imageBytes = [0] * (pixelWidth * pixelHeight * 3)
+        self.pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
+        self.pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
+        pixelValues = [0] * (self.pixelWidth * self.pixelHeight)
+        self.imageBytes = [0] * (self.pixelWidth * self.pixelHeight * 3)
 
         if self.screenSettings is not None:
             mapLayerOrder = self.screenSettings.mapLayerOrderBits
@@ -199,13 +199,13 @@ class Model_Map:
             pixelIndex = pixelIndex + 3
 
         # create an image from the RGB pixel array
-        self.mapImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.imageBytes), 'raw')
+        self.mapImage = PIL.Image.frombytes('RGB', (self.pixelWidth, self.pixelHeight), bytes(self.imageBytes), 'raw')
 
     def createEventImage(self, selectedEventIndex):
         # create the array containing the image bytes
         pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
         pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
-        imageBytes = self.imageBytes.copy()
+        self.eventImageBytes = self.imageBytes.copy()
 
         # read the map events and write the event overlay to the bitmap pixel value array
         eventIndex = 0
@@ -224,23 +224,23 @@ class Model_Map:
                             (height == (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT - 1)) or
                             (width == 0) or
                             (width == (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH - 1))):
-                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
-                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
-                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
                         else:
-                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
                     else:
-                        imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                        self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
             eventIndex += 1
         
         # create an image from the RGB pixel array
-        self.eventImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
+        self.eventImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.eventImageBytes), 'raw')
 
     def createExitImage(self, selectedExitIndex):
         # create the array containing the image bytes
         pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
         pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
-        imageBytes = self.imageBytes.copy()
+        self.exitImageBytes = self.imageBytes.copy()
 
         # read the map exits and write the exit overlay to the bitmap pixel value array
         exitIndex = 0
@@ -257,17 +257,17 @@ class Model_Map:
                                     ((height == (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT - 1)) and (exitSizeY == (exit.height - 1))) or
                                     ((width == 0) and (exitSizeX == 0)) or
                                     ((width == (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH - 1) and (exitSizeX == (exit.width - 1))))):
-                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
-                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
-                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
                                 else:
-                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
                             else:
-                                imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                                self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
             exitIndex += 1
         
         # create an image from the RGB pixel array
-        self.exitImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(imageBytes), 'raw')
+        self.exitImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.exitImageBytes), 'raw')
 
     def createLayer(self, mapSizeX, tilesetBits, pixelValues, layer):
         tilePos = 0
@@ -390,6 +390,37 @@ class Model_Map:
                                         tilePixel = 7 - tilePixel
                         tilePos += 1
         return pixelValues
+    
+    def createImageOverlay(self, currentPositionX, currentPositionY, tabIndex):
+        if (tabIndex == 1):
+            # get the array containing the event image bytes
+            imageBytes = self.eventImageBytes.copy()
+        elif (tabIndex == 2):
+            # get the array containing the exit image bytes
+            imageBytes = self.exitImageBytes.copy()
+        else:
+            # get the array containing the image bytes
+            imageBytes = self.imageBytes.copy()
+
+        frameHeight = Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
+        frameWidth = Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
+
+        # set the frame on the current mouse position
+        pixelIndex = (self.pixelWidth * 3 * currentPositionY * frameHeight) + frameWidth * 3 * currentPositionX
+        for height in range (frameHeight):
+            for width in range (frameWidth):
+                if ((height == 0) or
+                    (height == (frameHeight - 1)) or
+                    (width == 0) or
+                    (width == (frameWidth - 1))):
+                    pixelOffsetX = 3 * width
+                    pixelOffsetY = self.pixelWidth * 3 * height
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+        
+        # create an image from the RGB pixel array
+        self.mapImage = PIL.Image.frombytes('RGB', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
     
     def getTilesetAddressDecomp(self, layer):
         addressDecomp = -1

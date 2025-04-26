@@ -137,17 +137,9 @@ class View_Maps:
         return mapDataTabs
 
     def displayMapImage(self, magnification):
-        index = self.mapDataTabs.GetSelection()
-
-        displayedMapImage = self.mapData.mapImage
-        if self.mapDataTabs.GetPage(index) is self.tabEvents:
-            displayedMapImage = self.mapData.eventImage
-        if self.mapDataTabs.GetPage(index) is self.tabExits:
-            displayedMapImage = self.mapData.exitImage
-
         magnificationX = self.mapData.sizeX * magnification
         magnificationY = self.mapData.sizeY * magnification
-        sizedImage = displayedMapImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+        sizedImage = self.mapData.mapImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
         wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
         wx_image.SetData(sizedImage.convert("RGB").tobytes())
         bitmap = wx.Bitmap(wx_image)
@@ -158,7 +150,8 @@ class View_Maps:
         self.scrolledWindowMap.SetScrollRate(20, 20)
 
     def handleTabChanged(self, event):
-        self.displayMapImage(self.zoom)
+        index = self.mapDataTabs.GetSelection()
+        pub.sendMessage("maps_update_mapImage", currentPositionX=0, currentPositionY=0, tabIndex=index)
 
     def load(self, mapNames, tilemapNames):
         self.listBoxMaps.Set(mapNames)
@@ -166,12 +159,12 @@ class View_Maps:
         self.tabExits.load(mapNames)
 
     def onMouseMoveOverMap(self, event):        
-        x, y = event.GetPosition()
+        currentPositionX, currentPositionY = event.GetPosition()
         # Convert to map coordinates
-        x = int(x / self.zoom)
-        y = int(y / self.zoom)
-        self.TextMouseCursorX.SetLabel(str(x))
-        self.TextMouseCursorY.SetLabel(str(y))
+        currentPositionX = int(currentPositionX / self.zoom)
+        currentPositionY = int(currentPositionY / self.zoom)
+        self.TextMouseCursorX.SetLabel(str(currentPositionX))
+        self.TextMouseCursorY.SetLabel(str(currentPositionY))
 
         index = self.mapDataTabs.GetSelection()
         if self.mapDataTabs.GetPage(index) is self.tabEvents:
@@ -179,7 +172,7 @@ class View_Maps:
             for eventIndex in range(len(self.mapData.events.events)):
                 event = self.mapData.events.events[eventIndex]
                 # Check if the mouse is over the event
-                if event.positionX == x and event.positionY == y:
+                if event.positionX == currentPositionX and event.positionY == currentPositionY:
                     self.selectedEventIndex = eventIndex
                     break
             if self.selectedEventIndex >= 0:
@@ -191,14 +184,16 @@ class View_Maps:
             for exitIndex in range(len(self.mapData.exits.exits)):
                 exit = self.mapData.exits.exits[exitIndex]
                 # Check if the mouse is over the exit area
-                if (x >= exit.positionX and x < (exit.positionX + exit.width)) and \
-                   (y >= exit.positionY and y < (exit.positionY + exit.height)):
+                if (currentPositionX >= exit.positionX and currentPositionX < (exit.positionX + exit.width)) and \
+                   (currentPositionY >= exit.positionY and currentPositionY < (exit.positionY + exit.height)):
                     self.selectedExitIndex = exitIndex
                     break
             if self.selectedExitIndex >= 0:
                 self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_HAND))
             else:
                 self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_ARROW))
+    
+        pub.sendMessage("maps_update_mapImage", currentPositionX=currentPositionX, currentPositionY=currentPositionY, tabIndex=index)
 
     def onMouseLeftDownOverMap(self, event):
         index = self.mapDataTabs.GetSelection()

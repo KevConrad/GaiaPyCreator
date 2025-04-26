@@ -23,6 +23,7 @@ class Controller_Maps:
         pub.subscribe(self.update, "maps_update")
         pub.subscribe(self.updateEventImage, "maps_update_event")
         pub.subscribe(self.updateExitImage, "maps_update_exit")
+        pub.subscribe(self.updateMapImage, "maps_update_mapImage")
         pub.subscribe(self.updateTilemapImage, "maps_update_tilemapImage")
 
     def load(self):
@@ -72,11 +73,16 @@ class Controller_Maps:
         self.view.maps.tabEditor.updateTilemapImage(self.tilemapImage)
 
     def updateEventImage(self, selectedEventIndex):
-        self.maps.maps[self.mapIndex].getEventImage(selectedEventIndex)
+        self.maps.maps[self.mapIndex].createEventImage(selectedEventIndex)
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
     def updateExitImage(self, selectedExitIndex):
-        self.maps.maps[self.mapIndex].getExitImage(selectedExitIndex)
+        self.maps.maps[self.mapIndex].createExitImage(selectedExitIndex)
+        self.view.maps.updateImage(self.maps.maps[self.mapIndex])
+
+    def updateMapImage(self, currentPositionX, currentPositionY, tabIndex):
+        self.maps.maps[self.mapIndex].createImageOverlay(currentPositionX, currentPositionY, tabIndex)
+        # update the map image in the GUI
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
     def updateTilemapImage(self, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY):

@@ -7,6 +7,7 @@
 |`maps_update`             |mapIndex        |Update the map.                   |
 |`maps_update_event`       |eventIndex      |Update the map events.            |
 |`maps_update_exit`        |exitIndex       |Update the map exits.             |
+|`maps_update_mapImage`    |                |Update the map image.         |
 |`maps_update_tilemapImage`|                |Update the tilemap image.         |
 |`project_close`           |-               |Close the project file.           |
 |`project_load`            |-               |Load the project data.            |
