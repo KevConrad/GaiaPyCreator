@@ -73,6 +73,10 @@ class View_MapTabEditor(wx.Panel):
         self.SetSizer(self.verticalBoxMapData)
         self.Fit()
 
+        self.selectedTileIndex = 0
+        self.tilemapSelectedPositionX = 0
+        self.tilemapSelectedPositionY = 0
+
     def load(self, tilemapNames : list):
         self.comboBoxMapTilemap.Set(tilemapNames)
 

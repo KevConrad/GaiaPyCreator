@@ -23,6 +23,7 @@ class Controller_Maps:
         pub.subscribe(self.update, "maps_update")
         pub.subscribe(self.updateEventImage, "maps_update_event")
         pub.subscribe(self.updateExitImage, "maps_update_exit")
+        pub.subscribe(self.updateMapArrangement, "maps_update_mapArrangement")
         pub.subscribe(self.updateMapImage, "maps_update_mapImage")
         pub.subscribe(self.updateTilemapImage, "maps_update_tilemapImage")
 
@@ -78,6 +79,11 @@ class Controller_Maps:
 
     def updateExitImage(self, selectedExitIndex):
         self.maps.maps[self.mapIndex].createExitImage(selectedExitIndex)
+        self.view.maps.updateImage(self.maps.maps[self.mapIndex])
+
+    def updateMapArrangement(self, currentPositionX, currentPositionY, selectedTileIndex):
+        self.maps.maps[self.mapIndex].updateArrangement(currentPositionX, currentPositionY, selectedTileIndex, 0)
+        # update the map image in the GUI
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
     def updateMapImage(self, currentPositionX, currentPositionY, tabIndex):
