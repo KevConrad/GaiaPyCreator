@@ -160,6 +160,15 @@ class View_Maps:
 
     def onMouseMoveOverMap(self, event):        
         currentPositionX, currentPositionY = event.GetPosition()
+        # check if mouse button is pressed
+        if event.LeftIsDown() == True:
+            index = self.mapDataTabs.GetSelection()
+            if self.mapDataTabs.GetPage(index) is self.tabEditor:
+                # Convert to map coordinates
+                currentPositionX = int(currentPositionX / self.zoom)
+                currentPositionY = int(currentPositionY / self.zoom)
+                pub.sendMessage("maps_update_mapArrangement", currentPositionX=currentPositionX, currentPositionY=currentPositionY, selectedTileIndex=self.tabEditor.selectedTileIndex)
+        
         # Convert to map coordinates
         currentPositionX = int(currentPositionX / self.zoom)
         currentPositionY = int(currentPositionY / self.zoom)

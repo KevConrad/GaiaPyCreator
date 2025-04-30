@@ -179,7 +179,7 @@ class Model_Map:
                     self.createLayer(self.sizeX, 1)
         else:
             if isBG1LayerDisplayed is True:
-                self.createLayer(self.sizeX, 0)    
+                self.createLayer(self.sizeX, 0)
             if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
                 self.createLayer(self.sizeX, 1)
         # TODO add display of sprite layer
