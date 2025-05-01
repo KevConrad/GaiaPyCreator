@@ -163,6 +163,7 @@ class View_Maps:
         # check if mouse button is pressed
         if event.LeftIsDown() == True:
             index = self.mapDataTabs.GetSelection()
+            # keep updating map arrangement with the selected tile if mouse button is kept pressed
             if self.mapDataTabs.GetPage(index) is self.tabEditor:
                 # Convert to map coordinates
                 currentPositionX = int(currentPositionX / self.zoom)

@@ -61,8 +61,6 @@ class View_MapTabEvents(wx.Panel):
 
         # event data
         self.verticalBoxEventData = wx.BoxSizer(wx.VERTICAL)
-        labelEventData = wx.StaticText(self, label="Event Data:")
-        self.verticalBoxEventData.Add(labelEventData)
         self.verticalBoxEventData.Add(horizontalBoxEventSelection)
         self.verticalBoxEventData.Add(horizontalBoxEventPositionX)
         self.verticalBoxEventData.Add(horizontalBoxEventPositionY)

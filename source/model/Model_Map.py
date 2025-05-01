@@ -17,6 +17,7 @@ from model.Model_MapExits import Model_MapExits
 from model.Model_Palette import Model_Palette
 from model.Model_Paletteset import Model_Paletteset
 from model.Model_RomDataTable import Model_RomDataTable
+from model.Model_RoomClearingRewards import Model_RoomClearingRewards
 from model.Model_ScreenSettings import Model_ScreenSettings
 from model.Model_ScreenSetting import Model_ScreenSetting
 from model.Model_Tilemap import Model_Tilemap
@@ -28,7 +29,7 @@ import PIL
 
 class Model_Map:
     def __init__(self, romData, mapData : dict, projectData : dict, mapDataTableEntry : Model_MapData,
-                 mapIndex, screenSettings : Model_ScreenSettings) -> None:
+                 mapIndex, screenSettings : Model_ScreenSettings, roomClearingRewards : Model_RoomClearingRewards) -> None:
         self.romData = romData
 
         # read the data from the JSON file
@@ -70,6 +71,9 @@ class Model_Map:
             if type(dataEntry) is Model_MapDataTileset:
                 self.mapDataTileset.append(dataEntry)
 
+        # get the room clearing reward
+        self.roomClearingReward = roomClearingRewards.roomClearingRewards[mapIndex].roomClearingReward
+        
         if len(self.mapDataScreenSettings) > 0:
             # get the screen settings
             self.screenSettings = screenSettings.screenSettings[self.mapDataScreenSettings[0].index]

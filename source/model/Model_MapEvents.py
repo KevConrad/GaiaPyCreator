@@ -60,4 +60,4 @@ class Model_MapEvents:
         self.isPlayerMirroredHorizontal = bool(playerFlagByte & (1 << 7))
         
         # Read the "mirror vertical" flag
-        self.isPlayerFlagMirroredVertical = bool(playerFlagByte & (1 << 6))
+        self.isPlayerMirroredVertical = bool(playerFlagByte & (1 << 6))

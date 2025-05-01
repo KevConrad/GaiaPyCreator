@@ -62,8 +62,6 @@ class View_MapTabEditor(wx.Panel):
 
         # map data
         self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
-        labelMapData = wx.StaticText(self, label="Map Data:")
-        self.verticalBoxMapData.Add(labelMapData)
         self.verticalBoxMapData.Add(horizontalBoxLayerSelection)
         self.verticalBoxMapData.Add(horizontalBoxMapSizeX)
         self.verticalBoxMapData.Add(horizontalBoxMapSizeY)

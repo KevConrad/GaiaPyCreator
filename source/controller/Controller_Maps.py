@@ -8,6 +8,7 @@ from model.Model_MapDataTable import Model_MapDataTable
 from model.Model_MapData import Model_MapData
 from model.Model_MapDataBuffer import Model_MapDataBuffer
 from model.Model_Maps import Model_Maps
+from model.Model_RoomClearingRewards import Model_RoomClearingRewards
 from model.Model_ScreenSettings import Model_ScreenSettings
 from model.Model_Tilemaps import Model_Tilemaps
 from view.View_Main import View_Main
@@ -30,10 +31,12 @@ class Controller_Maps:
     def load(self):
         if self.project.isProjectLoaded == True:
             self.loadMapDataTable(self.tilemaps)
+
+            self.roomClearingRewards = Model_RoomClearingRewards(self.project.romData.romData, self.project.projectData.projectData)
             
             self.screenSettings = Model_ScreenSettings(self.project.romData.romData, self.project.projectData.projectData)
             
-            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings)
+            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings, self.roomClearingRewards)
 
             self.view.maps.load(self.maps.mapNames, self.tilemaps.tilemapNames)
             

@@ -16,14 +16,62 @@ class View_MapTabProperties(wx.Panel):
         horizontalBoxName.Add(self.labelName, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL,)
         horizontalBoxName.Add(self.textCtrlName, wx.EXPAND|wx.ALL)
 
+        # player status controls
+        self.labelPlayerStatus = wx.StaticText(self, label="Player Status:")
+        # player above map check box
+        self.checkBoxPlayerAboveMap = wx.CheckBox(self, label="Player Above Map")
+        # player enable fighting check box
+        self.checkBoxPlayerEnableFighting = wx.CheckBox(self, label="Player Enable Fighting")
+        # player invisible check box
+        self.checkBoxPlayerInvisible = wx.CheckBox(self, label="Player Invisible")
+        # player mirror horizontal check box
+        self.checkBoxPlayerMirrorHorizontal = wx.CheckBox(self, label="Player Mirror Horizontal")
+        # player mirror vertical check box
+        self.checkBoxPlayerMirrorVertical = wx.CheckBox(self, label="Player Mirror Vertical")
+        # player status vertical sizer
+        verticalBoxPlayerStatus = wx.BoxSizer(wx.VERTICAL)
+        verticalBoxPlayerStatus.Add(self.labelPlayerStatus, flag=wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxPlayerStatus.Add(self.checkBoxPlayerAboveMap, flag=wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxPlayerStatus.Add(self.checkBoxPlayerEnableFighting, flag=wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxPlayerStatus.Add(self.checkBoxPlayerInvisible, flag=wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxPlayerStatus.Add(self.checkBoxPlayerMirrorHorizontal, flag=wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxPlayerStatus.Add(self.checkBoxPlayerMirrorVertical, flag=wx.ALIGN_LEFT|wx.ALL)
+
+        # room clearing rewards controls
+        self.labelRoomClearingRewards = wx.StaticText(self, label="Room Clearing Rewards:")
+        # room clearing rewards combobox
+        self.comboBoxRoomClearingRewards = wx.ComboBox(self, style=wx.CB_DROPDOWN|wx.CB_READONLY)
+        # add entries to combobox from class Model_RoomClearingRewards
+        self.comboBoxRoomClearingRewards.Append("None")
+        self.comboBoxRoomClearingRewards.Append("Power")
+        self.comboBoxRoomClearingRewards.Append("Strength")
+        self.comboBoxRoomClearingRewards.Append("Defense")
+        # add combobox to horizontal sizer
+        horizontalBoxRoomClearingRewards = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalBoxRoomClearingRewards.Add(self.labelRoomClearingRewards, flag=wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxRoomClearingRewards.Add(self.comboBoxRoomClearingRewards, flag=wx.ALIGN_LEFT|wx.ALL)
+
         # map data
         self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
-        labelMapData = wx.StaticText(self, label="Map Data:")
-        self.verticalBoxMapData.Add(labelMapData)
         self.verticalBoxMapData.Add(horizontalBoxName)
+        self.verticalBoxMapData.Add(verticalBoxPlayerStatus)
+        self.verticalBoxMapData.Add(horizontalBoxRoomClearingRewards)
 
         self.SetSizer(self.verticalBoxMapData)
         self.Fit()
     
     def update(self, mapData : Model_Map):
+        # update map name
         self.textCtrlName.SetValue(mapData.events.displayedName)
+
+        # update player status check boxes
+        self.checkBoxPlayerAboveMap.SetValue(mapData.events.isPlayerAboveMap)
+        self.checkBoxPlayerEnableFighting.SetValue(mapData.events.isPlayerFightEnabled)
+        self.checkBoxPlayerInvisible.SetValue(mapData.events.isPlayerInvisible)
+        self.checkBoxPlayerMirrorHorizontal.SetValue(mapData.events.isPlayerMirroredHorizontal)
+        self.checkBoxPlayerMirrorVertical.SetValue(mapData.events.isPlayerMirroredVertical)
+        
+        # update room clearing rewards combobox
+        self.comboBoxRoomClearingRewards.SetSelection(mapData.roomClearingReward)
+
+

@@ -305,8 +305,6 @@ class View_MapTabExits(wx.Panel):
 
         # exit data
         self.verticalBoxExitData = wx.BoxSizer(wx.VERTICAL)
-        labelExitData = wx.StaticText(self, label="Exit Data:")
-        self.verticalBoxExitData.Add(labelExitData)
         self.verticalBoxExitData.Add(horizontalBoxExitSelection)
         self.verticalBoxExitData.Add(horizontalBoxExitPositionX)
         self.verticalBoxExitData.Add(horizontalBoxExitPositionY)
