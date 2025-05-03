@@ -3253,11 +3253,10 @@
             {
                "Name": "71 - Jump Attack (Right)"
             },
-            [
-               {
-                  "Name": "72 - ?"
-               }
-            ],
+            {
+               "Name": "72 - ?"
+            }
+            ,
             {
                "Name": "73 - ?"
             },
@@ -3934,11 +3933,10 @@
             {
                "Name": "71 - Move [Freedan - Dark Friar]"
             },
-            [
-               {
-                  "Name": "72 - Move [Freedan - Aura Barrier]"
-               }
-            ],
+            {
+               "Name": "72 - Move [Freedan - Aura Barrier]"
+            }
+            ,
             {
                "Name": "73 - Move [Freedan - Earth Quaker]"
             },
@@ -4178,14 +4176,9 @@
             {
                "Name": "71 - Jump Attack (Right)"
             },
-            [
-               {
-                  "Name": "72 - ?"
-               },
-               {
-                  "Name": "72 - ?"
-               }
-            ],
+            {
+               "Name": "72 - ?"
+            },
             {
                "Name": "73 - ?"
             },
@@ -5729,11 +5722,9 @@
             {
                "Name": "71 - Water Chop"
             },
-            [
-               {
-                  "Name": "72 - Turbo (Face Down)"
-               }
-            ]
+            {
+               "Name": "72 - Turbo (Face Down)"
+            }
          ],
          "Tileset1": "1F9B85",
          "Tileset2": "1F9B85"

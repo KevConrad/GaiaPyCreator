@@ -37,6 +37,8 @@ class TabPalettes(wx.Panel):
         text = wx.StaticText(self, -1, "Edit palette data.", (20,20))
 
 class TabSprites(wx.Panel):
+    SPRITES_TAB_INDEX = 6
+
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         text = wx.StaticText(self, -1, "Edit sprite data.", (20,20))
@@ -105,6 +107,8 @@ class View_Tabs:
             pub.sendMessage("items_load")
         if self.notebook.GetPage(index) is self.tabMaps:
             pub.sendMessage("maps_load")
+        if self.notebook.GetPage(index) is self.tabSprites:
+            pub.sendMessage("sprites_load")
         if self.notebook.GetPage(index) is self.tabTilemaps:
             pub.sendMessage("tilemaps_load")
         if self.notebook.GetPage(index) is self.tabTilesets:
