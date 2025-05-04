@@ -1,8 +1,11 @@
 
 from model.Model_Compression import Model_Compression
 from model.Model_Sprite import Model_Sprite
+from model.Model_SpriteFrame import Model_SpriteFrame
 
 class Model_Spriteset:
+    SPRITE_ADDRESS_OFFSET = 0x4000
+
     def __init__(self, romData, sprite : dict) -> None:
         self.romData = romData
 
@@ -11,7 +14,6 @@ class Model_Spriteset:
         self.compressed = int(str(sprite['Compressed']), 16)
         self.name = str(sprite['Name'])
         self.palettesetAddress = int(str(sprite['Palette']), 16)
-        self.spriteCount = int(str(sprite['SpriteCount']), 10)
         self.tileset1Address = int(str(sprite['Tileset1']), 16)
         self.tileset2Address = int(str(sprite['Tileset2']), 16)
 
@@ -30,4 +32,42 @@ class Model_Spriteset:
         if self.compressed != 0:
             # read the compressed sprite data
             self.spriteData, self.compSize = Model_Compression.decompress(self.romData, self.address, 10000, 0)
+        else:
+            # TODO: read the uncompressed sprite data
+            pass
+
+        # read the sprite data of all sprites
+        for spriteIndex in range (len(self.sprites)):
+            # get the sprite data address
+            if self.compressed:
+                addressSpritePointer = spriteIndex * 2
+                addressSpriteData = (self.spriteData[addressSpritePointer + 1] * 256) + self.spriteData[addressSpritePointer]
+                addressSpriteData -= self.SPRITE_ADDRESS_OFFSET
+            else:
+                addressSpritePointer = self.address + (spriteIndex * 2)
+                addressSpriteData = (self.address & 0xFF0000) + (self.romData[addressSpritePointer + 1] << 8) + self.romData[addressSpritePointer]
+            # read the sprite data
+            self.sprites[spriteIndex].read(self.spriteData, addressSpriteData, self.compressed)
+
+        self.spriteFrames = []
+        for spriteIndex in range (len(self.sprites)):
+            for spriteFrameDataIndex in range (len(self.sprites[spriteIndex].frameData)):
+                # check if the sprite frame data is already in the list
+                isNewSpriteFrame = True
+                spriteFrameId = 0
+                for spriteFrameIndex in range (len(self.spriteFrames)):
+                    if self.spriteFrames[spriteFrameIndex].address == self.sprites[spriteIndex].frameData[spriteFrameDataIndex].address:
+                        isNewSpriteFrame = False
+                        spriteFrameId = spriteFrameIndex
+                        break
+
+                # if the sprite frame data is not in the list, add it
+                if isNewSpriteFrame:
+                    spriteFrame = Model_SpriteFrame(self.romData, self.sprites[spriteIndex].frameData[spriteFrameDataIndex].address)
+                    self.spriteFrames.append(spriteFrame)
+
+                    self.sprites[spriteIndex].frameData[spriteFrameDataIndex].frameId = len(self.spriteFrames) - 1
+                else:
+                    self.sprites[spriteIndex].frameData[spriteFrameDataIndex].frameId = spriteFrameId
+        
     

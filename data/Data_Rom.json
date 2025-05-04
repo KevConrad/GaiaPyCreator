@@ -3035,7 +3035,6 @@
          "Compressed": "0",
          "Name": "0 - Character [Freedan]",
          "Palette": "0",
-         "SpriteCount": "76",
          "Sprites": [
             {
                "Name": "0 - Face Down"
@@ -3275,7 +3274,6 @@
          "Compressed": "0",
          "Name": "1 - ?",
          "Palette": "0",
-         "SpriteCount": "11",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -3319,7 +3317,6 @@
          "Compressed": "0",
          "Name": "2 - Miscellaneous",
          "Palette": "1E3313",
-         "SpriteCount": "63",
          "Sprites": [
             {
                "Name": "0 - Nothing"
@@ -3519,7 +3516,6 @@
          "Compressed": "0",
          "Name": "3 - Character [Will]",
          "Palette": "45",
-         "SpriteCount": "39",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -3647,7 +3643,6 @@
          "Compressed": "0",
          "Name": "4 - Character Transformations",
          "Palette": "45",
-         "SpriteCount": "19",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -3715,7 +3710,6 @@
          "Compressed": "0",
          "Name": "5 - Items",
          "Palette": "1E1F35",
-         "SpriteCount": "77",
          "Sprites": [
             {
                "Name": "0 - No Item"
@@ -3958,7 +3952,6 @@
          "Compressed": "0",
          "Name": "6 - Character [Shadow]",
          "Palette": "0",
-         "SpriteCount": "76",
          "Sprites": [
             {
                "Name": "0 - Face Down"
@@ -4197,7 +4190,6 @@
          "Compressed": "0",
          "Name": "7 - ?",
          "Palette": "0",
-         "SpriteCount": "2",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -4214,7 +4206,6 @@
          "Compressed": "0",
          "Name": "8 - ?",
          "Palette": "0",
-         "SpriteCount": "1",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -4228,7 +4219,6 @@
          "Compressed": "0",
          "Name": "9 - ?",
          "Palette": "0",
-         "SpriteCount": "1",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -4242,7 +4232,6 @@
          "Compressed": "0",
          "Name": "10 - Character [Will]",
          "Palette": "45",
-         "SpriteCount": "72",
          "Sprites": [
             {
                "Name": "0 - Face Down"
@@ -4469,7 +4458,6 @@
          "Compressed": "0",
          "Name": "11 - Character [Shadow]",
          "Palette": "0",
-         "SpriteCount": "14",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -4522,7 +4510,6 @@
          "Compressed": "0",
          "Name": "12 - Character [Shadow]",
          "Palette": "0",
-         "SpriteCount": "3",
          "Sprites": [
             {
                "Name": "0 - Liquify (Change into liquid form)"
@@ -4542,7 +4529,6 @@
          "Compressed": "0",
          "Name": "13 - ?",
          "Palette": "0",
-         "SpriteCount": "8",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -4577,7 +4563,6 @@
          "Compressed": "1",
          "Name": "14 - South Cape",
          "Palette": "1E1635",
-         "SpriteCount": "64",
          "Sprites": [
             {
                "Name": "0 - Nothing"
@@ -4780,7 +4765,6 @@
          "Compressed": "1",
          "Name": "15 - Main Characters",
          "Palette": "187EFC",
-         "SpriteCount": "58",
          "Sprites": [
             {
                "Name": "0 - Nothing"
@@ -4965,7 +4949,6 @@
          "Compressed": "1",
          "Name": "16 - Will's House",
          "Palette": "1E730C",
-         "SpriteCount": "43",
          "Sprites": [
             {
                "Name": "0 - Nothing"
@@ -5105,7 +5088,6 @@
          "Compressed": "1",
          "Name": "17 - Edward's Castle",
          "Palette": "1E73CC",
-         "SpriteCount": "47",
          "Sprites": [
             {
                "Name": "0 - Nothing"
@@ -5257,7 +5239,6 @@
          "Compressed": "1",
          "Name": "18 - Underground Tunnel",
          "Palette": "1E754C",
-         "SpriteCount": "64",
          "Sprites": [
             {
                "Name": "0 - Ribber (Face Down) (1)"
@@ -5460,7 +5441,6 @@
          "Compressed": "1",
          "Name": "19 - Gaia",
          "Palette": "1E3313",
-         "SpriteCount": "11",
          "Sprites": [
             {
                "Name": "0 - Gaia's Eyes"
@@ -5504,7 +5484,6 @@
          "Compressed": "1",
          "Name": "20 - Itory, Moon Tribe, Raft",
          "Palette": "1E760C",
-         "SpriteCount": "73",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -5734,7 +5713,6 @@
          "Compressed": "1",
          "Name": "21 - Inca Ruins (1)",
          "Palette": "1E76CC",
-         "SpriteCount": "47",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -5886,7 +5864,6 @@
          "Compressed": "1",
          "Name": "22 - Inca Ruins (2)",
          "Palette": "1E778C",
-         "SpriteCount": "51",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -6050,7 +6027,6 @@
          "Compressed": "1",
          "Name": "23 - Inca Ruins Boss (Castoth)",
          "Palette": "1E784C",
-         "SpriteCount": "42",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -6187,7 +6163,6 @@
          "Compressed": "1",
          "Name": "24 - Incan Gold Ship",
          "Palette": "1E790C",
-         "SpriteCount": "31",
          "Sprites": [
             {
                "Name": "0 - Man 1 (Face Down)"
@@ -6291,7 +6266,6 @@
          "Compressed": "1",
          "Name": "25 - Freejia",
          "Palette": "1E79CC",
-         "SpriteCount": "55",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -6467,7 +6441,6 @@
          "Compressed": "1",
          "Name": "26 - Diamond Mine",
          "Palette": "1E7A8C",
-         "SpriteCount": "55",
          "Sprites": [
             {
                "Name": "0 - Flayzer (Face Down)"
@@ -6643,7 +6616,6 @@
          "Compressed": "1",
          "Name": "27 - Main Characters",
          "Palette": "187EFC",
-         "SpriteCount": "60",
          "Sprites": [
             {
                "Name": "0 - ?"
@@ -6834,7 +6806,6 @@
          "Compressed": "1",
          "Name": "28 - Sky Garden",
          "Palette": "1E7C0C",
-         "SpriteCount": "62",
          "Sprites": [
             {
                "Name": "0 - Cyber (Face Down)"
@@ -7031,7 +7002,6 @@
          "Compressed": "1",
          "Name": "29 - Sky Garden Boss (Viper)",
          "Palette": "1E7D8C",
-         "SpriteCount": "40",
          "Sprites": [
             {
                "Name": "0 - Cyber (Face Down)"
@@ -7162,7 +7132,6 @@
          "Compressed": "1",
          "Name": "30 - Cutscene Airplane",
          "Palette": "1E7E4C",
-         "SpriteCount": "8",
          "Sprites": [
             {
                "Name": "0 - Will Falling Down"
@@ -7197,7 +7166,6 @@
          "Compressed": "1",
          "Name": "31 - Seaside Palace/Mu",
          "Palette": "1EFFC0",
-         "SpriteCount": "49",
          "Sprites": [
             {
                "Name": "0 - Cyclops (Sleep)"
@@ -7355,7 +7323,6 @@
          "Compressed": "1",
          "Name": "32 - Mu Boss (Vampires)",
          "Palette": "1F0080",
-         "SpriteCount": "47",
          "Sprites": [
             {
                "Name": "0 - Male Vampire (Standing)"
@@ -7507,7 +7474,6 @@
          "Compressed": "1",
          "Name": "33 - Angel Village",
          "Palette": "1F0140",
-         "SpriteCount": "34",
          "Sprites": [
             {
                "Name": "0 - Angel Woman 1 (Face Down)"
@@ -7620,7 +7586,6 @@
          "Compressed": "1",
          "Name": "34 - Angel Village Dungeon",
          "Palette": "1F0200",
-         "SpriteCount": "30",
          "Sprites": [
             {
                "Name": "0 - Steelbones (Face Down)"
@@ -7721,7 +7686,6 @@
          "Compressed": "1",
          "Name": "35 - Watermia",
          "Palette": "1F02C0",
-         "SpriteCount": "58",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -7906,7 +7870,6 @@
          "Compressed": "1",
          "Name": "36 - NPCs (Jackal, Soldier, Lance)",
          "Palette": "1F0380",
-         "SpriteCount": "37",
          "Sprites": [
             {
                "Name": "0 - Jackal (Face Down)"
@@ -8028,7 +7991,6 @@
          "Compressed": "1",
          "Name": "37 - China's Great Wall",
          "Palette": "1F0500",
-         "SpriteCount": "33",
          "Sprites": [
             {
                "Name": "0 - Eyesore (Moving Down)"
@@ -8138,7 +8100,6 @@
          "Compressed": "1",
          "Name": "38 - China's Great Wall Boss (Sand Fanger)",
          "Palette": "1F05C0",
-         "SpriteCount": "38",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -8263,7 +8224,6 @@
          "Compressed": "1",
          "Name": "39 - Cutscene",
          "Palette": "1E7CCC",
-         "SpriteCount": "13",
          "Sprites": [
             {
                "Name": "0 - Train"
@@ -8313,7 +8273,6 @@
          "Compressed": "1",
          "Name": "40 - Euro (1)",
          "Palette": "1F0680",
-         "SpriteCount": "50",
          "Sprites": [
             {
                "Name": "0 - Man 1 (Face Down)"
@@ -8474,7 +8433,6 @@
          "Compressed": "1",
          "Name": "41 - Euro (2)",
          "Palette": "1F0740",
-         "SpriteCount": "48",
          "Sprites": [
             {
                "Name": "0 - Neil's Father (Face Down)"
@@ -8629,7 +8587,6 @@
          "Compressed": "1",
          "Name": "42 - Mountain Temple",
          "Palette": "1F0800",
-         "SpriteCount": "33",
          "Sprites": [
             {
                "Name": "0 - Fire Sprite (Standing)"
@@ -8739,7 +8696,6 @@
          "Compressed": "1",
          "Name": "43 - Native's Village",
          "Palette": "1F08C0",
-         "SpriteCount": "55",
          "Sprites": [
             {
                "Name": "0 - Erik (Face Down)"
@@ -8915,7 +8871,6 @@
          "Compressed": "1",
          "Name": "44 - Ankor Wat (1)",
          "Palette": "1E5533",
-         "SpriteCount": "45",
          "Sprites": [
             {
                "Name": "0 - Zip Fly (Down)"
@@ -9061,7 +9016,6 @@
          "Compressed": "1",
          "Name": "45 - Ankor Wat (2)",
          "Palette": "1E56F3",
-         "SpriteCount": "50",
          "Sprites": [
             {
                "Name": "0 - Gorgon (Down)"
@@ -9222,7 +9176,6 @@
          "Compressed": "1",
          "Name": "46 - Desert Village Dao",
          "Palette": "1F09A0",
-         "SpriteCount": "39",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -9350,7 +9303,6 @@
          "Compressed": "1",
          "Name": "47 - Pyramid",
          "Palette": "1F0A60",
-         "SpriteCount": "31",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -9454,7 +9406,6 @@
          "Compressed": "1",
          "Name": "48 - Pyramid Hieroglyph Room",
          "Palette": "1F0B20",
-         "SpriteCount": "32",
          "Sprites": [
             {
                "Name": "0 - Kara (Face Down)"
@@ -9561,7 +9512,6 @@
          "Compressed": "1",
          "Name": "49 - Pyramid Boss (Mummy Queen)",
          "Palette": "1F0BC0",
-         "SpriteCount": "22",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -9638,7 +9588,6 @@
          "Compressed": "1",
          "Name": "50 - {Cutscene] Rocks",
          "Palette": "1E5A93",
-         "SpriteCount": "4",
          "Sprites": [
             {
                "Name": "0 - Big Rock (1)"
@@ -9661,7 +9610,6 @@
          "Compressed": "1",
          "Name": "51 - Final Boss",
          "Palette": "1E6253",
-         "SpriteCount": "32",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -9768,7 +9716,6 @@
          "Compressed": "1",
          "Name": "52 - Jeweler's Mansion Boss",
          "Palette": "1F0D60",
-         "SpriteCount": "29",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -9866,7 +9813,6 @@
          "Compressed": "1",
          "Name": "53 - Cutscene (School Future)",
          "Palette": "103",
-         "SpriteCount": "10",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -9907,7 +9853,6 @@
          "Compressed": "1",
          "Name": "54 - Credits(?)",
          "Palette": "0",
-         "SpriteCount": "53",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -10077,7 +10022,6 @@
          "Compressed": "1",
          "Name": "55 - Itory, Moon Tribe, Raft",
          "Palette": "0",
-         "SpriteCount": "21",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -10151,7 +10095,6 @@
          "Compressed": "1",
          "Name": "56 - Nintendo + Enix Logo",
          "Palette": "0",
-         "SpriteCount": "2",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -10168,7 +10111,6 @@
          "Compressed": "1",
          "Name": "57 - Title Screen",
          "Palette": "0",
-         "SpriteCount": "1",
          "Sprites": [
             {
                "Name": "0 - Man (Face Down)"
@@ -10182,7 +10124,6 @@
          "Compressed": "1",
          "Name": "58 - World Map",
          "Palette": "1E6953",
-         "SpriteCount": "14",
          "Sprites": [
             {
                "Name": "0 - Will (Walking)"
