@@ -23,5 +23,5 @@ class Model_MapDataArrangement:
 
     def read(self):
         # decompress the compressed map arrangement data
-        self.data, self.compSize = Model_Compression.decompress(self.romData, self.address + self.READ_OFFSET, 10000, 0)
+        self.data, self.compSize = Model_Compression.decompress(self.romData, self.address + self.READ_OFFSET, 0)
             

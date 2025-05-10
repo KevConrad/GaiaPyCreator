@@ -33,7 +33,7 @@ class Model_Tileset:
     def read(self):
         if self.compSize > 0:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-            self.data, self.compSize = Model_Compression.decompress(self.romData, self.address, self.compSize + 1, self.decompOffset)
+            self.data, self.compSize = Model_Compression.decompress(self.romData, self.address, self.decompOffset)
         else:
             self.data = self.romData[self.address:self.decompSize]
 

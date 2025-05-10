@@ -54,14 +54,12 @@ class Model_Tilemap:
 
     def read(self):
         # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
-        self.tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.address, 10000, 0)
+        self.tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.address, 0)
 
         # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
         self.firstTilesetData, self.firstTilesetCompSize = Model_Compression.decompress(self.romData, self.firstTileset.address,
-                                                                                        self.firstTileset.compSize + 1,
                                                                                         self.firstTileset.decompOffset)
         self.secondTilesetData, self.secondTilesetCompSize = Model_Compression.decompress(self.romData, self.secondTileset.address,
-                                                                                          self.secondTileset.compSize + 1,
                                                                                           self.secondTileset.decompOffset)
         self.paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
         

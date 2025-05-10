@@ -117,11 +117,11 @@ class Model_Map:
         self.tilemapData = []
         if len(self.mapDataTilemap) > 0:
             # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
-            tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.mapDataTilemap[0].address, 10000, 0)
+            tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.mapDataTilemap[0].address, 0)
             self.tilemapData.append(tilemapData)
         if len(self.mapDataTilemap) > 1:
             # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
-            tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.mapDataTilemap[1].address, 10000, 0)
+            tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.mapDataTilemap[1].address, 0)
             self.tilemapData.append(tilemapData)
 
         # read BG1 layer tileset data
@@ -129,14 +129,12 @@ class Model_Map:
         if self.tilesetIndexBG1 >= 0:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
             self.tilesetDataBG1, self.tilesetBG1CompSize = Model_Compression.decompress(self.romData, self.mapDataTileset[self.tilesetIndexBG1].addressDecomp,
-                                                                                        0x4000,
                                                                                         decompOffset)
         # read BG2 layer tileset data
         self.tilesetIndexBG2, decompOffset = self.getTilesetIndex(Model_MapDataTileset.LAYER_BG2)
         if self.tilesetIndexBG2 >= 0:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
             self.tilesetDataBG2, self.tilesetBG2CompSize = Model_Compression.decompress(self.romData, self.mapDataTileset[self.tilesetIndexBG2].addressDecomp,
-                                                                                        0x4000,
                                                                                         decompOffset)
         # read map palette data
         paletteIndexMap = self.getPaletteIndex(Model_MapDataPalette.MAP_LAYER)
