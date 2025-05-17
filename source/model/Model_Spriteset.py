@@ -31,7 +31,7 @@ class Model_Spriteset:
         # read the sprite data from the ROM
         if self.compressed != 0:
             # read the compressed sprite data
-            self.spriteData, self.compSize = Model_Compression.decompress(self.romData, self.address, 10000, 0)
+            self.spriteData, self.compSize = Model_Compression.decompress(self.romData, self.address, 0)
         else:
             # TODO: read the uncompressed sprite data
             pass

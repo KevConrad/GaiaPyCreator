@@ -15,14 +15,18 @@ class Controller_Sprites:
         self.spritesets = Model_Spritesets(self.project.romData.romData, self.project.projectData.projectData)
 
         pub.subscribe(self.load, "sprites_load")
-        pub.subscribe(self.update, "spritesets_update")
+        pub.subscribe(self.updateSpriteset, "sprites_update_spriteset")
+        pub.subscribe(self.updateSprite, "sprites_update_sprite")
 
     def load(self):
         if self.project.isProjectLoaded == True:
             # display the spritesets in the GUI
             self.view.sprites.load(self.spritesets)
 
-    def update(self, spritesetIndex):
-        print("update sprites")
+    def updateSpriteset(self, spritesetIndex):
         self.spritesets.spritesets[spritesetIndex].read()
+        self.view.sprites.updateSpriteset(self.spritesets.spritesets[spritesetIndex])
+
+    def updateSprite(self, spriteIndex):
+        self.view.sprites.updateSprite(spriteIndex)
         
