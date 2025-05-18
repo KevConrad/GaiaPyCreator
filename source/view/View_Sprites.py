@@ -60,12 +60,56 @@ class View_Sprites:
         verticalBoxSpriteFrame.Add(horizontalBoxSpriteFrameSelection, 0, wx.EXPAND)
         verticalBoxSpriteFrame.Add(self.listBoxSpriteFrame, 0, wx.EXPAND)
 
+        # sprite frame property controls
+        verticalBoxSpriteFrameProperties = wx.BoxSizer(wx.VERTICAL)
+        # sprite frame duration controls
+        horizontalBoxSpriteDuration= wx.BoxSizer(wx.HORIZONTAL)
+        # sprite frame duration label
+        labelSpriteFrameDuration = wx.StaticText(self.tabPage, label="Duration: ")
+        # sprite frame duration spin control
+        self.spinCtrlSpriteFrameDuration = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlSpriteFrameDuration.SetMin(0)
+        self.spinCtrlSpriteFrameDuration.SetMax(1024)
+
+        horizontalBoxSpriteDuration.Add(labelSpriteFrameDuration, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxSpriteDuration.Add(self.spinCtrlSpriteFrameDuration, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+
+        # sprite frame offfset x controls
+        horizontalBoxSpriteFrameOffsetX = wx.BoxSizer(wx.HORIZONTAL)
+        # sprite frame offset x label
+        labelSpriteFrameOffsetX = wx.StaticText(self.tabPage, label="Offset X: ")
+        # sprite frame offset x spin control
+        self.spinCtrlSpriteFrameOffsetX = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlSpriteFrameOffsetX.SetMin(0)
+        self.spinCtrlSpriteFrameOffsetX.SetMax(1024)
+
+        horizontalBoxSpriteFrameOffsetX.Add(labelSpriteFrameOffsetX, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxSpriteFrameOffsetX.Add(self.spinCtrlSpriteFrameOffsetX, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+
+        # sprite frame position y controls
+        horizontalBoxSpriteFrameOffsetY = wx.BoxSizer(wx.HORIZONTAL)
+        # sprite frame position y label
+        labelSpriteFrameOffsetY = wx.StaticText(self.tabPage, label="Offset Y: ")
+        # sprite frame position y spin control
+        self.spinCtrlSpriteFrameOffsetY = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlSpriteFrameOffsetY.SetMin(0)
+        self.spinCtrlSpriteFrameOffsetY.SetMax(1024)
+
+        horizontalBoxSpriteFrameOffsetY.Add(labelSpriteFrameOffsetY, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxSpriteFrameOffsetY.Add(self.spinCtrlSpriteFrameOffsetY, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+
+        verticalBoxSpriteFrameProperties.Add(horizontalBoxSpriteDuration, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxSpriteFrameProperties.Add(horizontalBoxSpriteFrameOffsetX, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxSpriteFrameProperties.Add(horizontalBoxSpriteFrameOffsetY, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+
         horizontalBox = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBox.Add(verticalBoxSpritesets, 0, wx.EXPAND)
         horizontalBox.AddSpacer(10)
         horizontalBox.Add(verticalBoxSprites, 0, wx.EXPAND)
         horizontalBox.AddSpacer(10)
         horizontalBox.Add(verticalBoxSpriteFrame, 0, wx.EXPAND)
+        horizontalBox.AddSpacer(10)
+        horizontalBox.Add(verticalBoxSpriteFrameProperties, 0, wx.EXPAND)
         
         self.tabPage.SetSizer(horizontalBox)
         self.tabPage.Fit()
@@ -110,5 +154,11 @@ class View_Sprites:
         self.spinCtrlSpriteFrameCurrent.SetValue(0)
 
         # select the sprite frame
-        self.listBoxSpriteFrame.SetSelection(self.spritesetData.sprites[spriteIndex].frameData[0].frameId)
+        frameId = self.spritesetData.sprites[spriteIndex].frameData[0].frameId
+        self.listBoxSpriteFrame.SetSelection(frameId)
+
+        # update the sprite frame properties
+        self.spinCtrlSpriteFrameDuration.SetValue(self.spritesetData.sprites[spriteIndex].frameData[0].duration)
+        self.spinCtrlSpriteFrameOffsetX.SetValue(self.spritesetData.spriteFrames[frameId].offsetX)
+        self.spinCtrlSpriteFrameOffsetY.SetValue(self.spritesetData.spriteFrames[frameId].offsetY)
         
