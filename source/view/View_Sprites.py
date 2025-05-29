@@ -40,12 +40,12 @@ class View_Sprites:
         horizontalBoxSpriteFrameSelection = wx.BoxSizer(wx.HORIZONTAL)
         labelSpriteFrameSelection = wx.StaticText(self.tabPage, label="Sprite Frame: ")
         self.spinCtrlSpriteFrameCurrent = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlSpriteFrameCurrent.SetMin(0)
+        self.spinCtrlSpriteFrameCurrent.SetMin(1)
         self.spinCtrlSpriteFrameCurrent.SetMax(1024)
         self.spinCtrlSpriteFrameCurrent.Bind(wx.EVT_SPINCTRL, self.onSpriteFrameSelectionChanged)
         labelSpriteFrameSelectionSlash = wx.StaticText(self.tabPage, label=" / ")
         self.spinCtrlSpriteFrameCount = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlSpriteFrameCount.SetMin(0)
+        self.spinCtrlSpriteFrameCount.SetMin(1)
         self.spinCtrlSpriteFrameCount.SetMax(1024)
         horizontalBoxSpriteFrameSelection.Add(labelSpriteFrameSelection, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxSpriteFrameSelection.Add(self.spinCtrlSpriteFrameCurrent, wx.EXPAND|wx.ALL)
@@ -81,7 +81,7 @@ class View_Sprites:
         # sprite frame offset x spin control
         self.spinCtrlSpriteFrameOffsetX = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
         self.spinCtrlSpriteFrameOffsetX.SetMin(0)
-        self.spinCtrlSpriteFrameOffsetX.SetMax(1024)
+        self.spinCtrlSpriteFrameOffsetX.SetMax(255)
 
         horizontalBoxSpriteFrameOffsetX.Add(labelSpriteFrameOffsetX, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxSpriteFrameOffsetX.Add(self.spinCtrlSpriteFrameOffsetX, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
@@ -93,7 +93,7 @@ class View_Sprites:
         # sprite frame position y spin control
         self.spinCtrlSpriteFrameOffsetY = wx.SpinCtrl(self.tabPage, style=wx.SP_ARROW_KEYS)
         self.spinCtrlSpriteFrameOffsetY.SetMin(0)
-        self.spinCtrlSpriteFrameOffsetY.SetMax(1024)
+        self.spinCtrlSpriteFrameOffsetY.SetMax(255)
 
         horizontalBoxSpriteFrameOffsetY.Add(labelSpriteFrameOffsetY, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxSpriteFrameOffsetY.Add(self.spinCtrlSpriteFrameOffsetY, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
@@ -131,7 +131,8 @@ class View_Sprites:
         pub.sendMessage("sprites_update_sprite", spriteIndex=selectedIndex)
 
     def onSpriteFrameSelectionChanged(self, event):
-        pass
+        spriteFrameIndex = self.spinCtrlSpriteFrameCurrent.GetValue() - 1
+        self.updateSpriteFrame(spriteFrameIndex)
 
     def updateSpriteset(self, spritesetData : Model_Spriteset):
         self.spritesetData = spritesetData
@@ -149,16 +150,24 @@ class View_Sprites:
         self.listBoxSpriteFrame.SetSelection(self.spritesetData.sprites[0].frameData[0].frameId)
 
     def updateSprite(self, spriteIndex : int):
+        self. spriteIndex = spriteIndex
         # update the sprite frame selection
         self.spinCtrlSpriteFrameCount.SetValue(len(self.spritesetData.sprites[spriteIndex].frameData))
-        self.spinCtrlSpriteFrameCurrent.SetValue(0)
+        self.spinCtrlSpriteFrameCurrent.SetValue(1)
+        self.spinCtrlSpriteFrameCurrent.SetMax(len(self.spritesetData.sprites[spriteIndex].frameData))
 
+        # update sprite frame data
+        self.updateSpriteFrame(0)
+
+    def updateSpriteFrame(self, spriteFrameIndex : int):
         # select the sprite frame
-        frameId = self.spritesetData.sprites[spriteIndex].frameData[0].frameId
+        frameId = self.spritesetData.sprites[self.spriteIndex].frameData[spriteFrameIndex].frameId
         self.listBoxSpriteFrame.SetSelection(frameId)
 
         # update the sprite frame properties
-        self.spinCtrlSpriteFrameDuration.SetValue(self.spritesetData.sprites[spriteIndex].frameData[0].duration)
+        self.spinCtrlSpriteFrameDuration.SetValue(self.spritesetData.sprites[self.spriteIndex].frameData[0].duration)
         self.spinCtrlSpriteFrameOffsetX.SetValue(self.spritesetData.spriteFrames[frameId].offsetX)
         self.spinCtrlSpriteFrameOffsetY.SetValue(self.spritesetData.spriteFrames[frameId].offsetY)
+
+        
         
