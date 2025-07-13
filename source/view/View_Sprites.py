@@ -11,6 +11,8 @@ from pubsub import pub
 from PIL import Image
 
 class View_Sprites:
+    SPRITE_IMAGE_PIXEL_HEIGHT = 300
+    SPRITE_IMAGE_PIXEL_WIDTH = 300
 
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
@@ -56,9 +58,29 @@ class View_Sprites:
         self.listBoxSpriteFrame = wx.ListBox(self.tabPage , size = (View_Common.LISTBOX_WIDTH, View_Common.LISTBOX_HEIGHT / 2),
         style = wx.LB_SINGLE|wx.LB_HSCROLL)
         self.frame.Bind(wx.EVT_LISTBOX, self.onListBoxSprites, self.listBoxSpriteFrame)
+
+
+        # sprite frame editor label
+        labelSpriteFrameEditor = wx.StaticText(self.tabPage, label="Sprite Frame Editor", style=wx.ALIGN_LEFT)
+        # sprite frame editor image
+        self.scrolledWindowMap = wx.ScrolledWindow(self.tabPage, wx.ID_ANY,
+                                                   size=(self.SPRITE_IMAGE_PIXEL_WIDTH, self.SPRITE_IMAGE_PIXEL_HEIGHT))
+        self.scrolledWindowMap.SetScrollbars(1, 1, self.SPRITE_IMAGE_PIXEL_WIDTH, self.SPRITE_IMAGE_PIXEL_HEIGHT)
+        self.scrolledWindowMap.SetBackgroundColour(wx.Colour(0, 0, 0))  
+
+        # horizontal box for sprite frame editor
+        horizontalBoxSpriteFrameEditor = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalBoxSpriteFrameEditor.Add(self.scrolledWindowMap, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+
+        # create sprite image
+        self.displayedSpriteImage = wx.StaticBitmap(self.scrolledWindowMap, wx.ID_ANY, wx.NullBitmap,
+                                                 size=(self.SPRITE_IMAGE_PIXEL_WIDTH, self.SPRITE_IMAGE_PIXEL_HEIGHT))
+
         verticalBoxSpriteFrame = wx.BoxSizer(wx.VERTICAL)
         verticalBoxSpriteFrame.Add(horizontalBoxSpriteFrameSelection, 0, wx.EXPAND)
         verticalBoxSpriteFrame.Add(self.listBoxSpriteFrame, 0, wx.EXPAND)
+        verticalBoxSpriteFrame.Add(labelSpriteFrameEditor, 0, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        verticalBoxSpriteFrame.Add(horizontalBoxSpriteFrameEditor, 0, wx.EXPAND)
 
         # sprite frame property controls
         verticalBoxSpriteFrameProperties = wx.BoxSizer(wx.VERTICAL)

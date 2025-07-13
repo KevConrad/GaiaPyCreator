@@ -2,6 +2,9 @@
 from model.Model_Compression import Model_Compression
 from model.Model_Sprite import Model_Sprite
 from model.Model_SpriteFrame import Model_SpriteFrame
+from model.Model_Tileset import Model_Tileset
+
+import bitstring
 
 class Model_Spriteset:
     SPRITE_ADDRESS_OFFSET = 0x4000
@@ -28,6 +31,20 @@ class Model_Spriteset:
             self.spriteNames.append(spriteData.name)
 
     def read(self):
+        # read tileset1 data
+        # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
+        self.tileset1Data, self.tileset1CompSize = Model_Compression.decompress(self.romData, self.tileset1Address, 0)
+        # read BG2 layer tileset data
+        # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
+        self.tileset2Data, self.tileset2CompSize = Model_Compression.decompress(self.romData, self.tileset2Address, 0)
+        
+        # array which contains the data of both tilesets used by the map
+        self.tilesetBits = []
+        self.tilesetBits.append(bitstring.ConstBitStream(bytes = self.tileset1Data, offset=0,
+                                                         length=Model_Tileset.TILESET_BYTE_SIZE * 8))
+        self.tilesetBits.append(bitstring.ConstBitStream(bytes = self.tileset2Data, offset=0,
+                                                         length=Model_Tileset.TILESET_BYTE_SIZE * 8))
+            
         # read the sprite data from the ROM
         if self.compressed != 0:
             # read the compressed sprite data

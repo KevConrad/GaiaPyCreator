@@ -24,9 +24,12 @@ class Controller_Sprites:
             self.view.sprites.load(self.spritesets)
 
     def updateSpriteset(self, spritesetIndex):
+        self.spritesetIndex = spritesetIndex
         self.spritesets.spritesets[spritesetIndex].read()
         self.view.sprites.updateSpriteset(self.spritesets.spritesets[spritesetIndex])
 
     def updateSprite(self, spriteIndex):
+        tilesetBits = self.spritesets.spritesets[self.spritesetIndex].tilesetBits
+        self.spriteFrameImage = self.spritesets.spritesets[self.spritesetIndex].spriteFrames[spriteIndex].createImage(128, 128, tilesetBits)
         self.view.sprites.updateSprite(spriteIndex)
         
