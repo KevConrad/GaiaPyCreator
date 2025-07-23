@@ -149,8 +149,9 @@ class View_Sprites:
         pub.sendMessage("sprites_update_spriteset", spritesetIndex=selectedIndex)
 
     def onListBoxSprites(self, event):
-        selectedIndex = self.listBoxSprites.GetSelection()
-        pub.sendMessage("sprites_update_sprite", spriteIndex=selectedIndex)
+        self.spriteIndex = self.listBoxSprites.GetSelection()
+        self.frameIndex = self.spritesetData.sprites[self.spriteIndex].frameData[0].frameId
+        pub.sendMessage("sprites_update_sprite", spriteFrameIndex=self.frameIndex)
 
     def onSpriteFrameSelectionChanged(self, event):
         spriteFrameIndex = self.spinCtrlSpriteFrameCurrent.GetValue() - 1
@@ -171,7 +172,7 @@ class View_Sprites:
         # select the sprite frame from sprite 0
         self.listBoxSpriteFrame.SetSelection(self.spritesetData.sprites[0].frameData[0].frameId)
 
-    def updateSprite(self, spriteIndex : int):
+    def updateSprite(self, spriteIndex : int, spriteImage : PIL.Image.Image):
         self. spriteIndex = spriteIndex
         # update the sprite frame selection
         self.spinCtrlSpriteFrameCount.SetValue(len(self.spritesetData.sprites[spriteIndex].frameData))
@@ -180,6 +181,15 @@ class View_Sprites:
 
         # update sprite frame data
         self.updateSpriteFrame(0)
+
+        magnification = 1
+        magnificationX = self.SPRITE_IMAGE_PIXEL_WIDTH * magnification
+        magnificationY = self.SPRITE_IMAGE_PIXEL_HEIGHT * magnification
+        sizedImage = spriteImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+        wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
+        wx_image.SetData(sizedImage.convert("RGB").tobytes())
+        bitmap = wx.Bitmap(wx_image)
+        self.displayedSpriteImage.SetBitmap(bitmap)
 
     def updateSpriteFrame(self, spriteFrameIndex : int):
         # select the sprite frame

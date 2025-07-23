@@ -189,17 +189,6 @@ class Model_Map:
             # read the map overlay (events, exits, sprites) and write it to the bitmap pixel value array
             #displayOverlay(mapSizeX, mapSizeY, tilesetBits, pixelValues);
 
-        # create an RGB pixel array with the selected palette and the readout palette color index
-        pixelIndex = 0
-        for pixelValue in self.pixelValues:
-            paletteIndex = int(float(pixelValue / 16))
-            colorIndex = (pixelValue % 16)
-            palette = self.palettesetMap.palettes[paletteIndex]
-            self.imageBytes[pixelIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
-            self.imageBytes[pixelIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
-            self.imageBytes[pixelIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
-            pixelIndex = pixelIndex + 3
-
         # create an image from the RGB pixel array
         self.mapImage = PIL.Image.frombytes('RGB', (self.pixelWidth, self.pixelHeight), bytes(self.imageBytes), 'raw')
 
@@ -360,14 +349,26 @@ class Model_Map:
                                     if (tileProperty & 0x40) != 0:
                                         tilePixel = 7 - tilePixel
                                     
+                                    pixelValueIndex = 0
                                     if tilePiece== 0:
-                                        self.pixelValues[((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow)) + (256 * blockX) + (16 * tileX) + tilePixel] = pixelValue
+                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow)) + (256 * blockX) + (16 * tileX) + tilePixel
                                     if tilePiece== 1:
-                                        self.pixelValues[((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow)) + (256 * blockX) + (16 * tileX) + tilePixel + 8] = pixelValue
+                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow)) + (256 * blockX) + (16 * tileX) + tilePixel + 8
                                     if tilePiece== 2:
-                                        self.pixelValues[((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow + 8)) + (256 * blockX) + (16 * tileX) + tilePixel] = pixelValue
+                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow + 8)) + (256 * blockX) + (16 * tileX) + tilePixel
                                     if tilePiece== 3:
-                                        self.pixelValues[((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow + 8)) + (256 * blockX) + (16 * tileX) + tilePixel + 8] = pixelValue
+                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow + 8)) + (256 * blockX) + (16 * tileX) + tilePixel + 8
+
+                                    self.pixelValues[pixelValueIndex] = pixelValue
+
+                                    # update the RGB pixel array with the selected palette and the readout palette color index
+                                    paletteIndex = int(float(pixelValue / 16))
+                                    colorIndex = (pixelValue % 16)
+                                    palette = self.palettesetMap.palettes[paletteIndex]
+                                    imageBytesIndex = pixelValueIndex * 3
+                                    self.imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
+                                    self.imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
+                                    self.imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
 
                                     if (tileProperty & 0x80) != 0:
                                         tileRow = 7 - tileRow

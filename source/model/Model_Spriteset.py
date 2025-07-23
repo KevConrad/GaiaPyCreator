@@ -80,7 +80,7 @@ class Model_Spriteset:
 
                 # if the sprite frame data is not in the list, add it
                 if isNewSpriteFrame:
-                    spriteFrame = Model_SpriteFrame(self.spriteData, self.sprites[spriteIndex].frameData[spriteFrameDataIndex].address)
+                    spriteFrame = Model_SpriteFrame(self.romData, self.spriteData, self.sprites[spriteIndex].frameData[spriteFrameDataIndex].address, self.palettesetAddress)
                     self.spriteFrames.append(spriteFrame)
 
                     self.sprites[spriteIndex].frameData[spriteFrameDataIndex].frameId = len(self.spriteFrames) - 1

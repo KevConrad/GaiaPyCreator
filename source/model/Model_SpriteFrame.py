@@ -1,10 +1,15 @@
 
+from model.Model_Paletteset import Model_Paletteset
 from model.Model_SpriteFrameTileData import Model_SpriteFrameTileData
 
+import PIL
+
 class Model_SpriteFrame:
-    def __init__(self, spriteData, address) -> None:
+    def __init__(self, romData, spriteData, address, palettesetAddress) -> None:
         readOffset = address
         self.address = address
+        self.palettesetAddress = palettesetAddress
+        self.romData = romData
 
         self.offsetX = spriteData[readOffset]
         readOffset += 1
@@ -44,8 +49,11 @@ class Model_SpriteFrame:
 
     def createImage(self, width, height, tilesetBits):
         self.pixelValues = [0] * (width * height)
+        self.imageBytes = [0] * (width * height * 3)
 
-        for tile in range (self.tileCount):       
+        for tile in range (self.tileCount):
+            paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
+
             tilePieceCount = 0
             if self.tileData[tile].tileCutout == 0x00:
                 tilePieceCount = 1
@@ -162,15 +170,27 @@ class Model_SpriteFrame:
                             elif (tilePiece == 3):
                                 tilePiece = 1
 
+                        pixelValueIndex = 0
                         if tilePiece == 0:
-                            self.pixelValues[((self.tileData[tile].tileOffsetY + tileRow) * width) + (self.tileData[tile].tileOffsetX + tilePixel)] = pixelValue
+                            pixelValueIndex = ((self.tileData[tile].tileOffsetY + tileRow) * width) + (self.tileData[tile].tileOffsetX + tilePixel)
                         elif tilePiece == 1:
-                            self.pixelValues[((self.tileData[tile].tileOffsetY + tileRow) * width) + (self.tileData[tile].tileOffsetX + tilePixel + 8)] = pixelValue
+                            pixelValueIndex = ((self.tileData[tile].tileOffsetY + tileRow) * width) + (self.tileData[tile].tileOffsetX + tilePixel + 8)
                         elif tilePiece == 2:
-                            self.pixelValues[((self.tileData[tile].tileOffsetY + tileRow + 8) * width) + (self.tileData[tile].tileOffsetX + tilePixel)] = pixelValue
+                            pixelValueIndex = ((self.tileData[tile].tileOffsetY + tileRow + 8) * width) + (self.tileData[tile].tileOffsetX + tilePixel)
                         elif tilePiece == 3:
-                            self.pixelValues[((self.tileData[tile].tileOffsetY + tileRow + 8) * width) + (self.tileData[tile].tileOffsetX + tilePixel + 8)] = pixelValue
+                            pixelValueIndex = ((self.tileData[tile].tileOffsetY + tileRow + 8) * width) + (self.tileData[tile].tileOffsetX + tilePixel + 8)
 
+                        self.pixelValues[pixelValueIndex] = pixelValue
+
+                        # update the RGB pixel array with the selected palette and the readout palette color index
+                        paletteIndex = int(float(pixelValue / 16))
+                        colorIndex = (pixelValue % 16)
+                        palette = paletteset.palettes[paletteIndex + 1]
+                        imageBytesIndex = pixelValueIndex * 3
+                        self.imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
+                        self.imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
+                        self.imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                            
                         # Mirror tile in x direction
                         if self.tileData[tile].tileMirrorX == True:
                             tileRow = 7 - tileRow
@@ -180,6 +200,10 @@ class Model_SpriteFrame:
                         
                         tilePiece = tilePieceTemp
 
+        # create an image from the RGB pixel array
+        self.spriteImage = PIL.Image.frombytes('RGB', (width, height), bytes(self.imageBytes), 'raw')
+
+        return self.spriteImage
 
 
     
