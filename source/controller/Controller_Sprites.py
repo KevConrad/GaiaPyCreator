@@ -31,5 +31,5 @@ class Controller_Sprites:
     def updateSprite(self, spriteFrameIndex):
         tilesetBits = self.spritesets.spritesets[self.spritesetIndex].tilesetBits
         spriteImage = self.spriteFrameImage = self.spritesets.spritesets[self.spritesetIndex].spriteFrames[spriteFrameIndex].createImage(128, 128, tilesetBits)
-        self.view.sprites.updateSprite(spriteFrameIndex, spriteImage)
+        self.view.sprites.updateSpriteImage(spriteImage)
         

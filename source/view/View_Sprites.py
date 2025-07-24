@@ -150,12 +150,24 @@ class View_Sprites:
 
     def onListBoxSprites(self, event):
         self.spriteIndex = self.listBoxSprites.GetSelection()
+
+        # update the sprite frame selection
+        self.spinCtrlSpriteFrameCount.SetValue(len(self.spritesetData.sprites[self.spriteIndex].frameData))
+        self.spinCtrlSpriteFrameCurrent.SetValue(1)
+        self.spinCtrlSpriteFrameCurrent.SetMax(len(self.spritesetData.sprites[self.spriteIndex].frameData))
+
         self.frameIndex = self.spritesetData.sprites[self.spriteIndex].frameData[0].frameId
+        
+        # update sprite frame data
+        self.updateSpriteFrame()
+
         pub.sendMessage("sprites_update_sprite", spriteFrameIndex=self.frameIndex)
 
     def onSpriteFrameSelectionChanged(self, event):
         spriteFrameIndex = self.spinCtrlSpriteFrameCurrent.GetValue() - 1
-        self.updateSpriteFrame(spriteFrameIndex)
+        self.frameIndex = self.spritesetData.sprites[self.spriteIndex].frameData[spriteFrameIndex].frameId
+        pub.sendMessage("sprites_update_sprite", spriteFrameIndex=self.frameIndex)
+        self.updateSpriteFrame()
 
     def updateSpriteset(self, spritesetData : Model_Spriteset):
         self.spritesetData = spritesetData
@@ -172,16 +184,7 @@ class View_Sprites:
         # select the sprite frame from sprite 0
         self.listBoxSpriteFrame.SetSelection(self.spritesetData.sprites[0].frameData[0].frameId)
 
-    def updateSprite(self, spriteIndex : int, spriteImage : PIL.Image.Image):
-        self. spriteIndex = spriteIndex
-        # update the sprite frame selection
-        self.spinCtrlSpriteFrameCount.SetValue(len(self.spritesetData.sprites[spriteIndex].frameData))
-        self.spinCtrlSpriteFrameCurrent.SetValue(1)
-        self.spinCtrlSpriteFrameCurrent.SetMax(len(self.spritesetData.sprites[spriteIndex].frameData))
-
-        # update sprite frame data
-        self.updateSpriteFrame(0)
-
+    def updateSpriteImage(self, spriteImage : PIL.Image.Image):
         magnification = 1
         magnificationX = self.SPRITE_IMAGE_PIXEL_WIDTH * magnification
         magnificationY = self.SPRITE_IMAGE_PIXEL_HEIGHT * magnification
@@ -191,15 +194,14 @@ class View_Sprites:
         bitmap = wx.Bitmap(wx_image)
         self.displayedSpriteImage.SetBitmap(bitmap)
 
-    def updateSpriteFrame(self, spriteFrameIndex : int):
-        # select the sprite frame
-        frameId = self.spritesetData.sprites[self.spriteIndex].frameData[spriteFrameIndex].frameId
-        self.listBoxSpriteFrame.SetSelection(frameId)
+    def updateSpriteFrame(self):
+        # update the selected sprite frame
+        self.listBoxSpriteFrame.SetSelection(self.frameIndex)
 
         # update the sprite frame properties
         self.spinCtrlSpriteFrameDuration.SetValue(self.spritesetData.sprites[self.spriteIndex].frameData[0].duration)
-        self.spinCtrlSpriteFrameOffsetX.SetValue(self.spritesetData.spriteFrames[frameId].offsetX)
-        self.spinCtrlSpriteFrameOffsetY.SetValue(self.spritesetData.spriteFrames[frameId].offsetY)
+        self.spinCtrlSpriteFrameOffsetX.SetValue(self.spritesetData.spriteFrames[self.frameIndex].offsetX)
+        self.spinCtrlSpriteFrameOffsetY.SetValue(self.spritesetData.spriteFrames[self.frameIndex].offsetY)
 
         
         
