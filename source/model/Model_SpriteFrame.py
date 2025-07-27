@@ -55,7 +55,7 @@ class Model_SpriteFrame:
             paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
 
             tilePieceCount = 0
-            if self.tileData[tile].tileCutout == 0x00:
+            if self.tileData[tile].tileCutout == True:
                 tilePieceCount = 1
             else:
                 tilePieceCount = 4
@@ -140,7 +140,7 @@ class Model_SpriteFrame:
                         tilePieceTemp = tilePiece
                         if ((self.tileData[tile].tileMirrorX == True) and 
                             (self.tileData[tile].tileMirrorY == True) and
-                            (self.tileData[tile].tileCutout != 0)):
+                            (self.tileData[tile].tileCutout == False)):
                             if tilePiece == 0:
                                 tilePiece = 3
                             elif tilePiece == 1:
@@ -150,7 +150,7 @@ class Model_SpriteFrame:
                             elif tilePiece == 3:
                                 tilePiece = 0
                         elif ((self.tileData[tile].tileMirrorY == True) and
-                              (self.tileData[tile].tileCutout != 0)):
+                              (self.tileData[tile].tileCutout == False)):
                             if (tilePiece == 0):
                                 tilePiece = 1
                             elif (tilePiece == 1):
@@ -160,7 +160,7 @@ class Model_SpriteFrame:
                             elif (tilePiece == 3):
                                 tilePiece = 2
                         elif ((self.tileData[tile].tileMirrorX == True) and
-                              (self.tileData[tile].tileCutout != 0)):
+                              (self.tileData[tile].tileCutout == False)):
                             if (tilePiece == 0):
                                 tilePiece = 2
                             elif (tilePiece == 1):

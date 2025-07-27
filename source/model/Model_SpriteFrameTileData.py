@@ -4,7 +4,10 @@ class Model_SpriteFrameTileData:
         readOffset = address
 
         # Read the tile sector information
-        self.tileCutout = spriteTileData[readOffset]
+        if spriteTileData[readOffset] == 0:
+            self.tileCutout = True
+        else:
+            self.tileCutout = False
         readOffset += 1
 
         # Read the tile position offset in x direction
