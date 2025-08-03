@@ -168,8 +168,15 @@ class Model_Map:
 
         # create map layer images
         self.imageLayers = []
-        self.imageLayers.append(self.createLayerImage(self.sizeX, 0, False))  # BG1 layer
-        self.imageLayers.append(self.createLayerImage(self.sizeX, 1, True))  # BG2 layer
+        self.imageBytes = []
+        # BG1 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+        # BG2 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 1, True)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
 
         # create event and exit overlay images
         #self.imageEventOverlay = self.createEventImage(0)
@@ -393,9 +400,9 @@ class Model_Map:
                         tilePos += 1
         # create an image from the RGB pixel array
         image = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
-        return image
+        return image, imageBytes
     
-    def updateArrangement(self, positionX, positionY, tileIndex, layer):
+    def updateArrangement(self, positionX, positionY, tileIndex, layer, imageBytes):
         # read the arrangement index for the current map layer
         arrangementDataIndex = self.getArrangementDataIndexOfLayer(layer)
         
@@ -484,8 +491,6 @@ class Model_Map:
                     if tilePiece== 3:
                         pixelIndex = ((int(float(self.sizeX / 16))) * 256 * ((16 * positionY) + tileRow + 8)) + (16 * positionX) + tilePixel + 8
 
-                    self.pixelValues[pixelIndex] = pixelValue
-
                     if (tileProperty & 0x80) != 0:
                         tileRow = 7 - tileRow
 
@@ -493,17 +498,21 @@ class Model_Map:
                         tilePixel = 7 - tilePixel
     
                     # create an RGB pixel array with the selected palette and the readout palette color index
-                    imageBytesIndex = pixelIndex * 3
+                    imageBytesIndex = pixelIndex * self.BYTES_PER_PIXEL
 
                     paletteIndex = int(float(pixelValue / 16))
                     colorIndex = (pixelValue % 16)
                     palette = self.palettesetMap.palettes[paletteIndex]
-                    self.imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
-                    self.imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
-                    self.imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                    imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
+                    imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
+                    imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                    if pixelValue == 0:
+                        imageBytes[imageBytesIndex + 3] = 0                      # alpha (transparent)
+                    else:
+                        imageBytes[imageBytesIndex + 3] = 255                    # alpha (non-transparent)
 
         # create an image from the RGB pixel array
-        self.mapImage = PIL.Image.frombytes('RGB', (self.pixelWidth, self.pixelHeight), bytes(self.imageBytes), 'raw')
+        self.imageLayers[layer] = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
 
     def getTilemapIndexOfLayer(self, layer):
         tilemapOffset = 0
