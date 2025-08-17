@@ -10,7 +10,9 @@ class Model_ScreenSettings:
         # read the map event data
         screenSettingsTableAddress = int(str(projectData['DataTables']['ScreenSettingTable']['Address']), 16)
         screenSettingsTableSize = int(projectData['DataTables']['ScreenSettingTable']['Size'], base=16)
+        screenSettingsTableSize = int(float(screenSettingsTableSize / 2))
         screenSettingsDataTable = Model_RomDataTable(self.romData, screenSettingsTableAddress, screenSettingsTableSize)  
+        # read the screen settings data
         self.screenSettings = []
         for screenSettingIndex in range (screenSettingsTableSize):
             screenSettingAddress = screenSettingsDataTable.getDataAddress(screenSettingIndex)

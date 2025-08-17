@@ -78,7 +78,7 @@ class Model_Map:
         
         if len(self.mapDataScreenSettings) > 0:
             # get the screen settings
-            self.screenSettings = screenSettings.screenSettings[self.mapDataScreenSettings[0].index]
+            self.screenSettings = screenSettings.screenSettings[self.mapDataScreenSettings[0].index - 1]
         
         # set the map size in x direction
         if ((len(self.mapDataArrangement) > 1) and 
@@ -174,31 +174,19 @@ class Model_Map:
         self.imageLayers.append(image)
         self.imageBytes.append(imageBytes)
         # BG2 layer
-        image, imageBytes = self.createLayerImage(self.sizeX, 1, True)
+        image, imageBytes = self.createLayerImage(self.sizeX, 1, False)
         self.imageLayers.append(image)
         self.imageBytes.append(imageBytes)
 
-        # create event and exit overlay images
-        #self.imageEventOverlay = self.createEventImage(0)
-        #self.imageExitOverlay = self.createExitImage(0)
-        #if self.screenSettings is not None:
-        #    mapLayerOrder = self.screenSettings.mapLayerOrderBits
-        #    if (((mapLayerOrder & Model_ScreenSetting.MAP_LAYER_ORDER_HAS_NORMAL_MAP_LAYERS) == 0x00) and
-        #        (len(self.mapDataArrangement) > 1)): # TODO: Query of arrangementCount > 1 should not be necessary!
-        #        if isBG2LayerDisplayed is True:
-        #            self.createLayerImage(self.sizeX, 1)
-        #        if isBG1LayerDisplayed is True:
-        #            self.createLayerImage(self.sizeX, 0)              
-        #    else:
-        #        if isBG1LayerDisplayed is True:
-        #            self.createLayerImage(self.sizeX, 0)    
-        #        if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
-        #            self.createLayerImage(self.sizeX, 1)
-        #else:
-        #    if isBG1LayerDisplayed is True:
-        #        self.createLayerImage(self.sizeX, 0)
-        #    if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
-        #        self.createLayerImage(self.sizeX, 1)
+        # BG1 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+        # BG2 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 1, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+
         # TODO add display of sprite layer
         #if (isSpriteLayerDisplayed is True) and (data.getSpriteCount() > 0))
             # read the map overlay (events, exits, sprites) and write it to the bitmap pixel value array

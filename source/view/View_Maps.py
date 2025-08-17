@@ -3,6 +3,7 @@ import PIL.Image
 import wx
 
 from model.Model_Map import Model_Map
+from model.Model_ScreenSetting import Model_ScreenSetting
 from model.Model_Tile import Model_Tile
 from model.Model_Tilemap import Model_Tilemap
 from view.View_Common import View_Common
@@ -148,12 +149,32 @@ class View_Maps:
         magnificationY = self.mapData.sizeY * self.zoom
         
         image = PIL.Image.new('RGB', (magnificationX, magnificationY), (0, 0, 0))
-        if self.checkBoxMapLayerBG1.IsChecked() == True:
-            bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
-            image.paste(bg1Image, (0, 0), bg1Image)
-        if self.checkBoxMapLayerBG2.IsChecked() == True:
-            bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
-            image.paste(bg2Image, (0, 0), bg2Image)
+            
+        if self.mapData.screenSettings is not None:
+            mapLayerOrder = self.mapData.screenSettings.mapLayerOrderBits
+            print("Map layer order bits: " + str(mapLayerOrder))
+            if (((mapLayerOrder & Model_ScreenSetting.MAP_LAYER_ORDER_HAS_NORMAL_MAP_LAYERS) == 0x80) and
+                (len(self.mapData.mapDataArrangement) > 1)): # TODO: Query of arrangementCount > 1 should not be necessary!
+                if self.checkBoxMapLayerBG1.IsChecked() == True:
+                    bg1Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg1Image, (0, 0), bg1Image)
+                if self.checkBoxMapLayerBG2.IsChecked() == True:
+                    bg2Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg2Image, (0, 0), bg2Image)
+            else:
+                if self.checkBoxMapLayerBG1.IsChecked() == True:
+                    bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg1Image, (0, 0), bg1Image)
+                if self.checkBoxMapLayerBG2.IsChecked() == True:
+                    bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg2Image, (0, 0), bg2Image)
+        else:
+            if self.checkBoxMapLayerBG1.IsChecked() == True:
+                bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                image.paste(bg1Image, (0, 0), bg1Image)
+            if self.checkBoxMapLayerBG2.IsChecked() == True:
+                bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                image.paste(bg2Image, (0, 0), bg2Image)
 
         index = self.mapDataTabs.GetSelection()
         if self.mapDataTabs.GetPage(index) is self.tabEvents:
