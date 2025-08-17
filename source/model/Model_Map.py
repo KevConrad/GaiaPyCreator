@@ -259,13 +259,19 @@ class Model_Map:
         self.exitImage = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
 
     def createLayerImage(self, mapSizeX, layer, isTransparent):
+        import time
+        import datetime
+        
         tilePos = 0
         
         # read the arrangement index for the current map layer
         arrangementDataIndex = self.getArrangementDataIndexOfLayer(layer)
-            
+        arrangementData = self.mapDataArrangement[arrangementDataIndex].data
+
+        paletteData = self.palettesetMap.palettes
         # read the tilemap index for the current map layer
         tilemapOffset = self.getTilemapIndexOfLayer(layer)
+        tilemapData = self.tilemapData[tilemapOffset]
 
         imageBytes = [0] * (self.pixelWidth * self.pixelHeight * self.BYTES_PER_PIXEL)
 
@@ -274,8 +280,6 @@ class Model_Map:
         mapBlockRowCount = int(float(self.mapDataArrangement[layer].sizeX / 16))
         # loop through all map block rows (offset = 65536)
         for blockY in range(mapBlockCount):
-            import time
-            import datetime
             ts = time.time()
             print(datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
 
@@ -285,12 +289,12 @@ class Model_Map:
                 blockXPixelValueIndex = 256 * blockX
                 # loop through the 16 map tile rows of a map block (offset = 256)
                 for tileY in range (16):
-                    tileYPixelValueIndex = 16 * tileY
+                    tileYPixelValueIndex = (16 * tileY) + blockYPixelValueIndex
                     # loop through the 16 map tiles of a map tile row
                     for tileX in range (16):
-                        tileXPixelValueIndex = 16 * tileX
+                        tileXPixelValueIndex = (16 * tileX) + blockXPixelValueIndex
                         # read the index of the current tile from the arrangement data
-                        tileIndex = self.mapDataArrangement[arrangementDataIndex].data[tilePos]
+                        tileIndex = arrangementData[tilePos]
                         tileArrayIndex = tileIndex * 8
 
                         # loop through the 4 map tile pieces
@@ -298,12 +302,12 @@ class Model_Map:
                             tilesetReadIndex = 0 # TODO layer
 
                             # read the x and y index of the current tile from the tilemap data
-                            tileIndexY = (self.tilemapData[tilemapOffset][tileArrayIndex + (tilePiece * 2)] & 0xF0) >> 4
-                            tileIndexX = self.tilemapData[tilemapOffset][tileArrayIndex + (tilePiece * 2)] & 0x0F
+                            tileIndexY = (tilemapData[tileArrayIndex + (tilePiece * 2)] & 0xF0) >> 4
+                            tileIndexX = tilemapData[tileArrayIndex + (tilePiece * 2)] & 0x0F
                             tilesetBitsArrayIndex = (tileIndexY * 4096) + (tileIndexX * 256)
                             
                             # read the property of the current tile from the tilemap data
-                            tileProperty = self.tilemapData[tilemapOffset][tileArrayIndex + (tilePiece * 2) + 1]
+                            tileProperty = tilemapData[tileArrayIndex + (tilePiece * 2) + 1]
                             
                             # read the palette offset from the tilemap data
                             paletteOffset = (tileProperty & 0x1C) >> 2
@@ -320,8 +324,8 @@ class Model_Map:
 
                             # loop for the 8 rows of a tile
                             for tileRow in range (8):
-                                tileRowPixelValueIndex_0_1 = mapSizePixelValueIndex * (blockYPixelValueIndex + tileYPixelValueIndex + tileRow)
-                                tileRowPixelValueIndex_2_3 = mapSizePixelValueIndex * (blockYPixelValueIndex + tileYPixelValueIndex + tileRow + 8)
+                                tileRowPixelValueIndex_0_1 = mapSizePixelValueIndex * (tileYPixelValueIndex + tileRow) + tileXPixelValueIndex
+                                tileRowPixelValueIndex_2_3 = mapSizePixelValueIndex * (tileYPixelValueIndex + tileRow + 8) + tileXPixelValueIndex
                                 tileRowIndex = tilesetBitsArrayIndex + (tileRow * 16)
                                 # loop for the 8 pixels of a tile's row
                                 for tilePixel in range (8):
@@ -331,11 +335,11 @@ class Model_Map:
                                         # read the current tile pixel bit
                                         if tilePixelBit == 0:
                                             pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + tilePixel] << 3
-                                        if tilePixelBit == 1:
+                                        elif tilePixelBit == 1:
                                             pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + 8 + tilePixel] << 2
-                                        if tilePixelBit == 2:
+                                        elif tilePixelBit == 2:
                                             pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + 128 + tilePixel] << 1
-                                        if tilePixelBit == 3:
+                                        else: # tilePixelBit is 3
                                             pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + 136 + tilePixel]
                                     
                                     # continue if the pixel belongs to the background
@@ -343,7 +347,7 @@ class Model_Map:
                                         continue
 
                                     # add the palette offset to the pixel value
-                                    if (paletteOffset > 0) and (pixelValue != 0):
+                                    if paletteOffset > 0:
                                         pixelValue += ((paletteOffset - 1) * 16)
 
                                     # mirror tile in x direction if the mirror x bit is set
@@ -354,24 +358,20 @@ class Model_Map:
                                     if (tileProperty & 0x40) != 0:
                                         tilePixel = 7 - tilePixel
                                     
-                                    pixelValueIndex = 0
-                                    if tilePiece== 0:
-                                        pixelValueIndex = tileRowPixelValueIndex_0_1 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel
-                                    if tilePiece== 1:
-                                        pixelValueIndex = tileRowPixelValueIndex_0_1 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel + 8
-                                    if tilePiece== 2:
-                                        pixelValueIndex = tileRowPixelValueIndex_2_3 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel
-                                    if tilePiece== 3:
-                                        pixelValueIndex = tileRowPixelValueIndex_2_3 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel + 8
+                                    if tilePiece == 0:
+                                        imageBytesIndex = (tileRowPixelValueIndex_0_1 + tilePixel) * self.BYTES_PER_PIXEL
+                                    elif tilePiece == 1:
+                                        imageBytesIndex = (tileRowPixelValueIndex_0_1 + tilePixel + 8) * self.BYTES_PER_PIXEL
+                                    elif tilePiece == 2:
+                                        imageBytesIndex = (tileRowPixelValueIndex_2_3 + tilePixel) * self.BYTES_PER_PIXEL
+                                    else:       # tilePiece is 3
+                                        imageBytesIndex = (tileRowPixelValueIndex_2_3 + tilePixel + 8) * self.BYTES_PER_PIXEL
 
                                     # update the RGB pixel array with the selected palette and the readout palette color index
-                                    paletteIndex = int(float(pixelValue / 16))
+                                    paletteIndex = int(pixelValue / 16)
                                     colorIndex = (pixelValue % 16) * 3
-                                    palette = self.palettesetMap.palettes[paletteIndex]
-                                    imageBytesIndex = pixelValueIndex * self.BYTES_PER_PIXEL
-                                    imageBytes[imageBytesIndex + 0] = palette.data[colorIndex + 0]   # red
-                                    imageBytes[imageBytesIndex + 1] = palette.data[colorIndex + 1]   # green
-                                    imageBytes[imageBytesIndex + 2] = palette.data[colorIndex + 2]   # blue
+                                    palette = paletteData[paletteIndex]
+                                    imageBytes[imageBytesIndex:imageBytesIndex + 3] = palette.data[colorIndex:colorIndex + 3]  # red, green, blue
                                     if pixelValue == 0:
                                         imageBytes[imageBytesIndex + 3] = 0                          # alpha (transparent)
                                     else:
