@@ -51,11 +51,20 @@ class View_MapTabProperties(wx.Panel):
         horizontalBoxRoomClearingRewards.Add(self.labelRoomClearingRewards, flag=wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxRoomClearingRewards.Add(self.comboBoxRoomClearingRewards, flag=wx.ALIGN_LEFT|wx.ALL)
 
+        # screen settings controls
+        self.labelScreenSettings = wx.StaticText(self, label="Screen Settings:")
+        # screen settings spinctrl
+        self.spinCtrlScreenSettings = wx.SpinCtrl(self, value="0", min=0, max=255, size=(50, -1))
+        # add screen settings label and spinctrl to horizontal sizer
+        horizontalBoxScreenSettings = wx.BoxSizer(wx.HORIZONTAL)
+        horizontalBoxScreenSettings.Add(self.labelScreenSettings, flag=wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxScreenSettings.Add(self.spinCtrlScreenSettings, flag=wx.ALIGN_LEFT|wx.ALL)
         # map data
         self.verticalBoxMapData = wx.BoxSizer(wx.VERTICAL)
         self.verticalBoxMapData.Add(horizontalBoxName)
         self.verticalBoxMapData.Add(verticalBoxPlayerStatus)
         self.verticalBoxMapData.Add(horizontalBoxRoomClearingRewards)
+        self.verticalBoxMapData.Add(horizontalBoxScreenSettings)
 
         self.SetSizer(self.verticalBoxMapData)
         self.Fit()
@@ -73,5 +82,11 @@ class View_MapTabProperties(wx.Panel):
         
         # update room clearing rewards combobox
         self.comboBoxRoomClearingRewards.SetSelection(mapData.roomClearingReward)
+
+        # update screen settings spinctrl
+        if mapData.screenSettings is not None:
+            self.spinCtrlScreenSettings.SetValue(mapData.mapDataScreenSettings[0].index)
+        else:
+            self.spinCtrlScreenSettings.SetValue(0)
 
 

@@ -3,6 +3,7 @@ import PIL.Image
 import wx
 
 from model.Model_Map import Model_Map
+from model.Model_ScreenSetting import Model_ScreenSetting
 from model.Model_Tile import Model_Tile
 from model.Model_Tilemap import Model_Tilemap
 from view.View_Common import View_Common
@@ -74,10 +75,17 @@ class View_Maps:
         # Add map layer selection
         horizontalBoxMapLayers = wx.BoxSizer(wx.HORIZONTAL)
         labelMapDisplay = wx.StaticText(self.tabPage, label="Display:")
+
         labelMapLayerBG1 = wx.StaticText(self.tabPage, label="BG1:")
         self.checkBoxMapLayerBG1 = wx.CheckBox(self.tabPage)
+        self.checkBoxMapLayerBG1.Bind(wx.EVT_CHECKBOX, self.onMapLayerChange)
+        self.checkBoxMapLayerBG1.SetValue(True)
+
         labelMapLayerBG2 = wx.StaticText(self.tabPage, label="BG2:")
         self.checkBoxMapLayerBG2 = wx.CheckBox(self.tabPage)
+        self.checkBoxMapLayerBG2.Bind(wx.EVT_CHECKBOX, self.onMapLayerChange)
+        self.checkBoxMapLayerBG2.SetValue(True)
+
         labelMapLayerSprites = wx.StaticText(self.tabPage, label="Sprites:")
         self.checkBoxMapLayerSprites = wx.CheckBox(self.tabPage)
         horizontalBoxMapLayers.Add(labelMapDisplay)
@@ -136,17 +144,53 @@ class View_Maps:
 
         return mapDataTabs
 
-    def displayMapImage(self, magnification):
-        magnificationX = self.mapData.sizeX * magnification
-        magnificationY = self.mapData.sizeY * magnification
-        sizedImage = self.mapData.mapImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
-        wx_image = wx.Image(sizedImage.size[0], sizedImage.size[1])
-        wx_image.SetData(sizedImage.convert("RGB").tobytes())
+    def displayMapImage(self):
+        magnificationX = self.mapData.sizeX * self.zoom
+        magnificationY = self.mapData.sizeY * self.zoom
+        
+        image = PIL.Image.new('RGB', (magnificationX, magnificationY), (0, 0, 0))
+            
+        if self.mapData.screenSettings is not None:
+            mapLayerOrder = self.mapData.screenSettings.mapLayerOrderBits
+            print("Map layer order bits: " + str(mapLayerOrder))
+            if (((mapLayerOrder & Model_ScreenSetting.MAP_LAYER_ORDER_HAS_NORMAL_MAP_LAYERS) == 0x80) and
+                (len(self.mapData.mapDataArrangement) > 1)): # TODO: Query of arrangementCount > 1 should not be necessary!
+                if self.checkBoxMapLayerBG1.IsChecked() == True:
+                    bg1Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg1Image, (0, 0), bg1Image)
+                if self.checkBoxMapLayerBG2.IsChecked() == True:
+                    bg2Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg2Image, (0, 0), bg2Image)
+            else:
+                if self.checkBoxMapLayerBG1.IsChecked() == True:
+                    bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg1Image, (0, 0), bg1Image)
+                if self.checkBoxMapLayerBG2.IsChecked() == True:
+                    bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                    image.paste(bg2Image, (0, 0), bg2Image)
+        else:
+            if self.checkBoxMapLayerBG1.IsChecked() == True:
+                bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                image.paste(bg1Image, (0, 0), bg1Image)
+            if self.checkBoxMapLayerBG2.IsChecked() == True:
+                bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                image.paste(bg2Image, (0, 0), bg2Image)
+
+        index = self.mapDataTabs.GetSelection()
+        if self.mapDataTabs.GetPage(index) is self.tabEvents:
+            eventImage = self.mapData.eventImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+            image.paste(eventImage, (0, 0), eventImage)
+        elif self.mapDataTabs.GetPage(index) is self.tabExits:
+            exitImage = self.mapData.exitImage.resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+            image.paste(exitImage, (0, 0), exitImage)
+
+        wx_image = wx.Image(image.size[0], image.size[1])
+        wx_image.SetData(image.convert("RGB").tobytes())
         bitmap = wx.Bitmap(wx_image)
         self.displayedMapImage.SetBitmap(bitmap)
         
         # Ensure the map window has scrollbars
-        self.scrolledWindowMap.SetVirtualSize((sizedImage.size[0], sizedImage.size[1]))
+        self.scrolledWindowMap.SetVirtualSize((image.size[0], image.size[1]))
         self.scrolledWindowMap.SetScrollRate(20, 20)
 
     def handleTabChanged(self, event):
@@ -157,6 +201,10 @@ class View_Maps:
         self.listBoxMaps.Set(mapNames)
         self.tabEditor.load(tilemapNames)
         self.tabExits.load(mapNames)
+
+    def onMapLayerChange(self, event):
+        # update map image when map layer checkbox is changed
+        self.displayMapImage()
 
     def onMouseMoveOverMap(self, event):        
         currentPositionX, currentPositionY = event.GetPosition()
@@ -228,11 +276,11 @@ class View_Maps:
 
     def onZoomInButtonClick(self, event):
         self.zoom = self.zoom + 1
-        self.displayMapImage(self.zoom)
+        self.displayMapImage()
 
     def onZoomOutButtonClick(self, event):
         self.zoom = self.zoom - 1
-        self.displayMapImage(self.zoom)
+        self.displayMapImage()
 
     def onZoomInButtonDown(self, event):
         self.zoomInTimer.Start(self.MAP_ZOOM_TIMER_INTERVAL)  # Adjust the interval as needed
@@ -255,7 +303,7 @@ class View_Maps:
     def update(self, mapData: Model_Map):
         self.mapData = mapData
         # update map image
-        self.displayMapImage(self.zoom)
+        self.displayMapImage()
         
         # update map properties
         self.tabEditor.update(mapData)
@@ -267,4 +315,4 @@ class View_Maps:
         self.mapData = mapData
 
         # update map image
-        self.displayMapImage(self.zoom)
+        self.displayMapImage()

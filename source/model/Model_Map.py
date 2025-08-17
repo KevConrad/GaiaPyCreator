@@ -28,6 +28,8 @@ import bitstring
 import PIL
 
 class Model_Map:
+    BYTES_PER_PIXEL = 4 # RGBA
+
     def __init__(self, romData, mapData : dict, projectData : dict, mapDataTableEntry : Model_MapData,
                  mapIndex, screenSettings : Model_ScreenSettings, roomClearingRewards : Model_RoomClearingRewards) -> None:
         self.romData = romData
@@ -76,7 +78,7 @@ class Model_Map:
         
         if len(self.mapDataScreenSettings) > 0:
             # get the screen settings
-            self.screenSettings = screenSettings.screenSettings[self.mapDataScreenSettings[0].index]
+            self.screenSettings = screenSettings.screenSettings[self.mapDataScreenSettings[0].index - 1]
         
         # set the map size in x direction
         if ((len(self.mapDataArrangement) > 1) and 
@@ -154,49 +156,45 @@ class Model_Map:
 
         if self.tilesetIndexBG1 >= 0:
             self.tilesetBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG1, offset=0,
-                                                               length=Model_Tileset.TILESET_BYTE_SIZE * 8))
+                                                             length=Model_Tileset.TILESET_BYTE_SIZE * 8))
         
         if self.tilesetIndexBG2 >= 0:
             self.tilesetBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG2, offset=0,
-                                                               length=Model_Tileset.TILESET_BYTE_SIZE * 8))
+                                                             length=Model_Tileset.TILESET_BYTE_SIZE * 8))
 
         # read the map layers
         self.pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
         self.pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
-        self.pixelValues = [0] * (self.pixelWidth * self.pixelHeight)
-        self.imageBytes = [0] * (self.pixelWidth * self.pixelHeight * 3)
 
-        if self.screenSettings is not None:
-            mapLayerOrder = self.screenSettings.mapLayerOrderBits
-            if (((mapLayerOrder & Model_ScreenSetting.MAP_LAYER_ORDER_HAS_NORMAL_MAP_LAYERS) == 0x00) and
-                (len(self.mapDataArrangement) > 1)): # TODO: Query of arrangementCount > 1 should not be necessary!
-                if isBG2LayerDisplayed is True:
-                    self.createLayer(self.sizeX, 1)
-                if isBG1LayerDisplayed is True:
-                    self.createLayer(self.sizeX, 0)              
-            else:
-                if isBG1LayerDisplayed is True:
-                    self.createLayer(self.sizeX, 0)    
-                if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
-                    self.createLayer(self.sizeX, 1)
-        else:
-            if isBG1LayerDisplayed is True:
-                self.createLayer(self.sizeX, 0)
-            if (isBG2LayerDisplayed is True) and (len(self.mapDataArrangement) > 1):
-                self.createLayer(self.sizeX, 1)
+        # create map layer images
+        self.imageLayers = []
+        self.imageBytes = []
+        # BG1 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+        # BG2 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 1, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+
+        # BG1 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+        # BG2 layer
+        image, imageBytes = self.createLayerImage(self.sizeX, 1, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+
         # TODO add display of sprite layer
         #if (isSpriteLayerDisplayed is True) and (data.getSpriteCount() > 0))
             # read the map overlay (events, exits, sprites) and write it to the bitmap pixel value array
-            #displayOverlay(mapSizeX, mapSizeY, tilesetBits, pixelValues);
-
-        # create an image from the RGB pixel array
-        self.mapImage = PIL.Image.frombytes('RGB', (self.pixelWidth, self.pixelHeight), bytes(self.imageBytes), 'raw')
+            #displayOverlay(mapSizeX, mapSizeY, tilesetBits, pixelValues);  
 
     def createEventImage(self, selectedEventIndex):
         # create the array containing the image bytes
-        pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
-        pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
-        self.eventImageBytes = self.imageBytes.copy()
+        imageBytes = [0] * (self.pixelWidth * self.pixelHeight * self.BYTES_PER_PIXEL)
 
         # read the map events and write the event overlay to the bitmap pixel value array
         eventIndex = 0
@@ -204,63 +202,63 @@ class Model_Map:
             if (event.positionX > self.sizeX) or (event.positionY > self.sizeY):
                 continue
             # calculate the pixel index of the current event
-            pixelIndex = (pixelWidth * 3 * event.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * 3 * event.positionX
+            pixelIndex = (self.pixelWidth * self.BYTES_PER_PIXEL * event.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * self.BYTES_PER_PIXEL * event.positionX
             for height in range (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT):
                 for width in range (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH):
-                    pixelOffsetX = 3 * width
-                    pixelOffsetY = pixelWidth * 3 * height
+                    pixelOffsetX = self.BYTES_PER_PIXEL * width
+                    pixelOffsetY = self.pixelWidth * self.BYTES_PER_PIXEL * height
                     # check if the event is selected
                     if eventIndex == selectedEventIndex:
                         if ((height == 0) or
                             (height == (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT - 1)) or
                             (width == 0) or
                             (width == (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH - 1))):
-                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
-                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
-                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
                         else:
-                            self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
                     else:
-                        self.eventImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                        imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 3] = 0xAA
             eventIndex += 1
         
         # create an image from the RGB pixel array
-        self.eventImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.eventImageBytes), 'raw')
+        self.eventImage = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
 
     def createExitImage(self, selectedExitIndex):
         # create the array containing the image bytes
-        pixelWidth = self.sizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH
-        pixelHeight = self.sizeY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT
-        self.exitImageBytes = self.imageBytes.copy()
+        imageBytes = [0] * (self.pixelWidth * self.pixelHeight * self.BYTES_PER_PIXEL)
 
         # read the map exits and write the exit overlay to the bitmap pixel value array
         exitIndex = 0
         for exit in self.exits.exits:
-            pixelIndex = (pixelWidth * 3 * exit.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * 3 * exit.positionX
+            pixelIndex = (self.pixelWidth * self.BYTES_PER_PIXEL * exit.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * self.BYTES_PER_PIXEL * exit.positionX
             for exitSizeY in range (exit.height):
                 for exitSizeX in range (exit.width):
                     for height in range (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT):
                         for width in range (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH):
-                            pixelOffsetX = 3 * ((exitSizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH) + width)
-                            pixelOffsetY = pixelWidth * 3 * (height + (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT * exitSizeY))
+                            pixelOffsetX = self.BYTES_PER_PIXEL * ((exitSizeX * Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH) + width)
+                            pixelOffsetY = self.pixelWidth * self.BYTES_PER_PIXEL * (height + (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT * exitSizeY))
                             if exitIndex == selectedExitIndex:
                                 if (((height == 0) and (exitSizeY == 0)) or
                                     ((height == (Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT - 1)) and (exitSizeY == (exit.height - 1))) or
                                     ((width == 0) and (exitSizeX == 0)) or
                                     ((width == (Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH - 1) and (exitSizeX == (exit.width - 1))))):
-                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
-                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
-                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 0] = 0xFF
+                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 1] = 0xFF
+                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
                                 else:
-                                    self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                                    imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
                             else:
-                                self.exitImageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                                imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 2] = 0xFF
+                            imageBytes[pixelIndex + pixelOffsetX + pixelOffsetY + 3] = 0xAA
             exitIndex += 1
         
         # create an image from the RGB pixel array
-        self.exitImage = PIL.Image.frombytes('RGB', (pixelWidth, pixelHeight), bytes(self.exitImageBytes), 'raw')
+        self.exitImage = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
 
-    def createLayer(self, mapSizeX, layer):
+    def createLayerImage(self, mapSizeX, layer, isTransparent):
         tilePos = 0
         
         # read the arrangement index for the current map layer
@@ -268,28 +266,44 @@ class Model_Map:
             
         # read the tilemap index for the current map layer
         tilemapOffset = self.getTilemapIndexOfLayer(layer)
-        
+
+        imageBytes = [0] * (self.pixelWidth * self.pixelHeight * self.BYTES_PER_PIXEL)
+
+        mapSizePixelValueIndex = int(float(mapSizeX / 16)) * 256
+        mapBlockCount = int(float(self.mapDataArrangement[layer].sizeY / 16))
+        mapBlockRowCount = int(float(self.mapDataArrangement[layer].sizeX / 16))
         # loop through all map block rows (offset = 65536)
-        for blockY in range(int(float(self.mapDataArrangement[layer].sizeY / 16))):
+        for blockY in range(mapBlockCount):
+            import time
+            import datetime
+            ts = time.time()
+            print(datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
+
+            blockYPixelValueIndex = 256 * blockY
             # loop through all map blocks of a map block row (offset = 256)
-            for blockX in range (int(float(self.mapDataArrangement[layer].sizeX / 16))):
+            for blockX in range (mapBlockRowCount):
+                blockXPixelValueIndex = 256 * blockX
                 # loop through the 16 map tile rows of a map block (offset = 256)
                 for tileY in range (16):
+                    tileYPixelValueIndex = 16 * tileY
                     # loop through the 16 map tiles of a map tile row
                     for tileX in range (16):
+                        tileXPixelValueIndex = 16 * tileX
                         # read the index of the current tile from the arrangement data
                         tileIndex = self.mapDataArrangement[arrangementDataIndex].data[tilePos]
+                        tileArrayIndex = tileIndex * 8
 
                         # loop through the 4 map tile pieces
                         for tilePiece in range (4):
                             tilesetReadIndex = 0 # TODO layer
 
                             # read the x and y index of the current tile from the tilemap data
-                            tileIndexY = (self.tilemapData[tilemapOffset][(tileIndex * 8) + (tilePiece * 2)] & 0xF0) >> 4
-                            tileIndexX = self.tilemapData[tilemapOffset][(tileIndex * 8) + (tilePiece * 2)] & 0x0F
+                            tileIndexY = (self.tilemapData[tilemapOffset][tileArrayIndex + (tilePiece * 2)] & 0xF0) >> 4
+                            tileIndexX = self.tilemapData[tilemapOffset][tileArrayIndex + (tilePiece * 2)] & 0x0F
+                            tilesetBitsArrayIndex = (tileIndexY * 4096) + (tileIndexX * 256)
                             
                             # read the property of the current tile from the tilemap data
-                            tileProperty = self.tilemapData[tilemapOffset][(tileIndex * 8) + (tilePiece * 2) + 1]
+                            tileProperty = self.tilemapData[tilemapOffset][tileArrayIndex + (tilePiece * 2) + 1]
                             
                             # read the palette offset from the tilemap data
                             paletteOffset = (tileProperty & 0x1C) >> 2
@@ -306,32 +320,23 @@ class Model_Map:
 
                             # loop for the 8 rows of a tile
                             for tileRow in range (8):
+                                tileRowPixelValueIndex_0_1 = mapSizePixelValueIndex * (blockYPixelValueIndex + tileYPixelValueIndex + tileRow)
+                                tileRowPixelValueIndex_2_3 = mapSizePixelValueIndex * (blockYPixelValueIndex + tileYPixelValueIndex + tileRow + 8)
+                                tileRowIndex = tilesetBitsArrayIndex + (tileRow * 16)
                                 # loop for the 8 pixels of a tile's row
                                 for tilePixel in range (8):
-                                    pixelBit = []
-
+                                    pixelValue = 0
                                     # loop for the 4 bits of a single pixel
                                     for tilePixelBit in range (4):
-                                        bPixelBit = False
-
                                         # read the current tile pixel bit
                                         if tilePixelBit == 0:
-                                            bPixelBit = self.tilesetBits[tilesetReadIndex][(tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + tilePixel]
+                                            pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + tilePixel] << 3
                                         if tilePixelBit == 1:
-                                            bPixelBit = self.tilesetBits[tilesetReadIndex][(tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + 8 + tilePixel]
+                                            pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + 8 + tilePixel] << 2
                                         if tilePixelBit == 2:
-                                            bPixelBit = self.tilesetBits[tilesetReadIndex][(tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + (16 * 8) + tilePixel]
+                                            pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + 128 + tilePixel] << 1
                                         if tilePixelBit == 3:
-                                            bPixelBit = self.tilesetBits[tilesetReadIndex][(tileIndexY * 4096) + (tileIndexX * 256) + (tileRow * 16) + (17 * 8) + tilePixel]
-
-                                        # set the pixel bit in the pixel bit array that containt all 4 pixel bits
-                                        if bPixelBit == 1:
-                                            pixelBit.append(1)
-                                        else:
-                                            pixelBit.append(0)
-                                    
-                                    # write the pixel value from the pixel bits
-                                    pixelValue = ((pixelBit[0] << 3) | (pixelBit[1] << 2) | (pixelBit[2] << 1) | pixelBit[3])
+                                            pixelValue += self.tilesetBits[tilesetReadIndex][tileRowIndex + 136 + tilePixel]
                                     
                                     # continue if the pixel belongs to the background
                                     if pixelValue == 0:
@@ -351,24 +356,29 @@ class Model_Map:
                                     
                                     pixelValueIndex = 0
                                     if tilePiece== 0:
-                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow)) + (256 * blockX) + (16 * tileX) + tilePixel
+                                        pixelValueIndex = tileRowPixelValueIndex_0_1 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel
                                     if tilePiece== 1:
-                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow)) + (256 * blockX) + (16 * tileX) + tilePixel + 8
+                                        pixelValueIndex = tileRowPixelValueIndex_0_1 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel + 8
                                     if tilePiece== 2:
-                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow + 8)) + (256 * blockX) + (16 * tileX) + tilePixel
+                                        pixelValueIndex = tileRowPixelValueIndex_2_3 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel
                                     if tilePiece== 3:
-                                        pixelValueIndex = ((int(float(mapSizeX / 16))) * 256 * ((256 * blockY) + (16 * tileY) + tileRow + 8)) + (256 * blockX) + (16 * tileX) + tilePixel + 8
-
-                                    self.pixelValues[pixelValueIndex] = pixelValue
+                                        pixelValueIndex = tileRowPixelValueIndex_2_3 + blockXPixelValueIndex + tileXPixelValueIndex + tilePixel + 8
 
                                     # update the RGB pixel array with the selected palette and the readout palette color index
                                     paletteIndex = int(float(pixelValue / 16))
-                                    colorIndex = (pixelValue % 16)
+                                    colorIndex = (pixelValue % 16) * 3
                                     palette = self.palettesetMap.palettes[paletteIndex]
-                                    imageBytesIndex = pixelValueIndex * 3
-                                    self.imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
-                                    self.imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
-                                    self.imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                                    imageBytesIndex = pixelValueIndex * self.BYTES_PER_PIXEL
+                                    imageBytes[imageBytesIndex + 0] = palette.data[colorIndex + 0]   # red
+                                    imageBytes[imageBytesIndex + 1] = palette.data[colorIndex + 1]   # green
+                                    imageBytes[imageBytesIndex + 2] = palette.data[colorIndex + 2]   # blue
+                                    if pixelValue == 0:
+                                        imageBytes[imageBytesIndex + 3] = 0                          # alpha (transparent)
+                                    else:
+                                        if isTransparent is True:
+                                            imageBytes[imageBytesIndex + 3] = 128
+                                        else:
+                                            imageBytes[imageBytesIndex + 3] = 255                    # alpha (non-transparent)
 
                                     if (tileProperty & 0x80) != 0:
                                         tileRow = 7 - tileRow
@@ -376,8 +386,11 @@ class Model_Map:
                                     if (tileProperty & 0x40) != 0:
                                         tilePixel = 7 - tilePixel
                         tilePos += 1
+        # create an image from the RGB pixel array
+        image = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
+        return image, imageBytes
     
-    def updateArrangement(self, positionX, positionY, tileIndex, layer):
+    def updateArrangement(self, positionX, positionY, tileIndex, layer, imageBytes):
         # read the arrangement index for the current map layer
         arrangementDataIndex = self.getArrangementDataIndexOfLayer(layer)
         
@@ -466,8 +479,6 @@ class Model_Map:
                     if tilePiece== 3:
                         pixelIndex = ((int(float(self.sizeX / 16))) * 256 * ((16 * positionY) + tileRow + 8)) + (16 * positionX) + tilePixel + 8
 
-                    self.pixelValues[pixelIndex] = pixelValue
-
                     if (tileProperty & 0x80) != 0:
                         tileRow = 7 - tileRow
 
@@ -475,17 +486,21 @@ class Model_Map:
                         tilePixel = 7 - tilePixel
     
                     # create an RGB pixel array with the selected palette and the readout palette color index
-                    imageBytesIndex = pixelIndex * 3
+                    imageBytesIndex = pixelIndex * self.BYTES_PER_PIXEL
 
                     paletteIndex = int(float(pixelValue / 16))
                     colorIndex = (pixelValue % 16)
                     palette = self.palettesetMap.palettes[paletteIndex]
-                    self.imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
-                    self.imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
-                    self.imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                    imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
+                    imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
+                    imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                    if pixelValue == 0:
+                        imageBytes[imageBytesIndex + 3] = 0                      # alpha (transparent)
+                    else:
+                        imageBytes[imageBytesIndex + 3] = 255                    # alpha (non-transparent)
 
         # create an image from the RGB pixel array
-        self.mapImage = PIL.Image.frombytes('RGB', (self.pixelWidth, self.pixelHeight), bytes(self.imageBytes), 'raw')
+        self.imageLayers[layer] = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
 
     def getTilemapIndexOfLayer(self, layer):
         tilemapOffset = 0
