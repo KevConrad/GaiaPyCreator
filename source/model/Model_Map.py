@@ -147,6 +147,11 @@ class Model_Map:
         paletteIndexMap = self.getPaletteIndex(Model_MapDataPalette.SPRITE_LAYER)
         if paletteIndexMap >= 0:
             self.palettesetSprites = Model_Paletteset(self.romData, self.mapDataPalette[paletteIndexMap].address)
+
+        # read sprites data
+        if len(self.mapDataSprites) > 0:
+            # decompress the compressed sprites data (increment length of compressed data to prevent data truncation)
+            pass
     
     def createImage(self, isBG1LayerDisplayed, isBG2LayerDisplayed, isSpriteLayerDisplayed, screenSettings):          
         # read all tilesets that are used by the map
@@ -169,15 +174,6 @@ class Model_Map:
         # create map layer images
         self.imageLayers = []
         self.imageBytes = []
-        # BG1 layer
-        image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
-        self.imageLayers.append(image)
-        self.imageBytes.append(imageBytes)
-        # BG2 layer
-        image, imageBytes = self.createLayerImage(self.sizeX, 1, False)
-        self.imageLayers.append(image)
-        self.imageBytes.append(imageBytes)
-
         # BG1 layer
         image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
         self.imageLayers.append(image)
