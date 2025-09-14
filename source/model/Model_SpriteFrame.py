@@ -5,6 +5,8 @@ from model.Model_SpriteFrameTileData import Model_SpriteFrameTileData
 import PIL
 
 class Model_SpriteFrame:
+    BYTES_PER_PIXEL = 4 # RGBA
+
     def __init__(self, romData, spriteData, address, palettesetAddress) -> None:
         readOffset = address
         self.address = address
@@ -47,12 +49,21 @@ class Model_SpriteFrame:
 
         self.size = readOffset - address
 
-    def createImage(self, width, height, tilesetBits):
-        self.pixelValues = [0] * (width * height)
-        self.imageBytes = [0] * (width * height * 3)
+    def createImageExternal(self, width, tilesetBits, palettesetAddress, imageBytes, pixelOffset):
+        self.createImage(width, tilesetBits, self.palettesetAddress, imageBytes, pixelOffset)
 
+    def createImageInternal(self, width, height, tilesetBits):
+        self.imageBytes = [0] * (width * height * self.BYTES_PER_PIXEL)
+        self.createImage(width, tilesetBits, self.palettesetAddress, self.imageBytes, 0)
+        
+        # create an image from the RGB pixel array
+        self.spriteImage = PIL.Image.frombytes('RGBA', (width, height), bytes(self.imageBytes), 'raw')
+        return self.spriteImage
+
+    def createImage(self, width, tilesetBits, palettesetAddress, imageBytes, pixelOffset):
+        # loop through all sprite frame tiles
         for tile in range (self.tileCount):
-            paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
+            paletteset = Model_Paletteset(self.romData, palettesetAddress)
 
             tilePieceCount = 0
             if self.tileData[tile].tileCutout == True:
@@ -97,7 +108,6 @@ class Model_SpriteFrame:
                     # loop for the 8 pixels of a tile's row
                     for tilePixel in range (8):
                         pixelBit = []
-
                         # loop for the 4 bits of a single pixel
                         for tilePixelBit in range (4):
                             bPixelBit = False
@@ -180,16 +190,16 @@ class Model_SpriteFrame:
                         elif tilePiece == 3:
                             pixelValueIndex = ((self.tileData[tile].tileOffsetY + tileRow + 8) * width) + (self.tileData[tile].tileOffsetX + tilePixel + 8)
 
-                        self.pixelValues[pixelValueIndex] = pixelValue
-
                         # update the RGB pixel array with the selected palette and the readout palette color index
                         paletteIndex = int(float(pixelValue / 16))
-                        colorIndex = (pixelValue % 16)
+                        colorIndex = (pixelValue % 16) * 3
                         palette = paletteset.palettes[paletteIndex + 1]
-                        imageBytesIndex = pixelValueIndex * 3
-                        self.imageBytes[imageBytesIndex + 0] = palette.data[((colorIndex * 3) + 0)]   # red
-                        self.imageBytes[imageBytesIndex + 1] = palette.data[((colorIndex * 3) + 1)]   # green
-                        self.imageBytes[imageBytesIndex + 2] = palette.data[((colorIndex * 3) + 2)]   # blue
+                        imageBytesIndex = (pixelOffset + (pixelValueIndex * self.BYTES_PER_PIXEL))
+                        imageBytes[imageBytesIndex:imageBytesIndex + 3] = palette.data[colorIndex:colorIndex + 3]  # red, green, blue
+                        if pixelValue == 0:
+                            imageBytes[imageBytesIndex + 3] = 0                      # alpha (transparent)
+                        else:
+                            imageBytes[imageBytesIndex + 3] = 255                    # alpha (non-transparent)
                             
                         # Mirror tile in x direction
                         if self.tileData[tile].tileMirrorX == True:
@@ -199,11 +209,6 @@ class Model_SpriteFrame:
                             tilePixel = 7 - tilePixel
                         
                         tilePiece = tilePieceTemp
-
-        # create an image from the RGB pixel array
-        self.spriteImage = PIL.Image.frombytes('RGB', (width, height), bytes(self.imageBytes), 'raw')
-
-        return self.spriteImage
 
 
     

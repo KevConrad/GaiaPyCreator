@@ -20,7 +20,9 @@ from model.Model_RomDataTable import Model_RomDataTable
 from model.Model_RoomClearingRewards import Model_RoomClearingRewards
 from model.Model_ScreenSettings import Model_ScreenSettings
 from model.Model_ScreenSetting import Model_ScreenSetting
+from model.Model_Spritesets import Model_Spritesets
 from model.Model_Tilemap import Model_Tilemap
+from model.Model_Tilesets import Model_Tilesets
 from model.Model_Tileset import Model_Tileset
 
 import bitstring
@@ -31,8 +33,10 @@ class Model_Map:
     BYTES_PER_PIXEL = 4 # RGBA
 
     def __init__(self, romData, mapData : dict, projectData : dict, mapDataTableEntry : Model_MapData,
-                 mapIndex, screenSettings : Model_ScreenSettings, roomClearingRewards : Model_RoomClearingRewards) -> None:
+                 mapIndex, screenSettings : Model_ScreenSettings, roomClearingRewards : Model_RoomClearingRewards,
+                 spritesets:Model_Spritesets) -> None:
         self.romData = romData
+        self.spritesets = spritesets
 
         # read the data from the JSON file
         self.name = str(mapData['Name'])
@@ -138,6 +142,13 @@ class Model_Map:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
             self.tilesetDataBG2, self.tilesetBG2CompSize = Model_Compression.decompress(self.romData, self.mapDataTileset[self.tilesetIndexBG2].addressDecomp,
                                                                                         decompOffset)
+            
+        # read sprite data
+        self.spritesetIndex = self.spritesets.getIndexfromAddress(self.mapDataSprites[0].address)
+        if self.spritesetIndex >= 0:
+            self.spritesets.spritesets[self.spritesetIndex].read()
+            self.spriteTilesetBits = self.spritesets.spritesets[self.spritesetIndex].tilesetBits
+
         # read map palette data
         paletteIndexMap = self.getPaletteIndex(Model_MapDataPalette.MAP_LAYER)
         if paletteIndexMap >= 0:
@@ -175,18 +186,19 @@ class Model_Map:
         self.imageLayers = []
         self.imageBytes = []
         # BG1 layer
-        image, imageBytes = self.createLayerImage(self.sizeX, 0, False)
-        self.imageLayers.append(image)
-        self.imageBytes.append(imageBytes)
-        # BG2 layer
-        image, imageBytes = self.createLayerImage(self.sizeX, 1, False)
+        image, imageBytes = self.createLayerImage(0, False)
         self.imageLayers.append(image)
         self.imageBytes.append(imageBytes)
 
-        # TODO add display of sprite layer
-        #if (isSpriteLayerDisplayed is True) and (data.getSpriteCount() > 0))
-            # read the map overlay (events, exits, sprites) and write it to the bitmap pixel value array
-            #displayOverlay(mapSizeX, mapSizeY, tilesetBits, pixelValues);  
+        # BG2 layer
+        image, imageBytes = self.createLayerImage(1, False)
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
+
+        # sprite layer
+        image, imageBytes = self.createSpriteImage()
+        self.imageLayers.append(image)
+        self.imageBytes.append(imageBytes)
 
     def createEventImage(self, selectedEventIndex):
         # create the array containing the image bytes
@@ -254,10 +266,26 @@ class Model_Map:
         # create an image from the RGB pixel array
         self.exitImage = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
 
-    def createLayerImage(self, mapSizeX, layer, isTransparent):
-        import time
-        import datetime
-        
+    def createSpriteImage(self):
+        # create the array containing the image bytes
+        imageBytes = [0] * (self.pixelWidth * self.pixelHeight * self.BYTES_PER_PIXEL)
+
+        # read the map events and write the sprite data to the bitmap pixel value array
+        for event in self.events.events:
+            if (event.positionX > self.sizeX) or (event.positionY > self.sizeY):
+                continue
+            # calculate the pixel index of the current event
+            pixelIndex = (self.pixelWidth * self.BYTES_PER_PIXEL * event.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * self.BYTES_PER_PIXEL * event.positionX
+            print("pixelIndex: " + str(pixelIndex))
+            spriteIndex = self.romData[event.address]
+            print("spriteIndex: " + str(spriteIndex))
+            self.spritesets.spritesets[self.spritesetIndex].spriteFrames[spriteIndex].createImageExternal(self.pixelWidth, self.spriteTilesetBits, 0, imageBytes, pixelIndex)
+
+        # create an image from the RGB pixel array
+        image = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
+        return image, imageBytes
+    
+    def createLayerImage(self, layer, isTransparent):
         tilePos = 0
         
         # read the arrangement index for the current map layer
@@ -271,14 +299,11 @@ class Model_Map:
 
         imageBytes = [0] * (self.pixelWidth * self.pixelHeight * self.BYTES_PER_PIXEL)
 
-        mapSizePixelValueIndex = int(float(mapSizeX / 16)) * 256
+        mapSizePixelValueIndex = int(float(self.sizeX / 16)) * 256
         mapBlockCount = int(float(self.mapDataArrangement[layer].sizeY / 16))
         mapBlockRowCount = int(float(self.mapDataArrangement[layer].sizeX / 16))
         # loop through all map block rows (offset = 65536)
         for blockY in range(mapBlockCount):
-            ts = time.time()
-            print(datetime.datetime.fromtimestamp(ts).strftime('%Y-%m-%d %H:%M:%S'))
-
             blockYPixelValueIndex = 256 * blockY
             # loop through all map blocks of a map block row (offset = 256)
             for blockX in range (mapBlockRowCount):

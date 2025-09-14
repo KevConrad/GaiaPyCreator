@@ -35,13 +35,13 @@ class Controller_Main:
         # initialize all controllers
         self.items = Controller_Items(self.project, self.view)
 
-        # initialize and load the map data
-        self.maps = Controller_Maps(self.project, self.view)
-        self.maps.load()
-
-        self.sprites = Controller_Sprites(self.project, self.view)
         self.tilemaps = Controller_Tilemaps(self.project, self.view)
         self.tilesets = Controller_Tilesets(self.project, self.view)
+        self.sprites = Controller_Sprites(self.project, self.view, self.tilesets.tilesets)
+
+        # initialize and load the map data
+        self.maps = Controller_Maps(self.project, self.view, self.sprites.spritesets)
+        self.maps.load()
 
         print("Initialized all objects")
         

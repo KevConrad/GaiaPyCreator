@@ -10,12 +10,14 @@ from model.Model_MapDataBuffer import Model_MapDataBuffer
 from model.Model_Maps import Model_Maps
 from model.Model_RoomClearingRewards import Model_RoomClearingRewards
 from model.Model_ScreenSettings import Model_ScreenSettings
+from model.Model_Spritesets import Model_Spritesets
 from model.Model_Tilemaps import Model_Tilemaps
 from view.View_Main import View_Main
 
 class Controller_Maps:
-    def __init__(self, project : Controller_Project, view:View_Main) -> None:
+    def __init__(self, project : Controller_Project, view:View_Main, spritesets:Model_Spritesets) -> None:
         self.project = project
+        self.spritesets = spritesets
         self.view = view
 
         self.tilemaps = Model_Tilemaps(self.project.romData.romData, self.project.projectData.projectData)
@@ -36,7 +38,8 @@ class Controller_Maps:
             
             self.screenSettings = Model_ScreenSettings(self.project.romData.romData, self.project.projectData.projectData)
             
-            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings, self.roomClearingRewards)
+            self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings, self.roomClearingRewards,
+                                   self.spritesets)
 
             self.view.maps.load(self.maps.mapNames, self.tilemaps.tilemapNames)
             

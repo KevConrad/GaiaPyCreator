@@ -17,7 +17,7 @@ class Model_SpriteFrameData:
             self.address -= self.SPRITE_ADDRESS_OFFSET
         else:
             self.address = readOffset & 0xFF0000
-            self.address = Model_RomData.readLittleEndianValue(spriteData, readOffset)
+            self.address += Model_RomData.readLittleEndianValue(spriteData, readOffset)
             readOffset += 2
 
         self.size = readOffset - address

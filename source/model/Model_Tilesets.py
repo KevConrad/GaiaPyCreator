@@ -13,4 +13,11 @@ class Model_Tilesets:
             tilesetData = Model_Tileset(self.romData, tileset)
             self.tilesets.append(tilesetData)
             self.tilesetNames.append(tilesetData.name)
+
+    def getIndexfromAddress(self, address):
+        # get the index of the tileset with the given address
+        for index, tileset in enumerate(self.tilesets):
+            if tileset.address == address:
+                return index
+        return -1
             

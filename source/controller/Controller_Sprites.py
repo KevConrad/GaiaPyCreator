@@ -5,14 +5,15 @@ from pubsub.utils.notification import useNotifyByWriteFile
 
 from controller.Controller_Project import Controller_Project
 from model.Model_Spritesets import Model_Spritesets
+from model.Model_Tilesets import Model_Tilesets
 from view.View_Main import View_Main
 
 class Controller_Sprites:
-    def __init__(self, project : Controller_Project, view:View_Main) -> None:
+    def __init__(self, project : Controller_Project, view:View_Main, tilesets:Model_Tilesets) -> None:
         self.project = project
         self.view = view
 
-        self.spritesets = Model_Spritesets(self.project.romData.romData, self.project.projectData.projectData)
+        self.spritesets = Model_Spritesets(self.project.romData.romData, self.project.projectData.projectData, tilesets)
 
         pub.subscribe(self.load, "sprites_load")
         pub.subscribe(self.updateSpriteset, "sprites_update_spriteset")
@@ -30,6 +31,6 @@ class Controller_Sprites:
 
     def updateSprite(self, spriteFrameIndex):
         tilesetBits = self.spritesets.spritesets[self.spritesetIndex].tilesetBits
-        spriteImage = self.spriteFrameImage = self.spritesets.spritesets[self.spritesetIndex].spriteFrames[spriteFrameIndex].createImage(128, 128, tilesetBits)
+        spriteImage = self.spriteFrameImage = self.spritesets.spritesets[self.spritesetIndex].spriteFrames[spriteFrameIndex].createImageInternal(256, 256, tilesetBits)
         self.view.sprites.updateSpriteImage(spriteImage)
         

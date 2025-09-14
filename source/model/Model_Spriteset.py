@@ -2,6 +2,7 @@
 from model.Model_Compression import Model_Compression
 from model.Model_Sprite import Model_Sprite
 from model.Model_SpriteFrame import Model_SpriteFrame
+from model.Model_Tilesets import Model_Tilesets
 from model.Model_Tileset import Model_Tileset
 
 import bitstring
@@ -9,8 +10,9 @@ import bitstring
 class Model_Spriteset:
     SPRITE_ADDRESS_OFFSET = 0x4000
 
-    def __init__(self, romData, sprite : dict) -> None:
+    def __init__(self, romData, sprite : dict, tilesets:Model_Tilesets) -> None:
         self.romData = romData
+        self.tilesets = tilesets
 
         # read the data from the JSON file
         self.address = int(str(sprite['Address']), 16)
@@ -18,7 +20,9 @@ class Model_Spriteset:
         self.name = str(sprite['Name'])
         self.palettesetAddress = int(str(sprite['Palette']), 16)
         self.tileset1Address = int(str(sprite['Tileset1']), 16)
+        self.tileset1Index = self.tilesets.getIndexfromAddress(self.tileset1Address)
         self.tileset2Address = int(str(sprite['Tileset2']), 16)
+        self.tileset2Index = self.tilesets.getIndexfromAddress(self.tileset2Address)
 
         # read the sprites
         sprites = sprite['Sprites']
@@ -32,13 +36,20 @@ class Model_Spriteset:
 
     def read(self):
         # read tileset1 data
-        # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-        self.tileset1Data, self.tileset1CompSize = Model_Compression.decompress(self.romData, self.tileset1Address, 0)
-        # read BG2 layer tileset data
-        # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-        self.tileset2Data, self.tileset2CompSize = Model_Compression.decompress(self.romData, self.tileset2Address, 0)
+        if self.tilesets.tilesets[self.tileset1Index].compSize > 0:
+            # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
+            self.tileset1Data, self.tileset1CompSize = Model_Compression.decompress(self.romData, self.tileset1Address, 0)
+        else:
+            self.tileset1Data = self.romData[self.tileset1Address:self.tileset1Address + self.tilesets.tilesets[self.tileset1Index].decompSize]
+
+        # read tileset2 data
+        if self.tilesets.tilesets[self.tileset2Index].compSize > 0:
+            # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
+            self.tileset2Data, self.tileset2CompSize = Model_Compression.decompress(self.romData, self.tileset2Address, 0)
+        else:
+            self.tileset2Data = self.romData[self.tileset2Address:self.tileset2Address + self.tilesets.tilesets[self.tileset2Index].decompSize]
         
-        # array which contains the data of both tilesets used by the map
+        # create array which contains the data of both tilesets used by the map
         self.tilesetBits = []
         self.tilesetBits.append(bitstring.ConstBitStream(bytes = self.tileset1Data, offset=0,
                                                          length=Model_Tileset.TILESET_BYTE_SIZE * 8))
@@ -50,8 +61,7 @@ class Model_Spriteset:
             # read the compressed sprite data
             self.spriteData, self.compSize = Model_Compression.decompress(self.romData, self.address, 0)
         else:
-            # TODO: read the uncompressed sprite data
-            pass
+            self.spriteData = self.romData
 
         # read the sprite data of all sprites
         for spriteIndex in range (len(self.sprites)):
@@ -63,6 +73,7 @@ class Model_Spriteset:
             else:
                 addressSpritePointer = self.address + (spriteIndex * 2)
                 addressSpriteData = (self.address & 0xFF0000) + (self.romData[addressSpritePointer + 1] << 8) + self.romData[addressSpritePointer]
+            
             # read the sprite data
             self.sprites[spriteIndex].read(self.spriteData, addressSpriteData, self.compressed)
 

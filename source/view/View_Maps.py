@@ -88,6 +88,9 @@ class View_Maps:
 
         labelMapLayerSprites = wx.StaticText(self.tabPage, label="Sprites:")
         self.checkBoxMapLayerSprites = wx.CheckBox(self.tabPage)
+        self.checkBoxMapLayerSprites.Bind(wx.EVT_CHECKBOX, self.onMapLayerChange)
+        self.checkBoxMapLayerSprites.SetValue(True)
+
         horizontalBoxMapLayers.Add(labelMapDisplay)
         horizontalBoxMapLayers.Add(labelMapLayerBG1)
         horizontalBoxMapLayers.Add(self.checkBoxMapLayerBG1)
@@ -175,6 +178,11 @@ class View_Maps:
             if self.checkBoxMapLayerBG2.IsChecked() == True:
                 bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
                 image.paste(bg2Image, (0, 0), bg2Image)
+
+        # display sprite layer
+        if self.checkBoxMapLayerSprites.IsChecked() == True:
+                spriteImage = self.mapData.imageLayers[2].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                image.paste(spriteImage, (0, 0), spriteImage)
 
         index = self.mapDataTabs.GetSelection()
         if self.mapDataTabs.GetPage(index) is self.tabEvents:
