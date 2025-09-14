@@ -240,13 +240,11 @@ class View_Sprites:
 
     def onListBoxSprites(self, event):
         self.spriteIndex = self.listBoxSprites.GetSelection()
-
+        self.frameIndex = self.spritesetData.sprites[self.spriteIndex].frameData[0].frameId
         # update the sprite frame selection
         self.spinCtrlSpriteFrameCount.SetValue(len(self.spritesetData.sprites[self.spriteIndex].frameData))
         self.spinCtrlSpriteFrameCurrent.SetValue(1)
         self.spinCtrlSpriteFrameCurrent.SetMax(len(self.spritesetData.sprites[self.spriteIndex].frameData))
-
-        self.frameIndex = self.spritesetData.sprites[self.spriteIndex].frameData[0].frameId
         
         # update sprite frame data
         self.updateSpriteFrame()

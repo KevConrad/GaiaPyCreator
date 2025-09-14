@@ -275,11 +275,13 @@ class Model_Map:
             if (event.positionX > self.sizeX) or (event.positionY > self.sizeY):
                 continue
             # calculate the pixel index of the current event
-            pixelIndex = (self.pixelWidth * self.BYTES_PER_PIXEL * event.positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * self.BYTES_PER_PIXEL * event.positionX
-            print("pixelIndex: " + str(pixelIndex))
+            positionY = event.positionY
+            if (event.positionY > 0):
+                positionY = event.positionY - 1
+            pixelIndex = (self.pixelWidth * self.BYTES_PER_PIXEL * positionY * Model_Tilemap.TILEMAP_TILE_PIXEL_HEIGHT) + Model_Tilemap.TILEMAP_TILE_PIXEL_WIDTH * self.BYTES_PER_PIXEL * event.positionX
             spriteIndex = self.romData[event.address]
-            print("spriteIndex: " + str(spriteIndex))
-            self.spritesets.spritesets[self.spritesetIndex].spriteFrames[spriteIndex].createImageExternal(self.pixelWidth, self.spriteTilesetBits, 0, imageBytes, pixelIndex)
+            frameIndex = self.spritesets.spritesets[self.spritesetIndex].sprites[spriteIndex].frameData[0].frameId
+            self.spritesets.spritesets[self.spritesetIndex].spriteFrames[frameIndex].createImageExternal(self.pixelWidth, self.spriteTilesetBits, 0, imageBytes, pixelIndex)
 
         # create an image from the RGB pixel array
         image = PIL.Image.frombytes('RGBA', (self.pixelWidth, self.pixelHeight), bytes(imageBytes), 'raw')
