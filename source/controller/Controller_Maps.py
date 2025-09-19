@@ -64,7 +64,7 @@ class Controller_Maps:
         # read the map data
         self.maps.maps[self.mapIndex].read()
         # create the map image
-        self.maps.maps[self.mapIndex].createImage(True, True, True, 0)
+        self.maps.maps[self.mapIndex].createImage(0)
         self.maps.maps[self.mapIndex].createEventImage(0)
         self.maps.maps[self.mapIndex].createExitImage(0)
 

@@ -164,7 +164,7 @@ class Model_Map:
             # decompress the compressed sprites data (increment length of compressed data to prevent data truncation)
             pass
     
-    def createImage(self, isBG1LayerDisplayed, isBG2LayerDisplayed, isSpriteLayerDisplayed, screenSettings):          
+    def createImage(self, screenSettings):          
         # read all tilesets that are used by the map
 
         # array which contains the data of both tilesets used by the map
@@ -190,10 +190,14 @@ class Model_Map:
         self.imageLayers.append(image)
         self.imageBytes.append(imageBytes)
 
-        # BG2 layer
-        image, imageBytes = self.createLayerImage(1, False)
-        self.imageLayers.append(image)
-        self.imageBytes.append(imageBytes)
+        # create BG2 layer if it exists
+        if len(self.mapDataArrangement) > 1:
+            image, imageBytes = self.createLayerImage(1, True)        
+            self.imageLayers.append(image)
+            self.imageBytes.append(imageBytes)
+            self.hasBG2Layer = True
+        else:
+            self.hasBG2Layer = False
 
         # sprite layer
         image, imageBytes = self.createSpriteImage()

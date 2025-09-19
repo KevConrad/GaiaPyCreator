@@ -20,8 +20,18 @@ class Model_Maps:
             # read the map data
             mapData = Model_Map(self.romData, map, projectData, mapDataTable[mapIndex], mapIndex, screenSettings, roomClearingRewards,
                                 spritesets)
+            # fill map data that is not set from previous map
+            self.copyMapData(mapData, mapIndex)
+
             self.maps.append(mapData)
             self.mapNames.append(mapData.name)
             
             mapIndex += 1
+
+    def copyMapData(self, mapData, mapIndex):
+        if mapIndex > 0:
+            # check if sprite data exists
+            if len(mapData.mapDataSprites) == 0:
+                # copy the sprite data from the previous map
+                mapData.mapDataSprites = self.maps[mapIndex - 1].mapDataSprites.copy()
             

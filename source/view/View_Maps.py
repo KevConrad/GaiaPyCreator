@@ -168,20 +168,26 @@ class View_Maps:
                 if self.checkBoxMapLayerBG1.IsChecked() == True:
                     bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
                     image.paste(bg1Image, (0, 0), bg1Image)
-                if self.checkBoxMapLayerBG2.IsChecked() == True:
+                if ((self.checkBoxMapLayerBG2.IsChecked() == True) and
+                    (self.mapData.hasBG2Layer == True)):
                     bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
                     image.paste(bg2Image, (0, 0), bg2Image)
         else:
             if self.checkBoxMapLayerBG1.IsChecked() == True:
                 bg1Image = self.mapData.imageLayers[0].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
                 image.paste(bg1Image, (0, 0), bg1Image)
-            if self.checkBoxMapLayerBG2.IsChecked() == True:
+            if ((self.checkBoxMapLayerBG2.IsChecked() == True) and
+                (self.mapData.hasBG2Layer == True)):
                 bg2Image = self.mapData.imageLayers[1].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
                 image.paste(bg2Image, (0, 0), bg2Image)
 
         # display sprite layer
+        if (self.mapData.hasBG2Layer == True):
+            spriteLayerIndex = 2
+        else:
+            spriteLayerIndex = 1
         if self.checkBoxMapLayerSprites.IsChecked() == True:
-                spriteImage = self.mapData.imageLayers[2].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
+                spriteImage = self.mapData.imageLayers[spriteLayerIndex].resize((magnificationX, magnificationY), PIL.Image.NEAREST)
                 image.paste(spriteImage, (0, 0), spriteImage)
 
         index = self.mapDataTabs.GetSelection()
@@ -318,6 +324,12 @@ class View_Maps:
         self.tabEvents.update(mapData)
         self.tabExits.update(mapData)
         self.tabProperties.update(mapData)
+
+        # update controls
+        if self.mapData.hasBG2Layer == True:
+            self.checkBoxMapLayerBG2.Enable()
+        else:
+            self.checkBoxMapLayerBG2.Disable()
 
     def updateImage(self, mapData: Model_Map):
         self.mapData = mapData
