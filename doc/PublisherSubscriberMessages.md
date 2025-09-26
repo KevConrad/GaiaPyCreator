@@ -10,6 +10,7 @@
 |`maps_update_mapArrangement`|tileIndex       |Update map arrangement.           |
 |`maps_update_mapImage`      |                |Update the map image.             |
 |`maps_update_tilemapImage`  |                |Update the tilemap image.         |
+|`maps_update_treasure`      |treasureIndex   |Update the treasure data.         |
 |`project_close`             |-               |Close the project file.           |
 |`project_load`              |-               |Load the project data.            |
 |`project_open`              |projectPath     |Open a project file.              |

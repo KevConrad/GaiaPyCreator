@@ -23,6 +23,7 @@ class View_Maps:
     MAP_IMAGE_PIXEL_WIDTH = 500
     MAP_ZOOM_DEFAULT = 15
     MAP_ZOOM_TIMER_INTERVAL = 50
+    SPACER_SIZE = 10
 
     def __init__(self, frame : wx.Frame, notebook : wx.Notebook):
         self.frame = frame
@@ -67,10 +68,10 @@ class View_Maps:
         horizontalBoxZoom.Add(self.zoomInButton)
         horizontalBoxZoom.Add(labelMouseCursorX)
         horizontalBoxZoom.Add(self.TextMouseCursorX)
-        horizontalBoxZoom.AddSpacer(10)
+        horizontalBoxZoom.AddSpacer(self.SPACER_SIZE)
         horizontalBoxZoom.Add(labelMouseCursorY)
         horizontalBoxZoom.Add(self.TextMouseCursorY)
-        horizontalBoxZoom.AddSpacer(10)
+        horizontalBoxZoom.AddSpacer(self.SPACER_SIZE)
 
         # Add map layer selection
         horizontalBoxMapLayers = wx.BoxSizer(wx.HORIZONTAL)
@@ -106,6 +107,7 @@ class View_Maps:
 
         verticalBox = wx.BoxSizer(wx.VERTICAL)
         verticalBox.Add(horizontalBoxMap, 0, wx.EXPAND)
+        verticalBox.AddSpacer(self.SPACER_SIZE)
         verticalBox.Add(horizontalBoxZoom)
         verticalBox.Add(horizontalBoxMapLayers)
 
@@ -324,6 +326,7 @@ class View_Maps:
         self.tabEvents.update(mapData)
         self.tabExits.update(mapData)
         self.tabProperties.update(mapData)
+        self.tabTreasures.update(mapData)
 
         # update controls
         if self.mapData.hasBG2Layer == True:

@@ -24,6 +24,7 @@ from model.Model_Spritesets import Model_Spritesets
 from model.Model_Tilemap import Model_Tilemap
 from model.Model_Tilesets import Model_Tilesets
 from model.Model_Tileset import Model_Tileset
+from model.Model_Treasures import Model_Treasures
 
 import bitstring
 
@@ -113,6 +114,12 @@ class Model_Map:
         exitDataTableSize = int(projectData['DataTables']['MapExitTable']['Size'], base=16)
         exitDataTable = Model_RomDataTable(self.romData, exitDataTableAddress, exitDataTableSize)  
         self.exits = Model_MapExits(self.romData, exitDataTable.getDataAddress(mapIndex))
+
+        # read the map treasure data
+        treasureDataTableAddress = int(str(projectData['DataTables']['TreasureChestTable']['Address']), 16)
+        treasureDataTableSize = int(projectData['DataTables']['TreasureChestTable']['Size'], base=16)
+        treasureDataTable = Model_RomDataTable(self.romData, treasureDataTableAddress, treasureDataTableSize)
+        self.treasures = Model_Treasures(self.romData, treasureDataTable.getDataAddress(mapIndex))
 
     def read(self):
         if len(self.mapDataArrangement) > 0:
