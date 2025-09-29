@@ -68,16 +68,20 @@ class Controller_Maps:
         self.maps.maps[self.mapIndex].createEventImage(0)
         self.maps.maps[self.mapIndex].createExitImage(0)
 
-        self.tilemapIndex = self.maps.maps[self.mapIndex].mapDataTilemap[0].index
-        self.tilemaps.tilemaps[self.tilemapIndex].read()
-        self.tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImage(readOffset = 0, readAll = True,
-                                                                               tileOffset = 0, tilesetReadOffset = 0)
-        self.tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImageOverlay(0, 0, 0, 0, True)
+        # read BG layer 1 tilemap
+        tilemapIndex = self.maps.maps[self.mapIndex].mapDataTilemap[0].index
+        self.tilemaps.tilemaps[tilemapIndex].read()
+        self.tilemaps.tilemaps[tilemapIndex].getImage(readOffset = 0, readAll = True,
+                                                      tileOffset = 0, tilesetReadOffset = 0)
+
+        # read BG layer 2 tilemap if exists
+        if (len(self.maps.maps[self.mapIndex].mapDataTilemap) > 1):
+            tilemapIndex = self.maps.maps[self.mapIndex].mapDataTilemap[1].index
+            self.tilemaps.tilemaps[tilemapIndex].read()
+            self.tilemaps.tilemaps[tilemapIndex].getImage(readOffset = 0, readAll = True,
+                                                          tileOffset = 0, tilesetReadOffset = 0)
         
         self.view.maps.update(self.maps.maps[self.mapIndex])
-
-        # update the tilemap image in the map editor tab page
-        self.view.maps.tabEditor.updateTilemapImage(self.tilemapImage)
 
     def updateEventImage(self, selectedEventIndex):
         self.maps.maps[self.mapIndex].createEventImage(selectedEventIndex)
@@ -97,8 +101,9 @@ class Controller_Maps:
         # update the map image in the GUI
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
-    def updateTilemapImage(self, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY):
-        tilemapImage = self.tilemaps.tilemaps[self.tilemapIndex].getImageOverlay(currentPositionX, currentPositionY,
-                                                                                 selectedPositionX, selectedPositionY, True)
+    def updateTilemapImage(self, mapLayerIndex, currentPositionX, currentPositionY, selectedPositionX, selectedPositionY):
+        tilemapIndex = self.maps.maps[self.mapIndex].mapDataTilemap[mapLayerIndex].index    
+        tilemapImage = self.tilemaps.tilemaps[tilemapIndex].getImageOverlay(currentPositionX, currentPositionY,
+                                                                            selectedPositionX, selectedPositionY, True)
         # update the tilemap image in the map editor tab page
         self.view.maps.tabEditor.updateTilemapImage(tilemapImage)

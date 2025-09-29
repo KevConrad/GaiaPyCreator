@@ -56,7 +56,7 @@ class View_MapTabTreasures(wx.Panel):
 
         # treasure item play music checkbox
         horizontalBoxTreasurePlayMusic = wx.BoxSizer(wx.HORIZONTAL)
-        self.checkBoxTreasurePlayMusic = wx.CheckBox(self, label="Play Music: ")
+        self.checkBoxTreasurePlayMusic = wx.CheckBox(self, label="Play Music")
         horizontalBoxTreasurePlayMusic.Add(self.checkBoxTreasurePlayMusic, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
 
         # treasure data

@@ -21,6 +21,12 @@ class View_MapTabEditor(wx.Panel):
         # map layer selection radio buttons
         self.radioButtonLayer0 = wx.RadioButton(self, label="BG1 Layer", style=wx.RB_GROUP)
         self.radioButtonLayer1 = wx.RadioButton(self, label="BG2 Layer")
+        # bind function if map layer selection changed
+        self.radioButtonLayer0.Bind(wx.EVT_RADIOBUTTON, self.onMapLayerSelectionChanged)
+        self.radioButtonLayer1.Bind(wx.EVT_RADIOBUTTON, self.onMapLayerSelectionChanged)
+        self.radioButtonLayer0.SetValue(True)
+        self.selectedMapLayerIndex = 0
+
         # map layer selection sizer
         horizontalBoxLayerSelection = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBoxLayerSelection.Add(self.radioButtonLayer0, flag=wx.ALIGN_LEFT|wx.ALL)
@@ -46,7 +52,7 @@ class View_MapTabEditor(wx.Panel):
 
         # map tilemap combo box
         labelMapTilemap = wx.StaticText(self, label="Tilemap:")
-        self.comboBoxMapTilemap = wx.ComboBox(self, style=wx.CB_DROPDOWN|wx.CB_READONLY)
+        self.comboBoxMapTilemap = wx.ComboBox(self, size=(256, 16), style=wx.CB_DROPDOWN|wx.CB_READONLY)
         horizontalBoxMapTilemap = wx.BoxSizer(wx.HORIZONTAL)
         horizontalBoxMapTilemap.Add(labelMapTilemap, flag=wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxMapTilemap.Add(self.comboBoxMapTilemap, flag=wx.ALIGN_LEFT|wx.ALL)
@@ -78,12 +84,20 @@ class View_MapTabEditor(wx.Panel):
     def load(self, tilemapNames : list):
         self.comboBoxMapTilemap.Set(tilemapNames)
 
+    def onMapLayerSelectionChanged(self, event):
+        if self.radioButtonLayer0.GetValue() == True:
+            self.selectedMapLayerIndex = 0
+        else:
+            self.selectedMapLayerIndex = 1
+
+        self.update(self.mapData)
+
     def onMouseMoveOverTilemapImage(self, event):
         x, y = event.GetPosition()
         tilemapCurrentPositionX = int(x / (self.TILEMAP_IMAGE_PIXEL_WIDTH / Model_Tilemap.TILEMAP_TILE_WIDTH))
         tilemapCurrentPositionY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
-        pub.sendMessage("maps_update_tilemapImage", currentPositionX=tilemapCurrentPositionX, currentPositionY=tilemapCurrentPositionY,
-                                                    selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        pub.sendMessage("maps_update_tilemapImage", mapLayerIndex=self.selectedMapLayerIndex, currentPositionX=tilemapCurrentPositionX, currentPositionY=tilemapCurrentPositionY,
+                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
 
     def onTilemapImageClick(self, event):
         x, y = event.GetPosition()
@@ -91,16 +105,29 @@ class View_MapTabEditor(wx.Panel):
         self.tilemapSelectedPositionY = int(y / (self.TILEMAP_IMAGE_PIXEL_HEIGHT / Model_Tilemap.TILEMAP_TILE_HEIGHT))
         self.selectedTileIndex = (self.tilemapSelectedPositionY * Model_Tilemap.TILEMAP_TILE_WIDTH) + self.tilemapSelectedPositionX
 
-        pub.sendMessage("maps_update_tilemapImage", currentPositionX=self.tilemapSelectedPositionX, currentPositionY=self.tilemapSelectedPositionY,
-                                                    selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
+        pub.sendMessage("maps_update_tilemapImage", mapLayerIndex=self.selectedMapLayerIndex, currentPositionX=self.tilemapSelectedPositionX, currentPositionY=self.tilemapSelectedPositionY,
+                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
         
     def update(self, mapData : Model_Map):
+        self.mapData = mapData
+
+        if len(mapData.mapDataTilemap) >= 2:
+            self.radioButtonLayer1.Enable()
+        else:
+            self.selectedMapLayerIndex = 0
+            self.radioButtonLayer0.SetValue(True)
+            self.radioButtonLayer1.SetValue(False)
+            self.radioButtonLayer1.Disable()
+
         self.spinCtrlMapSizeX.SetValue(mapData.sizeX)
         self.spinCtrlMapSizeY.SetValue(mapData.sizeY)
-        self.comboBoxMapTilemap.SetSelection(mapData.mapDataTilemap[0].index)
+        self.comboBoxMapTilemap.SetSelection(mapData.mapDataTilemap[self.selectedMapLayerIndex].index)
 
         self.tilemapSelectedPositionX = 0
         self.tilemapSelectedPositionY = 0
+
+        pub.sendMessage("maps_update_tilemapImage", mapLayerIndex=self.selectedMapLayerIndex, currentPositionX=0, currentPositionY=0,
+                        selectedPositionX=self.tilemapSelectedPositionX, selectedPositionY=self.tilemapSelectedPositionY)
 
     def updateTilemapImage(self, tilemapImage : PIL.Image):
         sizedImage = tilemapImage.resize((self.TILEMAP_IMAGE_PIXEL_WIDTH, self.TILEMAP_IMAGE_PIXEL_HEIGHT), Image.NEAREST)
