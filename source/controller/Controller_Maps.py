@@ -80,8 +80,9 @@ class Controller_Maps:
         self.maps.maps[self.mapIndex].createExitImage(selectedExitIndex)
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
-    def updateMapArrangement(self, currentPositionX, currentPositionY, selectedTileIndex):
-        self.maps.maps[self.mapIndex].updateArrangement(currentPositionX, currentPositionY, selectedTileIndex, 0, self.maps.maps[self.mapIndex].imageBytes[0])
+    def updateMapArrangement(self, currentPositionX, currentPositionY, selectedTileIndex, seletedMapLayerIndex):
+        self.maps.maps[self.mapIndex].updateArrangement(currentPositionX, currentPositionY, selectedTileIndex, seletedMapLayerIndex,
+                                                        self.maps.maps[self.mapIndex].imageBytes[seletedMapLayerIndex])
         # update the map image in the GUI
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 

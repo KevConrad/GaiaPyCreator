@@ -232,7 +232,8 @@ class View_Maps:
                 # Convert to map coordinates
                 currentPositionX = int(currentPositionX / self.zoom)
                 currentPositionY = int(currentPositionY / self.zoom)
-                pub.sendMessage("maps_update_mapArrangement", currentPositionX=currentPositionX, currentPositionY=currentPositionY, selectedTileIndex=self.tabEditor.selectedTileIndex)
+                pub.sendMessage("maps_update_mapArrangement", currentPositionX=currentPositionX, currentPositionY=currentPositionY,
+                                selectedTileIndex=self.tabEditor.selectedTileIndex, seletedMapLayerIndex=self.tabEditor.selectedMapLayerIndex)
         
         # Convert to map coordinates
         currentPositionX = int(currentPositionX / self.zoom)
@@ -276,7 +277,8 @@ class View_Maps:
             # Convert to map coordinates
             currentPositionX = int(currentPositionX / self.zoom)
             currentPositionY = int(currentPositionY / self.zoom)
-            pub.sendMessage("maps_update_mapArrangement", currentPositionX=currentPositionX, currentPositionY=currentPositionY, selectedTileIndex=self.tabEditor.selectedTileIndex)
+            pub.sendMessage("maps_update_mapArrangement", currentPositionX=currentPositionX, currentPositionY=currentPositionY,
+                            selectedTileIndex=self.tabEditor.selectedTileIndex, seletedMapLayerIndex=self.tabEditor.selectedMapLayerIndex)
         elif self.mapDataTabs.GetPage(index) is self.tabEvents:
             if self.selectedEventIndex >= 0:
                 self.tabEvents.spinCtrlEventCurrent.SetValue(self.selectedEventIndex + 1)

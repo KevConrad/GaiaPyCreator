@@ -110,8 +110,6 @@ class Model_MapData:
                     else:
                         self.mapData.append(mapData)
                     mapDataBuffer.setTilesetBuffer(mapData)                                          
-                    # TODO add tileset to general tileset array
-
                 else:
                      isDataSetFound = False                                 # no valid function number found
 

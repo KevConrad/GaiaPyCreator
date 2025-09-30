@@ -438,7 +438,7 @@ class Model_Map:
         
         # loop through the 4 map tile pieces
         for tilePiece in range (4):
-            tilesetReadIndex = 0 # TODO layer
+            tilesetReadIndex = layer
 
             # read the x and y index of the current tile from the tilemap data
             tileIndexY = (self.tilemapData[tilemapOffset][(tileIndex * 8) + (tilePiece * 2)] & 0xF0) >> 4
