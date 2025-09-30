@@ -1,4 +1,5 @@
 from model.Model_RomData import Model_RomData
+from model.Model_Tilesets import Model_Tilesets
 
 class Model_MapDataTileset:
     LAYER_BG1 = 0
@@ -7,7 +8,7 @@ class Model_MapDataTileset:
     LAYER_SPRITES = 3
     LAYER_HUD = 4
     
-    def __init__(self, romData, address) -> None:
+    def __init__(self, romData, address, tilesets:Model_Tilesets) -> None:
         self.romData = romData
 
         readOffset = address
@@ -24,7 +25,14 @@ class Model_MapDataTileset:
         self.miniOffset = self.romData[readOffset]
         readOffset += 1
 
-        self.index = 0 # TODO Tileset.getIndexFromAddress(addressDecomp);
+        # set the tileset index
+        index = 0
+        self.index = -1
+        for tileset in tilesets.tilesets:
+            if tileset.address == self.addressDecomp:
+                self.index = index
+                break
+            index += 1
         
         self.readLayer()
 

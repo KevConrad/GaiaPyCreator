@@ -21,6 +21,7 @@ from model.Model_RoomClearingRewards import Model_RoomClearingRewards
 from model.Model_ScreenSettings import Model_ScreenSettings
 from model.Model_ScreenSetting import Model_ScreenSetting
 from model.Model_Spritesets import Model_Spritesets
+from model.Model_Tilemaps import Model_Tilemaps
 from model.Model_Tilemap import Model_Tilemap
 from model.Model_Tilesets import Model_Tilesets
 from model.Model_Tileset import Model_Tileset
@@ -121,7 +122,7 @@ class Model_Map:
         treasureDataTable = Model_RomDataTable(self.romData, treasureDataTableAddress, treasureDataTableSize)
         self.treasures = Model_Treasures(self.romData, treasureDataTable.getDataAddress(mapIndex))
 
-    def read(self):
+    def read(self, tilemaps: Model_Tilemaps, tilesets: Model_Tilesets):
         if len(self.mapDataArrangement) > 0:
             self.mapDataArrangement[0].read()
         if len(self.mapDataArrangement) > 1:
@@ -129,26 +130,29 @@ class Model_Map:
             
         self.tilemapData = []
         if len(self.mapDataTilemap) > 0:
-            # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
-            tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.mapDataTilemap[0].address, 0)
-            self.tilemapData.append(tilemapData)
+            tilemapIndex = self.mapDataTilemap[0].index
+            self.tilemapData.append(tilemaps[tilemapIndex].read())
         if len(self.mapDataTilemap) > 1:
-            # decompress the compressed tilemap data (increment length of compressed data to prevent data truncation)
-            tilemapData, self.compSize = Model_Compression.decompress(self.romData, self.mapDataTilemap[1].address, 0)
-            self.tilemapData.append(tilemapData)
+            tilemapIndex = self.mapDataTilemap[1].index
+            self.tilemapData.append(tilemaps[tilemapIndex].read())
+
+        # get tileset indices for BG1 and BG2 layers
+        for tileset in self.mapDataTileset:
+            if tileset.layer == Model_MapDataTileset.LAYER_BG1:
+                self.tilesetIndexBG1 = tileset.index
+            if tileset.layer == Model_MapDataTileset.LAYER_BG2:
+                self.tilesetIndexBG2 = tileset.index
 
         # read BG1 layer tileset data
-        self.tilesetIndexBG1, decompOffset = self.getTilesetIndex(Model_MapDataTileset.LAYER_BG1)
         if self.tilesetIndexBG1 >= 0:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-            self.tilesetDataBG1, self.tilesetBG1CompSize = Model_Compression.decompress(self.romData, self.mapDataTileset[self.tilesetIndexBG1].addressDecomp,
-                                                                                        decompOffset)
+            self.tilesetDataBG1, self.tilesetBG1CompSize = Model_Compression.decompress(self.romData, tilesets[self.tilesetIndexBG1].address,
+                                                                                        tilesets[self.tilesetIndexBG1].decompOffset)
         # read BG2 layer tileset data
-        self.tilesetIndexBG2, decompOffset = self.getTilesetIndex(Model_MapDataTileset.LAYER_BG2)
         if self.tilesetIndexBG2 >= 0:
             # decompress the compressed tileset data (increment length of compressed data to prevent data truncation)
-            self.tilesetDataBG2, self.tilesetBG2CompSize = Model_Compression.decompress(self.romData, self.mapDataTileset[self.tilesetIndexBG2].addressDecomp,
-                                                                                        decompOffset)
+            self.tilesetDataBG2, self.tilesetBG2CompSize = Model_Compression.decompress(self.romData, tilesets[self.tilesetIndexBG2].address,
+                                                                                        tilesets[self.tilesetIndexBG2].decompOffset)
             
         # read sprite data
         self.spritesetIndex = self.spritesets.getIndexfromAddress(self.mapDataSprites[0].address)
@@ -171,12 +175,9 @@ class Model_Map:
             # decompress the compressed sprites data (increment length of compressed data to prevent data truncation)
             pass
     
-    def createImage(self, screenSettings):          
+    def createImage(self, screenSettings):
         # read all tilesets that are used by the map
-
-        # array which contains the data of both tilesets used by the map
         self.tilesetBits = []
-
         if self.tilesetIndexBG1 >= 0:
             self.tilesetBits.append(bitstring.ConstBitStream(bytes = self.tilesetDataBG1, offset=0,
                                                              length=Model_Tileset.TILESET_BYTE_SIZE * 8))
@@ -199,7 +200,7 @@ class Model_Map:
 
         # create BG2 layer if it exists
         if len(self.mapDataArrangement) > 1:
-            image, imageBytes = self.createLayerImage(1, True)        
+            image, imageBytes = self.createLayerImage(1, False)        
             self.imageLayers.append(image)
             self.imageBytes.append(imageBytes)
             self.hasBG2Layer = True
@@ -613,24 +614,4 @@ class Model_Map:
                 break
 
         return index
-    
-    def getTilesetIndex(self, layer):
-        index = -1
-        decompOffset = 0
-
-        for tilesetIndex in range (len(self.mapDataTileset)):
-            tileset : Model_MapDataTileset = self.mapDataTileset[tilesetIndex]
-            if ((layer != Model_MapDataTileset.LAYER_SPRITES) and
-                (tileset.layer == Model_MapDataTileset.LAYER_BG1_BG2)):
-                if (layer == Model_MapDataTileset.LAYER_BG1):
-                    index = tilesetIndex
-                elif (layer == Model_MapDataTileset.LAYER_BG2):
-                    index = tilesetIndex
-                    decompOffset = 0x2000
-                break
-            elif (tileset.layer == layer):
-                index = tilesetIndex
-                break
-
-        return index, decompOffset
     

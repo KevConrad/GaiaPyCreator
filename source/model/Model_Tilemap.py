@@ -62,6 +62,11 @@ class Model_Tilemap:
         self.secondTilesetData, self.secondTilesetCompSize = Model_Compression.decompress(self.romData, self.secondTileset.address,
                                                                                           self.secondTileset.decompOffset)
         self.paletteset = Model_Paletteset(self.romData, self.palettesetAddress)
+
+        self.getImage(readOffset = 0, readAll = True,
+                      tileOffset = 0, tilesetReadOffset = 0)
+
+        return self.tilemapData
         
     def getImage(self, readOffset, tilesetReadOffset, tileOffset, readAll):
         # array which contains the data of both tilesets used by the tilemap

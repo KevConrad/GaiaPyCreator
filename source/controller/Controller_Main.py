@@ -40,7 +40,7 @@ class Controller_Main:
         self.sprites = Controller_Sprites(self.project, self.view, self.tilesets.tilesets)
 
         # initialize and load the map data
-        self.maps = Controller_Maps(self.project, self.view, self.sprites.spritesets)
+        self.maps = Controller_Maps(self.project, self.view, self.sprites.spritesets, self.tilesets.tilesets)
         self.maps.load()
 
         print("Initialized all objects")

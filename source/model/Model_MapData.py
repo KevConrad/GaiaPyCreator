@@ -13,6 +13,7 @@ from model.Model_MapDataTileset import Model_MapDataTileset
 from model.Model_MapDataBuffer import Model_MapDataBuffer
 
 from model.Model_Tilemaps import Model_Tilemaps
+from model.Model_Tilesets import Model_Tilesets
 
 import copy
 
@@ -31,9 +32,10 @@ class Model_MapData:
     MAP_DATA_TILEMAP = 0x05
     MAP_DATA_TILESET = 0x03
 
-    def __init__(self, romData, tilemaps:Model_Tilemaps) -> None:
+    def __init__(self, romData, tilemaps:Model_Tilemaps, tilesets:Model_Tilesets) -> None:
         self.romData = romData
         self.tilemaps = tilemaps
+        self.tilesets = tilesets
     
     def read(self, address, index, mapDataBuffer : Model_MapDataBuffer):
         readOffset = address
@@ -94,7 +96,7 @@ class Model_MapData:
                         mapDataBuffer.setTilemapBuffer(mapData)
 
                 elif (functionNumber == self.MAP_DATA_TILESET):             # tileset data (0x03)
-                    mapData = Model_MapDataTileset(self.romData, readOffset)
+                    mapData = Model_MapDataTileset(self.romData, readOffset, self.tilesets)
 
                     if mapData.layer == Model_MapDataTileset.LAYER_BG1_BG2:
                         mapData.layer = Model_MapDataTileset.LAYER_BG1
@@ -102,7 +104,7 @@ class Model_MapData:
                         # add second tileset data directly here
                         tilesetSecondData = copy.deepcopy(mapData)
                         tilesetSecondData.index = mapData.index + 1
-                        tilesetSecondData.layer = Model_MapDataTileset.LAYER_BG1
+                        tilesetSecondData.layer = Model_MapDataTileset.LAYER_BG2
                         self.mapData.append(tilesetSecondData)
                         mapDataBuffer.setTilesetBuffer(tilesetSecondData)
                     else:
