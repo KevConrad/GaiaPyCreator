@@ -69,336 +69,338 @@
       "EnemyStateDataTable": {
          "Address": "1ABF0",
          "Size": "1B8",
-         "EnemyState0": {
-            "Name": "0 - ?"
-         },
-         "EnemyState1": {
-            "Name": "1 - [Underground Tunnel] Ribber"
-         },
-         "EnemyState2": {
-            "Name": "2 - [Underground Tunnel] Canal Worm"
-         },
-         "EnemyState3": {
-            "Name": "3 - [Underground Tunnel] King Bat"
-         },
-         "EnemyState4": {
-            "Name": "4 - [Underground Tunnel] Bat (Strong)"
-         },
-         "EnemyState5": {
-            "Name": "5 - [Underground Tunnel] Bat"
-         },
-         "EnemyState6": {
-            "Name": "6 - ?"
-         },
-         "EnemyState7": {
-            "Name": "7 - ?"
-         },
-         "EnemyState8": {
-            "Name": "8 - ?"
-         },
-         "EnemyState9": {
-            "Name": "9 - ?"
-         },
-         "EnemyState10": {
-            "Name": "10 - [Inca Ruins] Mudpit"
-         },
-         "EnemyState11": {
-            "Name": "11 - [Inca Ruins] Slugger"
-         },
-         "EnemyState12": {
-            "Name": "12 - [Inca Ruins] Four Wax"
-         },
-         "EnemyState13": {
-            "Name": "13 - [Inca Ruins] Stone Guard"
-         },
-         "EnemyState14": {
-            "Name": "14 - [Inca Ruins] Whirligig"
-         },
-         "EnemyState15": {
-            "Name": "15 - [Inca Ruins] Splop"
-         },
-         "EnemyState16": {
-            "Name": "16 - [Underground Tunnel] Skull Chaser"
-         },
-         "EnemyState17": {
-            "Name": "17 - [Underground Tunnel] Skull Chaser (Head)"
-         },
-         "EnemyState18": {
-            "Name": "18 - ?"
-         },
-         "EnemyState19": {
-            "Name": "19 - ?"
-         },
-         "EnemyState20": {
-            "Name": "20 - [Boss] Castoth"
-         },
-         "EnemyState21": {
-            "Name": "21 - ?"
-         },
-         "EnemyState22": {
-            "Name": "22 - ?"
-         },
-         "EnemyState23": {
-            "Name": "23 - ?"
-         },
-         "EnemyState24": {
-            "Name": "24 - [Diamond Mine] Flayzer"
-         },
-         "EnemyState25": {
-            "Name": "25 - [Diamond Mine] Eye Stalker"
-         },
-         "EnemyState26": {
-            "Name": "26 - [Diamond Mine] Grundit"
-         },
-         "EnemyState27": {
-            "Name": "27 - [Sky Garden] Dinapede"
-         },
-         "EnemyState28": {
-            "Name": "28 - [Sky Garden] Nitropede"
-         },
-         "EnemyState29": {
-            "Name": "29 - [Sky Garden] Blue Cyber"
-         },
-         "EnemyState30": {
-            "Name": "30 - [Sky Garden] Red Cyber"
-         },
-         "EnemyState31": {
-            "Name": "31 - ?"
-         },
-         "EnemyState32": {
-            "Name": "32 - ?"
-         },
-         "EnemyState33": {
-            "Name": "33 - ?"
-         },
-         "EnemyState34": {
-            "Name": "34 - ?"
-         },
-         "EnemyState35": {
-            "Name": "35 - ?"
-         },
-         "EnemyState36": {
-            "Name": "36 - ?"
-         },
-         "EnemyState37": {
-            "Name": "37 - ?"
-         },
-         "EnemyState38": {
-            "Name": "38 - ?"
-         },
-         "EnemyState39": {
-            "Name": "39 - [Boss] Viper"
-         },
-         "EnemyState40": {
-            "Name": "40 - [Mu] Cyclops"
-         },
-         "EnemyState41": {
-            "Name": "41 - [Mu] Flasher"
-         },
-         "EnemyState42": {
-            "Name": "42 - [Seaside Palace/Mu] Skuddle"
-         },
-         "EnemyState43": {
-            "Name": "43 - [Seaside Palace] Slipper"
-         },
-         "EnemyState44": {
-            "Name": "44 - ?"
-         },
-         "EnemyState45": {
-            "Name": "45 - [Angel Village] Dive Bat"
-         },
-         "EnemyState46": {
-            "Name": "46 - [Angel Village] Draco / Ramskull"
-         },
-         "EnemyState47": {
-            "Name": "47 - [Boss] Vampir Valor"
-         },
-         "EnemyState48": {
-            "Name": "48 - [Boss] Vampirella Gitane"
-         },
-         "EnemyState49": {
-            "Name": "49 - ?"
-         },
-         "EnemyState50": {
-            "Name": "50 - [Great Wall] Asp"
-         },
-         "EnemyState51": {
-            "Name": "51 - [Great Wall] Archer"
-         },
-         "EnemyState52": {
-            "Name": "52 - [Great Wall] Fire Bug"
-         },
-         "EnemyState53": {
-            "Name": "53 - [Great Wall] Eyesore"
-         },
-         "EnemyState54": {
-            "Name": "54 - [Boss] Sand Fanger"
-         },
-         "EnemyState55": {
-            "Name": "55 - ?"
-         },
-         "EnemyState56": {
-            "Name": "56 - ?"
-         },
-         "EnemyState57": {
-            "Name": "57 - ?"
-         },
-         "EnemyState58": {
-            "Name": "58 - ?"
-         },
-         "EnemyState59": {
-            "Name": "59 - ?"
-         },
-         "EnemyState60": {
-            "Name": "60 - [Mountain Temple] Acid Spider"
-         },
-         "EnemyState61": {
-            "Name": "61 - [Mountain Temple] Yorrick"
-         },
-         "EnemyState62": {
-            "Name": "62 - [Mountain Temple] Skulker"
-         },
-         "EnemyState63": {
-            "Name": "63 - [Mountain Temple] Fire Sprite"
-         },
-         "EnemyState64": {
-            "Name": "64 - ?"
-         },
-         "EnemyState65": {
-            "Name": "65 - ?"
-         },
-         "EnemyState66": {
-            "Name": "66 - [Angkor Wat] Goldcap"
-         },
-         "EnemyState67": {
-            "Name": "67 - [Angkor Wat] Frenzie"
-         },
-         "EnemyState68": {
-            "Name": "68 - [Angkor Wat] Wall Walker"
-         },
-         "EnemyState69": {
-            "Name": "69 - [Angkor Wat] Gorgon"
-         },
-         "EnemyState70": {
-            "Name": "70 - [Angkor Wat] Zombie"
-         },
-         "EnemyState71": {
-            "Name": "71 - ?"
-         },
-         "EnemyState72": {
-            "Name": "72 - ?"
-         },
-         "EnemyState73": {
-            "Name": "73 - [Angkor Wat] Shrubber"
-         },
-         "EnemyState74": {
-            "Name": "74 - [Angkor Wat] Zip Fly"
-         },
-         "EnemyState75": {
-            "Name": "75 - ?"
-         },
-         "EnemyState76": {
-            "Name": "76 - [Pyramid] Haunt"
-         },
-         "EnemyState77": {
-            "Name": "77 - [Pyramid] Haunt's Spirit"
-         },
-         "EnemyState78": {
-            "Name": "78 - [Pyramid] Tuts"
-         },
-         "EnemyState79": {
-            "Name": "79 - [Pyramid] Mystic Ball"
-         },
-         "EnemyState80": {
-            "Name": "80 - [Boss] Mummy Queen"
-         },
-         "EnemyState81": {
-            "Name": "81 - [Pyramid] Blaster"
-         },
-         "EnemyState82": {
-            "Name": "82 - ?"
-         },
-         "EnemyState83": {
-            "Name": "83 - ?"
-         },
-         "EnemyState84": {
-            "Name": "84 - ?"
-         },
-         "EnemyState85": {
-            "Name": "85 - ?"
-         },
-         "EnemyState86": {
-            "Name": "86 - ?"
-         },
-         "EnemyState87": {
-            "Name": "87 - ?"
-         },
-         "EnemyState88": {
-            "Name": "88 - ?"
-         },
-         "EnemyState89": {
-            "Name": "89 - ?"
-         },
-         "EnemyState90": {
-            "Name": "90 - [Boss] Dark Castoth"
-         },
-         "EnemyState91": {
-            "Name": "91 - [Boss] Dark Viper"
-         },
-         "EnemyState92": {
-            "Name": "92 - [Boss] Dark Vampires"
-         },
-         "EnemyState93": {
-            "Name": "93 - ?"
-         },
-         "EnemyState94": {
-            "Name": "94 - [Boss] Dark Mummy Queen"
-         },
-         "EnemyState95": {
-            "Name": "95 - [Boss] Solid Arm"
-         },
-         "EnemyState96": {
-            "Name": "96 - ?"
-         },
-         "EnemyState97": {
-            "Name": "97 - [Jeweler's Mansion] Flayzer"
-         },
-         "EnemyState98": {
-            "Name": "98 - [Jeweler's Mansion] Eye Stalker"
-         },
-         "EnemyState99": {
-            "Name": "99 - [Jeweler's Mansion] Grundit"
-         },
-         "EnemyState100": {
-            "Name": "100 - ?"
-         },
-         "EnemyState101": {
-            "Name": "101 - ?"
-         },
-         "EnemyState102": {
-            "Name": "102 - ?"
-         },
-         "EnemyState103": {
-            "Name": "103 - ?"
-         },
-         "EnemyState104": {
-            "Name": "104 - ?"
-         },
-         "EnemyState105": {
-            "Name": "105 - ?"
-         },
-         "EnemyState106": {
-            "Name": "106 - ?"
-         },
-         "EnemyState107": {
-            "Name": "107 - ?"
-         },
-         "EnemyState108": {
-            "Name": "108 - ?"
-         },
-         "EnemyState109": {
-            "Name": "109 - ?"
-         }
+         "Enemies": [
+            {
+               "Name": "0 - ?"
+            },
+            {
+               "Name": "1 - [Underground Tunnel] Ribber"
+            },
+            {
+               "Name": "2 - [Underground Tunnel] Canal Worm"
+            },
+            {
+               "Name": "3 - [Underground Tunnel] King Bat"
+            },
+            {
+               "Name": "4 - [Underground Tunnel] Bat (Strong)"
+            },
+            {
+               "Name": "5 - [Underground Tunnel] Bat"
+            },
+            {
+               "Name": "6 - ?"
+            },
+            {
+               "Name": "7 - ?"
+            },
+            {
+               "Name": "8 - ?"
+            },
+            {
+               "Name": "9 - ?"
+            },
+            {
+               "Name": "10 - [Inca Ruins] Mudpit"
+            },
+            {
+               "Name": "11 - [Inca Ruins] Slugger"
+            },
+            {
+               "Name": "12 - [Inca Ruins] Four Wax"
+            },
+            {
+               "Name": "13 - [Inca Ruins] Stone Guard"
+            },
+            {
+               "Name": "14 - [Inca Ruins] Whirligig"
+            },
+            {
+               "Name": "15 - [Inca Ruins] Splop"
+            },
+            {
+               "Name": "16 - [Underground Tunnel] Skull Chaser"
+            },
+            {
+               "Name": "17 - [Underground Tunnel] Skull Chaser (Head)"
+            },
+            {
+               "Name": "18 - ?"
+            },
+            {
+               "Name": "19 - ?"
+            },
+            {
+               "Name": "20 - [Boss] Castoth"
+            },
+            {
+               "Name": "21 - ?"
+            },
+            {
+               "Name": "22 - ?"
+            },
+            {
+               "Name": "23 - ?"
+            },
+            {
+               "Name": "24 - [Diamond Mine] Flayzer"
+            },
+            {
+               "Name": "25 - [Diamond Mine] Eye Stalker"
+            },
+            {
+               "Name": "26 - [Diamond Mine] Grundit"
+            },
+            {
+               "Name": "27 - [Sky Garden] Dinapede"
+            },
+            {
+               "Name": "28 - [Sky Garden] Nitropede"
+            },
+            {
+               "Name": "29 - [Sky Garden] Blue Cyber"
+            },
+            {
+               "Name": "30 - [Sky Garden] Red Cyber"
+            },
+            {
+               "Name": "31 - ?"
+            },
+            {
+               "Name": "32 - ?"
+            },
+            {
+               "Name": "33 - ?"
+            },
+            {
+               "Name": "34 - ?"
+            },
+            {
+               "Name": "35 - ?"
+            },
+            {
+               "Name": "36 - ?"
+            },
+            {
+               "Name": "37 - ?"
+            },
+            {
+               "Name": "38 - ?"
+            },
+            {
+               "Name": "39 - [Boss] Viper"
+            },
+            {
+               "Name": "40 - [Mu] Cyclops"
+            },
+            {
+               "Name": "41 - [Mu] Flasher"
+            },
+            {
+               "Name": "42 - [Seaside Palace/Mu] Skuddle"
+            },
+            {
+               "Name": "43 - [Seaside Palace] Slipper"
+            },
+            {
+               "Name": "44 - ?"
+            },
+            {
+               "Name": "45 - [Angel Village] Dive Bat"
+            },
+            {
+               "Name": "46 - [Angel Village] Draco / Ramskull"
+            },
+            {
+               "Name": "47 - [Boss] Vampir Valor"
+            },
+            {
+               "Name": "48 - [Boss] Vampirella Gitane"
+            },
+            {
+               "Name": "49 - ?"
+            },
+            {
+               "Name": "50 - [Great Wall] Asp"
+            },
+            {
+               "Name": "51 - [Great Wall] Archer"
+            },
+            {
+               "Name": "52 - [Great Wall] Fire Bug"
+            },
+            {
+               "Name": "53 - [Great Wall] Eyesore"
+            },
+            {
+               "Name": "54 - [Boss] Sand Fanger"
+            },
+            {
+               "Name": "55 - ?"
+            },
+            {
+               "Name": "56 - ?"
+            },
+            {
+               "Name": "57 - ?"
+            },
+            {
+               "Name": "58 - ?"
+            },
+            {
+               "Name": "59 - ?"
+            },
+            {
+               "Name": "60 - [Mountain Temple] Acid Spider"
+            },
+            {
+               "Name": "61 - [Mountain Temple] Yorrick"
+            },
+            {
+               "Name": "62 - [Mountain Temple] Skulker"
+            },
+            {
+               "Name": "63 - [Mountain Temple] Fire Sprite"
+            },
+            {
+               "Name": "64 - ?"
+            },
+            {
+               "Name": "65 - ?"
+            },
+            {
+               "Name": "66 - [Angkor Wat] Goldcap"
+            },
+            {
+               "Name": "67 - [Angkor Wat] Frenzie"
+            },
+            {
+               "Name": "68 - [Angkor Wat] Wall Walker"
+            },
+            {
+               "Name": "69 - [Angkor Wat] Gorgon"
+            },
+            {
+               "Name": "70 - [Angkor Wat] Zombie"
+            },
+            {
+               "Name": "71 - ?"
+            },
+            {
+               "Name": "72 - ?"
+            },
+            {
+               "Name": "73 - [Angkor Wat] Shrubber"
+            },
+            {
+               "Name": "74 - [Angkor Wat] Zip Fly"
+            },
+            {
+               "Name": "75 - ?"
+            },
+            {
+               "Name": "76 - [Pyramid] Haunt"
+            },
+            {
+               "Name": "77 - [Pyramid] Haunt's Spirit"
+            },
+            {
+               "Name": "78 - [Pyramid] Tuts"
+            },
+            {
+               "Name": "79 - [Pyramid] Mystic Ball"
+            },
+            {
+               "Name": "80 - [Boss] Mummy Queen"
+            },
+            {
+               "Name": "81 - [Pyramid] Blaster"
+            },
+            {
+               "Name": "82 - ?"
+            },
+            {
+               "Name": "83 - ?"
+            },
+            {
+               "Name": "84 - ?"
+            },
+            {
+               "Name": "85 - ?"
+            },
+            {
+               "Name": "86 - ?"
+            },
+            {
+               "Name": "87 - ?"
+            },
+            {
+               "Name": "88 - ?"
+            },
+            {
+               "Name": "89 - ?"
+            },
+            {
+               "Name": "90 - [Boss] Dark Castoth"
+            },
+            {
+               "Name": "91 - [Boss] Dark Viper"
+            },
+            {
+               "Name": "92 - [Boss] Dark Vampires"
+            },
+            {
+               "Name": "93 - ?"
+            },
+            {
+               "Name": "94 - [Boss] Dark Mummy Queen"
+            },
+            {
+               "Name": "95 - [Boss] Solid Arm"
+            },
+            {
+               "Name": "96 - ?"
+            },
+            {
+               "Name": "97 - [Jeweler's Mansion] Flayzer"
+            },
+            {
+               "Name": "98 - [Jeweler's Mansion] Eye Stalker"
+            },
+            {
+               "Name": "99 - [Jeweler's Mansion] Grundit"
+            },
+            {
+               "Name": "100 - ?"
+            },
+            {
+               "Name": "101 - ?"
+            },
+            {
+               "Name": "102 - ?"
+            },
+            {
+               "Name": "103 - ?"
+            },
+            {
+               "Name": "104 - ?"
+            },
+            {
+               "Name": "105 - ?"
+            },
+            {
+               "Name": "106 - ?"
+            },
+            {
+               "Name": "107 - ?"
+            },
+            {
+               "Name": "108 - ?"
+            },
+            {
+               "Name": "109 - ?"
+            }
+         ]
       },
       "MapDataTable": {
          "Address": "D8000",

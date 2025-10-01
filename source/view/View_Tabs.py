@@ -22,9 +22,10 @@ class TabMaps(wx.Panel):
         text = wx.StaticText(self, -1, "Edit map data.", (20,20))
 
 class TabMisc(wx.Panel):
+    MISC_TAB_INDEX = 3
+
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit miscallaneous data.", (20,20))
 
 class TabMusic(wx.Panel):
     def __init__(self, parent):
@@ -69,7 +70,7 @@ class View_Tabs:
         panel = wx.Panel(frame)
         self.notebook = wx.Notebook(panel)
 
-        # Initiation of the tab windows:
+        # Initialization of the tab windows
         self.tabEvents = TabEvents(self.notebook)
         self.tabItems = TabItems(self.notebook)
         self.tabMaps = TabMaps(self.notebook)
@@ -81,7 +82,7 @@ class View_Tabs:
         self.tabTilemaps = TabTilemaps(self.notebook)
         self.tabTilesets = TabTilesets(self.notebook)
 
-        # Assigning names to tabs and adding them:
+        # Assign names to tabs and add them
         self.notebook.AddPage(self.tabEvents, "Events")
         self.notebook.AddPage(self.tabItems, "Items")
         self.notebook.AddPage(self.tabMaps, "Maps")
@@ -107,6 +108,8 @@ class View_Tabs:
             pub.sendMessage("items_load")
         if self.notebook.GetPage(index) is self.tabMaps:
             pub.sendMessage("maps_load")
+        if self.notebook.GetPage(index) is self.tabMisc:
+            pub.sendMessage("misc_load")
         if self.notebook.GetPage(index) is self.tabSprites:
             pub.sendMessage("sprites_load")
         if self.notebook.GetPage(index) is self.tabTilemaps:

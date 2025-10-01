@@ -8,6 +8,7 @@ import sys
 
 from .Controller_Items import Controller_Items
 from .Controller_Maps import Controller_Maps
+from .Controller_Misc import Controller_Misc
 from .Controller_Sprites import Controller_Sprites
 from .Controller_Tilemaps import Controller_Tilemaps
 from .Controller_Tilesets import Controller_Tilesets
@@ -34,7 +35,7 @@ class Controller_Main:
     def load(self):
         # initialize all controllers
         self.items = Controller_Items(self.project, self.view)
-
+        self.misc = Controller_Misc(self.project, self.view)
         self.tilemaps = Controller_Tilemaps(self.project, self.view)
         self.tilesets = Controller_Tilesets(self.project, self.view)
         self.sprites = Controller_Sprites(self.project, self.view, self.tilesets.tilesets)
