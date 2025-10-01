@@ -107,8 +107,6 @@ class TabExitStairs(wx.Panel):
         
         # stairs data
         self.verticalBoxStairsData = wx.BoxSizer(wx.VERTICAL)
-        labelStairsData = wx.StaticText(self, label="Stairs Data:")
-        self.verticalBoxStairsData.Add(labelStairsData)
         self.verticalBoxStairsData.Add(horizontalBoxByte0)
         self.verticalBoxStairsData.Add(horizontalBoxByte1)
         self.verticalBoxStairsData.Add(horizontalBoxScrollMovementDirection)

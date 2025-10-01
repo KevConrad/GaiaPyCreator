@@ -2,9 +2,8 @@ import sys
 from model.Model_RomData import Model_RomData
 
 class Model_Event:
-    class Type:
-        npc = 0
-        enemy = 1
+    TYPE_ENEMY = 0
+    TYPE_NPC = 1
 
     def __init__(self, romData, address) -> None:
         self.romData = romData
@@ -19,11 +18,11 @@ class Model_Event:
         self.address = Model_RomData.readLongAddress(romData, readOffset)
         readOffset += 3
         if (romData[readOffset] == 0):
-            self.type = self.Type.npc
+            self.type = self.TYPE_NPC
             self.eventByte = romData[readOffset]
             readOffset += 1
         else:
-            self.type = self.Type.enemy
+            self.type = self.TYPE_ENEMY
             self.enemyStateId = romData[readOffset]
             readOffset += 1
             self.eventByte = romData[readOffset]

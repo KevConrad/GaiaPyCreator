@@ -7,6 +7,64 @@ from model.Model_Map import Model_Map
 
 from pubsub import pub
 
+class TabEventEnemy(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+        
+        # defeat action controls
+        horizontalBoxDefeatAction = wx.BoxSizer(wx.HORIZONTAL)
+        labelDefeatAction = wx.StaticText(self, label="Defeat Action: ")
+        self.spinCtrlDefeatAction = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlDefeatAction.SetMin(0)
+        self.spinCtrlDefeatAction.SetMax(255)
+        horizontalBoxDefeatAction.Add(labelDefeatAction, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxDefeatAction.Add(self.spinCtrlDefeatAction, wx.EXPAND|wx.ALL)
+
+        # unknown byte controls
+        horizontalBoxUnknownByte = wx.BoxSizer(wx.HORIZONTAL)
+        labelUnkownByte = wx.StaticText(self, label="Unkown Byte: ")
+        self.spinCtrlUnknownByte = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlUnknownByte.SetMin(0)
+        self.spinCtrlUnknownByte.SetMax(255)
+        horizontalBoxUnknownByte.Add(labelUnkownByte, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxUnknownByte.Add(self.spinCtrlUnknownByte, wx.EXPAND|wx.ALL)
+
+        # enemy state controls
+        horizontalBoxEnemyState = wx.BoxSizer(wx.HORIZONTAL)
+        labelEnemyState = wx.StaticText(self, label="Enemy State: ")
+        self.spinCtrlEnemyState = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlEnemyState.SetMin(0)
+        self.spinCtrlEnemyState.SetMax(255)
+        horizontalBoxEnemyState.Add(labelEnemyState, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxEnemyState.Add(self.spinCtrlEnemyState, wx.EXPAND|wx.ALL)
+
+        # event type enemy data
+        self.verticalBoxEnemyData = wx.BoxSizer(wx.VERTICAL)
+        self.verticalBoxEnemyData.Add(horizontalBoxDefeatAction)
+        self.verticalBoxEnemyData.Add(horizontalBoxUnknownByte)
+        self.verticalBoxEnemyData.Add(horizontalBoxEnemyState)
+        self.SetSizer(self.verticalBoxEnemyData)
+        self.Fit()
+
+class TabEventNpc(wx.Panel):
+    def __init__(self, parent):
+        wx.Panel.__init__(self, parent)
+
+        # unknown byte controls
+        horizontalBoxUnknownByte = wx.BoxSizer(wx.HORIZONTAL)
+        labelUnkownByte = wx.StaticText(self, label="Unkown Byte: ")
+        self.spinCtrlUnknownByte = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
+        self.spinCtrlUnknownByte.SetMin(0)
+        self.spinCtrlUnknownByte.SetMax(255)
+        horizontalBoxUnknownByte.Add(labelUnkownByte, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
+        horizontalBoxUnknownByte.Add(self.spinCtrlUnknownByte, wx.EXPAND|wx.ALL)
+
+        # event type NPC data
+        self.verticalBoxNpcData = wx.BoxSizer(wx.VERTICAL)
+        self.verticalBoxNpcData.Add(horizontalBoxUnknownByte)
+        self.SetSizer(self.verticalBoxNpcData)
+        self.Fit()
+
 class View_MapTabEvents(wx.Panel):
 
     def __init__(self, parent):
@@ -59,12 +117,24 @@ class View_MapTabEvents(wx.Panel):
         horizontalBoxEventType.Add(labelEventTypeNPC, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
         horizontalBoxEventType.Add(self.checkBoxEventTypeNPC, wx.EXPAND|wx.ALL)
 
+        # event type tabControls
+        self.eventTypeTabs = wx.Notebook(self, size=(400, 400))
+
+        # Initiation of the tab windows:
+        self.tabEventEnemy = TabEventEnemy(self.eventTypeTabs)
+        self.tabEventNpc = TabEventNpc(self.eventTypeTabs)
+
+        # Assigning names to tabs and adding them:
+        self.eventTypeTabs.AddPage(self.tabEventEnemy, "Enemy")
+        self.eventTypeTabs.AddPage(self.tabEventNpc, "NPC")
+
         # event data
         self.verticalBoxEventData = wx.BoxSizer(wx.VERTICAL)
         self.verticalBoxEventData.Add(horizontalBoxEventSelection)
         self.verticalBoxEventData.Add(horizontalBoxEventPositionX)
         self.verticalBoxEventData.Add(horizontalBoxEventPositionY)
         self.verticalBoxEventData.Add(horizontalBoxEventType)
+        self.verticalBoxEventData.Add(self.eventTypeTabs)
 
         self.SetSizer(self.verticalBoxEventData)
         self.Fit()
@@ -95,15 +165,30 @@ class View_MapTabEvents(wx.Panel):
             self.spinCtrlEventPositionX.SetValue(eventData.positionX)
             self.spinCtrlEventPositionY.SetValue(eventData.positionY)
 
-            if eventData.type == Model_Event.Type.enemy:
+            if eventData.type == Model_Event.TYPE_ENEMY:
                 self.checkBoxEventTypeEnemy.SetValue(True)
                 self.checkBoxEventTypeNPC.SetValue(False)
-            elif eventData.type == Model_Event.Type.npc:
+
+                # enable enemy and disable NPC tab
+                self.tabEventEnemy.Enable()
+                self.tabEventNpc.Disable()
+                self.eventTypeTabs.SetSelection(0)
+
+                # update enemy tab data
+                self.tabEventEnemy.spinCtrlDefeatAction.SetValue(eventData.enemyDefeatActionId)
+                self.tabEventEnemy.spinCtrlUnknownByte.SetValue(eventData.eventByte)
+                self.tabEventEnemy.spinCtrlEnemyState.SetValue(eventData.enemyStateId)
+            else:   # event type is NPC
                 self.checkBoxEventTypeEnemy.SetValue(False)
                 self.checkBoxEventTypeNPC.SetValue(True)
-            else:
-                self.checkBoxEventTypeEnemy.SetValue(False)
-                self.checkBoxEventTypeNPC.SetValue(False)
+
+                # enable NPC and disable enemy tab
+                self.tabEventEnemy.Disable()
+                self.tabEventNpc.Enable()
+                self.eventTypeTabs.SetSelection(1)
+
+                # update NPC tab data
+                self.tabEventNpc.spinCtrlUnknownByte.SetValue(eventData.eventByte)
         else:
             self.spinCtrlEventPositionX.SetValue(0)
             self.spinCtrlEventPositionY.SetValue(0)

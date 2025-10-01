@@ -211,7 +211,7 @@ class View_Maps:
 
     def handleTabChanged(self, event):
         index = self.mapDataTabs.GetSelection()
-        pub.sendMessage("maps_update_mapImage", currentPositionX=0, currentPositionY=0, tabIndex=index)
+        pub.sendMessage("maps_update_mapImage")
 
     def load(self, mapNames, tilemapNames):
         self.listBoxMaps.Set(mapNames)
@@ -268,7 +268,7 @@ class View_Maps:
             else:
                 self.scrolledWindowMap.SetCursor(wx.Cursor(wx.CURSOR_ARROW))
     
-        pub.sendMessage("maps_update_mapImage", currentPositionX=currentPositionX, currentPositionY=currentPositionY, tabIndex=index)
+        pub.sendMessage("maps_update_mapImage")
 
     def onMouseLeftDownOverMap(self, event):
         index = self.mapDataTabs.GetSelection()

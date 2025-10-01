@@ -86,8 +86,7 @@ class Controller_Maps:
         # update the map image in the GUI
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
-    def updateMapImage(self, currentPositionX, currentPositionY, tabIndex):
-        #self.maps.maps[self.mapIndex].createImageOverlay(currentPositionX, currentPositionY, tabIndex)
+    def updateMapImage(self):
         # update the map image in the GUI
         self.view.maps.updateImage(self.maps.maps[self.mapIndex])
 
