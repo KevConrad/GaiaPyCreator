@@ -35,14 +35,19 @@ class Controller_Main:
     def load(self):
         # initialize all controllers
         self.items = Controller_Items(self.project, self.view)
+        self.items.load()
         self.misc = Controller_Misc(self.project, self.view)
+        self.misc.load()
         self.tilemaps = Controller_Tilemaps(self.project, self.view)
+        self.tilemaps.load()
         self.tilesets = Controller_Tilesets(self.project, self.view)
+        self.tilesets.load()
         self.sprites = Controller_Sprites(self.project, self.view, self.tilesets.tilesets)
+        self.sprites.load()
 
         # initialize and load the map data
         self.maps = Controller_Maps(self.project, self.view, self.sprites.spritesets, self.tilesets.tilesets)
-        self.maps.load()
+        self.maps.load(self.misc.enemyStates)
 
         print("Initialized all objects")
         

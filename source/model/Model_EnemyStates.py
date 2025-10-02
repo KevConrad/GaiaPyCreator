@@ -1,7 +1,7 @@
 
-from model.Model_Enemy import Model_Enemy
+from model.Model_EnemyState import Model_EnemyState
 
-class Model_Enemies:
+class Model_EnemyStates:
     DATA_ENTRY_SIZE = 4
 
     def __init__(self, romData, projectData : dict) -> None:
@@ -22,5 +22,5 @@ class Model_Enemies:
         self.enemies = []
         for enemyIndex in range (enemyTableSize):
             enemyAddress = enemyTableAddress + (enemyIndex * self.DATA_ENTRY_SIZE)
-            self.enemies.append(Model_Enemy(self.romData, enemyAddress))
+            self.enemies.append(Model_EnemyState(self.romData, enemyAddress))
     

@@ -32,11 +32,9 @@ class TabEventEnemy(wx.Panel):
         # enemy state controls
         horizontalBoxEnemyState = wx.BoxSizer(wx.HORIZONTAL)
         labelEnemyState = wx.StaticText(self, label="Enemy State: ")
-        self.spinCtrlEnemyState = wx.SpinCtrl(self, style=wx.SP_ARROW_KEYS)
-        self.spinCtrlEnemyState.SetMin(0)
-        self.spinCtrlEnemyState.SetMax(255)
+        self.comboBoxEnemyState = wx.ComboBox(self, size=(256, 16), style=wx.CB_DROPDOWN)
         horizontalBoxEnemyState.Add(labelEnemyState, wx.EXPAND|wx.ALIGN_LEFT|wx.ALL)
-        horizontalBoxEnemyState.Add(self.spinCtrlEnemyState, wx.EXPAND|wx.ALL)
+        horizontalBoxEnemyState.Add(self.comboBoxEnemyState, wx.EXPAND|wx.ALL)
 
         # event type enemy data
         self.verticalBoxEnemyData = wx.BoxSizer(wx.VERTICAL)
@@ -45,6 +43,9 @@ class TabEventEnemy(wx.Panel):
         self.verticalBoxEnemyData.Add(horizontalBoxEnemyState)
         self.SetSizer(self.verticalBoxEnemyData)
         self.Fit()
+    
+    def load(self, enemyStateNames):
+        self.comboBoxEnemyState.Set(enemyStateNames)
 
 class TabEventNpc(wx.Panel):
     def __init__(self, parent):
@@ -138,6 +139,9 @@ class View_MapTabEvents(wx.Panel):
 
         self.SetSizer(self.verticalBoxEventData)
         self.Fit()
+    
+    def load(self, enemyStateNames):
+        self.tabEventEnemy.load(enemyStateNames)
 
     def onEventSelectionChanged(self, event):
         eventIndex = self.spinCtrlEventCurrent.GetValue() - 1
@@ -177,7 +181,7 @@ class View_MapTabEvents(wx.Panel):
                 # update enemy tab data
                 self.tabEventEnemy.spinCtrlDefeatAction.SetValue(eventData.enemyDefeatActionId)
                 self.tabEventEnemy.spinCtrlUnknownByte.SetValue(eventData.eventByte)
-                self.tabEventEnemy.spinCtrlEnemyState.SetValue(eventData.enemyStateId)
+                self.tabEventEnemy.comboBoxEnemyState.SetSelection(eventData.enemyStateId)
             else:   # event type is NPC
                 self.checkBoxEventTypeEnemy.SetValue(False)
                 self.checkBoxEventTypeNPC.SetValue(True)

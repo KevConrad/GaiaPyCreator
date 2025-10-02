@@ -1,5 +1,5 @@
 
-class Model_Enemy:
+class Model_EnemyState:
     def __init__(self, romData, address) -> None:
         self.romData = romData
 

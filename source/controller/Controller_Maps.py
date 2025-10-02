@@ -4,6 +4,7 @@ from pubsub import pub
 from pubsub.utils.notification import useNotifyByWriteFile
 
 from controller.Controller_Project import Controller_Project
+from model.Model_EnemyStates import Model_EnemyStates
 from model.Model_MapDataTable import Model_MapDataTable
 from model.Model_MapData import Model_MapData
 from model.Model_MapDataBuffer import Model_MapDataBuffer
@@ -32,9 +33,11 @@ class Controller_Maps:
         pub.subscribe(self.updateMapImage, "maps_update_mapImage")
         pub.subscribe(self.updateTilemapImage, "maps_update_tilemapImage")
 
-    def load(self):
+    def load(self, enemyStates: Model_EnemyStates):
         if self.project.isProjectLoaded == True:
             self.loadMapDataTable(self.tilemaps, self.tilesets)
+
+            self.enemyStates = enemyStates
 
             self.roomClearingRewards = Model_RoomClearingRewards(self.project.romData.romData, self.project.projectData.projectData)
             
@@ -43,7 +46,7 @@ class Controller_Maps:
             self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings, self.roomClearingRewards,
                                    self.spritesets)
 
-            self.view.maps.load(self.maps.mapNames, self.tilemaps.tilemapNames)
+            self.view.maps.load(self.maps.mapNames, self.tilemaps.tilemapNames, self.enemyStates.enemyNames)
             
     def loadMapDataTable(self, tilemaps: Model_Tilemaps, tilesets: Model_Tilesets):
         # load the map data table data from the project file

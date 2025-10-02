@@ -213,9 +213,10 @@ class View_Maps:
         index = self.mapDataTabs.GetSelection()
         pub.sendMessage("maps_update_mapImage")
 
-    def load(self, mapNames, tilemapNames):
+    def load(self, mapNames, tilemapNames, enemyStateNames):
         self.listBoxMaps.Set(mapNames)
         self.tabEditor.load(tilemapNames)
+        self.tabEvents.load(enemyStateNames)
         self.tabExits.load(mapNames)
 
     def onMapLayerChange(self, event):

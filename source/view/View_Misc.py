@@ -1,6 +1,6 @@
 import wx
 
-from model.Model_Enemy import Model_Enemy
+from model.Model_EnemyState import Model_EnemyState
 
 from view.View_MiscTabEnemyStates import View_MiscTabEnemyStates
 from view.View_Tabs import TabMisc
@@ -49,5 +49,5 @@ class View_Misc:
     def load(self, enemyStateNames):
         self.tabEnemyStates.load(enemyStateNames)
 
-    def update(self, enemyStateData: Model_Enemy):        
+    def update(self, enemyStateData: Model_EnemyState):        
         self.tabEnemyStates.update(enemyStateData)

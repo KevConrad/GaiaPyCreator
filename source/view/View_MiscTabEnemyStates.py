@@ -1,10 +1,7 @@
-# This file contains the class View_MapTabEditor, which is a panel that allows the user to edit the map.
-# This class is responsible for displaying the map editor.
-import PIL
-import PIL.Image
+
 import wx
 
-from model.Model_Enemy import Model_Enemy
+from model.Model_EnemyState import Model_EnemyState
 
 from view.View_Common import View_Common
 
@@ -81,9 +78,9 @@ class View_MiscTabEnemyStates(wx.Panel):
 
     def onListBox(self, event):
         selectedIndex = self.listBoxEnemyStates.GetSelection()
-        pub.sendMessage("enemyStates_update", enemyStateIndex=selectedIndex)
+        pub.sendMessage("enemyState_update", enemyStateIndex=selectedIndex)
         
-    def update(self, enemyData : Model_Enemy):
+    def update(self, enemyData : Model_EnemyState):
         self.enemyData = enemyData
         self.spinCtrlHealthPoints.SetValue(self.enemyData.healthPoints)
         self.spinCtrlStrength.SetValue(self.enemyData.strength)
