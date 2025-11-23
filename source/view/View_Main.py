@@ -8,6 +8,7 @@ import sys
 
 useNotifyByWriteFile(sys.stdout)
 
+from .View_Events import View_Events
 from .View_Items import View_Items
 from .View_Maps import View_Maps
 from .View_MenuBar import View_MenuBar
@@ -25,6 +26,7 @@ class View_Main(wx.Frame):
         self.menuBar = View_MenuBar(self)
         self.statusBar = View_StatusBar(self)
         self.tabs = View_Tabs(self)
+        self.events = View_Events(self, self.tabs.notebook)
         self.items = View_Items(self, self.tabs.notebook)
         self.maps = View_Maps(self, self.tabs.notebook)
         self.misc = View_Misc(self, self.tabs.notebook)

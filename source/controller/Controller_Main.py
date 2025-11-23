@@ -6,6 +6,7 @@ from pubsub import pub
 from pubsub.utils.notification import useNotifyByWriteFile
 import sys
 
+from .Controller_Events import Controller_Events
 from .Controller_Items import Controller_Items
 from .Controller_Maps import Controller_Maps
 from .Controller_Misc import Controller_Misc
@@ -34,6 +35,7 @@ class Controller_Main:
 
     def load(self):
         # initialize all controllers
+        self.events = Controller_Events(self.project, self.view)
         self.items = Controller_Items(self.project, self.view)
         self.items.load()
         self.misc = Controller_Misc(self.project, self.view)
@@ -48,6 +50,9 @@ class Controller_Main:
         # initialize and load the map data
         self.maps = Controller_Maps(self.project, self.view, self.sprites.spritesets, self.tilesets.tilesets)
         self.maps.load(self.misc.enemyStates)
+
+        # load the event data
+        self.events.load()
 
         print("Initialized all objects")
         

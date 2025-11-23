@@ -11,6 +11,8 @@ class Model_MapEvents:
         readOffset = address
 
         self.playerEventEnable = False
+
+        self.events = [] 
         
         # read the general event data
         if (romData[readOffset] != self.EVENT_DATA_SET_END):
@@ -27,7 +29,6 @@ class Model_MapEvents:
             readOffset += 1
 
             # read all map events
-            self.events = [] 
             while (romData[readOffset] != self.EVENT_DATA_SET_END):
                 event = Model_Event(romData, readOffset)
                 self.events.append(event)

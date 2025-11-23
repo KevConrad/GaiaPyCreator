@@ -3,6 +3,8 @@ import wx
 from pubsub import pub
 
 class TabEvents(wx.Panel):
+    EVENTS_TAB_INDEX = 0
+
     def __init__(self, parent):
         wx.Panel.__init__(self, parent)
         text = wx.StaticText(self, -1, "Edit event data.", (20,20))
@@ -104,6 +106,8 @@ class View_Tabs:
     def handleTabChanged(self, event):
         index = self.notebook.GetSelection()
 
+        if self.notebook.GetPage(index) is self.tabEvents:
+            pub.sendMessage("events_load")
         if self.notebook.GetPage(index) is self.tabItems:
             pub.sendMessage("items_load")
         if self.notebook.GetPage(index) is self.tabMaps:

@@ -11,4 +11,3 @@ class Model_EnemyState:
         self.defense = romData[address]
         address += 1
         self.darkPower = romData[address]
-    

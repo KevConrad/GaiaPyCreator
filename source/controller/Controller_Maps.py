@@ -45,6 +45,11 @@ class Controller_Maps:
             
             self.maps = Model_Maps(self.project.romData.romData, self.project.projectData.projectData, self.mapData, self.screenSettings, self.roomClearingRewards,
                                    self.spritesets)
+            
+            # create a list of event addresses for all events in all maps
+            self.createEventList()
+            # notify other controllers about the event list
+            pub.sendMessage("events_list_created", eventList=self.eventList)
 
             self.view.maps.load(self.maps.mapNames, self.tilemaps.tilemapNames, self.enemyStates.enemyNames)
             
@@ -99,3 +104,12 @@ class Controller_Maps:
                                                                             selectedPositionX, selectedPositionY, True)
         # update the tilemap image in the map editor tab page
         self.view.maps.tabEditor.updateTilemapImage(tilemapImage)
+
+    def createEventList(self):
+        self.eventList = []
+        print(len(self.maps.maps))
+        for mapIndex in range (len(self.maps.maps)):
+            if self.maps.maps[mapIndex].events is not None:
+                for eventIndex in range (len(self.maps.maps[mapIndex].events.events)):
+                    if self.maps.maps[mapIndex].events.events[eventIndex].address not in self.eventList:
+                        self.eventList.append(self.maps.maps[mapIndex].events.events[eventIndex].address)
