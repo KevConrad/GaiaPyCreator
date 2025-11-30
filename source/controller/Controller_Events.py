@@ -4,12 +4,15 @@ from pubsub import pub
 from pubsub.utils.notification import useNotifyByWriteFile
 
 from controller.Controller_Project import Controller_Project
+from model.Model_EventCommandData import Model_EventCommandData
 from view.View_Main import View_Main
 
 class Controller_Events:
     def __init__(self, project : Controller_Project, view:View_Main) -> None:
         self.project = project
         self.view = view
+
+        self.eventCommandData = Model_EventCommandData()
 
         pub.subscribe(self.load, "events_load")
         pub.subscribe(self.saveEventsList, "events_list_created")
