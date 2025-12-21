@@ -1,5 +1,7 @@
 import wx
 
+from pubsub import pub
+
 from view.View_Common import View_Common
 from view.View_Tabs import TabEvents
 
@@ -34,3 +36,6 @@ class View_Events:
 
     def onListBoxEvents(self, event):
         selectedIndex = self.listBoxEvents.GetSelection()
+
+        pub.sendMessage("events_read", eventIndex=selectedIndex)
+
