@@ -38,26 +38,26 @@ class Model_EventScript:
                 self.readOffset += command.size
                 self.commands.append(command)
 
-                if command.getCommandType() == Model_EventCommand.CommandType.CALL:
+                if command.getCommandType() == Model_EventCommandData.CommandType.CALL:
                     pass
                     #self.calledScriptAddresses.append(commandcmd[cmd.Count - 1].GetCommandBranchAddress());
-                elif command.getCommandType() == Model_EventCommand.CommandType.CONDITION or \
-                     command.getCommandType() == Model_EventCommand.CommandType.CONDITION_TRUE_ONLY or \
-                     command.getCommandType() == Model_EventCommand.CommandType.BRANCH:
+                elif command.getCommandType() == Model_EventCommandData.CommandType.CONDITION or \
+                     command.getCommandType() == Model_EventCommandData.CommandType.CONDITION_TRUE_ONLY or \
+                     command.getCommandType() == Model_EventCommandData.CommandType.BRANCH:
                     pass
                     #CreateCommandBranch(source, ref i);
-                elif command.getCommandType() == Model_EventCommand.CommandType.CHOICE:
+                elif command.getCommandType() == Model_EventCommandData.CommandType.CHOICE:
                     self.messageBoxChoiceCount = self.romData[self.address - 4]
                     self.messageBoxChoiceId = 0
-                    self.messageBoxTableAddress = i
+                    #self.messageBoxTableAddress = i
                     #CreateCommandBranch(source, ref i);
-                elif command.getCommandType() == Model_EventCommand.CommandType.MULTIPLE_CONDITION:
+                elif command.getCommandType() == Model_EventCommandData.CommandType.MULTIPLE_CONDITION:
                     #self.multipleConditionAddresses = command.GetMultipleConditionAddresses()
                     #self.multipleConditionCount = command.GetMultipleConditionCount()
                     #self.multipleConditionNames = command.GetMultipleConditionNames()
                     self.multipleConditionIndex = 0
                     #CreateCommandBranch(source, ref i);
-                elif command.getCommandType() == Model_EventCommand.CommandType.LEAVE:
+                elif command.getCommandType() == Model_EventCommandData.CommandType.LEAVE:
                     pass
                     #RemoveCommandHierarchy(source, ref i);
                 else:

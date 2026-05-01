@@ -11,22 +11,6 @@ class Model_EventCommand:
     class BaseType(Enum):
         ASSEMBLER_COMMAND = 0,
         COP_COMMAND = 1
-    
-    # enumeration for command types
-    class CommandType(Enum):
-        ACTION = 0,
-        BRANCH = 1,
-        CALL = 2,
-        CHOICE = 3,
-        CHOICE_ENTRY = 4,
-        CONDITION = 5,
-        CONDITION_TRUE = 6,
-        CONDITION_TRUE_ONLY = 7,
-        CONDITION_FALSE = 8,
-        JUMP = 9,
-        LEAVE = 10,
-        MULTIPLE_CONDITION = 11,
-        MULTIPLE_CONDITION_ENTRY = 12
 
     def __init__(self, romData, address, hierarchy, commandData : Model_EventCommandData) -> None:
         self.romData = romData
@@ -54,8 +38,10 @@ class Model_EventCommand:
         self.readId()
 
         # read command data based on id
-        self.data = self.commandData.getCommandDataById(self.id)
-        print("data:", self.data['id'])
+        self.id, self.name, self.type = self.commandData.getCommandDataById(self.id)
+        print("id:", self.id)
+        print("name:", self.name)
+        print("commandType:", self.type)
 
     def readId(self):
         # read command id
