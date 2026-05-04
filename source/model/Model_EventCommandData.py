@@ -54,9 +54,9 @@ class Model_EventCommandData:
         MAP_POSITION = 12
         MAP_POSITION_OFFSET = 13
         MAP_REARRANGEMENT_LONG_SWITCH = 14
-        TEXT_WINDOW = 15
+        MESSAGE_BOX = 15
         MESSAGE_BOX_CHOICE = 16
-        TEXT_WINDOW_LONG = 17
+        MESSAGE_BOX_LONG = 17
         MUSIC = 18
         NUMBER = 19
         RAM_ADDRESS = 20
@@ -83,9 +83,9 @@ class Model_EventCommandData:
         'mapPosition': DataType.MAP_POSITION,
         'mapPositionOffset': DataType.MAP_POSITION_OFFSET,
         'mapRearrangementLongSwitch': DataType.MAP_REARRANGEMENT_LONG_SWITCH,
-        'textWindow': DataType.TEXT_WINDOW,
+        'messageBox': DataType.MESSAGE_BOX,
         'messageBoxChoice': DataType.MESSAGE_BOX_CHOICE,
-        'textWindowLong': DataType.TEXT_WINDOW_LONG,
+        'messageBoxLong': DataType.MESSAGE_BOX_LONG,
         'music': DataType.MUSIC,
         'number': DataType.NUMBER,
         'ramAddress': DataType.RAM_ADDRESS,
@@ -108,6 +108,7 @@ class Model_EventCommandData:
         id = None
         name = None
         commandType = None
+        dataTypes = None
 
         for command in self.data['eventCommands']:
             checkCommandId = int(str(command['id']), 16)
@@ -118,11 +119,17 @@ class Model_EventCommandData:
                 if 'type' in command:
                     commandType = Model_EventCommandData.convertStringToCommandType(command['type'])
                 else:
-                    commandType = Model_EventCommandData.CommandType.ACTION 
+                    commandType = Model_EventCommandData.CommandType.ACTION
+
+                if 'data' in command:
+                    dataTypes = []
+                    for data in command['data']:
+                        dataType = Model_EventCommandData.convertStringToDataType(data['type'])
+                        dataTypes.append(dataType)
 
                 break
 
-        return id, name, commandType
+        return id, name, commandType, dataTypes
 
     @staticmethod
     def convertStringToCommandType(typeString: str) -> 'Model_EventCommandData.CommandType':
