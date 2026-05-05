@@ -12,30 +12,65 @@ class Model_EventCommand:
         ASSEMBLER_COMMAND = 0,
         COP_COMMAND = 1
 
-    def __init__(self, romData, address, hierarchy, commandData : Model_EventCommandData) -> None:
-        self.romData = romData
-        self.address = address
-        self.readOffset = address
-        self.hierarchy = hierarchy
-        self.type = self.CommandType.ACTION        # set default command type
-       
-        self.read()
+    def __init__(self, romData=None, address=None, hierarchy=None, commandData=None, hierarchyLevel=None, name=None, id=None, type=None, commandIndex=None) -> None:
+        """Unified __init__ method that handles different initialization patterns."""
+        if romData is not None and address is not None and hierarchy is not None and commandData is not None:
+            # First initialization pattern: full command from ROM data
+            self.romData = romData
+            self.address = address
+            self.readOffset = address
+            self.hierarchy = hierarchy
+            self.commandData = commandData
+            self.type = self.CommandType.ACTION  # set default command type
+            self.read()
+        elif romData is not None and address is not None and commandData is not None and hierarchy is None:
+            # Second initialization pattern: command from ROM data without hierarchy
+            self.romData = romData
+            self.address = address
+            self.readOffset = address
+            self.commandData = commandData
+            self.read()
+        elif hierarchyLevel is not None and name is not None and id is not None and type is not None:
+            # Third initialization pattern: command from parameters
+            self.address = None
+            self.commandHierarchy = hierarchyLevel
+            self.id = id
+            self.name = name
+            self.type = type
+        elif address is not None and hierarchyLevel is not None and id is not None and commandIndex is not None:
+            # Fourth initialization pattern: branch command constructor
+            self.address = address
+            self.commandHierarchy = hierarchyLevel
+            self.data = []
+            self.id = id
+            self.name = f"BRANCH -> Command [{commandIndex:03d}]"
+            self.type = Model_EventCommandData.CommandType.LEAVE
+        else:
+            raise ValueError("Invalid combination of parameters for Model_EventCommand initialization")
 
-    def __init__(self, romData, address, commandData : Model_EventCommandData) -> None:
-        self.romData = romData
-        self.address = address
-        self.readOffset = address
-        self.commandData = commandData
+    @classmethod
+    def from_rom_data_with_hierarchy(cls, romData, address, hierarchy, commandData):
+        """Create a Model_EventCommand from ROM data with hierarchy."""
+        return cls(romData=romData, address=address, hierarchy=hierarchy, commandData=commandData)
 
-        self.read()
+    @classmethod
+    def from_rom_data(cls, romData, address, commandData):
+        """Create a Model_EventCommand from ROM data."""
+        return cls(romData=romData, address=address, commandData=commandData)
 
-    def getCommandType(self):
-        # Implementation to determine command type
-        pass
+    @classmethod
+    def from_parameters(cls, hierarchyLevel: int, name: str, id: int, type):
+        """Create a Model_EventCommand from explicit parameters."""
+        return cls(hierarchyLevel=hierarchyLevel, name=name, id=id, type=type)
 
-    def read(self):
+    @classmethod
+    def from_branch_command(cls, address: int, hierarchyLevel: int, id: int, commandIndex: int):
+        """Create a Model_EventCommand for a branch command."""
+        return cls(address=address, hierarchyLevel=hierarchyLevel, id=id, commandIndex=commandIndex)
+
+    def read(self):    
         # read command id
-        self.readId()
+        self.read_id()
 
         # read command data based on id
         self.id, self.name, self.type, self.dataTypes = self.commandData.getCommandDataById(self.id)
@@ -47,14 +82,14 @@ class Model_EventCommand:
         if self.dataTypes is not None:
             for dataType in self.dataTypes:
                 print("dataType:", dataType)
-                value = self.readData(self.romData, dataType, self.name)
+                value = self.read_data(self.romData, dataType, self.name)
                 print("value:", value)
                 self.dataValues.append(value)
         
         self.size = self.readOffset - self.address
         print("final command size:", self.size)
 
-    def readId(self):
+    def read_id(self):
         # read command id
         if self.romData[self.readOffset] == 0x02:
             self.readOffset += 1
@@ -68,7 +103,7 @@ class Model_EventCommand:
             self.size = 1
             self.baseType = self.BaseType.ASSEMBLER_COMMAND 
 
-    def readData(self, source, 
+    def read_data(self, source, 
                  dataType: Model_EventCommandData.DataType, name: str) -> int:
         value = None
         if dataType in (
@@ -82,7 +117,7 @@ class Model_EventCommand:
             value = address
 
         if dataType == Model_EventCommandData.DataType.EVENT_SCRIPT:
-            self.m_commandBranchAddress = int(value)
+            self.branchAddress = int(value)
 
         elif dataType == Model_EventCommandData.DataType.BOOL:
             value = source[self.readOffset] == 0x01
@@ -106,14 +141,14 @@ class Model_EventCommand:
         elif dataType == Model_EventCommandData.DataType.BRANCH_ABSOLUTE:
             self.m_branchAddressLocation = self.readOffset
             self.m_branchType = Model_EventCommandData.DataType.BRANCH_ABSOLUTE
-            self.m_commandBranchAddress = int.from_bytes(source[self.readOffset:self.readOffset + 3], "little")
+            self.branchAddress = int.from_bytes(source[self.readOffset:self.readOffset + 3], "little")
             self.readOffset += 3
 
         elif dataType == Model_EventCommandData.DataType.BRANCH_OFFSET:
             raw = source[self.readOffset]
             self.readOffset += 1
             value = raw - 256 if raw >= 0x80 else raw
-            self.m_commandBranchAddress = self.readOffset + value
+            self.branchAddress = self.readOffset + value
 
         elif dataType == Model_EventCommandData.DataType.BRANCH_RELATIVE:
             self.m_branchAddressLocation = self.readOffset
@@ -123,14 +158,14 @@ class Model_EventCommand:
             self.readOffset += 2
 
             if (self.id == 0x2C0) and value == 0:
-                self.m_commandBranchAddress = self.readOffset
+                self.branchAddress = self.readOffset
                 self.type = Model_EventCommandData.CommandType.CONDITION_TRUE_ONLY
             else:
-                self.m_commandBranchAddress = (self.readOffset & 0xFF0000) + value
+                self.branchAddress = (self.readOffset & 0xFF0000) + value
 
             if self.type == Model_EventCommandData.CommandType.MULTIPLE_CONDITION:
                 self.m_multipleConditionCount += 1
-                self.m_multipleConditionAddresses.append(self.m_commandBranchAddress)
+                self.m_multipleConditionAddresses.append(self.branchAddress)
                 self.m_multipleConditionNames.append(f"CASE -> {name}")
 
         elif dataType == Model_EventCommandData.DataType.MAP_POSITION:
@@ -154,7 +189,7 @@ class Model_EventCommand:
             #value = self.readTextBoxSequence(source, text_address)
 
         elif dataType == Model_EventCommandData.DataType.MESSAGE_BOX_CHOICE:
-            self.m_commandBranchAddress = (self.readOffset & 0xFF0000) + (source[self.readOffset] | (source[self.readOffset + 1] << 8))
+            self.branchAddress = (self.readOffset & 0xFF0000) + (source[self.readOffset] | (source[self.readOffset + 1] << 8))
             self.readOffset += 2
 
         elif dataType == Model_EventCommandData.DataType.MESSAGE_BOX_LONG:
@@ -176,4 +211,10 @@ class Model_EventCommand:
             self.readOffset += 2
 
         return value
+    
+    def get_branch_address(self):
+        return self.branchAddress
+
+    def get_type(self):
+        return self.type
         
