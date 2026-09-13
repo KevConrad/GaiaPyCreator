@@ -1,26 +1,19 @@
-import wx
-
-from pubsub import pub
-
-print('pubsub API version', pub.VERSION_API)
-
-# notification
-from pubsub.utils.notification import useNotifyByWriteFile
 import sys
+from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent.parent
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from nicegui import ui
 from controller.Controller_Main import Controller_Main
-from view.View_Main import View_Main
+from source.view.View_Main import View_Main
 
-useNotifyByWriteFile(sys.stdout)
 
-if __name__ == "__main__":
-    app = wx.App()
-
+if __name__ in {"__main__", "__mp_main__"}:
     controller = Controller_Main()
+    #View_Main.create_app()
+    ui.run(title='GaiaPyCreator', favicon='🎮', host='127.0.0.1', port=8081, reload=True)
 
-    sys.stdout = sys.__stdout__
 
-    print('---- Starting main event loop ----')
-    app.MainLoop()
-    print('---- Exited main event loop ----')
 

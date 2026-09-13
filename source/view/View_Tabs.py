@@ -1,122 +1,19 @@
-import wx
 
-from pubsub import pub
-
-class TabEvents(wx.Panel):
-    EVENTS_TAB_INDEX = 0
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit event data.", (20,20))
-
-class TabItems(wx.Panel):
-    ITEMS_TAB_INDEX = 1
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit item data.", (20,20))
-
-class TabMaps(wx.Panel):
-    MAPS_TAB_INDEX = 2
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit map data.", (20,20))
-
-class TabMisc(wx.Panel):
-    MISC_TAB_INDEX = 3
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-
-class TabMusic(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit music data.", (20,20))
-
-class TabPalettes(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit palette data.", (20,20))
-
-class TabSprites(wx.Panel):
-    SPRITES_TAB_INDEX = 6
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit sprite data.", (20,20))
-
-class TabTextBox(wx.Panel):
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit textbox data.", (20,20))
-
-class TabTilemaps(wx.Panel):
-    TILEMAPS_TAB_INDEX = 8
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit tilemap data.", (20,20))
-
-class TabTilesets(wx.Panel):
-    TILESET_TAB_INDEX = 9
-
-    def __init__(self, parent):
-        wx.Panel.__init__(self, parent)
-        text = wx.StaticText(self, -1, "Edit tileset data.", (20,20))
+from nicegui import ui
         
 class View_Tabs:
-    def __init__(self, frame : wx.Frame):
-        
-        # Panel creation and tab holder setup:
-        panel = wx.Panel(frame)
-        self.notebook = wx.Notebook(panel)
-
-        # Initialization of the tab windows
-        self.tabEvents = TabEvents(self.notebook)
-        self.tabItems = TabItems(self.notebook)
-        self.tabMaps = TabMaps(self.notebook)
-        self.tabMisc = TabMisc(self.notebook)
-        self.tabMusic = TabMusic(self.notebook)
-        self.tabPalettes = TabPalettes(self.notebook)
-        self.tabSprites = TabSprites(self.notebook)
-        self.tabTextBox = TabTextBox(self.notebook)
-        self.tabTilemaps = TabTilemaps(self.notebook)
-        self.tabTilesets = TabTilesets(self.notebook)
-
-        # Assign names to tabs and add them
-        self.notebook.AddPage(self.tabEvents, "Events")
-        self.notebook.AddPage(self.tabItems, "Items")
-        self.notebook.AddPage(self.tabMaps, "Maps")
-        self.notebook.AddPage(self.tabMisc, "Misc")
-        self.notebook.AddPage(self.tabMusic, "Music")
-        self.notebook.AddPage(self.tabPalettes, "Palettes")
-        self.notebook.AddPage(self.tabSprites, "Sprites")
-        self.notebook.AddPage(self.tabTextBox, "Textbox")
-        self.notebook.AddPage(self.tabTilemaps, "Tilemaps")
-        self.notebook.AddPage(self.tabTilesets, "Tilesets")
-
-        self.notebook.Bind(wx.EVT_NOTEBOOK_PAGE_CHANGED, self.handleTabChanged)
-
-        # Organizing notebook layout using a sizer:
-        sizer = wx.BoxSizer()
-        sizer.Add(self.notebook, 1, wx.EXPAND)
-        panel.SetSizer(sizer)
-
-    def handleTabChanged(self, event):
-        index = self.notebook.GetSelection()
-
-        if self.notebook.GetPage(index) is self.tabEvents:
-            pub.sendMessage("events_load")
-        if self.notebook.GetPage(index) is self.tabItems:
-            pub.sendMessage("items_load")
-        if self.notebook.GetPage(index) is self.tabMaps:
-            pub.sendMessage("maps_load")
-        if self.notebook.GetPage(index) is self.tabMisc:
-            pub.sendMessage("misc_load")
-        if self.notebook.GetPage(index) is self.tabSprites:
-            pub.sendMessage("sprites_load")
-        if self.notebook.GetPage(index) is self.tabTilemaps:
-            pub.sendMessage("tilemaps_load")
-        if self.notebook.GetPage(index) is self.tabTilesets:
-            pub.sendMessage("tilesets_load")
+    def __init__(self):
+        with ui.expansion('Events', icon='work').classes('w-full') as self.expansion_events:
+            pass
+        with ui.expansion('Items', icon='inventory').classes('w-full') as self.expansion_items:
+            pass
+        with ui.expansion('Maps', icon='map').classes('w-full') as self.expansion_maps:
+            pass
+        with ui.expansion('Misc', icon='settings').classes('w-full') as self.expansion_misc:
+            pass
+        with ui.expansion('Sprites', icon='image').classes('w-full') as self.expansion_sprites:
+            pass
+        with ui.expansion('Tilemaps', icon='grid_view').classes('w-full') as self.expansion_tilemaps:
+            pass
+        with ui.expansion('Tilesets', icon='grid_on').classes('w-full') as self.expansion_tilesets:
+            pass

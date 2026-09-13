@@ -24,14 +24,19 @@ class Model_ProjectData:
         print("Loaded project file " + self.projectFilePath + ".")
     
     def saveProject(self, projectPath):
-        extractProjectNamePattern = '[\w-]+?(?=\.)'
-        self.projectName = re.search(extractProjectNamePattern, projectPath).group()
-        print("Saved project name: " + self.projectName)
+        projectPath = str(projectPath).strip()
 
-        self.projectPath = os.path.dirname(projectPath)
+        if os.path.splitext(projectPath)[1].lower() == '.json':
+            self.projectName = os.path.splitext(os.path.basename(projectPath))[0]
+            self.projectPath = os.path.dirname(projectPath) or '.'
+        else:
+            self.projectName = os.path.basename(projectPath) or 'project'
+            self.projectPath = projectPath or '.'
+
+        print("Saved project name: " + self.projectName)
         print("Saved project path: " + self.projectPath)
 
-        self.projectFilePath = self.projectPath + "/" + self.projectName + ".json"
+        self.projectFilePath = os.path.join(self.projectPath, self.projectName + ".json")
 
     def appendRomData(self, romData):
         # convert the ROM data byte array to a string to store it in the JOSN project file

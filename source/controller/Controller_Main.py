@@ -26,7 +26,7 @@ class Controller_Main:
     def __init__(self):
         self.view = View_Main()
 
-        self.view.Show()
+        #self.view.Show()
 
         self.project = Controller_Project(self.view)
         self.text = Model_Text()
